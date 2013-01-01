@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="LightTheme" parent="android:Theme.Light">
+        <item name="android:listViewStyle">@style/listViewStyle</item>
+        <item name="android:textViewStyle">@style/lightTextViewStyle</item>
+        <item name="android:tabWidgetStyle">@style/lightTabWidgetStyle</item>
+    </style>
+
+    <style name="lightTextViewStyle" parent="@style/textViewStyle">
+        <item name="android:textAppearance">@style/lightTextAppearance</item>
+    </style>
+
+    <style name="lightTextAppearance" parent="@style/textAppearance">
+        <item name="android:textColor">@android:color/primary_text_light</item>
+    </style>
+
+    <style name="lightTabWidgetStyle" parent="@android:style/Widget.TabWidget">
+        <item name="android:textColor">@color/grey_black_tab_indicator_text</item>
+    </style>
+</resources>

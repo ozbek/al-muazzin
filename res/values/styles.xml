@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="DefaultTheme" parent="android:Theme.Black">
+        <item name="android:listViewStyle">@style/listViewStyle</item>
+        <item name="android:textViewStyle">@style/textViewStyle</item>
+    </style>
+
+    <style name="listViewStyle" parent="@android:style/Widget.ListView">
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+    </style>
+
+    <style name="textViewStyle" parent="@android:style/Widget.TextView">
+        <item name="android:textAppearance">@style/textAppearance</item>
+    </style>
+
+    <style name="textAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">14dip</item>
+    </style>
+
+    <style name="finePrint">
+        <item name="android:textSize">12dip</item>
+        <item name="android:paddingTop">10px</item>
+        <item name="android:paddingLeft">4px</item>
+        <item name="android:paddingRight">4px</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="labelColumn" parent="@android:style/Widget.TextView">
+        <item name="android:minWidth">100px</item>
+        <item name="android:paddingRight">5px</item>
+        <item name="android:paddingLeft">5px</item>
+    </style>
+</resources>

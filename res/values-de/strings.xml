@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Adh&#257;n Alarm</string>
+    <string name="description">Benachrichtigt Sie zu den Muslimischen Gebetszeiten</string>
+    <string name="previous">Vorherige</string>
+    <string name="next">Nächste</string>
+    <string name="stop">Stopp</string>
+    <string name="help">Hilfe</string>
+    <string name="help_text"><u>Frequently Asked Questions</u>\n\nQ: Why do the times not match my local timetable?\n\nA: There are many factors that affect the schedule including the input parameters (ex. latitude, longitude, calculation method, ...), algorithmic differences and precision differences due to computations on different machines.\n\nQ: Why does the Qibla compass not point in the right direction?\n\nA: Confirm that your latitude and longitude are set correctly in your settings and your phone is away from electro-magnetic interference.\n\nQ: Why is my favorite feature not included in the application?\n\nA: Please visit the project website at adhanalarm.googlecode.com and help us improve the program.</string>
+    <string name="information_text">Für mehr Informationen besuchen Sie:\nadhanalarm.googlecode.com\n\nFür mehr über Islam besuchen Sie:\nwww.spiritofislam.com\n\nVersion: #</string>
+    <string name="today">Heute</string>
+    <string name="next_fajr">Nächste Fajr</string>
+    <string name="sdefault">Standard</string>
+    <string name="error_playing_alert">Error Playing Alert</string>
+    <string name="location_not_set">Bitte <u>Standort</u> eingeben</string>
+    <string name="allahu_akbar">Gott ist groß</string>
+    <string name="time_for">Zeit für</string>
+    <string name="latitude">Breitengrad</string>
+    <string name="longitude">Längengrad</string>
+    <string name="compass_disclaimer">Kompass funktioniert in portrait Modus.</string>
+    <string name="bearing_north">1) Peilung Nord = (1)°</string>
+    <string name="bearing_qibla">2) Peilung Qibla = (1) (+/-) (2)° = (3)°</string>
+    <string name="settings">Einstellungen</string>
+    <string name="notification">Benachrichtugung</string>
+    <string name="none">Keine</string>
+    <string name="beep">Beep</string>
+    <string name="recite">Rezitieren</string>
+    <string name="custom">Brauch</string>
+    <string name="sinterface">Oberfläche</string>
+    <string name="advanced">Erweitert</string>
+    <string name="extra_alerts">Extra Alarme</string>
+    <string name="daylight_savings">Daylight Savings</string>
+    <string name="lookup_gps">Lookup\nGPS</string>
+    <string name="system_time_zone">System Zeit Zone</string>
+    <string name="save">Speichern</string>
+    <string name="reset">Eingaben löschen</string>
+    <string name="calculation">Berechnungen</string>
+    <string name="egypt_survey">Ägyptische Generalbehörde für Begutachtung</string>
+    <string name="karachi_shaf">Shaf`i - Karachi Universität für Islamwissenschaften</string>
+    <string name="karachi_hanaf">Hanafi - Karachi Universität für Islamwissenschaften</string>
+    <string name="north_america">Islamische Gesellschaft von Nord Amerika</string>
+    <string name="muslim_league">Muslim Welt Verband</string>
+    <string name="umm_alqurra">Umm Al-Qurra, Saudi Arabia</string>
+    <string name="fixed_ishaa">Fixed Ishaa Interval (immer 90)</string>
+    <string name="rounding">Runden</string>
+    <string name="normal">Normal</string>
+    <string name="special">Spezial</string>
+    <string name="aggressive">Aggressiv</string>
+    <string name="altitude">Höhe</string>
+    <string name="pressure">Druck</string>
+    <string name="temperature">Temperatur</string>
+    <string name="language">Sprache</string>
+    <string name="theme">Design</string>
+    <string name="brown">Braun</string>
+    <string name="green">Grün</string>
+</resources>

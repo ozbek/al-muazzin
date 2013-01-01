@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent">
+    <LinearLayout android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+        <LinearLayout android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <TextView android:text="@string/file_path"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:gravity="fill_vertical"
+                style="@style/labelColumn" />
+            <EditText android:id="@+id/file_path"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:singleLine="true"
+                android:minWidth="200px" />
+        </LinearLayout>
+        <include layout="@layout/buttons_save_reset" />
+    </LinearLayout>
+</ScrollView>

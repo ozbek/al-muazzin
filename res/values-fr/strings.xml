@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Adhān alarme</string>
+    <string name="description">Affichage et alertes des prières quotidiennes du musulman</string>
+    <string name="help">Aide</string>
+    <string name="help_text"><u>Questions fréquemment posées</u>\n\nQ: Pourquoi les temps de prières ne correspondent pas à mon calendrier?\n\nA: Il y a beaucoup de facteurs qui affectent le calcul des prières, notamment  les paramètres en entrées de configuration (ex. latitude, longitude, méthode de calcul,…), le choix des algorithmes ainsi que la précision du calcul qui vari selon les machines.\n\nQ: Pourquoi la boussole du Qibla ne se dirige-t-elle pas dans la bonne direction?\n\nA: C\'est une boussole très imprécise.\n\nQ: Pourquoi ma fonctionnalité préférée n\'est-elle pas incluse dans l\'application?\n\nA: Veuillez visiter le site Web du projet à l’adresse adhanalarm.googlecode.com et aidez-nous à améliorer le programme.</string>
+    <string name="information_text">Pour plus d\'informations sur ce programme merci de visiter:\nadhanalarm.googlecode.com\n\nPour plus d\'informations sur l\'islam:\nwww.spiritofislam.com\n\nVersion: #</string>
+    <string name="today">Aujourd\'hui</string>
+    <string name="sunrise">Levé du soleil</string>
+    <string name="next_fajr">Prochain Fajr</string>
+    <string name="sdefault">Défaut</string>
+    <string name="error_playing_alert">Erreur rencontrée pendant la lecture de l’alerte </string>
+    <string name="location_not_set">préciser s\'il vous plaît <u>Endroit</u></string>
+    <string name="allahu_akbar">Allahou akbar</string>
+    <string name="time_for">L\'heure de</string>
+    <string name="compass_disclaimer">La boussole fonctionne en mode portrait aussi.</string>
+    <string name="bearing_north">1) Relevé du Nord = (1)°</string>
+    <string name="bearing_qibla">2) Relevé de la Qibla = (1) (+/-) (2)° = (3)°</string>
+    <string name="settings">Paramètres</string>
+    <string name="none">Aucun</string>
+    <string name="recite">Appel sonore à la prière</string>
+    <string name="advanced">Avancé</string>
+    <string name="extra_alerts">Plus d’alertes</string>
+    <string name="daylight_savings">Heure d\'été</string>
+    <string name="lookup_gps">Consultation\nGPS</string>
+    <string name="system_time_zone">Fuseau horaire</string>
+    <string name="save">Enregistrer</string>
+    <string name="reset">Réinitialiser</string>
+    <string name="calculation">Calcul</string>
+    <string name="egypt_survey">Le Cadastre général d\'Egypte</string>
+    <string name="karachi_shaf">Shaf`i - L\'Université des Sciences Islamiques de Karachi</string>
+    <string name="karachi_hanaf">Hanafi - L\'Université des Sciences Islamiques de Karachi</string>
+    <string name="north_america">La Fédération Islamique de l\'Amérique du nord</string>
+    <string name="muslim_league">La Ligue du Monde Islamique</string>
+    <string name="umm_alqurra">Umm Ul Qurâ,  Arabie Saoudite</string>
+    <string name="fixed_ishaa">Intervalle fixe pour Ishaa (toujours à 90)</string>
+    <string name="rounding">Arrondi</string>
+    <string name="normal">Normal</string>
+    <string name="special">Spécial</string>
+    <string name="aggressive">Agressif</string>
+    <string name="pressure">Pression</string>
+    <string name="temperature">Température</string>
+    <string name="language">Langage</string>
+    <string name="theme">Thème</string>
+</resources>

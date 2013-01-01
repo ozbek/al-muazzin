@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="GreenTheme" parent="@style/DefaultTheme">
+        <item name="android:windowBackground">@color/green_background</item>
+        <item name="android:tileMode">repeat</item>
+        <item name="android:textViewStyle">@style/greenTextViewStyle</item>
+        <item name="android:tabWidgetStyle">@style/greenTabWidgetStyle</item>
+    </style>
+
+    <style name="greenTextViewStyle" parent="@style/textViewStyle">
+        <item name="android:textAppearance">@style/greenTextAppearance</item>
+    </style>
+
+    <style name="greenTextAppearance" parent="@style/textAppearance">
+        <item name="android:textColor">@color/light_yellow</item>
+    </style>
+
+    <style name="greenTabWidgetStyle" parent="@android:style/Widget.TabWidget">
+        <item name="android:textColor">@color/yellow_black_tab_indicator_text</item>
+    </style>
+</resources>

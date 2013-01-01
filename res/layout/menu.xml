@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@android:drawable/ic_media_previous" android:id="@+id/menu_previous"
+        android:numericShortcut="4" android:title="@string/previous"
+        android:alphabeticShortcut="P">
+    </item>
+    <item android:icon="@android:drawable/ic_media_next" android:id="@+id/menu_next"
+        android:numericShortcut="5" android:title="@string/next"
+        android:alphabeticShortcut="N">
+    </item>
+    <item android:icon="@android:drawable/ic_media_pause" android:id="@+id/menu_stop"
+        android:numericShortcut="6" android:title="@string/stop"
+        android:alphabeticShortcut="S">
+    </item>
+    <item android:icon="@android:drawable/ic_menu_preferences" android:id="@+id/menu_settings"
+        android:numericShortcut="1" android:title="@string/settings"
+        android:alphabeticShortcut="S">
+    </item>
+    <item android:icon="@android:drawable/ic_menu_search" android:id="@+id/more_applications"
+        android:numericShortcut="4" android:title="@string/more_applications"
+        android:alphabeticShortcut="M">
+    </item>
+    <item android:icon="@android:drawable/ic_menu_help" android:id="@+id/menu_help"
+        android:numericShortcut="2" android:title="@string/help"
+        android:alphabeticShortcut="H">
+    </item>
+    <item android:icon="@android:drawable/ic_menu_info_details" android:id="@+id/menu_information"
+        android:numericShortcut="3" android:title="@string/information"
+        android:alphabeticShortcut="I">
+    </item>
+</menu>

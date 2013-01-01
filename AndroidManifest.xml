@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="uz.efir.azon"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_GPS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application android:label="@string/app_name"
+        android:description="@string/description"
+        android:icon="@drawable/icon"
+        android:theme="@style/DialogTheme">
+
+        <activity android:name=".Azon"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:configChanges="keyboardHidden|orientation|locale">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".receiver.StartNotificationReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".receiver.ClickNotificationReceiver" />
+        <receiver android:name=".receiver.ClearNotificationReceiver" />
+        <service android:name=".service.FillDailyTimetableService" />
+        <service android:name=".service.StartNotificationService" />
+
+        <receiver android:name=".widget.TimetableWidgetProvider"
+            android:label="@string/adhan_timetable">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_timetable" />
+        </receiver>
+
+        <receiver android:name=".widget.NextNotificationWidgetProvider"
+            android:label="@string/adhan_next_time">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_next_notification" />
+        </receiver>
+
+    </application>
+</manifest>

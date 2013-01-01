@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <TextView style="@style/finePrint" android:id="@+id/display_time_zone"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:paddingTop="0px" android:paddingBottom="2px" />
+    <Button android:id="@+id/set_calculation" android:text="@string/calculation"
+        android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <Button android:id="@+id/set_notification" android:text="@string/notification"
+        android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <Button android:id="@+id/set_interface" android:text="@string/sinterface"
+        android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <Button android:id="@+id/set_advanced" android:text="@string/advanced"
+        android:layout_width="fill_parent" android:layout_height="wrap_content" />
+    <CheckBox android:id="@+id/bismillah_on_boot_up" android:text="@string/bismillah_on_boot_up"
+        android:layout_width="fill_parent" android:layout_height="wrap_content" />
+</LinearLayout>
