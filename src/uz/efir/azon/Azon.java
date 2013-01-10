@@ -118,7 +118,7 @@ public class Azon extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = new MenuInflater(this);
-        inflater.inflate(R.layout.menu, menu);
+        inflater.inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
     @Override
