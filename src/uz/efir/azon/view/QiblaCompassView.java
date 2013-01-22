@@ -52,11 +52,11 @@ public class QiblaCompassView extends View {
     private void initCompassView() {
         compassNeedle = BitmapFactory.decodeResource(getResources(), R.drawable.compass_needle);
         compassBackground = BitmapFactory.decodeResource(getResources(), R.drawable.compass_background);
-        width = compassBackground.getWidth();
-        height = compassBackground.getHeight();
+        width = getWidth(compassBackground, 240);
+        height = getHeight(compassBackground, 240);
         centre_x = width  * 0.5f;
         centre_y = height * 0.5f;
-        rotateNeedle.postTranslate(centre_x - compassNeedle.getWidth() + 10, centre_y - compassNeedle.getHeight() + 10);
+        rotateNeedle.postTranslate(centre_x - getWidth(compassNeedle, 23) + 10, centre_y - getHeight(compassNeedle, 142) + 10);
         invalidate();
     }
 
@@ -73,8 +73,8 @@ public class QiblaCompassView extends View {
         this.directionNorth = directionNorth;
         this.directionQibla = directionQibla;
         rotateNeedle = new Matrix();
-        rotateNeedle.postRotate(-directionQibla, compassNeedle.getWidth() * 0.5f, compassNeedle.getHeight());
-        rotateNeedle.postTranslate(centre_x - compassNeedle.getWidth() + 5, centre_y - compassNeedle.getHeight() + 5);
+        rotateNeedle.postRotate(-directionQibla, getWidth(compassNeedle, 23) * 0.5f, getHeight(compassNeedle, 142));
+        rotateNeedle.postTranslate(centre_x - getWidth(compassNeedle, 23), centre_y - getHeight(compassNeedle, 142) + 5);
         invalidate();
     }
 
@@ -87,5 +87,21 @@ public class QiblaCompassView extends View {
         canvas.rotate(-directionNorth, centre_x, centre_y);
         canvas.drawBitmap(compassBackground, 0, 0, p);
         canvas.drawBitmap(compassNeedle, rotateNeedle, p);
+    }
+    
+    private int getHeight(Bitmap bitmap, int def) {
+        if (isInEditMode()) {
+            return def;
+        }
+
+        return bitmap.getHeight();
+    }
+
+    private int getWidth(Bitmap bitmap, int def) {
+        if (isInEditMode()) {
+            return def;
+        }
+
+        return bitmap.getWidth();
     }
 }
