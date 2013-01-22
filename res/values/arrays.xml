@@ -41,7 +41,7 @@
         <item>@string/month11</item>
     </array>
     <array name="languages">
-        <item>@string/sdefault</item>
+        <item>O\u2019zbekcha</item>
         <item>العربية</item>
         <item>Deutsch</item>
         <item>English</item>

@@ -86,10 +86,10 @@ public class Azon extends Activity {
         });
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        ((ListView)findViewById(R.id.timetable)).getLayoutParams().height = displayMetrics.heightPixels * 3/5;
-        ((ListView)findViewById(R.id.timetable)).getLayoutParams().width =  displayMetrics.widthPixels  * 4/5;
+        //((ListView)findViewById(R.id.timetable)).getLayoutParams().height = displayMetrics.heightPixels * 3/5;
+        //((ListView)findViewById(R.id.timetable)).getLayoutParams().width =  displayMetrics.widthPixels  * 4/5;
 
-        TabHost tabs = (TabHost)findViewById(R.id.tabs);
+        TabHost tabs = (TabHost)findViewById(R.id.tabhost);
         tabs.setup();
         tabs.getTabWidget().setBackgroundResource(themeManager.getTabWidgetBackgroundColor());
 

@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="fill_parent"
-    android:layout_height="wrap_content" android:gravity="center">
-    <ListView android:id="@+id/timetable" android:choiceMode="none"
-        android:layout_width="230px" android:layout_height="205px"
-        android:padding="5dip" />
-    <TextView style="@style/finePrint" android:id="@+id/notes"
-        android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <ListView
+        android:id="@+id/timetable"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="none" />
+
+    <TextView
+        style="@style/finePrint"
+        android:id="@+id/notes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

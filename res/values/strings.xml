@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Adhān Alarm</string>
-    <string name="description">Displays and can alert you to the daily Muslim prayer times.</string>
-    <string name="adhan_next_time">Adhān: Next Time</string>
-    <string name="adhan_timetable">Adhān: Timetable</string>
-    <string name="previous">Previous</string>
-    <string name="next">Next</string>
+    <string name="app_name">Azon</string>
+    <string name="description">Kundalik namoz vaqtlari uchun.</string>
+    <string name="adhan_next_time">Azon: keyingi vaqt</string>
+    <string name="adhan_timetable">Azon: jadval</string>
+    <string name="previous">Avvalgi</string>
+    <string name="next">Keyingi</string>
     <string name="stop">Stop</string>
-    <string name="help">Help</string>
+    <string name="help">Yordam</string>
     <string name="help_text"><u>Frequently Asked Questions</u>\n\nQ: Why do the times not match my local timetable?\n\nA: There are many factors that affect the schedule including the input parameters (ex. latitude, longitude, calculation method, ...), algorithmic differences and precision differences due to computations on different machines.\n\nQ: Why does the Qibla compass not point in the right direction?\n\nA: Confirm that your latitude and longitude are set correctly in your settings and your phone is away from electro-magnetic interference.\n\nQ: Why is my favorite feature not included in the application?\n\nA: Please visit the project website at adhanalarm.googlecode.com and help us improve the program.</string>
-    <string name="information">Information</string>
+    <string name="information">Ma’lumot</string>
     <string name="information_text">For more information about the program visit:\nadhanalarm.googlecode.com\n\nFor more information about Islam visit:\nwww.spiritofislam.com\n\nVersion: #</string>
     <string name="more_applications">More Applications</string>
-    <string name="today">Today</string>
-    <string name="fajr">Fajr</string>
-    <string name="sunrise">Sunrise</string>
+    <string name="today">Bugun</string>
+    <string name="fajr">Bomdod</string>
+    <string name="sunrise">Quyosh</string>
     <string name="dhuhr">Dhuhr</string>
-    <string name="asr">`Asr</string>
-    <string name="maghrib">Maghrib</string>
-    <string name="ishaa">`Ishaa\'</string>
+    <string name="asr">Asr</string>
+    <string name="maghrib">Shom</string>
+    <string name="ishaa">Xufton</string>
     <string name="next_fajr">Next Fajr</string>
     <string name="next_time_marker">&gt;</string>
     <string name="next_time_marker_reverse">&lt;</string>
@@ -26,16 +26,16 @@
     <string name="error_playing_alert">Error Playing Alert</string>
     <string name="error_playing_custom_file">Custom File Error</string>
     <string name="location_not_set"><u>Location Not Set</u>\n\nPlease enable the device\'s GPS or set your location manually through settings.</string>
-    <string name="allahu_akbar">God is greater</string>
+    <string name="allahu_akbar">Allohu akbar</string>
     <string name="time_for">Time for</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
     <string name="extreme">Extreme</string>
     <string name="qibla">Qibla</string>
     <string name="compass_disclaimer">Compass works in portrait mode.</string>
-    <string name="bearing_north">1) Bearing North = (1)°</string>
-    <string name="bearing_qibla">2) Bearing Qibla = (1) (+/-) (2)° = (3)°</string>
-    <string name="settings">Settings</string>
+    <string name="bearing_north">1) Bearing North = (1)\u00B0</string>
+    <string name="bearing_qibla">2) Bearing Qibla = (1) (+/-) (2)\u00B0 = (3)\u00B0</string>
+    <string name="settings">Moslamalar</string>
     <string name="bismillah_on_boot_up">Bismillah On Boot Up</string>
     <string name="notification">Notification</string>
     <string name="none">None</string>
@@ -44,8 +44,8 @@
     <string name="custom">Custom</string>
     <string name="file_path">File Path</string>
     <string name="file_path_example">File Path ex. /sdcard/sound.mp3</string>
-    <string name="sinterface">Interface</string>
-    <string name="advanced">Advanced</string>
+    <string name="sinterface">Interfeys</string>
+    <string name="advanced">Ilg\u2019or</string>
     <string name="extra_alerts">Extra Alerts</string>
     <string name="daylight_savings">Daylight Savings</string>
     <string name="lookup_gps">Lookup\nGPS</string>
@@ -66,7 +66,7 @@
     <string name="altitude">Altitude</string>
     <string name="pressure">Pressure</string>
     <string name="temperature">Temperature</string>
-    <string name="degrees_celsius">°C</string>
+    <string name="degrees_celsius">\u00B0 C</string>
     <string name="rounding">Rounding</string>
     <string name="normal">Normal</string>
     <string name="special">Special</string>
@@ -92,4 +92,9 @@
     <string name="month10">Dhu al-Qi`dah</string>
     <string name="month11">Dhu al-Hijjah</string>
     <string name="anno_hegirae">AH</string>
+
+    <string name="tilde" translatable="false">~</string>
+    <string name="degree_sign" translatable="false">\u00B0</string>
+    <string name="right_single_quote" translatable="false">\u2019</string>
+    <string name="right_double_quote" translatable="false">\u201D</string>
 </resources>
