@@ -1,7 +1,6 @@
 package uz.efir.azon.widget;
 
 import uz.efir.azon.Azon;
-import uz.efir.azon.CONSTANT;
 import uz.efir.azon.R;
 import uz.efir.azon.Schedule;
 import uz.efir.azon.VARIABLE;
@@ -16,6 +15,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.text.format.DateFormat;
 import android.widget.RemoteViews;
 
 public class TimetableWidgetProvider extends AppWidgetProvider {
@@ -42,7 +42,7 @@ public class TimetableWidgetProvider extends AppWidgetProvider {
         new LocaleManager();
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
-        if(VARIABLE.settings.getInt("timeFormatIndex", CONSTANT.DEFAULT_TIME_FORMAT) != CONSTANT.DEFAULT_TIME_FORMAT) {
+        if (DateFormat.is24HourFormat(context)) {
             timeFormat = new SimpleDateFormat("HH:mm");
         }
         final SimpleDateFormat amPmFormat = new SimpleDateFormat("a");
@@ -57,11 +57,10 @@ public class TimetableWidgetProvider extends AppWidgetProvider {
             for(int j = 0; j < times.length; j++) {
                 views.setTextViewText(text[j], context.getText(locale_text[j]));
                 views.setTextViewText(times[j], timeFormat.format(schedule[j].getTime()));
-                if(VARIABLE.settings.getInt("timeFormatIndex", CONSTANT.DEFAULT_TIME_FORMAT) == CONSTANT.DEFAULT_TIME_FORMAT) {
-                    views.setTextViewText(am_pms[j], amPmFormat.format(schedule[j].getTime()));
-                } else {
-
+                if (DateFormat.is24HourFormat(context)) {
                     views.setTextViewText(am_pms[j], "");
+                } else {
+                    views.setTextViewText(am_pms[j], amPmFormat.format(schedule[j].getTime()));
                 }
                 views.setTextViewText(markers[j], j == Schedule.today().nextTimeIndex() ? context.getString(R.string.next_time_marker_reverse) : "");
             }

@@ -52,8 +52,6 @@ public class CONSTANT {
 
     public static final short NOTIFICATION_NONE = 0, NOTIFICATION_DEFAULT = 1, NOTIFICATION_PLAY = 2, NOTIFICATION_CUSTOM = 3; // Notification Methods
 
-    public static final short DEFAULT_TIME_FORMAT = 0; // AM/PM
-
     public static final Rounding[] ROUNDING_TYPES = new Rounding[]{Rounding.NONE, Rounding.NORMAL, Rounding.SPECIAL, Rounding.AGRESSIVE};
     public static final short DEFAULT_ROUNDING_TYPE = 2; // Special
 

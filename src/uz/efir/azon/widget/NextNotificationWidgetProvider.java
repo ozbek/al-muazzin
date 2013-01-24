@@ -1,7 +1,6 @@
 package uz.efir.azon.widget;
 
 import uz.efir.azon.Azon;
-import uz.efir.azon.CONSTANT;
 import uz.efir.azon.R;
 import uz.efir.azon.Schedule;
 import uz.efir.azon.VARIABLE;
@@ -16,6 +15,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.text.format.DateFormat;
 import android.widget.RemoteViews;
 
 public class NextNotificationWidgetProvider extends AppWidgetProvider {
@@ -38,7 +38,7 @@ public class NextNotificationWidgetProvider extends AppWidgetProvider {
         new LocaleManager();
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
-        if(VARIABLE.settings.getInt("timeFormatIndex", CONSTANT.DEFAULT_TIME_FORMAT) != CONSTANT.DEFAULT_TIME_FORMAT) {
+        if (DateFormat.is24HourFormat(context)) {
             timeFormat = new SimpleDateFormat("k:mm");
         }
         final int nextTimeIndex = Schedule.today().nextTimeIndex();

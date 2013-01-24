@@ -56,8 +56,6 @@
     <string name="muslim_league">Perkumpulan Umat Muslim Dunia</string>
     <string name="umm_alqurra">Ummul Qura, Arab Saudi</string>
     <string name="fixed_ishaa">Jeda Tetap Isya\' (selalu 90)</string>
-    <string name="time_format">Tampilan Waktu</string>
-    <string name="clock_24_hour">Tampilan 24 Jam</string>
     <string name="altitude">Ketinggian</string>
     <string name="pressure">Tekanan Udara</string>
     <string name="temperature">Suhu</string>

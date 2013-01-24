@@ -61,8 +61,6 @@
     <string name="muslim_league">رابطة العالم الاسلامي</string>
     <string name="umm_alqurra">تقويم ام القرى</string>
     <string name="fixed_ishaa">فارق العشاء الزمني الثابت (90 دقيقة)</string>
-    <string name="time_format">نظام الوقت</string>
-    <string name="clock_24_hour">نظام 24 ساعة</string>
     <string name="altitude">Altitude</string>
     <string name="pressure">الضغط</string>
     <string name="temperature">درجة الحرارة</string>

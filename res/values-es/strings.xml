@@ -51,8 +51,6 @@
     <string name="muslim_league">La Liga Musulmana Mundial</string>
     <string name="umm_alqurra">Umm Al-Qurra, Arabia Saudita</string>
     <string name="fixed_ishaa">Intervalo fijo Ishaa (siempre 90)</string>
-    <string name="time_format">Formato de hora</string>
-    <string name="clock_24_hour">Reloj de 24 horas</string>
     <string name="altitude">Altitud</string>
     <string name="pressure">Presión</string>
     <string name="temperature">Temperatura</string>

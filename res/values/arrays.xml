@@ -9,10 +9,6 @@
         <item>@string/umm_alqurra</item>
         <item>@string/fixed_ishaa</item>
     </array>
-    <array name="time_format">
-        <item>@string/sdefault</item>
-        <item>@string/clock_24_hour</item>
-    </array>
     <array name="rounding_types">
         <item>@string/none</item>
         <item>@string/normal</item>

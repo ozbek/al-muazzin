@@ -1,62 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" android:layout_height="wrap_content">
-    <LinearLayout android:orientation="vertical"
-        android:layout_height="wrap_content" android:layout_width="fill_parent">
-        <LinearLayout android:orientation="horizontal"
-            android:layout_height="wrap_content" android:layout_width="fill_parent">
-            <LinearLayout android:orientation="vertical"
-                android:layout_height="fill_parent" android:layout_width="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
                 style="@style/labelColumn">
-                <TextView android:text="@string/time_format"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_weight="1" android:gravity="fill_vertical" />
-                <TextView android:text="@string/altitude"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_weight="1" android:gravity="fill_vertical" />
-                <TextView android:text="@string/pressure"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_weight="1" android:gravity="fill_vertical" />
-                <TextView android:text="@string/temperature"
-                    android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_weight="1" android:gravity="fill_vertical" />
-                <TextView android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="@string/rounding"
-                    android:layout_weight="1" android:gravity="fill_vertical" />
-                <TextView android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:text="@string/offset"
-                    android:layout_weight="1" android:gravity="fill_vertical" />
+
+                <TextView
+                    android:text="@string/altitude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical" />
+
+                <TextView
+                    android:text="@string/pressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical" />
+
+                <TextView
+                    android:text="@string/temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rounding"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/offset"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical" />
             </LinearLayout>
-            <LinearLayout android:orientation="vertical"
-                android:layout_height="wrap_content" android:layout_width="fill_parent">
-                <Spinner android:id="@+id/time_format" android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" android:drawSelectorOnTop="true" />
-                <EditText android:id="@+id/altitude" android:text="0"
-                    android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:numeric="signed|decimal" android:singleLine="true" />
-                <EditText android:id="@+id/pressure" android:text="1010"
-                    android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:numeric="signed|decimal" android:singleLine="true" />
-                <LinearLayout android:orientation="horizontal"
-                    android:layout_height="wrap_content" android:layout_width="fill_parent">
-                    <EditText android:id="@+id/temperature" android:text="10"
-                        android:layout_width="90dip" android:layout_height="wrap_content"
-                        android:numeric="signed|decimal" android:singleLine="true" />
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:text="@string/degrees_celsius"
-                        android:padding="5px" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <EditText
+                    android:id="@+id/altitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned|numberDecimal"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/pressure"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberSigned|numberDecimal"
+                    android:singleLine="true" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <EditText
+                        android:id="@+id/temperature"
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberSigned|numberDecimal"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/degrees_celsius"
+                        android:padding="5dp" />
                 </LinearLayout>
-                <Spinner android:id="@+id/rounding_types"
-                    android:layout_width="fill_parent" android:layout_height="wrap_content"
+
+                <Spinner
+                    android:id="@+id/rounding_types"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:drawSelectorOnTop="true" />
-                <LinearLayout android:orientation="horizontal"
-                    android:layout_height="wrap_content" android:layout_width="fill_parent">
-                    <EditText android:id="@+id/offset_minutes" android:text="0"
-                        android:layout_width="60dip" android:layout_height="wrap_content"
-                        android:numeric="signed" android:maxLength="4" android:singleLine="true" />
-                    <TextView android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:text="@string/minutes"
-                        android:padding="5px" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent">
+
+                    <EditText
+                        android:id="@+id/offset_minutes"
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberSigned"
+                        android:maxLength="4"
+                        android:singleLine="true" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/minutes"
+                        android:padding="5dp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

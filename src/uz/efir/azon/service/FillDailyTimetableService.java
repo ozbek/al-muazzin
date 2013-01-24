@@ -16,6 +16,7 @@ import android.app.Service;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.IBinder;
+import android.text.format.DateFormat;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -37,7 +38,7 @@ public class FillDailyTimetableService extends Service {
         try {
             GregorianCalendar[] schedule = day.getTimes();
             SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
-            if(VARIABLE.settings.getInt("timeFormatIndex", CONSTANT.DEFAULT_TIME_FORMAT) != CONSTANT.DEFAULT_TIME_FORMAT) {
+            if (DateFormat.is24HourFormat(parent)) {
                 timeFormat = new SimpleDateFormat("HH:mm ");
             }
 
@@ -45,10 +46,10 @@ public class FillDailyTimetableService extends Service {
                 String fullTime = timeFormat.format(schedule[i].getTime());
                 timetable.get(i).put("mark", ""); // Clear all existing markers since we're going to set the next one
                 timetable.get(i).put("time", fullTime.substring(0, fullTime.lastIndexOf(" ")));
-                if(VARIABLE.settings.getInt("timeFormatIndex", CONSTANT.DEFAULT_TIME_FORMAT) == CONSTANT.DEFAULT_TIME_FORMAT) {
-                    timetable.get(i).put("time_am_pm", fullTime.substring(fullTime.lastIndexOf(" ") + 1, fullTime.length()) + (day.isExtreme(i) ? "*" : ""));
-                } else {
+                if (DateFormat.is24HourFormat(parent)) {
                     timetable.get(i).put("time_am_pm", day.isExtreme(i) ? "*" : "");
+                } else {
+                    timetable.get(i).put("time_am_pm", fullTime.substring(fullTime.lastIndexOf(" ") + 1, fullTime.length()) + (day.isExtreme(i) ? "*" : ""));
                 }
                 if(day.isExtreme(i)) ((TextView)parent.findViewById(R.id.notes)).setText("* " + getString(R.string.extreme));
             }

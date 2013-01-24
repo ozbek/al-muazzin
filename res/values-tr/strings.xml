@@ -61,8 +61,6 @@
     <string name="muslim_league">Müslüman Dünya Ligi</string>
     <string name="umm_alqurra">Umm Al-Qurra, Suudi Arabistani</string>
     <string name="fixed_ishaa">Sabit yatsı aralık (her zaman 90 dak)</string>
-    <string name="time_format">Saat biçimi</string>
-    <string name="clock_24_hour">24 saat</string>
     <string name="altitude">Rakım</string>
     <string name="pressure">Basınç</string>
     <string name="temperature">Sıcaklık</string>

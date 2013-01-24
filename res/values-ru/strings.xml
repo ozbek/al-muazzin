@@ -61,8 +61,6 @@
     <string name="muslim_league">Всемирная мусульманская лига</string>
     <string name="umm_alqurra">Умм-Аль-Курра, Сауд. Аравия</string>
     <string name="fixed_ishaa">Фикс. инт-л для Иша (90 мин.)</string>
-    <string name="time_format">Формат времени</string>
-    <string name="clock_24_hour">24-часовой</string>
     <string name="altitude">Высота над уровнем моря</string>
     <string name="pressure">Давление</string>
     <string name="temperature">Температура</string>
