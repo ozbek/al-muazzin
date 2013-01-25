@@ -3,7 +3,6 @@ package uz.efir.azon;
 import uz.efir.azon.dialog.SettingsDialog;
 import uz.efir.azon.receiver.StartNotificationReceiver;
 import uz.efir.azon.service.FillDailyTimetableService;
-import uz.efir.azon.util.GateKeeper;
 import uz.efir.azon.util.LocaleManager;
 import uz.efir.azon.util.ThemeManager;
 import uz.efir.azon.view.QiblaCompassView;
@@ -14,25 +13,23 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 
-import android.app.Activity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.location.Location;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
 import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup.OnHierarchyChangeListener;
 import android.widget.LinearLayout;
@@ -41,7 +38,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-public class Azon extends Activity {
+public class Azon extends AbstractionFragmentActivity {
 
     private static ThemeManager themeManager;
     private static LocaleManager localeManager;
@@ -86,25 +83,24 @@ public class Azon extends Activity {
         });
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        //((ListView)findViewById(R.id.timetable)).getLayoutParams().height = displayMetrics.heightPixels * 3/5;
-        //((ListView)findViewById(R.id.timetable)).getLayoutParams().width =  displayMetrics.widthPixels  * 4/5;
 
         TabHost tabs = (TabHost)findViewById(R.id.tabhost);
         tabs.setup();
         tabs.getTabWidget().setBackgroundResource(themeManager.getTabWidgetBackgroundColor());
 
         TabHost.TabSpec one = tabs.newTabSpec("one");
-        one.setContent(R.id.content1);
+        one.setContent(R.id.tab_today);
         one.setIndicator(getString(R.string.today), getResources().getDrawable(R.drawable.calendar));
         tabs.addTab(one);
         configureCalculationDefaults(); /* End of Tab 1 Items */
 
         TabHost.TabSpec two = tabs.newTabSpec("two");
-        two.setContent(R.id.content2);
+        two.setContent(R.id.tab_qibla);
         two.setIndicator(getString(R.string.qibla), getResources().getDrawable(R.drawable.compass));
         tabs.addTab(two);
 
-        ((QiblaCompassView)findViewById(R.id.qibla_compass)).setConstants(((TextView)findViewById(R.id.bearing_north)), getText(R.string.bearing_north), ((TextView)findViewById(R.id.bearing_qibla)), getText(R.string.bearing_qibla), themeManager);
+        ((QiblaCompassView)findViewById(R.id.qibla_compass)).setConstants(((TextView)findViewById(R.id.bearing_north)),
+                getText(R.string.bearing_north), ((TextView)findViewById(R.id.bearing_qibla)), getText(R.string.bearing_qibla), themeManager);
         orientationListener = new SensorListener() {
             public void onSensorChanged(int s, float v[]) {
                 float northDirection = v[android.hardware.SensorManager.DATA_X];
@@ -141,9 +137,6 @@ public class Azon extends Activity {
         case R.id.menu_settings:
             new SettingsDialog(this, localeManager, themeManager).show();
             break;
-        case R.id.more_applications:
-            startActivity(new Intent("android.intent.action.VIEW", Uri.parse("market://search?q=pub:%22Cantan%20Group%20Inc.%22")));
-            break;
         case R.id.menu_help:
             SpannableString s = new SpannableString(getText(R.string.help_text));
             Linkify.addLinks(s, Linkify.WEB_URLS);
@@ -152,15 +145,6 @@ public class Azon extends Activity {
             message.setText(s);
             message.setMovementMethod(LinkMovementMethod.getInstance());
             new AlertDialog.Builder(this).setTitle(R.string.help).setView(help).setPositiveButton(android.R.string.ok, null).create().show();
-            break;
-        case R.id.menu_information:
-            s = new SpannableString(getText(R.string.information_text).toString().replace("#", GateKeeper.getVersionName()));
-            Linkify.addLinks(s, Linkify.WEB_URLS);
-            LinearLayout information = (LinearLayout)getLayoutInflater().inflate(R.layout.information, null);
-            message = (TextView)information.findViewById(R.id.information);
-            message.setText(s);
-            message.setMovementMethod(LinkMovementMethod.getInstance());
-            new AlertDialog.Builder(this).setIcon(R.drawable.icon).setTitle(R.string.app_name).setView(information).setPositiveButton(android.R.string.ok, null).create().show();
             break;
         }
         return super.onOptionsItemSelected(item);

@@ -7,8 +7,6 @@
     <string name="stop">Ferma</string>
     <string name="help">Aiuto</string>
     <string name="help_text"><u>Domande Frequenti</u>\n\nD: Perché  non coincidono gli orari calcolati con quelli della mia tabella degli orari?\n\nR: Ci sono diversi fattori che influiscono sul calcolo come i parametri (ex. latitudine, longitude, metodo di calcolo, ...), le differenze tra gli algoritmi e la precisione di calcolo su diversi apparati.\n\nD: Perché  la bussola non punta alla corretta direzione della Qibla?\n\nR: Verifica che la latitudine e longitudine siano configurate correttamente in base alla tua posizione e che il cellulare sia lontano da interferenze elettromagnetiche.\n\nD: Perché  la mia funzione preferita non é inclusa in questa applicazione?\n\nR: Visita il sitoweb del progetto all\'indirizzo adhanalarm.googlecode.com e potrai contribuire anche tu a migliorare il software.</string>
-    <string name="information">Informazioni</string>
-    <string name="information_text">Per ulteriori informazioni sul programma visitare:\nadhanalarm.googlecode.com\n\nPer ulteriori informazioni sull\'Islam visitare:\nwww.spiritofislam.com\n\nVersion: #</string>
     <string name="today">Oggi</string>
     <string name="sunrise">Alba</string>
     <string name="next_fajr">Prossimo Fajr</string>

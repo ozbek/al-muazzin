@@ -26,21 +26,9 @@
         android:alphabeticShortcut="S"
         android:showAsAction="always" />
 
-    <item android:id="@+id/more_applications"
-        android:title="@string/more_applications"
-        android:icon="@android:drawable/ic_menu_search"
-        android:numericShortcut="4"
-        android:alphabeticShortcut="M" />
-
     <item android:id="@+id/menu_help"
         android:title="@string/help"
         android:icon="@android:drawable/ic_menu_help"
         android:numericShortcut="2"
         android:alphabeticShortcut="H" />
-
-    <item android:id="@+id/menu_information"
-        android:title="@string/information"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:numericShortcut="3"
-        android:alphabeticShortcut="I" />
 </menu>

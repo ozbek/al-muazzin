@@ -18,8 +18,8 @@
             android:id="@android:id/tabcontent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <include android:id="@+id/content1" layout="@layout/tab_today" />
-            <include android:id="@+id/content2" layout="@layout/tab_qibla" />
+            <include android:id="@+id/tab_today" layout="@layout/tab_today" />
+            <include android:id="@+id/tab_qibla" layout="@layout/tab_qibla" />
         </FrameLayout>
     </LinearLayout>
 </TabHost>
