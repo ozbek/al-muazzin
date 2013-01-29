@@ -1,5 +1,6 @@
 package uz.efir.azon;
 
+import uz.efir.azon.dialog.CalculationSettingsDialog;
 import uz.efir.azon.dialog.SettingsDialog;
 import uz.efir.azon.receiver.StartNotificationReceiver;
 import uz.efir.azon.service.FillDailyTimetableService;
@@ -121,6 +122,9 @@ public class Azon extends AbstractionFragmentActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         short time = Schedule.today().nextTimeIndex();
         switch(item.getItemId()) {
+        case R.id.menu_location_calculation:
+            new CalculationSettingsDialog(this).show();
+            break;
         case R.id.menu_previous:
             time--;
             if(time < CONSTANT.FAJR) time = CONSTANT.ISHAA;

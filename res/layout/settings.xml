@@ -12,12 +12,6 @@
         android:paddingBottom="2dp" />
 
     <Button
-        android:id="@+id/set_calculation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/calculation" />
-
-    <Button
         android:id="@+id/set_notification"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
