@@ -59,7 +59,6 @@ public class Azon extends AbstractionFragmentActivity {
         super.onCreate(icicle);
 
         localeManager = new LocaleManager();
-        setTitle(Schedule.today().hijriDateToString(this));
         setContentView(R.layout.main);
 
         for(int i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
@@ -104,7 +103,7 @@ public class Azon extends AbstractionFragmentActivity {
                 getText(R.string.bearing_north), ((TextView)findViewById(R.id.bearing_qibla)), getText(R.string.bearing_qibla), themeManager);
         orientationListener = new SensorListener() {
             public void onSensorChanged(int s, float v[]) {
-                float northDirection = v[android.hardware.SensorManager.DATA_X];
+                float northDirection = v[SensorManager.DATA_X];
                 ((QiblaCompassView)findViewById(R.id.qibla_compass)).setDirections(northDirection, VARIABLE.qiblaDirection);
 
             }
@@ -153,22 +152,32 @@ public class Azon extends AbstractionFragmentActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(hasFocus && (themeManager.isDirty() || localeManager.isDirty())) {
-            VARIABLE.updateWidgets(this);
-            restart();
-        } else if(hasFocus) {
-            if(VARIABLE.settings.contains("latitude") && VARIABLE.settings.contains("longitude")) {
-                ((TextView)findViewById(R.id.notes)).setText("");
+        if (hasFocus) {
+            if (themeManager.isDirty() || localeManager.isDirty()) {
+                VARIABLE.updateWidgets(this);
+                long restartTime = Calendar.getInstance().getTimeInMillis() + CONSTANT.RESTART_DELAY;
+                AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                am.set(AlarmManager.RTC_WAKEUP, restartTime,
+                        PendingIntent.getActivity(this, 0, getIntent(), PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT));
+                finish();
+                return;
             }
-            if(Schedule.settingsAreDirty()) {
+
+            if (VARIABLE.settings.contains("latitude") && VARIABLE.settings.contains("longitude")) {
+                ((TextView)findViewById(R.id.notes)).setText(null);
+            }
+
+            if (Schedule.settingsAreDirty()) {
                 updateTodaysTimetableAndNotification();
                 VARIABLE.updateWidgets(this);
             }
         }
     }
+
     @Override
     public void onResume() {
         VARIABLE.mainActivityIsRunning = true;
@@ -176,6 +185,7 @@ public class Azon extends AbstractionFragmentActivity {
         startTrackingOrientation();
         super.onResume();
     }
+
     @Override
     public void onPause() {
         stopTrackingOrientation();
@@ -184,22 +194,20 @@ public class Azon extends AbstractionFragmentActivity {
     }
 
     private void startTrackingOrientation() {
-        if(!isTrackingOrientation) isTrackingOrientation = ((SensorManager)getSystemService(SENSOR_SERVICE)).registerListener(orientationListener, android.hardware.SensorManager.SENSOR_ORIENTATION);
+        if (!isTrackingOrientation) {
+            isTrackingOrientation = ((SensorManager)getSystemService(SENSOR_SERVICE)).registerListener(orientationListener, SensorManager.SENSOR_ORIENTATION);
+        }
     }
+
     private void stopTrackingOrientation() {
-        if(isTrackingOrientation) ((SensorManager)getSystemService(SENSOR_SERVICE)).unregisterListener(orientationListener);
+        if (isTrackingOrientation) {
+            ((SensorManager)getSystemService(SENSOR_SERVICE)).unregisterListener(orientationListener);
+        }
         isTrackingOrientation = false;
     }
 
-    private void restart() {
-        long restartTime = Calendar.getInstance().getTimeInMillis() + CONSTANT.RESTART_DELAY;
-        AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP, restartTime, PendingIntent.getActivity(this, 0, getIntent(), PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT));
-        finish();
-    }
-
     private void configureCalculationDefaults() {
-        if(!VARIABLE.settings.contains("latitude") || !VARIABLE.settings.contains("longitude")) {
+        if (!VARIABLE.settings.contains("latitude") || !VARIABLE.settings.contains("longitude")) {
             Location currentLocation = VARIABLE.getCurrentLocation(this);
             try {
                 SharedPreferences.Editor editor = VARIABLE.settings.edit();
@@ -232,6 +240,7 @@ public class Azon extends AbstractionFragmentActivity {
 
     private void updateTodaysTimetableAndNotification() {
         StartNotificationReceiver.setNext(this);
+        ((TextView)findViewById(R.id.today)).setText(Schedule.today().hijriDateToString(this));
         FillDailyTimetableService.set(this, Schedule.today(), timetable, timetableView);
     }
 }
