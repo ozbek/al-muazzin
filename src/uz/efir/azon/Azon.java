@@ -128,11 +128,11 @@ public class Azon extends AbstractionFragmentActivity {
             time--;
             if(time < CONSTANT.FAJR) time = CONSTANT.ISHAA;
             if(time == CONSTANT.SUNRISE && !VARIABLE.alertSunrise()) time = CONSTANT.FAJR;
-            Notifier.start(this, time, Schedule.today().getTimes()[time].getTimeInMillis());
+            Notifier.start(this, time, Schedule.today().getTimes()[time].getTimeInMillis(), localeManager);
             break;
         case R.id.menu_next:
             if(time == CONSTANT.SUNRISE && !VARIABLE.alertSunrise()) time = CONSTANT.DHUHR;
-            Notifier.start(this, time, Schedule.today().getTimes()[time].getTimeInMillis());
+            Notifier.start(this, time, Schedule.today().getTimes()[time].getTimeInMillis(), localeManager);
             break;
         case R.id.menu_stop:
             Notifier.stop();

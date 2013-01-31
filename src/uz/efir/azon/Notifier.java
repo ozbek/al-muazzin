@@ -2,6 +2,9 @@ package uz.efir.azon;
 
 import uz.efir.azon.receiver.ClickNotificationReceiver;
 import uz.efir.azon.receiver.ClearNotificationReceiver;
+import uz.efir.azon.util.LocaleManager;
+
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -10,6 +13,7 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.telephony.TelephonyManager;
 
 public class Notifier {
@@ -18,13 +22,22 @@ public class Notifier {
     private static Context context;
     private static Notification notification;
 
-    public static void start(Context context, short timeIndex, long actualTime) {
+    @SuppressLint("NewApi")
+    public static void start(Context context, short timeIndex, long actualTime, LocaleManager localeManager) {
         Notifier.context = context;
 
         if(timeIndex == CONSTANT.NEXT_FAJR) timeIndex = CONSTANT.FAJR;
 
-        notification = new Notification(R.drawable.icon, "", actualTime);
-        notification.tickerText = (timeIndex != CONSTANT.SUNRISE ? context.getString(R.string.allahu_akbar) + ": " : "") + context.getString(R.string.time_for) + " " + context.getString(CONSTANT.TIME_NAMES[timeIndex]).toLowerCase();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
+            notification = new Notification(R.drawable.icon, "", actualTime);
+        } else {
+            notification = new Notification.Builder(context)
+                    .setSmallIcon(R.drawable.icon)
+                    .setWhen(actualTime)
+                    .build();
+        }
+        String tickerText = CONSTANT.SUNRISE == timeIndex ? "" : context.getString(R.string.allahu_akbar);
+        notification.tickerText = tickerText.concat(context.getString(R.string.time_for, context.getString(CONSTANT.TIME_NAMES[timeIndex])).toLowerCase(localeManager.getLocale()));
 
         int notificationMethod = VARIABLE.settings.getInt("notificationMethod" + timeIndex, timeIndex == CONSTANT.SUNRISE ? CONSTANT.NOTIFICATION_NONE : CONSTANT.NOTIFICATION_DEFAULT);
         if(notificationMethod == CONSTANT.NOTIFICATION_NONE || (timeIndex == CONSTANT.SUNRISE && !VARIABLE.alertSunrise())) {

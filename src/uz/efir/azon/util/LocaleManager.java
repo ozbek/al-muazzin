@@ -10,6 +10,7 @@ public class LocaleManager {
 
     private boolean languageDirty = false;
     private int languageIndex = DEFAULT_LANGUAGE;
+    private Locale mLocale;
 
     private static final short DEFAULT_LANGUAGE = 0; // LANGUAGE_KEYS[0] == "default" (represents the default system language (i.e. not necessarily English))
 
@@ -22,7 +23,7 @@ public class LocaleManager {
     public LocaleManager() {
         // Set the language based on settings
         String languageKey = VARIABLE.settings.getString("locale", LANGUAGE_KEYS[DEFAULT_LANGUAGE]);
-        if(languageKey.equals("default")) {
+        if (languageKey.equals("default")) {
             languageKey = Locale.getDefault().getCountry();
         }
         String country = Locale.getDefault().getISO3Country().toUpperCase();
@@ -34,13 +35,16 @@ public class LocaleManager {
         VARIABLE.context.getResources().updateConfiguration(config, VARIABLE.context.getResources().getDisplayMetrics());
 
         // Set the language index into the local LANGUAGE_KEYS array
-        for(int i = 0; i < LANGUAGE_KEYS.length; i++) {
+        for (int i = 0; i < LANGUAGE_KEYS.length; i++) {
             if(languageKey.equals(LANGUAGE_KEYS[i])) {
                 languageIndex = i;
                 break;
             }
         }
+ 
+        setLocale(locale);
     }
+
     public int getLanguageIndex() {
         return languageIndex;
     }
@@ -51,5 +55,17 @@ public class LocaleManager {
 
     public boolean isDirty() {
         return languageDirty;
+    }
+
+    private void setLocale(Locale locale) {
+        mLocale = locale;
+    }
+
+    public Locale getLocale() {
+        if (mLocale == null) {
+            new LocaleManager();
+        }
+
+        return mLocale;
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Adhan Alarm</string>
     <string name="description">Mostra e può avvisare per le preghiere Islamiche giornaliere.</string>
     <string name="previous">Precedente</string>
@@ -15,8 +16,8 @@
     <string name="error_playing_alert">Errore Riproduzione dell\'Avviso</string>
     <string name="error_playing_custom_file">Errore nel file di avviso</string>
     <string name="location_not_set"><u>Posizione non definita</u>\n\nAbilitare, per favore, il GPS o impostare la posizione manualmente utilizzando le impostazioni.</string>
-    <string name="allahu_akbar">Dio è più Grande</string>
-    <string name="time_for">è l\'ora di</string>
+    <string name="allahu_akbar">Dio è più Grande:\u0020</string>
+    <string name="time_for">è l\'ora di <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Latitudine</string>
     <string name="longitude">Longitudine</string>
     <string name="extreme">Estremo</string>

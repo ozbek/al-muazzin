@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Azon</string>
     <string name="description">Kundalik namoz vaqtlari uchun.</string>
     <string name="adhan_next_time">Azon: keyingi vaqt</string>
@@ -8,7 +9,7 @@
     <string name="next">Keyingi</string>
     <string name="stop">Stop</string>
     <string name="help">Yordam</string>
-    <string name="help_text"><u>Frequently Asked Questions</u>\n\nQ: Why do the times not match my local timetable?\n\nA: There are many factors that affect the schedule including the input parameters (ex. latitude, longitude, calculation method, ...), algorithmic differences and precision differences due to computations on different machines.\n\nQ: Why does the Qibla compass not point in the right direction?\n\nA: Confirm that your latitude and longitude are set correctly in your settings and your phone is away from electro-magnetic interference.\n\nQ: Why is my favorite feature not included in the application?\n\nA: Please visit the project website at adhanalarm.googlecode.com and help us improve the program.</string>
+    <string name="help_text"><u>Frequently Asked Questions</u>\n\nQ: Why do the times not match my local timetable?\n\nA: There are many factors that affect the schedule including the input parameters (ex. latitude, longitude, calculation method, etc), algorithmic differences and precision differences due to computations on different machines.\n\nQ: Why does the Qibla compass not point in the right direction?\n\nA: Confirm that your latitude and longitude are set correctly in your settings and your phone is away from electro-magnetic interference.\n\nQ: Why is my favorite feature not included in the application?\n\nA: Please visit the project website at adhanalarm.googlecode.com and help us improve the program.</string>
     <string name="today">Bugun</string>
     <string name="fajr">Bomdod</string>
     <string name="sunrise">Quyosh</string>
@@ -23,8 +24,8 @@
     <string name="error_playing_alert">Error Playing Alert</string>
     <string name="error_playing_custom_file">Custom File Error</string>
     <string name="location_not_set"><u>Location Not Set</u>\n\nPlease enable the device\'s GPS or set your location manually through settings.</string>
-    <string name="allahu_akbar">Allohu akbar</string>
-    <string name="time_for">Time for</string>
+    <string name="allahu_akbar">Allohu akbar:\u0020</string>
+    <string name="time_for"><xliff:g id="time_name">%1$s</xliff:g> namozi vaqti</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
     <string name="extreme">Extreme</string>

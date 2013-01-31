@@ -1,12 +1,15 @@
 package uz.efir.azon.service;
 
 import java.lang.Runnable;
+
 import uz.efir.azon.Azon;
 import uz.efir.azon.Notifier;
 import uz.efir.azon.R;
 import uz.efir.azon.VARIABLE;
 import uz.efir.azon.WakeLock;
 import uz.efir.azon.receiver.StartNotificationReceiver;
+import uz.efir.azon.util.LocaleManager;
+
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -36,9 +39,11 @@ public class StartNotificationService extends Service {
             }
 
             public void run() {
-                if(VARIABLE.settings == null) VARIABLE.settings = context.getSharedPreferences("settingsFile", Context.MODE_PRIVATE);
+                if (VARIABLE.settings == null) {
+                    VARIABLE.settings = context.getSharedPreferences("settingsFile", Context.MODE_PRIVATE);
+                }
 
-                if(!VARIABLE.mainActivityIsRunning) {
+                if (!VARIABLE.mainActivityIsRunning) {
                     StartNotificationReceiver.setNext(context);
                 } else {
                     Intent i = new Intent(context, Azon.class);
@@ -50,8 +55,8 @@ public class StartNotificationService extends Service {
 
                 short timeIndex = intent.getShortExtra("timeIndex", (short)-1);
                 long actualTime = intent.getLongExtra("actualTime", (long)0);
-                if(timeIndex == -1) { // Got here from boot
-                    if(VARIABLE.settings.getBoolean("bismillahOnBootUp", false)) {
+                if (timeIndex == -1) { // Got here from boot
+                    if (VARIABLE.settings.getBoolean("bismillahOnBootUp", false)) {
                         MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.bismillah);
                         mediaPlayer.setScreenOnWhilePlaying(true);
                         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -64,7 +69,8 @@ public class StartNotificationService extends Service {
                         WakeLock.release();
                     }
                 } else {
-                    Notifier.start(context, timeIndex, actualTime); // Notify the user for the current time, need to do this last since it releases the WakeLock
+                    // Notify the user for the current time, need to do this last since it releases the WakeLock
+                    Notifier.start(context, timeIndex, actualTime, new LocaleManager());
                 }
             }
         }
