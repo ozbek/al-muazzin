@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Azan alarmı</string>
     <string name="description">Günlük namaz vakitlerini görüntüler ve uyarabilir.</string>
     <string name="adhan_next_time">Azan: sonraki</string>
     <string name="adhan_timetable">Azan: Tarife</string>
@@ -18,8 +17,6 @@
     <string name="maghrib">Akşam</string>
     <string name="ishaa">Yatsı</string>
     <string name="next_fajr">Sonraki imsak</string>
-    <!--string name="next_time_marker">&gt;</string>
-    <string name="next_time_marker_reverse">&lt;</string-->
     <string name="sdefault">Varsayılan</string>
     <string name="error_playing_alert">Uyarı çalmada yanlışlık</string>
     <string name="error_playing_custom_file">Özel dosya hatası</string>
@@ -62,7 +59,6 @@
     <string name="altitude">Rakım</string>
     <string name="pressure">Basınç</string>
     <string name="temperature">Sıcaklık</string>
-    <!--string name="degrees_celsius">°C</string-->
     <string name="rounding">Yuvarlama</string>
     <string name="normal">Normal</string>
     <string name="special">Özel</string>

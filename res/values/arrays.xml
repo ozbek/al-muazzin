@@ -36,8 +36,9 @@
         <item>@string/month10</item>
         <item>@string/month11</item>
     </array>
-    <array name="languages">
-        <item>O\u2019zbekcha</item>
+    <array name="languages" translatable="false">
+        <item>@string/sdefault</item>
+        <item><b>O\u2019zbekcha</b></item>
         <item>العربية</item>
         <item>Deutsch</item>
         <item>English</item>
@@ -45,7 +46,7 @@
         <item>Français</item>
         <item>Indonesia</item>
         <item>Italiano</item>
-        <item>Русский</item>
         <item>Türkçe</item>
+        <item>Русский</item>
     </array>
 </resources>

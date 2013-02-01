@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">برنامج المنبه للأذان</string>
     <string name="description">برنامج لعرض أوقات الصلاة مع امكانية التنبية اليومي لكل صلاة.</string>
     <string name="adhan_next_time">الأذان: الوقت القادم</string>
     <string name="adhan_timetable">الأذان: أوقات الصلاة</string>
@@ -18,8 +17,6 @@
     <string name="maghrib">المغرب</string>
     <string name="ishaa">العشاء</string>
     <string name="next_fajr">الفجر التالي</string>
-    <string name="next_time_marker">&gt;</string>
-    <string name="next_time_marker_reverse">&lt;</string>
     <string name="sdefault">الافتراضي</string>
     <string name="error_playing_alert">خطأ في تشغيل التنبيه</string>
     <string name="error_playing_custom_file">خطأ في الملف المحدد</string>
@@ -62,7 +59,6 @@
     <string name="altitude">Altitude</string>
     <string name="pressure">الضغط</string>
     <string name="temperature">درجة الحرارة</string>
-    <string name="degrees_celsius">°C</string>
     <string name="rounding">Rounding</string>
     <string name="normal">Normal</string>
     <string name="special">Special</string>

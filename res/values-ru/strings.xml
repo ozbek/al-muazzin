@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Азан</string>
     <string name="description">Покажет и может предупредить о времях ежедневных мусульманских молитв.</string>
     <string name="adhan_next_time">Азан: следующий</string>
     <string name="adhan_timetable">Азан: расписание</string>
@@ -18,8 +17,6 @@
     <string name="maghrib">Магриб</string>
     <string name="ishaa">Иша</string>
     <string name="next_fajr">Следующий Фаджр</string>
-    <!-- string name="next_time_marker">&gt;</string>
-    <string name="next_time_marker_reverse">&lt;</string-->
     <string name="sdefault">По умолчанию</string>
     <string name="error_playing_alert">Ошибка воспроизведения оповещение</string>
     <string name="error_playing_custom_file">Ошибка пользовательского файла</string>
@@ -62,7 +59,6 @@
     <string name="altitude">Высота над уровнем моря</string>
     <string name="pressure">Давление</string>
     <string name="temperature">Температура</string>
-    <!--string name="degrees_celsius">°C</string-->
     <string name="rounding">Округление</string>
     <string name="normal">Нормальный</string>
     <string name="special">Специальный</string>

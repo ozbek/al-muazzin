@@ -9,12 +9,14 @@ import android.content.res.Configuration;
 public class LocaleManager {
 
     private boolean languageDirty = false;
-    private int languageIndex = DEFAULT_LANGUAGE;
+    private int languageIndex = 0;
     private Locale mLocale;
 
-    private static final short DEFAULT_LANGUAGE = 0; // LANGUAGE_KEYS[0] == "default" (represents the default system language (i.e. not necessarily English))
-
-    public static final String[] LANGUAGE_KEYS = new String[]{"default", "ar", "de", "en", "es", "fr", "in", "it", "ru", "tr"};
+    public static final String[] LANGUAGE_KEYS = new String[] {
+            "default", // represents the default system language; i.e., not necessarily English
+            "uz", "ar", "de", "en", "es",
+            "fr", "in", "it", "tr", "ru"
+            };
 
     /**
      * This class should be instantiated after an activity's super.onCreate() call but before setContentView()
@@ -22,11 +24,12 @@ public class LocaleManager {
      */
     public LocaleManager() {
         // Set the language based on settings
-        String languageKey = VARIABLE.settings.getString("locale", LANGUAGE_KEYS[DEFAULT_LANGUAGE]);
+        String languageKey = VARIABLE.settings.getString("locale", LANGUAGE_KEYS[0]/*"default"*/);
+        Locale defaultLocale = Locale.getDefault();
         if (languageKey.equals("default")) {
-            languageKey = Locale.getDefault().getCountry();
+            languageKey = defaultLocale.getCountry();
         }
-        String country = Locale.getDefault().getISO3Country().toUpperCase();
+        String country = defaultLocale.getISO3Country().toUpperCase(defaultLocale);
         Locale locale = new Locale(languageKey, country);
         Locale.setDefault(locale);
         Configuration config = new Configuration();

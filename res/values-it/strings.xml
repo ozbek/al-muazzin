@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Adhan Alarm</string>
     <string name="description">Mostra e può avvisare per le preghiere Islamiche giornaliere.</string>
     <string name="previous">Precedente</string>
     <string name="next">Successivo</string>
@@ -11,7 +10,6 @@
     <string name="today">Oggi</string>
     <string name="sunrise">Alba</string>
     <string name="next_fajr">Prossimo Fajr</string>
-    <string name="next_time_marker">></string>
     <string name="sdefault">Default</string>
     <string name="error_playing_alert">Errore Riproduzione dell\'Avviso</string>
     <string name="error_playing_custom_file">Errore nel file di avviso</string>
