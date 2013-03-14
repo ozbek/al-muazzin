@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="uz.efir.azon"
+    package="uz.efir.muazzin"
     android:versionCode="1"
     android:versionName="1.0">
 
@@ -20,7 +20,7 @@
         android:icon="@drawable/icon"
         android:theme="@style/DialogTheme">
 
-        <activity android:name=".Azon"
+        <activity android:name="islam.adhanalarm.AdhanAlarm"
             android:launchMode="singleTop"
             android:configChanges="locale|keyboardHidden|orientation|screenSize">
             <intent-filter>
@@ -29,18 +29,18 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".receiver.StartNotificationReceiver">
+        <receiver android:name="islam.adhanalarm.receiver.StartNotificationReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".receiver.ClickNotificationReceiver" />
-        <receiver android:name=".receiver.ClearNotificationReceiver" />
-        <service android:name=".service.FillDailyTimetableService" />
-        <service android:name=".service.StartNotificationService" />
+        <receiver android:name="islam.adhanalarm.receiver.ClickNotificationReceiver" />
+        <receiver android:name="islam.adhanalarm.receiver.ClearNotificationReceiver" />
+        <service android:name="islam.adhanalarm.service.FillDailyTimetableService" />
+        <service android:name="islam.adhanalarm.service.StartNotificationService" />
 
-        <receiver android:name=".widget.TimetableWidgetProvider"
+        <receiver android:name="islam.adhanalarm.widget.TimetableWidgetProvider"
             android:label="@string/adhan_timetable">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -48,7 +48,7 @@
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_timetable" />
         </receiver>
 
-        <receiver android:name=".widget.NextNotificationWidgetProvider"
+        <receiver android:name="islam.adhanalarm.widget.NextNotificationWidgetProvider"
             android:label="@string/adhan_next_time">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

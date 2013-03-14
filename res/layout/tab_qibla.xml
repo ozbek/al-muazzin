@@ -86,7 +86,7 @@
         android:layout_height="wrap_content" android:layout_width="wrap_content"
         android:layout_gravity="center_horizontal|center_vertical"
         android:paddingTop="5dp" android:paddingBottom="5dp">
-        <uz.efir.azon.view.QiblaCompassView
+        <islam.adhanalarm.view.QiblaCompassView
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:layout_gravity="fill|center" android:id="@+id/qibla_compass" />
     </LinearLayout>
