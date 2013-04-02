@@ -1,8 +1,8 @@
-package islam.adhanalarm;
-
-import com.actionbarsherlock.app.SherlockFragmentActivity;
+package uz.efir.muazzin;
 
 import android.os.Bundle;
+
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 
 public class AbstractionFragmentActivity extends SherlockFragmentActivity {
 
