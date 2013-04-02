@@ -26,7 +26,7 @@ public class Schedule {
         location.setPressure(VARIABLE.settings.getFloat("pressure", 1010));
         location.setTemperature(VARIABLE.settings.getFloat("temperature", 10));
 
-        Jitl itl = CONSTANT.DEBUG ? new DummyJitl(location, method) : new Jitl(location, method);
+        Jitl itl = new Jitl(location, method);
         Prayer[] dayPrayers = itl.getPrayerTimes(day).getPrayers();
         Prayer[] allTimes = new Prayer[]{dayPrayers[0], dayPrayers[1], dayPrayers[2], dayPrayers[3], dayPrayers[4], dayPrayers[5], itl.getNextDayFajr(day)};
 

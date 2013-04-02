@@ -6,8 +6,6 @@ import uz.efir.muazzin.R;
 
 public class CONSTANT {
 
-    public static final boolean DEBUG = false;
-
     public static final long RESTART_DELAY = 1000; // 1 second
     public static final long POST_NOTIFICATION_DELAY = 5000; // 5 seconds
 

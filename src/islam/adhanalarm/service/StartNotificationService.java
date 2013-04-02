@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
+import android.util.Log;
 
 public class StartNotificationService extends Service {
 
@@ -72,6 +73,10 @@ public class StartNotificationService extends Service {
             }
         }
 
-        new Thread(new StartNotificationTask(this, intent)).start();
+        if (intent != null) {
+            new Thread(new StartNotificationTask(this, intent)).start();
+        } else {
+            Log.wtf("StartNotificationService", "The intent was null");
+        }
     }
 }
