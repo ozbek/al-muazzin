@@ -1,64 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <LinearLayout android:orientation="vertical"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="fill_parent">
-        <LinearLayout android:orientation="horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent">
-            <LinearLayout android:orientation="vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                style="@style/labelColumn"
+                android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
-                android:layout_width="wrap_content" style="@style/labelColumn">
+                android:orientation="vertical">
+
                 <TextView android:text="@string/latitude"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="fill_vertical" />
+
                 <TextView android:text="@string/longitude"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="fill_vertical" />
+
                 <TextView android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/calculation" android:layout_weight="1"
+                    android:text="@string/calculation"
+                    android:layout_weight="1"
                     android:gravity="fill_vertical" />
             </LinearLayout>
-            <LinearLayout android:orientation="vertical"
+
+            <LinearLayout
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="fill_parent">
-                <LinearLayout android:orientation="horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_width="fill_parent">
+                    android:orientation="horizontal">
+
                     <LinearLayout android:orientation="vertical"
                         android:layout_height="wrap_content"
-                        android:layout_width="wrap_content" android:layout_weight="1">
-                        <LinearLayout android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_width="fill_parent">
+                            android:orientation="horizontal">
+
                             <EditText android:id="@+id/latitude"
-                                android:text="43.67" android:layout_width="fill_parent"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:numeric="signed|decimal" android:singleLine="true" />
+                                android:inputType="numberSigned|numberDecimal"
+                                android:singleLine="true" />
                         </LinearLayout>
-                        <LinearLayout android:orientation="horizontal"
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
-                            android:layout_width="fill_parent">
+                            android:orientation="horizontal">
+
                             <EditText android:id="@+id/longitude"
-                                android:text="-79.4167" android:layout_width="fill_parent"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:numeric="signed|decimal" android:singleLine="true" />
+                                android:inputType="numberSigned|numberDecimal"
+                                android:singleLine="true" />
                         </LinearLayout>
                     </LinearLayout>
-                    <Button android:id="@+id/lookup_gps"
-                        android:text="@string/lookup_gps"
+
+                    <ImageButton
+                        android:id="@+id/lookup_gps"
                         android:layout_width="wrap_content"
-                        android:layout_height="fill_parent" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="2dp"
+                        android:background="@drawable/ic_lookup_gps"
+                        android:contentDescription="@string/lookup_gps" />
+
                 </LinearLayout>
-                <Spinner android:id="@+id/calculation_methods"
+
+                <Spinner
+                    android:id="@+id/calculation_methods"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:drawSelectorOnTop="true" />
+
             </LinearLayout>
         </LinearLayout>
         <include layout="@layout/buttons_save_reset" />

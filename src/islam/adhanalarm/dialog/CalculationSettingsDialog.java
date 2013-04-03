@@ -1,8 +1,8 @@
 package islam.adhanalarm.dialog;
 
 import islam.adhanalarm.CONSTANT;
-import uz.efir.muazzin.R;
 import islam.adhanalarm.VARIABLE;
+import uz.efir.muazzin.R;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 public class CalculationSettingsDialog extends Dialog {
@@ -37,15 +38,15 @@ public class CalculationSettingsDialog extends Dialog {
         calculation_methods.setAdapter(adapter);
         calculation_methods.setSelection(VARIABLE.settings.getInt("calculationMethodsIndex", CONSTANT.DEFAULT_CALCULATION_METHOD));
 
-        ((Button)findViewById(R.id.lookup_gps)).setOnClickListener(new Button.OnClickListener() {
+        ((ImageButton)findViewById(R.id.lookup_gps)).setOnClickListener(new ImageButton.OnClickListener() {
             public void onClick(View v) {
                 Location currentLocation = VARIABLE.getCurrentLocation(getContext());
-                if(currentLocation != null) {
+                if (currentLocation != null) {
                     ((EditText)findViewById(R.id.latitude)).setText(Double.toString(currentLocation.getLatitude()));
                     ((EditText)findViewById(R.id.longitude)).setText(Double.toString(currentLocation.getLongitude()));
                 } else {
-                    ((EditText)findViewById(R.id.latitude)).setText("");
-                    ((EditText)findViewById(R.id.longitude)).setText("");
+                    ((EditText)findViewById(R.id.latitude)).setText(null);
+                    ((EditText)findViewById(R.id.longitude)).setText(null);
                 }
             }
         });
