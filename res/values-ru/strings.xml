@@ -71,17 +71,5 @@
     <string name="dialog">Диалоговый</string>
     <string name="green">Зеленый</string>
     <string name="light">Светлый</string>
-    <string name="month0">Мухаррам</string>
-    <string name="month1">Сафар</string>
-    <string name="month2">Рабии`у ль-авваль</string>
-    <string name="month3">Рабии`у с-саании</string>
-    <string name="month4">Джумаада ль-ууля</string>
-    <string name="month5">Джумаада ль-аахыр</string>
-    <string name="month6">Ра́джаб</string>
-    <string name="month7">Шаабан</string>
-    <string name="month8">Рамадан</string>
-    <string name="month9">Шавваль</string>
-    <string name="month10">Зуль-ка`да</string>
-    <string name="month11">Зульхиджа</string>
     <string name="anno_hegirae">Хиджры</string>
 </resources>

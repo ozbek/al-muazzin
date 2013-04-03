@@ -73,18 +73,6 @@
     <string name="dialog">Dialog</string>
     <string name="green">Green</string>
     <string name="light">Light</string>
-    <string name="month0">Muharram</string>
-    <string name="month1">Safar</string>
-    <string name="month2">Rabi` al-awwal</string>
-    <string name="month3">Rabi` al-thani</string>
-    <string name="month4">Jumada al-awwal</string>
-    <string name="month5">Jumada al-thani</string>
-    <string name="month6">Rajab</string>
-    <string name="month7">Sha`aban</string>
-    <string name="month8">Ramadan</string>
-    <string name="month9">Shawwal</string>
-    <string name="month10">Dhu al-Qi`dah</string>
-    <string name="month11">Dhu al-Hijjah</string>
     <string name="anno_hegirae">AH</string>
 
     <string name="app_name" translatable="false">Muazzin</string>

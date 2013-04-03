@@ -71,17 +71,5 @@
     <string name="dialog">Diyalog</string>
     <string name="green">Yeşil</string>
     <string name="light">Hafif</string>
-    <string name="month0">Muharrem</string>
-    <string name="month1">Safer</string>
-    <string name="month2">Rebiülevvel</string>
-    <string name="month3">Rebiülahir</string>
-    <string name="month4">Cemaziyelevvel</string>
-    <string name="month5">Cemaziyelahir</string>
-    <string name="month6">Recep</string>
-    <string name="month7">Şaban</string>
-    <string name="month8">Ramazan</string>
-    <string name="month9">Şevval</string>
-    <string name="month10">Zilkade</string>
-    <string name="month11">Zilhicce</string>
     <string name="anno_hegirae">Hicri</string>
 </resources>

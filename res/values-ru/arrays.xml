@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hijri_months">
+        <item>Мухаррам</item>
+        <item>Сафар</item>
+        <item>Рабии`у ль-авваль</item>
+        <item>Рабии`у с-саании</item>
+        <item>Джумаада ль-ууля</item>
+        <item>Джумаада ль-аахыр</item>
+        <item>Ра́джаб</item>
+        <item>Шаабан</item>
+        <item>Рамадан</item>
+        <item>Шавваль</item>
+        <item>Зуль-ка`да</item>
+        <item>Зульхиджа</item>
+    </string-array>
+</resources>

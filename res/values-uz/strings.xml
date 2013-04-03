@@ -71,17 +71,5 @@
     <string name="dialog">Dialog</string>
     <string name="green">Яшил</string>
     <string name="light">Оч</string>
-    <string name="month0">Муҳаррам</string>
-    <string name="month1">Сафар</string>
-    <string name="month2">Рабиъул аввал</string>
-    <string name="month3">Рабиъус соний</string>
-    <string name="month4">Жумодул аввал</string>
-    <string name="month5">Жумодус соний</string>
-    <string name="month6">Ражаб</string>
-    <string name="month7">Шаъбон</string>
-    <string name="month8">Рамазон</string>
-    <string name="month9">Шаввол</string>
-    <string name="month10">Зулқаъда</string>
-    <string name="month11">Зулҳижжа</string>
     <string name="anno_hegirae"></string>
 </resources>

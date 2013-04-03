@@ -67,17 +67,5 @@
     <string name="dialog">Dialog</string>
     <string name="green">Hijau</string>
     <string name="light">Terang</string>
-    <string name="month0">Muharram</string>
-    <string name="month1">Syafar</string>
-    <string name="month2">Rabi\'ul Awal</string>
-    <string name="month3">Rabi\'ul Akir</string>
-    <string name="month4">Jumadil Awal</string>
-    <string name="month5">Jumadil Akir</string>
-    <string name="month6">Rajab</string>
-    <string name="month7">Sya\'ban</string>
-    <string name="month8">Ramadhan</string>
-    <string name="month9">Syawal</string>
-    <string name="month10">Dzulqa\'idah</string>
-    <string name="month11">Dzulhijjah</string>
     <string name="anno_hegirae">H</string>
 </resources>

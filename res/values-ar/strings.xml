@@ -71,17 +71,5 @@
     <string name="dialog">مربع حوار</string>
     <string name="green">أخضر</string>
     <string name="light">خفيف</string>
-    <string name="month0">محرم</string>
-    <string name="month1">صفر</string>
-    <string name="month2">ربيع الأول</string>
-    <string name="month3">ربيع الثاني</string>
-    <string name="month4">جمادى الأولى</string>
-    <string name="month5">جمادى الآخرة</string>
-    <string name="month6">رجب</string>
-    <string name="month7">شعبان</string>
-    <string name="month8">رمضان</string>
-    <string name="month9">شوال</string>
-    <string name="month10">ذو القعدة</string>
-    <string name="month11">ذو الحجة</string>
     <string name="anno_hegirae">هـ</string>
 </resources>

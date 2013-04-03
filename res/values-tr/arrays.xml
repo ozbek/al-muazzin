@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hijri_months">
+        <item>Muharrem</item>
+        <item>Safer</item>
+        <item>Rebiülevvel</item>
+        <item>Rebiülahir</item>
+        <item>Cemaziyelevvel</item>
+        <item>Cemaziyelahir</item>
+        <item>Recep</item>
+        <item>Şaban</item>
+        <item>Ramazan</item>
+        <item>Şevval</item>
+        <item>Zilkade</item>
+        <item>Zilhicce</item>
+    </string-array>
+</resources>
