@@ -21,7 +21,6 @@
     <string name="error_playing_alert">خطأ في تشغيل التنبيه</string>
     <string name="error_playing_custom_file">خطأ في الملف المحدد</string>
     <string name="location_not_set"><u>لم يتم ضبط الموقع</u>\n\nفضلا قم بتفعيل نظام الملاحة(gps) أو قم بوضع احداثية موقعك مباشرة عن طريق الاعدادات.</string>
-    <string name="allahu_akbar">الله أكبر:\u0020</string>
     <string name="time_for">الوقت لـ<xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">خط العرض</string>
     <string name="longitude">خط الطول</string>

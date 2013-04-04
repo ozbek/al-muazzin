@@ -145,11 +145,11 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
             time--;
             if(time < CONSTANT.FAJR) time = CONSTANT.ISHAA;
             if(time == CONSTANT.SUNRISE && !VARIABLE.alertSunrise()) time = CONSTANT.FAJR;
-            Notifier.start(this, time, Schedule.today().getTimes()[time].getTimeInMillis(), sLocaleManager);
+            Notifier.start(this, time, Schedule.today().getTimes()[time].getTimeInMillis());
             break;
         case R.id.menu_next:
             if(time == CONSTANT.SUNRISE && !VARIABLE.alertSunrise()) time = CONSTANT.DHUHR;
-            Notifier.start(this, time, Schedule.today().getTimes()[time].getTimeInMillis(), sLocaleManager);
+            Notifier.start(this, time, Schedule.today().getTimes()[time].getTimeInMillis());
             break;
         case R.id.menu_stop:
             Notifier.stop();

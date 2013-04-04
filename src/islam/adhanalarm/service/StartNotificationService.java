@@ -5,7 +5,6 @@ import islam.adhanalarm.Notifier;
 import islam.adhanalarm.VARIABLE;
 import islam.adhanalarm.WakeLock;
 import islam.adhanalarm.receiver.StartNotificationReceiver;
-import islam.adhanalarm.util.LocaleManager;
 import uz.efir.muazzin.R;
 import android.app.Service;
 import android.content.Context;
@@ -68,7 +67,7 @@ public class StartNotificationService extends Service {
                     }
                 } else {
                     // Notify the user for the current time, need to do this last since it releases the WakeLock
-                    Notifier.start(context, timeIndex, actualTime, new LocaleManager());
+                    Notifier.start(context, timeIndex, actualTime);
                 }
             }
         }

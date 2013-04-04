@@ -12,7 +12,6 @@
     <string name="sdefault">Standard</string>
     <string name="error_playing_alert">Error Playing Alert</string>
     <string name="location_not_set">Bitte <u>Standort</u> eingeben</string>
-    <string name="allahu_akbar">Gott ist groß:\u0020</string>
     <string name="time_for">Zeit für <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Breitengrad</string>
     <string name="longitude">Längengrad</string>

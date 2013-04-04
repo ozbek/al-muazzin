@@ -20,9 +20,8 @@
     <string name="sdefault">Асос</string>
     <string name="error_playing_alert">Error Playing Alert</string>
     <string name="error_playing_custom_file">Custom File Error</string>
-    <string name="location_not_set"><u>Location Not Set</u>\n\nPlease enable the device\'s GPS or set your location manually through settings.</string>
-    <string name="allahu_akbar">Allohu akbar:\u0020</string>
-    <string name="time_for"><xliff:g id="time_name">%1$s</xliff:g> namozi vaqti</string>
+    <string name="location_not_set"><u>Location Not Set</u>\n\nИлтимос, қурулманинг GPS модулини ёқинг ёки жойлашган манзилингиз координаталарини қўлда киритинг.</string>
+    <string name="time_for"><xliff:g id="time_name">%1$s</xliff:g> вақти бўлди</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
     <string name="extreme">Extreme</string>

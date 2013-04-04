@@ -19,7 +19,6 @@
     <string name="error_playing_alert">Gagal Menggunakan Alert</string>
     <string name="error_playing_custom_file">Gagal Membuka File</string>
     <string name="location_not_set"><u>Lokasi Belum Dipilih</u>\n\nHarap menyalakan GPS di perangkat, atau masukkan lokasi anda melalui pengaturan.</string>
-    <string name="allahu_akbar">Allah Maha Besar:\u0020</string>
     <string name="time_for">Waktu untuk <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Lintang</string>
     <string name="longitude">Bujur</string>
