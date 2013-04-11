@@ -25,6 +25,7 @@ import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.location.Location;
@@ -107,7 +108,8 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         one.setContent(R.id.tab_today);
         one.setIndicator(getString(R.string.today), getResources().getDrawable(R.drawable.calendar));
         tabs.addTab(one);
-        configureCalculationDefaults(); /* End of Tab 1 Items */
+        configureCalculationDefaults();
+        /* End of Tab 1 Items */
 
         TabHost.TabSpec two = tabs.newTabSpec("two");
         two.setContent(R.id.tab_qibla);
@@ -124,7 +126,8 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
             }
             public void onAccuracyChanged(int s, int a) {
             }
-        }; /* End of Tab 2 Items */
+        };
+        /* End of Tab 2 Items */
     }
 
     @Override
@@ -257,7 +260,10 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
 
     private void updateTodaysTimetableAndNotification() {
         StartNotificationReceiver.setNext(this);
-        ((TextView)findViewById(R.id.today)).setText(Schedule.today().hijriDateToString(this));
+
+        TextView todayView = (TextView)findViewById(R.id.today);
+        todayView.setText(Schedule.today().hijriDateToString(this));
+        todayView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         Schedule today = Schedule.today();
         GregorianCalendar[] schedule = today.getTimes();
