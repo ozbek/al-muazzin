@@ -229,7 +229,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         }
         if (!VARIABLE.settings.contains("calculationMethodsIndex")) {
             try {
-                String country = Locale.getDefault().getISO3Country().toUpperCase();
+                String country = Locale.getDefault().getISO3Country().toUpperCase(Locale.US);
 
                 SharedPreferences.Editor editor = VARIABLE.settings.edit();
                 for (int i = 0; i < CONSTANT.CALCULATION_METHOD_COUNTRY_CODES.length; i++) {
@@ -255,9 +255,9 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
 
         Schedule today = Schedule.today();
         GregorianCalendar[] schedule = today.getTimes();
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", sLocaleManager.getLocale());
         if (DateFormat.is24HourFormat(this)) {
-            timeFormat = new SimpleDateFormat("HH:mm ");
+            timeFormat = new SimpleDateFormat("HH:mm ", sLocaleManager.getLocale());
         }
 
         for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {

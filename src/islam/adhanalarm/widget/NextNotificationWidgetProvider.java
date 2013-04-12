@@ -32,14 +32,15 @@ public class NextNotificationWidgetProvider extends AppWidgetProvider {
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(context, NextNotificationWidgetProvider.class));
         setNextTime(context, appWidgetManager, appWidgetIds);
     }
+
     private static void setNextTime(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         VARIABLE.context = context.getApplicationContext();
         VARIABLE.settings = VARIABLE.context.getSharedPreferences("settingsFile", Context.MODE_PRIVATE);
-        new LocaleManager();
+        LocaleManager lm = new LocaleManager();
 
-        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", lm.getLocale());
         if (DateFormat.is24HourFormat(context)) {
-            timeFormat = new SimpleDateFormat("k:mm");
+            timeFormat = new SimpleDateFormat("k:mm", lm.getLocale());
         }
         final int nextTimeIndex = Schedule.today().nextTimeIndex();
         final GregorianCalendar nextTime = Schedule.today().getTimes()[nextTimeIndex];

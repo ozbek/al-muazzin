@@ -39,13 +39,13 @@ public class TimetableWidgetProvider extends AppWidgetProvider {
     private static void setLatestTimetable(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         VARIABLE.context = context.getApplicationContext();
         VARIABLE.settings = VARIABLE.context.getSharedPreferences("settingsFile", Context.MODE_PRIVATE);
-        new LocaleManager();
+        LocaleManager lm = new LocaleManager();
 
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm", lm.getLocale());
         if (DateFormat.is24HourFormat(context)) {
-            timeFormat = new SimpleDateFormat("HH:mm");
+            timeFormat = new SimpleDateFormat("HH:mm", lm.getLocale());
         }
-        final SimpleDateFormat amPmFormat = new SimpleDateFormat("a");
+        final SimpleDateFormat amPmFormat = new SimpleDateFormat("a", lm.getLocale());
 
         final GregorianCalendar[] schedule = Schedule.today().getTimes();
         for(int i = 0; i < appWidgetIds.length; i++) {
