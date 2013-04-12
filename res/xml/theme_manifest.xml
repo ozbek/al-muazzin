@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<themes>
-    <theme  style =                     "@style/DefaultTheme"
-            alternateRowColor =         "@color/semi_transparent_white"
-            tabWidgetBackgroundColor =  "@android:color/black"
-            compassBackground =         "@drawable/compass_background"
-            compassNeedle =             "@drawable/compass_needle"
-            name =                      "@string/sdefault" />
-</themes>

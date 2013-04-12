@@ -1,10 +1,8 @@
 package islam.adhanalarm.view;
 
-import uz.efir.muazzin.R;
-import islam.adhanalarm.util.ThemeManager;
-
 import java.text.DecimalFormat;
 
+import uz.efir.muazzin.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -60,13 +58,13 @@ public class QiblaCompassView extends View {
         invalidate();
     }
 
-    public void setConstants(TextView bearingNorth, CharSequence bearingNorthString, TextView bearingQibla, CharSequence bearingQiblaString, ThemeManager themeManager) {
+    public void setConstants(TextView bearingNorth, CharSequence bearingNorthString, TextView bearingQibla, CharSequence bearingQiblaString) {
         this.bearingNorth = bearingNorth;
         this.bearingNorthString = bearingNorthString.toString();
         this.bearingQibla = bearingQibla;
         this.bearingQiblaString = bearingQiblaString.toString();
-        compassBackground = BitmapFactory.decodeResource(getResources(), themeManager.getCompassBackground());
-        compassNeedle = BitmapFactory.decodeResource(getResources(), themeManager.getCompassNeedle());
+        compassBackground = BitmapFactory.decodeResource(getResources(), R.drawable.compass_background);
+        compassNeedle = BitmapFactory.decodeResource(getResources(), R.drawable.compass_needle);
     }
 
     public void setDirections(float directionNorth, float directionQibla) {

@@ -4,7 +4,6 @@ import islam.adhanalarm.dialog.CalculationSettingsDialog;
 import islam.adhanalarm.dialog.SettingsDialog;
 import islam.adhanalarm.receiver.StartNotificationReceiver;
 import islam.adhanalarm.util.LocaleManager;
-import islam.adhanalarm.util.ThemeManager;
 import islam.adhanalarm.view.QiblaCompassView;
 
 import java.text.DecimalFormat;
@@ -48,7 +47,6 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class AdhanAlarm extends AbstractionFragmentActivity {
 
-    private static ThemeManager sThemeManager;
     private static LocaleManager sLocaleManager;
 
     private ArrayList<HashMap<String, String>> mTimetable
@@ -63,7 +61,6 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         VARIABLE.context = this;
         if(VARIABLE.settings == null) VARIABLE.settings = getSharedPreferences("settingsFile", MODE_PRIVATE);
 
-        sThemeManager = new ThemeManager(this);
         super.onCreate(icicle);
 
         sLocaleManager = new LocaleManager();
@@ -82,7 +79,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         ((ListView)findViewById(R.id.timetable)).setOnHierarchyChangeListener(new OnHierarchyChangeListener() { // Set zebra stripes
             private int numChildren = 0;
             public void onChildViewAdded(View parent, View child) {
-                child.setBackgroundResource(++numChildren % 2 == 0 ? sThemeManager.getAlternateRowColor() : android.R.color.transparent);
+                child.setBackgroundResource(++numChildren % 2 == 0 ? R.color.semi_transparent_white : android.R.color.transparent);
                 if(numChildren > CONSTANT.NEXT_FAJR) numChildren = 0; // Last row has been reached, reset for next time
             }
             public void onChildViewRemoved(View parent, View child) {
@@ -93,7 +90,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
 
         TabHost tabs = (TabHost)findViewById(R.id.tabhost);
         tabs.setup();
-        tabs.getTabWidget().setBackgroundResource(sThemeManager.getTabWidgetBackgroundColor());
+        tabs.getTabWidget().setBackgroundResource(android.R.color.black);
 
         TabHost.TabSpec one = tabs.newTabSpec("one");
         one.setContent(R.id.tab_today);
@@ -108,7 +105,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         tabs.addTab(two);
 
         ((QiblaCompassView)findViewById(R.id.qibla_compass)).setConstants(((TextView)findViewById(R.id.bearing_north)),
-                getText(R.string.bearing_north), ((TextView)findViewById(R.id.bearing_qibla)), getText(R.string.bearing_qibla), sThemeManager);
+                getText(R.string.bearing_north), ((TextView)findViewById(R.id.bearing_qibla)), getText(R.string.bearing_qibla));
         sOrientationListener = new SensorListener() {
             public void onSensorChanged(int s, float v[]) {
                 float northDirection = v[SensorManager.DATA_X];
@@ -149,7 +146,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
             Notifier.stop();
             break;
         case R.id.menu_settings:
-            new SettingsDialog(this, sLocaleManager, sThemeManager).show();
+            new SettingsDialog(this, sLocaleManager).show();
             break;
         case R.id.menu_help:
             SpannableString s = new SpannableString(getText(R.string.help_text));
@@ -168,7 +165,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            if (sThemeManager.isDirty() || sLocaleManager.isDirty()) {
+            if (sLocaleManager.isDirty()) {
                 VARIABLE.updateWidgets(this);
                 long restartTime = Calendar.getInstance().getTimeInMillis() + CONSTANT.RESTART_DELAY;
                 AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);

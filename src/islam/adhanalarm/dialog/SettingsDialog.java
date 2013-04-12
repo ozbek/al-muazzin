@@ -1,12 +1,12 @@
 package islam.adhanalarm.dialog;
 
-import java.util.GregorianCalendar;
-
-import uz.efir.muazzin.R;
 import islam.adhanalarm.Schedule;
 import islam.adhanalarm.VARIABLE;
 import islam.adhanalarm.util.LocaleManager;
-import islam.adhanalarm.util.ThemeManager;
+
+import java.util.GregorianCalendar;
+
+import uz.efir.muazzin.R;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,13 +21,11 @@ import android.widget.TextView;
 public class SettingsDialog extends Dialog {
 
     private LocaleManager localeManager;
-    private ThemeManager themeManager;
     private static MediaPlayer mediaPlayer;
 
-    public SettingsDialog(Context context, LocaleManager localeManager, ThemeManager themeManager) {
+    public SettingsDialog(Context context, LocaleManager localeManager) {
         super(context);
         this.localeManager = localeManager;
-        this.themeManager = themeManager;
     }
 
     @Override
@@ -48,7 +46,7 @@ public class SettingsDialog extends Dialog {
         });
         ((Button)findViewById(R.id.set_interface)).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                new InterfaceSettingsDialog(v.getContext(), themeManager, localeManager).show();
+                new InterfaceSettingsDialog(v.getContext(), localeManager).show();
             }
         });
         ((Button)findViewById(R.id.set_advanced)).setOnClickListener(new Button.OnClickListener() {
@@ -76,9 +74,9 @@ public class SettingsDialog extends Dialog {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(hasFocus && (themeManager.isDirty() || localeManager.isDirty())) {
+        if (hasFocus && localeManager.isDirty()) {
             dismiss();
-        } else if(hasFocus) {
+        } else if (hasFocus) {
             Schedule.setSettingsDirty(); // Technically we should do it only when they have changed i.e. if Calculation or Advanced settings changed but this is easier
         }
     }
