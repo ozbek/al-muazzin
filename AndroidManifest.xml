@@ -18,7 +18,7 @@
         android:allowBackup="false"
         android:description="@string/description"
         android:icon="@drawable/icon"
-        android:theme="@style/DialogTheme">
+        android:theme="@style/DefaultTheme">
 
         <activity android:name="islam.adhanalarm.AdhanAlarm"
             android:launchMode="singleTop"

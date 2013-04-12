@@ -7,12 +7,10 @@
 
     <TextView
         android:id="@+id/today"
-        style="@android:style/TextAppearance.WindowTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/TextAppearanceToday"
         android:layout_gravity="left"
         android:layout_margin="10dp"
-        android:textIsSelectable="false"/>
+        android:textIsSelectable="false" />
 
     <ListView
         android:id="@+id/timetable"
@@ -27,6 +25,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_margin="5dp"
-        android:textIsSelectable="false"/>
+        android:textIsSelectable="false" />
 
 </LinearLayout>

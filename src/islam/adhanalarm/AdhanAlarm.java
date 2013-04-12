@@ -25,7 +25,6 @@ import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Paint;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.location.Location;
@@ -77,15 +76,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         }
         mTimetableView = new SimpleAdapter(this, mTimetable, R.layout.timetable_row,
                 new String[]{"mark", "time_name", "time", "time_am_pm"},
-                new int[]{R.id.mark, R.id.time_name, R.id.time, R.id.time_am_pm}) {
-            public boolean areAllItemsEnabled() {
-                // Disable list's item selection
-                return false;
-            }
-            public boolean isEnabled(int position) {
-                return false;
-            }
-        };
+                new int[]{R.id.mark, R.id.time_name, R.id.time, R.id.time_am_pm});
         ((ListView)findViewById(R.id.timetable)).setAdapter(mTimetableView);
 
         ((ListView)findViewById(R.id.timetable)).setOnHierarchyChangeListener(new OnHierarchyChangeListener() { // Set zebra stripes
@@ -263,7 +254,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
 
         TextView todayView = (TextView)findViewById(R.id.today);
         todayView.setText(Schedule.today().hijriDateToString(this));
-        todayView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        //todayView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         Schedule today = Schedule.today();
         GregorianCalendar[] schedule = today.getTimes();

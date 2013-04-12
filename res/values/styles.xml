@@ -31,54 +31,13 @@
         <item name="android:paddingRight">5dp</item>
         <item name="android:paddingLeft">5dp</item>
     </style>
-
-    <!-- Dialog theme -->
-    <style name="DialogTheme" parent="Theme.Sherlock.Dialog">
-        <item name="android:listViewStyle">@style/listViewStyle</item>
-        <item name="android:textViewStyle">@style/textViewStyle</item>
-    </style>
-
-    <!-- Green theme -->
-    <style name="GreenTheme" parent="@style/DefaultTheme">
-        <item name="android:windowBackground">@color/green_background</item>
-        <item name="android:tileMode">repeat</item>
-        <item name="android:textViewStyle">@style/greenTextViewStyle</item>
-        <item name="android:tabWidgetStyle">@style/greenTabWidgetStyle</item>
-    </style>
-
-    <style name="greenTextViewStyle" parent="@style/textViewStyle">
-        <item name="android:textAppearance">@style/greenTextAppearance</item>
-    </style>
-
-    <style name="greenTextAppearance" parent="@style/textAppearance">
-        <item name="android:textColor">@color/light_yellow</item>
-    </style>
-
-    <style name="greenTabWidgetStyle" parent="@android:style/Widget.TabWidget">
-        <item name="android:textColor">@color/yellow_black_tab_indicator_text</item>
-    </style>
-
-    <!-- Light theme -->
-        <style name="LightTheme" parent="Theme.Sherlock.Light">
-        <item name="android:listViewStyle">@style/listViewStyle</item>
-        <item name="android:textViewStyle">@style/lightTextViewStyle</item>
-        <item name="android:tabWidgetStyle">@style/lightTabWidgetStyle</item>
-    </style>
-
-    <style name="lightTextViewStyle" parent="@style/textViewStyle">
-        <item name="android:textAppearance">@style/lightTextAppearance</item>
-    </style>
-
-    <style name="lightTextAppearance" parent="@style/textAppearance">
-        <item name="android:textColor">@android:color/primary_text_light</item>
-    </style>
-
-    <style name="lightTabWidgetStyle" parent="@android:style/Widget.TabWidget">
-        <item name="android:textColor">@color/grey_black_tab_indicator_text</item>
-    </style>
-
-    <!-- Brown theme -->
-    <style name="BrownTheme" parent="@style/GreenTheme">
-        <item name="android:windowBackground">@color/brown_background_color</item>
+    
+    <style name="TextAppearanceToday">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">@dimen/text_size_todays_date</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
     </style>
 </resources>

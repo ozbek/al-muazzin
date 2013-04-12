@@ -6,22 +6,4 @@
             compassBackground =         "@drawable/compass_background"
             compassNeedle =             "@drawable/compass_needle"
             name =                      "@string/sdefault" />
-
-    <theme  style =                     "@style/BrownTheme"
-            alternateRowColor =         "@color/semi_transparent_black"
-            tabWidgetBackgroundColor =  "@color/brown_background_color"
-            name =                      "@string/brown" />
-
-    <theme  style =                     "@style/DialogTheme"
-            name =                      "@string/dialog" />
-
-    <theme  style =                     "@style/GreenTheme"
-            alternateRowColor =         "@color/semi_transparent_black"
-            tabWidgetBackgroundColor =  "@color/green_background_color"
-            name =                      "@string/green" />
-
-    <theme  style =                     "@style/LightTheme"
-            alternateRowColor =         "@color/semi_transparent_black"
-            tabWidgetBackgroundColor =  "@color/semi_transparent_black"
-            name =                      "@string/light" />
 </themes>
