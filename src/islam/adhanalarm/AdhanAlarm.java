@@ -57,12 +57,13 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
 
     @Override
     public void onCreate(Bundle icicle) {
-        VARIABLE.context = this;
-        if(VARIABLE.settings == null) VARIABLE.settings = getSharedPreferences("settingsFile", MODE_PRIVATE);
+        if (VARIABLE.settings == null) {
+            VARIABLE.settings = getSharedPreferences("settingsFile", MODE_PRIVATE);
+        }
 
         super.onCreate(icicle);
 
-        sLocaleManager = new LocaleManager();
+        sLocaleManager = new LocaleManager(this);
         setContentView(R.layout.main);
 
         for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
@@ -250,9 +251,9 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
 
         Schedule today = Schedule.today();
         GregorianCalendar[] schedule = today.getTimes();
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", sLocaleManager.getLocale());
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", sLocaleManager.getLocale(this));
         if (DateFormat.is24HourFormat(this)) {
-            timeFormat = new SimpleDateFormat("HH:mm ", sLocaleManager.getLocale());
+            timeFormat = new SimpleDateFormat("HH:mm ", sLocaleManager.getLocale(this));
         }
 
         for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
