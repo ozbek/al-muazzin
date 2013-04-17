@@ -32,7 +32,6 @@ import android.text.SpannableString;
 import android.text.format.DateFormat;
 import android.text.method.LinkMovementMethod;
 import android.text.util.Linkify;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup.OnHierarchyChangeListener;
 import android.widget.LinearLayout;
@@ -85,8 +84,8 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
             public void onChildViewRemoved(View parent, View child) {
             }
         });
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        //DisplayMetrics displayMetrics = new DisplayMetrics();
+        //getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         TabHost tabs = (TabHost)findViewById(R.id.tabhost);
         tabs.setup();
@@ -223,25 +222,21 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
                 editor.putFloat("longitude", (float)currentLocation.getLongitude());
                 editor.commit();
                 VARIABLE.updateWidgets(this);
-            } catch(Exception ex) {
+            } catch(NullPointerException npe) {
                 ((TextView)findViewById(R.id.notes)).setText(getString(R.string.location_not_set));
             }
         }
-        if (!VARIABLE.settings.contains("calculationMethodsIndex")) {
-            try {
-                String country = Locale.getDefault().getISO3Country().toUpperCase(Locale.US);
 
-                SharedPreferences.Editor editor = VARIABLE.settings.edit();
-                for (int i = 0; i < CONSTANT.CALCULATION_METHOD_COUNTRY_CODES.length; i++) {
-                    if(Arrays.asList(CONSTANT.CALCULATION_METHOD_COUNTRY_CODES[i]).contains(country)) {
-                        editor.putInt("calculationMethodsIndex", i);
-                        editor.commit();
-                        VARIABLE.updateWidgets(this);
-                        break;
-                    }
+        if (!VARIABLE.settings.contains("calculationMethodsIndex")) {
+            String country = Locale.getDefault().getISO3Country().toUpperCase(Locale.US);
+            SharedPreferences.Editor editor = VARIABLE.settings.edit();
+            for (int i = 0; i < CONSTANT.CALCULATION_METHOD_COUNTRY_CODES.length; i++) {
+                if (Arrays.asList(CONSTANT.CALCULATION_METHOD_COUNTRY_CODES[i]).contains(country)) {
+                    editor.putInt("calculationMethodsIndex", i);
+                    editor.apply();
+                    VARIABLE.updateWidgets(this);
+                    break;
                 }
-            } catch(Exception ex) {
-                // Wasn't set, oh well we'll uses DEFAULT_CALCULATION_METHOD later
             }
         }
     }
