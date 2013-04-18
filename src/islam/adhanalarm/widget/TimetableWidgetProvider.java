@@ -2,7 +2,6 @@ package islam.adhanalarm.widget;
 
 import islam.adhanalarm.AdhanAlarm;
 import islam.adhanalarm.Schedule;
-import islam.adhanalarm.VARIABLE;
 import islam.adhanalarm.util.LocaleManager;
 
 import java.text.SimpleDateFormat;
@@ -37,7 +36,6 @@ public class TimetableWidgetProvider extends AppWidgetProvider {
         setLatestTimetable(context, appWidgetManager, appWidgetIds);
     }
     private static void setLatestTimetable(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        VARIABLE.settings = context.getSharedPreferences("settingsFile", Context.MODE_PRIVATE);
         LocaleManager lm = new LocaleManager(context);
 
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm", lm.getLocale(context));
@@ -46,8 +44,8 @@ public class TimetableWidgetProvider extends AppWidgetProvider {
         }
         final SimpleDateFormat amPmFormat = new SimpleDateFormat("a", lm.getLocale(context));
 
-        final GregorianCalendar[] schedule = Schedule.today().getTimes();
-        for(int i = 0; i < appWidgetIds.length; i++) {
+        final GregorianCalendar[] schedule = Schedule.today(context).getTimes();
+        for (int i = 0; i < appWidgetIds.length; i++) {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_timetable);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, AdhanAlarm.class), 0);
@@ -61,7 +59,7 @@ public class TimetableWidgetProvider extends AppWidgetProvider {
                 } else {
                     views.setTextViewText(am_pms[j], amPmFormat.format(schedule[j].getTime()));
                 }
-                views.setTextViewText(markers[j], j == Schedule.today().nextTimeIndex() ? context.getString(R.string.next_time_marker_reverse) : "");
+                views.setTextViewText(markers[j], j == Schedule.today(context).nextTimeIndex() ? context.getString(R.string.next_time_marker_reverse) : "");
             }
             appWidgetManager.updateAppWidget(appWidgetIds[i], views);
         }

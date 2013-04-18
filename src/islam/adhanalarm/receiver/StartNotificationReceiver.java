@@ -1,15 +1,16 @@
 package islam.adhanalarm.receiver;
 
-import java.util.Calendar;
-
 import islam.adhanalarm.Schedule;
 import islam.adhanalarm.WakeLock;
 import islam.adhanalarm.service.StartNotificationService;
+
+import java.util.Calendar;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.BroadcastReceiver;
 
 public class StartNotificationReceiver extends BroadcastReceiver {
     @Override
@@ -19,7 +20,7 @@ public class StartNotificationReceiver extends BroadcastReceiver {
     }
 
     public static void setNext(Context context) {
-        Schedule today = Schedule.today();
+        Schedule today = Schedule.today(context);
         short nextTimeIndex = today.nextTimeIndex();
         set(context, nextTimeIndex, today.getTimes()[nextTimeIndex]);
     }

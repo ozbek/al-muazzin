@@ -1,6 +1,6 @@
 package islam.adhanalarm.util;
 
-import islam.adhanalarm.VARIABLE;
+import islam.adhanalarm.Preferences;
 
 import java.util.Locale;
 
@@ -8,16 +8,15 @@ import android.content.Context;
 import android.content.res.Configuration;
 
 public class LocaleManager {
+    public static final String[] LOCALES = new String[] {
+        "default", // represents the default system language; i.e., not necessarily English
+        "uz", "ar", "de", "en", "es",
+        "fr", "in", "it", "tr", "ru"
+        };
 
     private boolean languageDirty = false;
     private int languageIndex = 0;
     private Locale mLocale;
-
-    public static final String[] LANGUAGE_KEYS = new String[] {
-            "default", // represents the default system language; i.e., not necessarily English
-            "uz", "ar", "de", "en", "es",
-            "fr", "in", "it", "tr", "ru"
-            };
 
     /**
      * This class should be instantiated after an activity's super.onCreate() call but before setContentView()
@@ -25,9 +24,10 @@ public class LocaleManager {
      */
     public LocaleManager(Context context) {
         // Set the language based on settings
-        String languageKey = VARIABLE.settings.getString("locale", LANGUAGE_KEYS[0]/*"default"*/);
+        Preferences preferences = Preferences.getInstance(context);
+        String languageKey = preferences.getLocale();
         Locale defaultLocale = Locale.getDefault();
-        if (languageKey.equals("default")) {
+        if (LOCALES[0].equals(languageKey)) {
             languageKey = defaultLocale.getCountry();
         }
         String country = defaultLocale.getISO3Country().toUpperCase(defaultLocale);
@@ -36,11 +36,11 @@ public class LocaleManager {
         Configuration config = new Configuration();
         config.locale = locale;
 
-        context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+        context.getResources().updateConfiguration(config, null);
 
         // Set the language index into the local LANGUAGE_KEYS array
-        for (int i = 0; i < LANGUAGE_KEYS.length; i++) {
-            if (languageKey.equals(LANGUAGE_KEYS[i])) {
+        for (int i = 0; i < LOCALES.length; i++) {
+            if (languageKey.equals(LOCALES[i])) {
                 languageIndex = i;
                 break;
             }

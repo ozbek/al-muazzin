@@ -4,6 +4,9 @@ import net.sourceforge.jitl.Method;
 import net.sourceforge.jitl.Rounding;
 import uz.efir.muazzin.R;
 
+/**
+ * TODO: delete this class
+ */
 public class CONSTANT {
 
     public static final long RESTART_DELAY = 1000; // 1 second
@@ -51,8 +54,8 @@ public class CONSTANT {
 
     public static final short NOTIFICATION_NONE = 0, NOTIFICATION_DEFAULT = 1, NOTIFICATION_PLAY = 2, NOTIFICATION_CUSTOM = 3; // Notification Methods
 
-    public static final Rounding[] ROUNDING_TYPES = new Rounding[]{Rounding.NONE, Rounding.NORMAL, Rounding.SPECIAL, Rounding.AGRESSIVE};
-    public static final short DEFAULT_ROUNDING_TYPE = 2; // Special
+    public static final Rounding[] ROUNDING_METHODS = new Rounding[]{Rounding.NONE, Rounding.NORMAL, Rounding.SPECIAL, Rounding.AGRESSIVE};
+    public static final short DEFAULT_ROUNDING_INDEX = 2; // Special
 
     private CONSTANT() {
         // Private constructor to enforce un-instantiability.

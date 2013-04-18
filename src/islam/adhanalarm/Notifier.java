@@ -24,10 +24,12 @@ public class Notifier {
     public static void start(Context context, short timeIndex, long actualTime) {
         Notifier.context = context;
 
-        if (timeIndex == CONSTANT.NEXT_FAJR) timeIndex = CONSTANT.FAJR;
-        int notificationMethod = VARIABLE.settings.getInt("notificationMethod".concat(Short.toString(timeIndex)),
-                timeIndex == CONSTANT.SUNRISE ? CONSTANT.NOTIFICATION_NONE : CONSTANT.NOTIFICATION_DEFAULT);
-        if (notificationMethod == CONSTANT.NOTIFICATION_NONE || (timeIndex == CONSTANT.SUNRISE && !VARIABLE.alertSunrise())) {
+        if (timeIndex == CONSTANT.NEXT_FAJR) {
+            timeIndex = CONSTANT.FAJR;
+        }
+        Preferences preferences = Preferences.getInstance(context);
+        int notificationMethod = preferences.getNotificationMethod(timeIndex);
+        if (notificationMethod == CONSTANT.NOTIFICATION_NONE) {
             WakeLock.release();
             return;
         }
@@ -56,10 +58,8 @@ public class Notifier {
                 alarm = R.raw.adhan_fajr;
             }
             if (notificationMethod == CONSTANT.NOTIFICATION_CUSTOM) {
-                mediaPlayer = MediaPlayer.create(context, Uri.parse(VARIABLE.settings.getString("notificationCustomFile" + timeIndex, "")));
-                try {
-                    mediaPlayer.getDuration();
-                } catch(Exception ex) {
+                mediaPlayer = MediaPlayer.create(context, Uri.parse(preferences.getCustomFilePath(timeIndex)));
+                if (mediaPlayer == null) {
                     mediaPlayer = MediaPlayer.create(context, alarm);
                     notification.tickerText = notification.tickerText + " - " + context.getString(R.string.error_playing_custom_file);
                 }
@@ -72,12 +72,13 @@ public class Notifier {
                 public void onCompletion(MediaPlayer mp) {
                     notification.tickerText = notification.tickerText.toString().replace(" (" + Notifier.context.getString(R.string.stop) + ")", "");
                     notification.defaults = 0;
-                    startNotification(finalTimeIndex); // New notification won't have the "(Stop)" at the end of it since we are done playing
+                    // New notification won't have the "(Stop)" at the end of it since we are done playing
+                    startNotification(finalTimeIndex);
                 }
             });
             try {
                 mediaPlayer.start();
-            } catch(Exception ex) {
+            } catch(IllegalStateException ise) {
                 notification.tickerText = notification.tickerText + " - " + context.getString(R.string.error_playing_alert);
             }
             notification.defaults = Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS;

@@ -2,11 +2,11 @@ package net.sourceforge.jitl.astro;
 
 public class Location {
 
-    static final double DEFAULT_SEA_LEVEL = 0;
+    public static final double DEFAULT_PRESSURE = 1010;
 
-    static final double DEFAULT_PRESSURE = 1010;
+    public static final double DEFAULT_SEA_LEVEL = 0;
 
-    static final double DEFAULT_TEMPERATURE = 10;
+    public static final double DEFAULT_TEMPERATURE = 10;
 
     private double degreeLong;
 

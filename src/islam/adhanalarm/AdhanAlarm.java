@@ -9,11 +9,9 @@ import islam.adhanalarm.view.QiblaCompassView;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.Locale;
 
 import net.sourceforge.jitl.Jitl;
 import net.sourceforge.jitl.astro.Dms;
@@ -23,10 +21,8 @@ import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.format.DateFormat;
@@ -47,24 +43,29 @@ import com.actionbarsherlock.view.MenuItem;
 public class AdhanAlarm extends AbstractionFragmentActivity {
 
     private static LocaleManager sLocaleManager;
+    private static Preferences sPreferences;
 
     private ArrayList<HashMap<String, String>> mTimetable
             = new ArrayList<HashMap<String, String>>(7);
     private SimpleAdapter mTimetableView;
 
+    private static float sQiblaDirection = 0f;
     private static SensorListener sOrientationListener;
     private static boolean isTrackingOrientation = false;
 
     @Override
     public void onCreate(Bundle icicle) {
-        if (VARIABLE.settings == null) {
-            VARIABLE.settings = getSharedPreferences("settingsFile", MODE_PRIVATE);
-        }
-
+        sPreferences = Preferences.getInstance(this);
         super.onCreate(icicle);
 
         sLocaleManager = new LocaleManager(this);
         setContentView(R.layout.main);
+
+        try {
+            sPreferences.initCalculationDefaults(this);
+        } catch (NullPointerException npe) {
+            ((TextView)findViewById(R.id.notes)).setText(getString(R.string.location_not_set));
+        }
 
         for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
             HashMap<String, String> map = new HashMap<String, String>();
@@ -96,7 +97,6 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         one.setContent(R.id.tab_today);
         one.setIndicator(getString(R.string.today), getResources().getDrawable(R.drawable.calendar));
         tabs.addTab(one);
-        configureCalculationDefaults();
         /* End of Tab 1 Items */
 
         TabHost.TabSpec two = tabs.newTabSpec("two");
@@ -109,7 +109,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         sOrientationListener = new SensorListener() {
             public void onSensorChanged(int s, float v[]) {
                 float northDirection = v[SensorManager.DATA_X];
-                ((QiblaCompassView)findViewById(R.id.qibla_compass)).setDirections(northDirection, VARIABLE.qiblaDirection);
+                ((QiblaCompassView)findViewById(R.id.qibla_compass)).setDirections(northDirection, sQiblaDirection);
 
             }
             public void onAccuracyChanged(int s, int a) {
@@ -127,20 +127,26 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        short time = Schedule.today().nextTimeIndex();
+        short time = Schedule.today(this).nextTimeIndex();
         switch(item.getItemId()) {
         case R.id.menu_location_calculation:
             new CalculationSettingsDialog(this).show();
             break;
         case R.id.menu_previous:
             time--;
-            if(time < CONSTANT.FAJR) time = CONSTANT.ISHAA;
-            if(time == CONSTANT.SUNRISE && !VARIABLE.alertSunrise()) time = CONSTANT.FAJR;
-            Notifier.start(this, time, Schedule.today().getTimes()[time].getTimeInMillis());
+            if (time < CONSTANT.FAJR) {
+                time = CONSTANT.ISHAA;
+            }
+            if (CONSTANT.SUNRISE == time && sPreferences.dontNotifySunrise()) {
+                time = CONSTANT.FAJR;
+            }
+            Notifier.start(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
             break;
         case R.id.menu_next:
-            if(time == CONSTANT.SUNRISE && !VARIABLE.alertSunrise()) time = CONSTANT.DHUHR;
-            Notifier.start(this, time, Schedule.today().getTimes()[time].getTimeInMillis());
+            if (CONSTANT.SUNRISE == time && sPreferences.dontNotifySunrise()) {
+                time = CONSTANT.DHUHR;
+            }
+            Notifier.start(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
             break;
         case R.id.menu_stop:
             Notifier.stop();
@@ -166,7 +172,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             if (sLocaleManager.isDirty()) {
-                VARIABLE.updateWidgets(this);
+                Preferences.updateWidgets(this);
                 long restartTime = Calendar.getInstance().getTimeInMillis() + CONSTANT.RESTART_DELAY;
                 AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, restartTime,
@@ -175,13 +181,13 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
                 return;
             }
 
-            if (VARIABLE.settings.contains("latitude") && VARIABLE.settings.contains("longitude")) {
+            if (sPreferences.isLocationSet()) {
                 ((TextView)findViewById(R.id.notes)).setText(null);
             }
 
             if (Schedule.settingsAreDirty()) {
                 updateTodaysTimetableAndNotification();
-                VARIABLE.updateWidgets(this);
+                Preferences.updateWidgets(this);
             }
         }
     }
@@ -189,7 +195,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
     @Override
     public void onResume() {
         super.onResume();
-        VARIABLE.mainActivityIsRunning = true;
+        sPreferences.setIsForeground(true);
         updateTodaysTimetableAndNotification();
         startTrackingOrientation();
     }
@@ -198,7 +204,7 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
     public void onPause() {
         super.onPause();
         stopTrackingOrientation();
-        VARIABLE.mainActivityIsRunning = false;
+        sPreferences.setIsForeground(false);
     }
 
     private void startTrackingOrientation() {
@@ -214,42 +220,14 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         isTrackingOrientation = false;
     }
 
-    private void configureCalculationDefaults() {
-        if (!VARIABLE.settings.contains("latitude") || !VARIABLE.settings.contains("longitude")) {
-            Location currentLocation = VARIABLE.getCurrentLocation(this);
-            try {
-                SharedPreferences.Editor editor = VARIABLE.settings.edit();
-                editor.putFloat("latitude", (float)currentLocation.getLatitude());
-                editor.putFloat("longitude", (float)currentLocation.getLongitude());
-                editor.commit();
-                VARIABLE.updateWidgets(this);
-            } catch(NullPointerException npe) {
-                ((TextView)findViewById(R.id.notes)).setText(getString(R.string.location_not_set));
-            }
-        }
-
-        if (!VARIABLE.settings.contains("calculationMethodsIndex")) {
-            String country = Locale.getDefault().getISO3Country().toUpperCase(Locale.US);
-            SharedPreferences.Editor editor = VARIABLE.settings.edit();
-            for (int i = 0; i < CONSTANT.CALCULATION_METHOD_COUNTRY_CODES.length; i++) {
-                if (Arrays.asList(CONSTANT.CALCULATION_METHOD_COUNTRY_CODES[i]).contains(country)) {
-                    editor.putInt("calculationMethodsIndex", i);
-                    editor.apply();
-                    VARIABLE.updateWidgets(this);
-                    break;
-                }
-            }
-        }
-    }
-
     private void updateTodaysTimetableAndNotification() {
         StartNotificationReceiver.setNext(this);
 
         TextView todayView = (TextView)findViewById(R.id.today);
-        todayView.setText(Schedule.today().hijriDateToString(this));
+        todayView.setText(Schedule.today(this).hijriDateToString(this));
         //todayView.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
-        Schedule today = Schedule.today();
+        Schedule today = Schedule.today(this);
         GregorianCalendar[] schedule = today.getTimes();
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a", sLocaleManager.getLocale(this));
         if (DateFormat.is24HourFormat(this)) {
@@ -274,18 +252,13 @@ public class AdhanAlarm extends AbstractionFragmentActivity {
         mTimetableView.notifyDataSetChanged();
 
         // Add Latitude, Longitude and Qibla DMS location
-        net.sourceforge.jitl.astro.Location location
-                = new net.sourceforge.jitl.astro.Location(VARIABLE.settings.getFloat("latitude", 43.67f),
-                        VARIABLE.settings.getFloat("longitude", -79.417f), Schedule.getGMTOffset(), 0);
-        location.setSeaLevel(VARIABLE.settings.getFloat("altitude", 0) < 0 ? 0 : VARIABLE.settings.getFloat("altitude", 0));
-        location.setPressure(VARIABLE.settings.getFloat("pressure", 1010));
-        location.setTemperature(VARIABLE.settings.getFloat("temperature", 10));
+        net.sourceforge.jitl.astro.Location location = sPreferences.getJitlLocation();
 
         DecimalFormat df = new DecimalFormat("#.###");
         Dms latitude = new Dms(location.getDegreeLat());
         Dms longitude = new Dms(location.getDegreeLong());
         Dms qibla = Jitl.getNorthQibla(location);
-        VARIABLE.qiblaDirection = (float)qibla.getDecimalValue(net.sourceforge.jitl.astro.Direction.NORTH);
+        sQiblaDirection = (float)qibla.getDecimalValue(net.sourceforge.jitl.astro.Direction.NORTH);
         ((TextView)findViewById(R.id.current_latitude_deg)).setText(String.valueOf(latitude.getDegree()));
         ((TextView)findViewById(R.id.current_latitude_min)).setText(String.valueOf(latitude.getMinute()));
         ((TextView)findViewById(R.id.current_latitude_sec)).setText(df.format(latitude.getSecond()));
