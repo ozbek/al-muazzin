@@ -56,9 +56,4 @@
     <string name="offset">Deviazione</string>
     <string name="minutes">minuti</string>
     <string name="language">Lingua</string>
-    <string name="theme">Tema</string>
-    <string name="brown">Marrone</string>
-    <string name="dialog">Finestra</string>
-    <string name="green">Verde</string>
-    <string name="light">Chiaro</string>
 </resources>

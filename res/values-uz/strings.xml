@@ -65,10 +65,5 @@
     <string name="offset">Меъёрий</string>
     <string name="minutes">минут</string>
     <string name="language">Тил</string>
-    <string name="theme">Шаблон</string>
-    <string name="brown">Жигарранг</string>
-    <string name="dialog">Dialog</string>
-    <string name="green">Яшил</string>
-    <string name="light">Оч</string>
     <string name="anno_hegirae"></string>
 </resources>

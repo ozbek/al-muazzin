@@ -65,10 +65,5 @@
     <string name="offset">Офсет</string>
     <string name="minutes">минут</string>
     <string name="language">Язык</string>
-    <string name="theme">Шаблон</string>
-    <string name="brown">Коричневый</string>
-    <string name="dialog">Диалоговый</string>
-    <string name="green">Зеленый</string>
-    <string name="light">Светлый</string>
     <string name="anno_hegirae">Хиджры</string>
 </resources>

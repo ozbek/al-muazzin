@@ -67,11 +67,6 @@
     <string name="offset">Offset</string>
     <string name="minutes">minutes</string>
     <string name="language">Language</string>
-    <string name="theme">Theme</string>
-    <string name="brown">Brown</string>
-    <string name="dialog">Dialog</string>
-    <string name="green">Green</string>
-    <string name="light">Light</string>
     <string name="anno_hegirae">AH</string>
 
     <string name="app_name" translatable="false">Al-Muazzin</string>

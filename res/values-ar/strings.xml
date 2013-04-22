@@ -65,10 +65,5 @@
     <string name="offset">أوفسيت</string>
     <string name="minutes">دقائق</string>
     <string name="language">اللغة</string>
-    <string name="theme">القالب</string>
-    <string name="brown">بني</string>
-    <string name="dialog">مربع حوار</string>
-    <string name="green">أخضر</string>
-    <string name="light">خفيف</string>
     <string name="anno_hegirae">هـ</string>
 </resources>
