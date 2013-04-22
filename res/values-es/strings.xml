@@ -2,8 +2,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Muestra y puede alertar a los tiempos de oración diaria musulmán.</string>
-    <string name="adhan_next_time">Adhān: La próxima vez</string>
-    <string name="adhan_timetable">Adhān: Calendario</string>
     <string name="previous">Anterior</string>
     <string name="next">Siguiente</string>
     <string name="stop">Detener</string>

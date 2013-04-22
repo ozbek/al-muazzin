@@ -2,8 +2,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Кундалик намоз вақтлари</string>
-    <string name="adhan_next_time">Азон вақти</string>
-    <string name="adhan_timetable">Азон вақтлари жадвали</string>
     <string name="previous">Аввалги</string>
     <string name="next">Кейинги</string>
     <string name="stop">Стоп</string>

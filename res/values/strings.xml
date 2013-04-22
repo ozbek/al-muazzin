@@ -2,8 +2,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Displays and can alert you to the daily Muslim prayer times.</string>
-    <string name="adhan_next_time">Adhān: Next Time</string>
-    <string name="adhan_timetable">Adhān: Timetable</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
     <string name="stop">Stop</string>

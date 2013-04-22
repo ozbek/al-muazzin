@@ -2,8 +2,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Покажет и может предупредить о времях ежедневных мусульманских молитв.</string>
-    <string name="adhan_next_time">Азан: следующий</string>
-    <string name="adhan_timetable">Азан: расписание</string>
     <string name="previous">Предыдущий</string>
     <string name="next">Следующий</string>
     <string name="stop">Стоп</string>

@@ -38,16 +38,14 @@
         <receiver android:name="islam.adhanalarm.receiver.ClearNotificationReceiver" />
         <service android:name="islam.adhanalarm.service.StartNotificationService" />
 
-        <receiver android:name="islam.adhanalarm.widget.TimetableWidgetProvider"
-            android:label="@string/adhan_timetable">
+        <receiver android:name="islam.adhanalarm.widget.TimetableWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_timetable" />
         </receiver>
 
-        <receiver android:name="islam.adhanalarm.widget.NextNotificationWidgetProvider"
-            android:label="@string/adhan_next_time">
+        <receiver android:name="islam.adhanalarm.widget.NextNotificationWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
