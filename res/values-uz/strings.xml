@@ -7,8 +7,6 @@
     <string name="previous">Аввалги</string>
     <string name="next">Кейинги</string>
     <string name="stop">Стоп</string>
-    <string name="help">Ёрдам</string>
-    <string name="help_text"><u>Frequently Asked Questions</u>\n\nQ: Why do the times not match my local timetable?\n\nA: There are many factors that affect the schedule including the input parameters (ex. latitude, longitude, calculation method, etc), algorithmic differences and precision differences due to computations on different machines.\n\nQ: Why does the Qibla compass not point in the right direction?\n\nA: Confirm that your latitude and longitude are set correctly in your settings and your phone is away from electro-magnetic interference.\n\nQ: Why is my favorite feature not included in the application?\n\nA: Please visit the project website at adhanalarm.googlecode.com and help us improve the program.</string>
     <string name="today">Бугун</string>
     <string name="fajr">Бомдод</string>
     <string name="sunrise">Қуёш</string>

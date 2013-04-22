@@ -7,8 +7,6 @@
     <string name="previous">Anterior</string>
     <string name="next">Siguiente</string>
     <string name="stop">Detener</string>
-    <string name="help">Ayuda</string>
-    <string name="help_text"><u>Preguntas más frecuentes</u>\n\n¿Por qué no coinciden los tiempos de mi horario local\n\nHay muchos factores que afectan el programa de inclusión de los parámetros de entrada (por ejemplo, latitud, longitud, el método de cálculo, ...), diferencias algorítmico y diferencias de precisión debido a cálculos en máquinas diferentes.\n\n¿Por qué la Qibla brújula no apunta en la dirección correcta\n\nAsegúrese de que su latitud y longitud se han definido correctamente en la configuración y el teléfono está alejado de los interferencias magnéticas.\n\n¿Por qué es mi función favorita no incluidos en la solicitud\n\nA: Por favor visite el sitio web del proyecto adhanalarm.googlecode.com y nos ayudan a mejorar el programa.</string>
     <string name="today">Hoy en día</string>
     <string name="next_fajr">Siguiente Fajr</string>
     <string name="sdefault">Normal</string>

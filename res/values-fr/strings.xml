@@ -2,8 +2,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Affichage et alertes des prières quotidiennes du musulman</string>
-    <string name="help">Aide</string>
-    <string name="help_text"><u>Questions fréquemment posées</u>\n\nQ: Pourquoi les temps de prières ne correspondent pas à mon calendrier?\n\nA: Il y a beaucoup de facteurs qui affectent le calcul des prières, notamment  les paramètres en entrées de configuration (ex. latitude, longitude, méthode de calcul,…), le choix des algorithmes ainsi que la précision du calcul qui vari selon les machines.\n\nQ: Pourquoi la boussole du Qibla ne se dirige-t-elle pas dans la bonne direction?\n\nA: C\'est une boussole très imprécise.\n\nQ: Pourquoi ma fonctionnalité préférée n\'est-elle pas incluse dans l\'application?\n\nA: Veuillez visiter le site Web du projet à l’adresse adhanalarm.googlecode.com et aidez-nous à améliorer le programme.</string>
     <string name="today">Aujourd\'hui</string>
     <string name="sunrise">Levé du soleil</string>
     <string name="next_fajr">Prochain Fajr</string>

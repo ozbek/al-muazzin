@@ -7,8 +7,6 @@
     <string name="previous">Önceki</string>
     <string name="next">Sonraki</string>
     <string name="stop">Durdur</string>
-    <string name="help">Yardım</string>
-    <string name="help_text"><u>Sık Sık Sorulan Sorular</u>\n\nS: Neden namaz vakitleri yerel takvimle eşleşmiyor?\n\nC: Buna etki eden birçok faktörler vardir, örneğin, giriş parametreleri (enlem, boylam, hesaplama yöntemi, ...), algoritmik ve farklı makinelerdeki hesaplama hassaslık farklılıkları.\n\nS: Neden pusula Kıbleyi doğru yönde göstermiyor?\n\nC: Enlem ve boylam doğru ayarlanmış olduğunu onaylayın ve telefonuzu elektro-manyetik etkileşimden uzak tutun.\n\nS: Neden en sevdiğim özellik daha eklenmemiştir?\n\nC: Lütfen adhanalarm.googlecode.com adresindeki proje web sitesini ziyaret edin ve uygulamayı geliştirmeye yardımcı olun.</string>
     <string name="today">Bugün</string>
     <string name="fajr">İmsak</string>
     <string name="sunrise">Güneş</string>

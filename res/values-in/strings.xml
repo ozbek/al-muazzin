@@ -7,8 +7,6 @@
     <string name="previous">Sebelumnya</string>
     <string name="next">Sesudahnya</string>
     <string name="stop">Berhenti</string>
-    <string name="help">Bantuan</string>
-    <string name="help_text"><u>Pertanyaan Umum</u>\n\nT: Mengapa jadwal yang ada tidak sama dengan waktu setempat?\n\nJ: Ada banyak faktor yang mempengaruhi seperti parameter yang tertulis (mis. lintang, bujur, metoda perhitungan, ...), perbedaan algoritma dan ketepatan pengukuran karena perhitungan di perangkat berbeda.\n\nT: Mengapa penunjuk arah Kiblat tidak menunjukkan arah yang benar?\n\nJ: Pastikan bahwa aturan lintang dan bujur sudah sesuai di pengaturan dan telepon tidak berada di dekat sumber arus listrik.\n\nT: Mengapa fitur kesukaan saya tidak ada di dalam aplikasi ini?\n\nJ: Silahkan mampir ke situs proyek ini di adhanalarm.googlecode.com dan bantu kami untuk memperbaiki aplikasi ini.</string>
     <string name="today">Hari Ini</string>
     <string name="fajr">Subuh</string>
     <string name="sunrise">Syuruq</string>
