@@ -36,7 +36,7 @@
     <string name="advanced">Lebih Lanjut</string>
     <string name="extra_alerts">Pengingat Tambahan</string>
     <string name="daylight_savings">Waktu Siang DST</string>
-    <string name="lookup_gps">Periksa\nGPS</string>
+    <string name="lookup_gps">Periksa GPS</string>
     <string name="system_time_zone">Daerah Waktu Sistem</string>
     <string name="save">Simpan</string>
     <string name="reset">Hapus</string>

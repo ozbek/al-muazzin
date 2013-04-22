@@ -20,7 +20,7 @@
     <string name="time_for">الوقت لـ<xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">خط العرض</string>
     <string name="longitude">خط الطول</string>
-    <string name="extreme">Extreme</string>
+    <!--string name="extreme">Extreme</string-->
     <string name="qibla">القبلة</string>
     <string name="compass_disclaimer">البوصلة تعمل في الوضع الطولي للجهاز.</string>
     <string name="bearing_north">1) اتجاة الشمال = (1)°</string>
@@ -38,9 +38,9 @@
     <string name="advanced">خيارات متقدمة</string>
     <string name="extra_alerts">تنبيهات اضافية</string>
     <string name="daylight_savings">التوقيت الصيفي</string>
-    <string name="lookup_gps">البحث بـ\nGPS</string>
+    <string name="lookup_gps">البحث بـ GPS</string>
     <string name="system_time_zone">نظام المنطقة الزمني</string>
-    <string name="gmt">GMT</string>
+    <!--string name="gmt">GMT</string-->
     <string name="save">حفظ</string>
     <string name="reset">استعادة</string>
     <string name="calculation">طريقة الحساب</string>
@@ -51,13 +51,13 @@
     <string name="muslim_league">رابطة العالم الاسلامي</string>
     <string name="umm_alqurra">تقويم ام القرى</string>
     <string name="fixed_ishaa">فارق العشاء الزمني الثابت (90 دقيقة)</string>
-    <string name="altitude">Altitude</string>
+    <!--string name="altitude">Altitude</string-->
     <string name="pressure">الضغط</string>
     <string name="temperature">درجة الحرارة</string>
-    <string name="rounding">Rounding</string>
+    <!--string name="rounding">Rounding</string>
     <string name="normal">Normal</string>
     <string name="special">Special</string>
-    <string name="aggressive">Aggressive</string>
+    <string name="aggressive">Aggressive</string-->
     <string name="offset">أوفسيت</string>
     <string name="minutes">دقائق</string>
     <string name="language">اللغة</string>

@@ -18,7 +18,7 @@
     <string name="advanced">Avancé</string>
     <string name="extra_alerts">Plus d’alertes</string>
     <string name="daylight_savings">Heure d\'été</string>
-    <string name="lookup_gps">Consultation\nGPS</string>
+    <string name="lookup_gps">Consultation GPS</string>
     <string name="system_time_zone">Fuseau horaire</string>
     <string name="save">Enregistrer</string>
     <string name="reset">Réinitialiser</string>

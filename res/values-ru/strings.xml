@@ -38,7 +38,7 @@
     <string name="advanced">Расширенный</string>
     <string name="extra_alerts">Дополнительные сигналы</string>
     <string name="daylight_savings">Летнее время</string>
-    <string name="lookup_gps">Авто\n(GPS)</string>
+    <string name="lookup_gps">Авто (GPS)</string>
     <string name="system_time_zone">Часовой пояс</string>
     <!--string name="gmt">GMT</string-->
     <string name="save">Сохранить</string>

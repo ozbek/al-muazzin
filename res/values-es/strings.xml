@@ -31,7 +31,7 @@
     <string name="advanced">Avanzada</string>
     <string name="extra_alerts">Extra Alertas</string>
     <string name="daylight_savings">Horario de verano</string>
-    <string name="lookup_gps">Búsqueda de\nGPS</string>
+    <string name="lookup_gps">Búsqueda de GPS</string>
     <string name="system_time_zone">Sistema de zona horaria</string>
     <string name="save">Guardar</string>
     <string name="reset">Restablecer</string>
