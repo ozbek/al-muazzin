@@ -2,6 +2,7 @@ package islam.adhanalarm;
 
 import islam.adhanalarm.receiver.ClearNotificationReceiver;
 import islam.adhanalarm.receiver.ClickNotificationReceiver;
+import uz.efir.muazzin.Muazzin;
 import uz.efir.muazzin.R;
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -99,14 +100,14 @@ public class Notifier {
     }
 
     private static void startNotification(short timeIndex) {
-        Intent i = new Intent(context, AdhanAlarm.class);
+        Intent i = new Intent(context, Muazzin.class);
         notification.setLatestEventInfo(context, context.getString(CONSTANT.TIME_NAMES[timeIndex]), notification.tickerText, PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT));
         notification.contentIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, ClickNotificationReceiver.class), PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT);
         notification.deleteIntent = PendingIntent.getBroadcast(context, 0, new Intent(context, ClearNotificationReceiver.class), PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT);
         ((NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).notify(1, notification);
         if(mediaPlayer == null || !mediaPlayer.isPlaying()) {
             try {
-                Thread.sleep(CONSTANT.POST_NOTIFICATION_DELAY);
+                Thread.sleep(5000/*five seconds*/);
             } catch(Exception ex) {
                 // Just trying to make sure the notification completes before we fall asleep again
             }

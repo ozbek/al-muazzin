@@ -8,10 +8,6 @@ import uz.efir.muazzin.R;
  * TODO: delete this class
  */
 public class CONSTANT {
-
-    public static final long RESTART_DELAY = 1000; // 1 second
-    public static final long POST_NOTIFICATION_DELAY = 5000; // 5 seconds
-
     public static final String[][] CALCULATION_METHOD_COUNTRY_CODES = new String[][]{
 
         /** METHOD_EGYPT_SURVEY:    Africa, Syria, Iraq, Lebanon, Malaysia, Parts of the USA **/

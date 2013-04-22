@@ -29,10 +29,4 @@
         android:icon="@android:drawable/ic_menu_preferences"
         android:numericShortcut="1"
         android:alphabeticShortcut="S" />
-
-    <item android:id="@+id/menu_help"
-        android:title="@string/help"
-        android:icon="@android:drawable/ic_menu_help"
-        android:numericShortcut="2"
-        android:alphabeticShortcut="H" />
 </menu>

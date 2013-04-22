@@ -20,8 +20,7 @@
         android:icon="@drawable/icon"
         android:theme="@style/DefaultTheme">
 
-        <activity android:name="islam.adhanalarm.AdhanAlarm"
-            android:launchMode="singleTop"
+        <activity android:name="uz.efir.muazzin.Muazzin"
             android:configChanges="locale|keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

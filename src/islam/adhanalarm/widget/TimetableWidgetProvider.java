@@ -1,12 +1,12 @@
 package islam.adhanalarm.widget;
 
-import islam.adhanalarm.AdhanAlarm;
 import islam.adhanalarm.Schedule;
 import islam.adhanalarm.util.LocaleManager;
 
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+import uz.efir.muazzin.Muazzin;
 import uz.efir.muazzin.R;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -48,7 +48,7 @@ public class TimetableWidgetProvider extends AppWidgetProvider {
         for (int i = 0; i < appWidgetIds.length; i++) {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_timetable);
 
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, AdhanAlarm.class), 0);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, Muazzin.class), 0);
             views.setOnClickPendingIntent(R.id.widget_timetable, pendingIntent);
 
             for(int j = 0; j < times.length; j++) {
