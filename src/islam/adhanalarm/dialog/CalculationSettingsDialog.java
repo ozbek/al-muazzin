@@ -2,6 +2,7 @@ package islam.adhanalarm.dialog;
 
 import islam.adhanalarm.CONSTANT;
 import islam.adhanalarm.Preferences;
+import islam.adhanalarm.Schedule;
 import uz.efir.muazzin.R;
 import android.app.Dialog;
 import android.content.Context;
@@ -32,7 +33,8 @@ public class CalculationSettingsDialog extends Dialog {
         setTitle(R.string.calculation);
 
         final Preferences preferences = Preferences.getInstance(mContext);
-        float[] latLong = preferences.getLocation();
+        final float[] latLong = preferences.getLocation();
+        final int calculationMethod = preferences.getCalculationMethodIndex();
 
         mLatitudeText = (EditText)findViewById(R.id.latitude);
         mLatitudeText.setText(Float.toString(latLong[0]));
@@ -45,7 +47,7 @@ public class CalculationSettingsDialog extends Dialog {
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mCalculationMethods.setAdapter(adapter);
-        mCalculationMethods.setSelection(preferences.getCalculationMethodIndex());
+        mCalculationMethods.setSelection(calculationMethod);
 
         ((ImageButton)findViewById(R.id.lookup_gps)).setOnClickListener(new ImageButton.OnClickListener() {
             public void onClick(View v) {
@@ -62,16 +64,16 @@ public class CalculationSettingsDialog extends Dialog {
 
         ((Button)findViewById(R.id.save_settings)).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                try {
-                    preferences.setLocation(
-                            Float.parseFloat(mLatitudeText.getText().toString()),
-                            Float.parseFloat(mLongitudeText.getText().toString())
-                            );
-                } catch (NumberFormatException nfe) {
-                    // Do nothing, will keep the previous values
+                float newLatitude = parseFloat(mLatitudeText, latLong[0]);
+                float newLongitude = parseFloat(mLongitudeText, latLong[1]);
+                int newCalculationMethod = mCalculationMethods.getSelectedItemPosition();
+                // Check if any of the values has changed
+                if (newLatitude != latLong[0] || newLongitude != latLong[1]
+                        || newCalculationMethod != calculationMethod) {
+                    preferences.setLocation(newLatitude, newLongitude);
+                    preferences.setCalculationMethodIndex(newCalculationMethod);
+                    Schedule.setSettingsDirty();
                 }
-                preferences.setCalculationMethodIndex(mCalculationMethods.getSelectedItemPosition());
-
                 dismiss();
             }
         });
@@ -81,5 +83,13 @@ public class CalculationSettingsDialog extends Dialog {
                 mCalculationMethods.setSelection(CONSTANT.DEFAULT_CALCULATION_METHOD);
             }
         });
+    }
+
+    private static float parseFloat(EditText et, float defaultValue) {
+        try {
+            return Float.parseFloat(et.getText().toString());
+        } catch (NumberFormatException nfe) {
+            return defaultValue;
+        }
     }
 }

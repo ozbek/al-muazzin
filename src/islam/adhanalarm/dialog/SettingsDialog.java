@@ -82,10 +82,6 @@ public class SettingsDialog extends Dialog {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus && mLocaleManager.isDirty()) {
             dismiss();
-        } else if (hasFocus) {
-            // Technically we should do it only when Calculation or Advanced settings have changed,
-            // but this is easier
-            Schedule.setSettingsDirty();
         }
     }
 }

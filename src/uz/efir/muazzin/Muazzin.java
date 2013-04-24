@@ -6,6 +6,7 @@ import islam.adhanalarm.Preferences;
 import islam.adhanalarm.Schedule;
 import islam.adhanalarm.dialog.CalculationSettingsDialog;
 import islam.adhanalarm.dialog.SettingsDialog;
+import islam.adhanalarm.receiver.StartNotificationReceiver;
 import islam.adhanalarm.util.LocaleManager;
 import islam.adhanalarm.view.QiblaCompassView;
 
@@ -102,19 +103,20 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (hasFocus && sLocaleManager.isDirty()) {
-            // Restart the app to apply new locale changes
-            Preferences.updateWidgets(this);
-            long restartTime = Calendar.getInstance().getTimeInMillis() + 1000/*one second*/;
-            AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-            am.set(AlarmManager.RTC_WAKEUP, restartTime,
-                    PendingIntent.getActivity(this, 0, getIntent(), PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT));
-            finish();
-            return;
-        }
+        if (hasFocus) {
+            if (sLocaleManager.isDirty() || Schedule.settingsAreDirty()) {
+                // Restart the app to apply new settings changes
+                Preferences.updateWidgets(this);
+                AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+                am.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 1000/*one second*/,
+                        PendingIntent.getActivity(this, 0, getIntent(), PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_CANCEL_CURRENT));
+                finish();
+                return;
+            }
 
-        if (sPreferences.isLocationSet()) {
-            ((TextView)findViewById(R.id.notes)).setText(null);
+            if (sPreferences.isLocationSet()) {
+                ((TextView)findViewById(R.id.notes)).setText(null);
+            }
         }
     }
 
@@ -277,6 +279,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
 
         private void updateTodaysTimetable() {
             Context context = getActivity();
+            StartNotificationReceiver.setNext(context);
             Schedule today = Schedule.today(context);
             mTodaysDate.setText(today.hijriDateToString(context));
             GregorianCalendar[] schedule = today.getTimes();
