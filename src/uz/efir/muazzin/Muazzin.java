@@ -104,7 +104,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            if (sLocaleManager.isDirty() || Schedule.settingsAreDirty()) {
+            if (Schedule.settingsAreDirty() || sLocaleManager.isDirty()) {
                 // Restart the app to apply new settings changes
                 Preferences.updateWidgets(this);
                 AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
