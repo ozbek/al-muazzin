@@ -3,6 +3,7 @@ package islam.adhanalarm.util;
 import islam.adhanalarm.Preferences;
 
 import java.util.Locale;
+import java.util.MissingResourceException;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -30,8 +31,13 @@ public class LocaleManager {
         if (LOCALES[0].equals(languageKey)) {
             languageKey = defaultLocale.getCountry();
         }
-        String country = defaultLocale.getISO3Country().toUpperCase(defaultLocale);
-        Locale locale = new Locale(languageKey, country);
+        Locale locale;
+        try {
+            locale = new Locale(languageKey,
+                    defaultLocale.getISO3Country().toUpperCase(defaultLocale));
+        } catch (MissingResourceException mre) {
+            locale = new Locale(languageKey);
+        }
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
