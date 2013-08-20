@@ -36,7 +36,7 @@ public class Notifier {
         }
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            notification = new Notification(R.drawable.icon, "", actualTime);
+            notification = new Notification(R.drawable.ic_launcher, "", actualTime);
         } else {
             buildApi11PlusNotification(timeIndex, actualTime);
             //return;
@@ -120,12 +120,12 @@ public class Notifier {
     private static void buildApi11PlusNotification(short timeIndex, long actualTime) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
             notification = new Notification.Builder(context)
-                    .setSmallIcon(R.drawable.icon)
+                    .setSmallIcon(R.drawable.ic_launcher)
                     .setWhen(actualTime)
                     .getNotification();
         } else {
             notification = new Notification.Builder(context)
-                    .setSmallIcon(R.drawable.icon)
+                    .setSmallIcon(R.drawable.ic_launcher)
                     .setWhen(actualTime)
                     .build();
         }
