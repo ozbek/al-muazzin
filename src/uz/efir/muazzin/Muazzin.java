@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-
 import net.sourceforge.jitl.Jitl;
 import net.sourceforge.jitl.astro.Dms;
 import android.app.AlarmManager;
@@ -135,31 +134,31 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     public boolean onOptionsItemSelected(MenuItem item) {
         short time = Schedule.today(this).nextTimeIndex();
         switch(item.getItemId()) {
-            case R.id.menu_location_calculation:
-                new CalculationSettingsDialog(this).show();
-                break;
-            case R.id.menu_previous:
-                time--;
-                if (time < CONSTANT.FAJR) {
-                    time = CONSTANT.ISHAA;
-                }
-                if (CONSTANT.SUNRISE == time && sPreferences.dontNotifySunrise()) {
-                    time = CONSTANT.FAJR;
-                }
-                Notifier.start(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
-                break;
-            case R.id.menu_next:
-                if (CONSTANT.SUNRISE == time && sPreferences.dontNotifySunrise()) {
-                    time = CONSTANT.DHUHR;
-                }
-                Notifier.start(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
-                break;
-            case R.id.menu_stop:
-                Notifier.stop();
-                break;
-            case R.id.menu_settings:
-                new SettingsDialog(this, sLocaleManager).show();
-                break;
+        case R.id.menu_location_calculation:
+            new CalculationSettingsDialog(this).show();
+            break;
+        case R.id.menu_previous:
+            time--;
+            if (time < CONSTANT.FAJR) {
+                time = CONSTANT.ISHAA;
+            }
+            if (CONSTANT.SUNRISE == time && sPreferences.dontNotifySunrise()) {
+                time = CONSTANT.FAJR;
+            }
+            Notifier.start(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
+            break;
+        case R.id.menu_next:
+            if (CONSTANT.SUNRISE == time && sPreferences.dontNotifySunrise()) {
+                time = CONSTANT.DHUHR;
+            }
+            Notifier.start(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
+            break;
+        case R.id.menu_stop:
+            Notifier.stop();
+            break;
+        case R.id.menu_settings:
+            new SettingsDialog(this, sLocaleManager).show();
+            break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -187,12 +186,12 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0:
-                    return new PrayerTimesFragment();
-                case 1:
-                    return new QiblaCompassFragment();
-                default:
-                    return null;
+            case 0:
+                return new PrayerTimesFragment();
+            case 1:
+                return new QiblaCompassFragment();
+            default:
+                return null;
             }
         }
 
@@ -205,12 +204,12 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
-                case 0:
-                    return mContext.getString(R.string.today);
-                case 1:
-                    return mContext.getString(R.string.qibla);
-                default:
-                    return null;
+            case 0:
+                return mContext.getString(R.string.today);
+            case 1:
+                return mContext.getString(R.string.qibla);
+            default:
+                return null;
             }
         }
     }
@@ -220,8 +219,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
      * In the future, we may add some extra days...
      */
     public static class PrayerTimesFragment extends Fragment {
-        private ArrayList<HashMap<String, String>> mTimeTable
-                = new ArrayList<HashMap<String, String>>(7);
+        private ArrayList<HashMap<String, String>> mTimeTable = new ArrayList<HashMap<String, String>>(7);
         private SimpleAdapter mTimetableView;
         private TextView mNotes;
         private TextView mTodaysDate;
@@ -236,8 +234,8 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                 mTimeTable.add(i, map);
             }
             mTimetableView = new SimpleAdapter(getActivity(), mTimeTable, R.layout.timetable_row,
-                    new String[]{"mark", "time_name", "time", "time_am_pm"},
-                    new int[]{R.id.mark, R.id.time_name, R.id.time, R.id.time_am_pm});
+                    new String[]{"time_name", "time"},
+                    new int[]{R.id.time_name, R.id.time});
         }
 
         @Override
@@ -288,22 +286,22 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                 timeFormat = new SimpleDateFormat("HH:mm ", sLocaleManager.getLocale(context));
             }
 
+            final short next = today.nextTimeIndex();
             for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
                 String fullTime = timeFormat.format(schedule[i].getTime());
                 // Clear all existing markers since we're going to set the next one
-                mTimeTable.get(i).put("mark", "");
-                mTimeTable.get(i).put("time", fullTime.substring(0, fullTime.lastIndexOf(" ")));
-                if (DateFormat.is24HourFormat(context)) {
-                    mTimeTable.get(i).put("time_am_pm", today.isExtreme(i) ? "*" : "");
-                } else {
-                    mTimeTable.get(i).put("time_am_pm", fullTime.substring(fullTime.lastIndexOf(" ") + 1, fullTime.length()) + (today.isExtreme(i) ? "*" : ""));
-                }
+                //mTimeTable.get(i).put("mark", "");
+                mTimeTable.get(i).put("time", today.isExtreme(i) ? fullTime.concat(" *") : fullTime);
                 if (today.isExtreme(i)) {
                     mNotes.setText("* " + getString(R.string.extreme));
                 }
+
+                if (next == i) {
+                    mTimeTable.get(i).put("time_name", getString(R.string.next_time_marker).concat(getString(CONSTANT.TIME_NAMES[i])));
+                }
             }
 
-            mTimeTable.get(today.nextTimeIndex()).put("mark", getString(R.string.next_time_marker));
+            //mTimeTable.get(today.nextTimeIndex()).put("mark", getString(R.string.next_time_marker));
             mTimetableView.notifyDataSetChanged();
         }
     }

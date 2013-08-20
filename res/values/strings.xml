@@ -69,6 +69,6 @@
     <string name="degree_sign" translatable="false">\u00B0</string>
     <string name="right_single_quote" translatable="false">\u2019</string>
     <string name="right_double_quote" translatable="false">\u201D</string>
-    <string name="next_time_marker" translatable="false">&gt;</string>
+    <string name="next_time_marker" translatable="false">&gt;\u0020</string>
     <string name="next_time_marker_reverse" translatable="false">&lt;</string>
 </resources>

@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Global -->
     <color name="semi_transparent_black">#55000000</color>
     <color name="semi_transparent_white">#55FFFFFF</color>
-
-    <!-- Green Theme -->
-    <color name="green_background_color">#ff5A6131</color>
-    <color name="green_background">@drawable/bg_pattern_green_repeat</color>
-    <color name="light_yellow">#ffFAFFA5</color>
-
-    <!-- Brown Theme -->
-    <color name="brown_background_color">#ff5F4135</color>
 </resources>
