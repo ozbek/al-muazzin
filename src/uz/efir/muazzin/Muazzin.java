@@ -286,22 +286,17 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                 timeFormat = new SimpleDateFormat("HH:mm ", sLocaleManager.getLocale(context));
             }
 
-            final short next = today.nextTimeIndex();
             for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
                 String fullTime = timeFormat.format(schedule[i].getTime());
-                // Clear all existing markers since we're going to set the next one
-                //mTimeTable.get(i).put("mark", "");
                 mTimeTable.get(i).put("time", today.isExtreme(i) ? fullTime.concat(" *") : fullTime);
                 if (today.isExtreme(i)) {
+                    // FIXME: this is getting cleared if Preferences.isLocationSet() is true
                     mNotes.setText("* " + getString(R.string.extreme));
-                }
-
-                if (next == i) {
-                    mTimeTable.get(i).put("time_name", getString(R.string.next_time_marker).concat(getString(CONSTANT.TIME_NAMES[i])));
                 }
             }
 
-            //mTimeTable.get(today.nextTimeIndex()).put("mark", getString(R.string.next_time_marker));
+            final short next = today.nextTimeIndex();
+            mTimeTable.get(next).put("time_name", getString(R.string.next_time_marker).concat(getString(CONSTANT.TIME_NAMES[next])));
             mTimetableView.notifyDataSetChanged();
         }
     }
