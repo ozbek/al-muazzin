@@ -65,10 +65,7 @@
 
     <string name="app_name" translatable="false">Al-Muazzin</string>
     <string name="degrees_celsius" translatable="false">\u00B0C</string>
-    <string name="tilde" translatable="false">~</string>
-    <string name="degree_sign" translatable="false">\u00B0</string>
-    <string name="right_single_quote" translatable="false">\u2019</string>
-    <string name="right_double_quote" translatable="false">\u201D</string>
+    <string name="degree_minute_second" translatable="false"><xliff:g id="degree">%1$d</xliff:g>\u00B0 <xliff:g id="minute">%2$d</xliff:g>\u2019 <xliff:g id="second">%3$s</xliff:g>\u201D</string>
     <string name="next_time_marker" translatable="false">&gt;\u0020</string>
     <string name="next_time_marker_reverse" translatable="false">&lt;</string>
 </resources>

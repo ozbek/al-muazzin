@@ -21,7 +21,6 @@ import net.sourceforge.jitl.astro.Dms;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -306,20 +305,11 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
      */
     @SuppressWarnings("deprecation") // for SensorListener and SensorManager APIs
     public static class QiblaCompassFragment extends Fragment {
+        private static final DecimalFormat DF = new DecimalFormat("#.###");
         private static SensorManager sSensorManager;
         private static float sQiblaDirection = 0f;
-        private static SensorListener sOrientationListener;
+        private static android.hardware.SensorListener sOrientationListener;
         private static boolean isTrackingOrientation = false;
-
-        private TextView mLatDegree;
-        private TextView mLatMinute;
-        private TextView mLatSecond;
-        private TextView mLongDegree;
-        private TextView mLongMinute;
-        private TextView mLongSecond;
-        private TextView mQiblaDegree;
-        private TextView mQiblaMinute;
-        private TextView mQiblaSecond;
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
@@ -334,7 +324,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
             final QiblaCompassView qiblaCompassView = (QiblaCompassView)rootView.findViewById(R.id.qibla_compass);
             qiblaCompassView.setConstants(((TextView)rootView.findViewById(R.id.bearing_north)), getText(R.string.bearing_north),
                     ((TextView)rootView.findViewById(R.id.bearing_qibla)), getText(R.string.bearing_qibla));
-            sOrientationListener = new SensorListener() {
+            sOrientationListener = new android.hardware.SensorListener() {
                 public void onSensorChanged(int s, float v[]) {
                     float northDirection = v[SensorManager.DATA_X];
                     qiblaCompassView.setDirections(northDirection, sQiblaDirection);
@@ -343,16 +333,6 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                 public void onAccuracyChanged(int s, int a) {
                 }
             };
-
-            mLatDegree = (TextView)rootView.findViewById(R.id.current_latitude_deg);
-            mLatMinute = (TextView)rootView.findViewById(R.id.current_latitude_min);
-            mLatSecond = (TextView)rootView.findViewById(R.id.current_latitude_sec);
-            mLongDegree =  (TextView)rootView.findViewById(R.id.current_longitude_deg);
-            mLongMinute = (TextView)rootView.findViewById(R.id.current_longitude_min);
-            mLongSecond = (TextView)rootView.findViewById(R.id.current_longitude_sec);
-            mQiblaDegree = (TextView)rootView.findViewById(R.id.current_qibla_deg);
-            mQiblaMinute =  (TextView)rootView.findViewById(R.id.current_qibla_min);
-            mQiblaSecond = (TextView)rootView.findViewById(R.id.current_qibla_sec);
 
             return rootView;
         }
@@ -380,21 +360,29 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
          */
         private void updateDms() {
             net.sourceforge.jitl.astro.Location location = sPreferences.getJitlLocation();
-            DecimalFormat df = new DecimalFormat("#.###");
             Dms latitude = new Dms(location.getDegreeLat());
             Dms longitude = new Dms(location.getDegreeLong());
             Dms qibla = Jitl.getNorthQibla(location);
             sQiblaDirection = (float)qibla.getDecimalValue(net.sourceforge.jitl.astro.Direction.NORTH);
 
-            mLatDegree.setText(String.valueOf(latitude.getDegree()));
-            mLatMinute.setText(String.valueOf(latitude.getMinute()));
-            mLatSecond.setText(df.format(latitude.getSecond()));
-            mLongDegree.setText(String.valueOf(longitude.getDegree()));
-            mLongMinute.setText(String.valueOf(longitude.getMinute()));
-            mLongSecond.setText(df.format(longitude.getSecond()));
-            mQiblaDegree.setText(String.valueOf(qibla.getDegree()));
-            mQiblaMinute.setText(String.valueOf(qibla.getMinute()));
-            mQiblaSecond.setText(df.format(qibla.getSecond()));
+            View rootView = getView();
+            TextView tv = (TextView)rootView.findViewById(R.id.current_latitude);
+            tv.setText(getString(R.string.degree_minute_second,
+                    latitude.getDegree(),
+                    latitude.getMinute(),
+                    DF.format(latitude.getSecond())));
+
+            tv = (TextView)rootView.findViewById(R.id.current_longitude);
+            tv.setText(getString(R.string.degree_minute_second,
+                    longitude.getDegree(),
+                    longitude.getMinute(),
+                    DF.format(longitude.getSecond())));
+
+            tv = (TextView)rootView.findViewById(R.id.current_qibla);
+            tv.setText(getString(R.string.degree_minute_second,
+                    qibla.getDegree(),
+                    qibla.getMinute(),
+                    DF.format(qibla.getSecond())));
         }
     }
 }

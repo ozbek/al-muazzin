@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/today"
-        style="@style/TextAppearanceToday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:layout_margin="10dp"
-        android:textIsSelectable="false" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ListView
         android:id="@+id/timetable"
