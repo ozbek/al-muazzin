@@ -41,7 +41,6 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.sriramramani.droid.inspector.server.ViewServer;
 
 public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabListener {
     private static LocaleManager sLocaleManager;
@@ -52,7 +51,6 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     public void onCreate(Bundle savedInstanceState) {
         sPreferences = Preferences.getInstance(this);
         super.onCreate(savedInstanceState);
-        ViewServer.get(this).addWindow(this);
         sLocaleManager = new LocaleManager(this);
 
         setContentView(R.layout.activity_muazzin);
@@ -167,7 +165,6 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     @Override
     public void onResume() {
         super.onResume();
-        ViewServer.get(this).setFocusedWindow(this);
         sPreferences.setIsForeground(true);
     }
 
@@ -175,12 +172,6 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     public void onPause() {
         super.onPause();
         sPreferences.setIsForeground(false);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ViewServer.get(this).removeWindow(this);
     }
 
     public static class MyFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
