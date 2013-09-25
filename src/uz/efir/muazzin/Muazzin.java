@@ -21,6 +21,7 @@ import net.sourceforge.jitl.astro.Dms;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -32,6 +33,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -264,6 +266,16 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                 }
                 public void onChildViewRemoved(View parent, View child) {}
             });
+
+            final Intent alarmIntent = Utils.getDefaultAlarmsIntent(rootView.getContext());
+            if (alarmIntent != null) {
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        startActivity(alarmIntent);
+                    }
+                });
+            }
 
             return rootView;
         }
