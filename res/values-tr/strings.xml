@@ -37,7 +37,7 @@
     <string name="sinterface">Arayüzey</string>
     <string name="advanced">İleri ayarlar</string>
     <string name="extra_alerts">Ek uyarılar</string>
-    <string name="daylight_savings">Aydınlık saklamaları</string>
+    <string name="daylight_savings">, Aydınlık saklamaları</string>
     <string name="lookup_gps">GPS araması</string>
     <string name="system_time_zone">Sistem saati</string>
     <!--string name="gmt">GMT</string-->

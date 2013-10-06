@@ -3,12 +3,10 @@ package islam.adhanalarm;
 import static net.sourceforge.jitl.astro.Location.DEFAULT_PRESSURE;
 import static net.sourceforge.jitl.astro.Location.DEFAULT_SEA_LEVEL;
 import static net.sourceforge.jitl.astro.Location.DEFAULT_TEMPERATURE;
+
 import islam.adhanalarm.util.LocaleManager;
 import islam.adhanalarm.widget.NextNotificationWidgetProvider;
 import islam.adhanalarm.widget.TimetableWidgetProvider;
-
-import java.util.Arrays;
-import java.util.Locale;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,15 +14,18 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 
+import java.util.Arrays;
+import java.util.Locale;
+
 /**
- * Helper class to store and retrieve user settings to/from shared preferences file
- * TODO: add API documentation
+ * Helper class to store and retrieve user settings to/from shared preferences
+ * file TODO: add API documentation
  */
 public class Preferences {
     private boolean mIsForeground = false;
 
-    private static final String PREFERENCE_FILENAME_SUFFIX = "_settings";
-    private static final String KEY_BASMALA = "bismillah_on_boot_up";
+    private static final String PREFERENCE_FILENAME_SUFFIX = "_preferences";
+    private static final String KEY_BASMALA = "key_bismillah_on_boot_up";
     private static final String KEY_CALCULATION_METHOD_INDEX = "calculation_method_index";
     private static final String KEY_NOTIFICATION_METHOD = "notification_method_";
     private static final String KEY_NOTIFICATION_CUSTOM_FILE = "notification_custom_file_";
@@ -35,14 +36,13 @@ public class Preferences {
     private static final String KEY_TEMPERATURE = "location_temperature";
     private static final String KEY_OFFSET_MINUTES = "offset_minutes";
     private static final String KEY_ROUNDING_METHOD_INDEX = "rounding_method_index";
-    private static final String KEY_LOCALE = "locale";
+    private static final String KEY_LOCALE = "key_locale";
 
     private SharedPreferences mSharedPreferences;
     private static Preferences sPreferences;
+
     public static Preferences getInstance(Context context) {
-        return sPreferences == null
-                ? (sPreferences = new Preferences(context))
-                : sPreferences;
+        return sPreferences == null ? (sPreferences = new Preferences(context)) : sPreferences;
     }
 
     private Preferences(Context context) {
@@ -84,7 +84,8 @@ public class Preferences {
 
     public int getNotificationMethod(short time) {
         return mSharedPreferences.getInt(KEY_NOTIFICATION_METHOD.concat(Short.toString(time)),
-                CONSTANT.SUNRISE == time ? CONSTANT.NOTIFICATION_NONE : CONSTANT.NOTIFICATION_DEFAULT);
+                CONSTANT.SUNRISE == time ? CONSTANT.NOTIFICATION_NONE
+                        : CONSTANT.NOTIFICATION_DEFAULT);
     }
 
     public void setNotificationMethod(short time, int method) {
@@ -94,7 +95,8 @@ public class Preferences {
     }
 
     public String getCustomFilePath(short time) {
-        return mSharedPreferences.getString(KEY_NOTIFICATION_CUSTOM_FILE.concat(Short.toString(time)), "");
+        return mSharedPreferences.getString(
+                KEY_NOTIFICATION_CUSTOM_FILE.concat(Short.toString(time)), "");
     }
 
     public void setCustomFilePath(String newPath) {
@@ -104,7 +106,8 @@ public class Preferences {
     }
 
     public int getCalculationMethodIndex() {
-        return mSharedPreferences.getInt(KEY_CALCULATION_METHOD_INDEX, CONSTANT.DEFAULT_CALCULATION_METHOD);
+        return mSharedPreferences.getInt(KEY_CALCULATION_METHOD_INDEX,
+                CONSTANT.DEFAULT_CALCULATION_METHOD);
     }
 
     public void setCalculationMethodIndex(int index) {
@@ -134,16 +137,13 @@ public class Preferences {
     }
 
     /**
-     * @return
-     *     float[0] = altitude;
-     *     float[1] = pressure;
-     *     float[2] = temperature;
+     * @return float[0] = altitude; float[1] = pressure; float[2] = temperature;
      */
     public float[] getApt() {
         float[] apt = new float[3];
-        apt[0] = mSharedPreferences.getFloat(KEY_ALTITUDE, (float)DEFAULT_SEA_LEVEL);
-        apt[1] = mSharedPreferences.getFloat(KEY_PRESSURE, (float)DEFAULT_PRESSURE);
-        apt[2] = mSharedPreferences.getFloat(KEY_TEMPERATURE, (float)DEFAULT_TEMPERATURE);
+        apt[0] = mSharedPreferences.getFloat(KEY_ALTITUDE, (float) DEFAULT_SEA_LEVEL);
+        apt[1] = mSharedPreferences.getFloat(KEY_PRESSURE, (float) DEFAULT_PRESSURE);
+        apt[2] = mSharedPreferences.getFloat(KEY_TEMPERATURE, (float) DEFAULT_TEMPERATURE);
         return apt;
     }
 
@@ -156,7 +156,8 @@ public class Preferences {
     }
 
     public int getRoundingMethodIndex() {
-        return mSharedPreferences.getInt(KEY_ROUNDING_METHOD_INDEX, CONSTANT.DEFAULT_ROUNDING_INDEX);
+        return mSharedPreferences
+                .getInt(KEY_ROUNDING_METHOD_INDEX, CONSTANT.DEFAULT_ROUNDING_INDEX);
     }
 
     public void setRoundingMethodIndex(int index) {
@@ -187,13 +188,15 @@ public class Preferences {
             }
         }
 
-        if (!mSharedPreferences.contains(KEY_LATITUDE) || !mSharedPreferences.contains(KEY_LONGITUDE)) {
+        if (!mSharedPreferences.contains(KEY_LATITUDE)
+                || !mSharedPreferences.contains(KEY_LONGITUDE)) {
             Location currentLocation = getCurrentLocation(context);
             if (currentLocation == null) {
                 throw new NullPointerException();
             }
 
-            setLocation((float)currentLocation.getLatitude(), (float)currentLocation.getLongitude());
+            setLocation((float) currentLocation.getLatitude(),
+                    (float) currentLocation.getLongitude());
             updateWidgets(context);
         }
     }
@@ -203,11 +206,14 @@ public class Preferences {
         criteria.setAccuracy(Criteria.ACCURACY_FINE);
         criteria.setCostAllowed(true);
 
-        LocationManager locationManager = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
-        Location currentLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, true));
+        LocationManager locationManager = (LocationManager) context
+                .getSystemService(Context.LOCATION_SERVICE);
+        Location currentLocation = locationManager.getLastKnownLocation(locationManager
+                .getBestProvider(criteria, true));
         if (currentLocation == null) {
             criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-            currentLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, true));
+            currentLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(
+                    criteria, true));
         }
 
         return currentLocation;
@@ -215,8 +221,8 @@ public class Preferences {
 
     public net.sourceforge.jitl.astro.Location getJitlLocation() {
         final float[] latLong = getLocation();
-        net.sourceforge.jitl.astro.Location location
-                = new net.sourceforge.jitl.astro.Location(latLong[0], latLong[1], Schedule.getGMTOffset(), 0);
+        net.sourceforge.jitl.astro.Location location = new net.sourceforge.jitl.astro.Location(
+                latLong[0], latLong[1], Schedule.getGMTOffset(), 0);
         final float[] apt = getApt();
         location.setSeaLevel(apt[0]);
         location.setPressure(apt[1]);

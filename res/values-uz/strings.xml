@@ -37,7 +37,7 @@
     <string name="sinterface">Интерфейс</string>
     <string name="advanced">Илғор</string>
     <string name="extra_alerts">Extra Alerts</string>
-    <string name="daylight_savings">Daylight Savings</string>
+    <string name="daylight_savings">, Daylight Savings</string>
     <string name="lookup_gps">Lookup GPS</string>
     <string name="system_time_zone">System Time Zone</string>
     <string name="gmt">GMT</string>

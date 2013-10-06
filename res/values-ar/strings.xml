@@ -37,7 +37,7 @@
     <string name="sinterface">الواجهة</string>
     <string name="advanced">خيارات متقدمة</string>
     <string name="extra_alerts">تنبيهات اضافية</string>
-    <string name="daylight_savings">التوقيت الصيفي</string>
+    <string name="daylight_savings">\u0020التوقيت الصيفي</string>
     <string name="lookup_gps">البحث بـ GPS</string>
     <string name="system_time_zone">نظام المنطقة الزمني</string>
     <!--string name="gmt">GMT</string-->

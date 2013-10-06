@@ -42,7 +42,7 @@
 
     <array name="languages" translatable="false">
         <item>@string/sdefault</item>
-        <item><b>Ўзбекча</b></item>
+        <item>Ўзбекча</item>
         <item>العربية</item>
         <item>Deutsch</item>
         <item>English</item>

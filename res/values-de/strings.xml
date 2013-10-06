@@ -25,8 +25,6 @@
     <string name="sinterface">Oberfläche</string>
     <string name="advanced">Erweitert</string>
     <string name="extra_alerts">Extra Alarme</string>
-    <string name="daylight_savings">Daylight Savings</string>
-    <string name="lookup_gps">Lookup GPS</string>
     <string name="system_time_zone">System Zeit Zone</string>
     <string name="save">Speichern</string>
     <string name="reset">Eingaben löschen</string>

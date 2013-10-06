@@ -31,7 +31,7 @@
     <string name="sinterface">Interfaccia</string>
     <string name="advanced">Avanzate</string>
     <string name="extra_alerts">Avvisi Extra</string>
-    <string name="daylight_savings">Ora Legale</string>
+    <string name="daylight_savings">, Ora Legale</string>
     <string name="lookup_gps">Utilizza GPS</string>
     <string name="system_time_zone">Fuso Orario</string>
     <string name="save">Salva</string>
