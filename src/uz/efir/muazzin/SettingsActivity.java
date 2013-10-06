@@ -1,6 +1,7 @@
 package uz.efir.muazzin;
 
 import islam.adhanalarm.Preferences;
+import islam.adhanalarm.Schedule;
 import islam.adhanalarm.dialog.AdvancedSettingsDialog;
 import islam.adhanalarm.dialog.NotificationSettingsDialog;
 import islam.adhanalarm.util.LocaleManager;
@@ -77,9 +78,9 @@ public class SettingsActivity extends SherlockPreferenceActivity implements
         timeZone.append(dateFormat.format(calendar.getTime()));
         timeZone.append(" (");
         timeZone.append(new GregorianCalendar().getTimeZone().getDisplayName());
-        // if (Schedule.isDaylightSavings()) {
-        timeZone.append(getString(R.string.daylight_savings));
-        // }
+        if (Schedule.isDaylightSavings()) {
+            timeZone.append(getString(R.string.daylight_savings));
+        }
         timeZone.append(")");
         return timeZone.toString();
     }
