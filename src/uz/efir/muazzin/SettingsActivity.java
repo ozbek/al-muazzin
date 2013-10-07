@@ -17,7 +17,6 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
-import android.util.Log;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -28,13 +27,16 @@ import java.util.TimeZone;
 public class SettingsActivity extends SherlockPreferenceActivity implements
         OnPreferenceChangeListener {
     private static LocaleManager sLocaleManager;
-    private ListPreference mLanguagePref;
 
     @SuppressWarnings("deprecation")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showActionBar();
+        // show action bar
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.settings);
+
         addPreferencesFromResource(R.xml.settings);
         sLocaleManager = LocaleManager.getInstance(this, false);
 
@@ -44,15 +46,12 @@ public class SettingsActivity extends SherlockPreferenceActivity implements
         timezonePref.setSummary(getGmtOffSet(this));
 
         // Language settings
-        mLanguagePref = (ListPreference) root.findPreference("key_locale");
-        mLanguagePref.setEntryValues(LocaleManager.LOCALES);
-        mLanguagePref.setValueIndex(sLocaleManager.getLanguageIndex());
-        mLanguagePref.setOnPreferenceChangeListener(this);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+        ListPreference languagePref = (ListPreference) root.findPreference("key_locale");
+        languagePref.setEntryValues(LocaleManager.LOCALES);
+        languagePref.setValueIndex(sLocaleManager.getLanguageIndex());
+        languagePref.setSummary(languagePref.getEntry());
+        languagePref.setOnPreferenceChangeListener(this);
     }
 
     @SuppressWarnings("deprecation")
@@ -69,28 +68,6 @@ public class SettingsActivity extends SherlockPreferenceActivity implements
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
-    private final String getGmtOffSet(Context context) {
-        DateFormat dateFormat = new SimpleDateFormat("Z", sLocaleManager.getLocale(context));
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"),
-                sLocaleManager.getLocale(context));
-
-        StringBuilder timeZone = new StringBuilder(getString(R.string.gmt));
-        timeZone.append(dateFormat.format(calendar.getTime()));
-        timeZone.append(" (");
-        timeZone.append(new GregorianCalendar().getTimeZone().getDisplayName());
-        if (Schedule.isDaylightSavings()) {
-            timeZone.append(getString(R.string.daylight_savings));
-        }
-        timeZone.append(")");
-        return timeZone.toString();
-    }
-
-    private void showActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(R.string.settings);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -105,8 +82,7 @@ public class SettingsActivity extends SherlockPreferenceActivity implements
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (mLanguagePref.equals(preference)) {
-            Log.e("YAY", newValue.toString());
+        if ("key_locale".equals(preference.getKey())) {
             Preferences preferences = Preferences.getInstance(this);
             preferences.setLocale(newValue.toString());
             sLocaleManager.setDirty(true);
@@ -114,5 +90,21 @@ public class SettingsActivity extends SherlockPreferenceActivity implements
         }
 
         return false;
+    }
+
+    private final String getGmtOffSet(Context context) {
+        DateFormat dateFormat = new SimpleDateFormat("Z", sLocaleManager.getLocale(context));
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"),
+                sLocaleManager.getLocale(context));
+
+        StringBuilder timeZone = new StringBuilder(getString(R.string.gmt));
+        timeZone.append(dateFormat.format(calendar.getTime()));
+        timeZone.append(" (");
+        timeZone.append(new GregorianCalendar().getTimeZone().getDisplayName());
+        if (Schedule.isDaylightSavings()) {
+            timeZone.append(getString(R.string.daylight_savings));
+        }
+        timeZone.append(")");
+        return timeZone.toString();
     }
 }
