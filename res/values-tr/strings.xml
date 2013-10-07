@@ -26,7 +26,8 @@
     <string name="bearing_north">1) Kuzey Yatak = (1)°</string>
     <string name="bearing_qibla">2) Kible Yatak = (1) (+/-) (2)° = (3)°</string>
     <string name="settings">Ayarlar</string>
-    <string name="bismillah_on_boot_up">Başlarken Besmele oku</string>
+    <string name="bismillah_on_boot_up_title">Besmele</string>
+    <string name="bismillah_on_boot_up_summary">Başlarken besmele oku</string>
     <string name="notification">Duyuru</string>
     <string name="none">Yok</string>
     <string name="beep">Bip</string>

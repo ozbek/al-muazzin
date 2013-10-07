@@ -26,7 +26,8 @@
     <string name="bearing_north">1) اتجاة الشمال = (1)°</string>
     <string name="bearing_qibla">2) اتجاة القبلة = (1) (+/-) (2)° = (3)°</string>
     <string name="settings">اعدادات</string>
-    <string name="bismillah_on_boot_up">تشغيل البسملة عند الاقلاع</string>
+    <string name="bismillah_on_boot_up_title">بسملة‎‎</string>
+    <string name="bismillah_on_boot_up_summary">تشغيل البسملة عند الاقلاع</string>
     <string name="notification">التنبيهات</string>
     <string name="none">بدون</string>
     <string name="beep">صوت بيب</string>

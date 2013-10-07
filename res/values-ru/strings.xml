@@ -26,7 +26,8 @@
     <string name="bearing_north">1) Опора севера = (1)°</string>
     <string name="bearing_qibla">2) Опора Киблы = (1) (+/-) (2)° = (3)°</string>
     <string name="settings">Настройки</string>
-    <string name="bismillah_on_boot_up">Бисмиллах при загрузке</string>
+    <string name="bismillah_on_boot_up_title">Басмала</string>
+    <string name="bismillah_on_boot_up_summary">Читай басмала при загрузке</string>
     <string name="notification">Оповещение</string>
     <string name="none">Никакой</string>
     <string name="beep">Гудок</string>

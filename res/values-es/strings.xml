@@ -19,7 +19,7 @@
     <string name="bearing_north">1) Teniendo Norte = (1)°</string>
     <string name="bearing_qibla">2) Teniendo Qibla = (1) (+/-) (2)° = (3)°</string>
     <string name="settings">Configuración</string>
-    <string name="bismillah_on_boot_up">Bismillah en el arranque</string>
+    <string name="bismillah_on_boot_up_summary">Basmala en el arranque</string>
     <string name="notification">Notificación</string>
     <string name="none">Ninguno</string>
     <string name="beep">Pitido</string>

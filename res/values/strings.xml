@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="description">Displays and can alert you to the daily Muslim prayer times.</string>
+    <string name="description">Displays and can alert with the daily Muslim prayer times.</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
     <string name="stop">Stop</string>
@@ -26,7 +26,8 @@
     <string name="bearing_north">1) Bearing North = (1)°</string>
     <string name="bearing_qibla">2) Bearing Qibla = (1) (+/-) (2)° = (3)°</string>
     <string name="settings">Settings</string>
-    <string name="bismillah_on_boot_up">Bismillah on boot up</string>
+    <string name="bismillah_on_boot_up_title">Basmala</string>
+    <string name="bismillah_on_boot_up_summary">Recite basmala on boot up</string>
     <string name="notification">Notification</string>
     <string name="none">None</string>
     <string name="beep">Beep</string>
@@ -50,7 +51,7 @@
     <string name="north_america">Islamic Society of North America</string>
     <string name="muslim_league">Muslim World League</string>
     <string name="umm_alqurra">Umm Al-Qurra, Saudi Arabia</string>
-    <string name="fixed_ishaa">Fixed Ishaa Interval (always 90)</string>
+    <string name="fixed_ishaa">Fixed `Ishaa\' Interval (always 90)</string>
     <string name="altitude">Altitude</string>
     <string name="pressure">Pressure</string>
     <string name="temperature">Temperature</string>

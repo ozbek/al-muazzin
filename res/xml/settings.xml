@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <Preference
         android:key="key_time_zone"
         android:persistent="false"
-        android:title="@string/system_time_zone">
-        <intent android:action="android.settings.DATE_SETTINGS"/>
+        android:title="@string/system_time_zone" >
+        <intent android:action="android.settings.DATE_SETTINGS" />
     </Preference>
     <Preference
         android:key="key_notification"
         android:persistent="false"
-        android:title="@string/notification"/>
+        android:title="@string/notification" />
 
     <ListPreference
         android:entries="@array/languages"
         android:key="key_locale"
-        android:title="@string/language"/>
+        android:title="@string/language" />
 
     <Preference
         android:key="key_advanced"
         android:persistent="false"
-        android:title="@string/advanced"/>
+        android:title="@string/advanced" />
 
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="key_bismillah_on_boot_up"
-        android:title="@string/bismillah_on_boot_up"/>
+        android:summary="@string/bismillah_on_boot_up_summary"
+        android:title="@string/bismillah_on_boot_up_title" />
 
 </PreferenceScreen>
