@@ -22,7 +22,7 @@
         <item>@string/sdefault</item>
         <item>@string/beep</item>
         <item>@string/recite</item>
-        <item>@string/custom</item>
+        <!--item>@string/custom</item-->
     </array>
 
     <string-array name="hijri_months">
