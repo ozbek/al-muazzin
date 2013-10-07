@@ -50,6 +50,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     private MyFragmentStatePagerAdapter myFragmentStatePagerAdapter;
     private ViewPager mViewPager;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         sPreferences = Preferences.getInstance(this);
         super.onCreate(savedInstanceState);
@@ -193,7 +194,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     }
 
     public static class MyFragmentStatePagerAdapter extends FragmentStatePagerAdapter {
-        private Context mContext;
+        private final Context mContext;
 
         public MyFragmentStatePagerAdapter(Context context, FragmentManager fm) {
             super(fm);
@@ -214,7 +215,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
 
         @Override
         public int getCount() {
-            // We only have a time table + a compass view for now
+            // time table + compass
             return 2;
         }
 
@@ -232,11 +233,11 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     }
 
     /**
-     * Prayer times fragment that displays time table for the day's prayer
-     * times. In the future, we may add some extra days...
+     * Prayer times fragment that displays time table for the day's prayer times. In the future, we
+     * may add some extra days...
      */
     public static class PrayerTimesFragment extends Fragment {
-        private ArrayList<HashMap<String, String>> mTimeTable = new ArrayList<HashMap<String, String>>(
+        private final ArrayList<HashMap<String, String>> mTimeTable = new ArrayList<HashMap<String, String>>(
                 7);
         private SimpleAdapter mTimetableView;
         private TextView mNotes;
@@ -274,6 +275,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                 // Set zebra stripes
                 private int numChildren = 0;
 
+                @Override
                 public void onChildViewAdded(View parent, View child) {
                     child.setBackgroundResource(++numChildren % 2 == 0 ? R.color.semi_transparent_white
                             : android.R.color.transparent);
@@ -283,6 +285,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                     }
                 }
 
+                @Override
                 public void onChildViewRemoved(View parent, View child) {
                 }
             });
@@ -367,12 +370,13 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                     ((TextView) rootView.findViewById(R.id.bearing_qibla)),
                     getText(R.string.bearing_qibla));
             sOrientationListener = new android.hardware.SensorListener() {
+                @Override
                 public void onSensorChanged(int s, float v[]) {
                     float northDirection = v[SensorManager.DATA_X];
                     qiblaCompassView.setDirections(northDirection, sQiblaDirection);
-
                 }
 
+                @Override
                 public void onAccuracyChanged(int s, int a) {
                 }
             };
