@@ -37,7 +37,6 @@
     <string name="file_path_example">Например, /sdcard/sound.mp3</string>
     <string name="sinterface">Интерфейс</string>
     <string name="advanced">Расширенный</string>
-    <string name="extra_alerts">Дополнительные сигналы</string>
     <string name="daylight_savings">, Летнее время</string>
     <string name="lookup_gps">Авто (GPS)</string>
     <string name="system_time_zone">Часовой пояс</string>

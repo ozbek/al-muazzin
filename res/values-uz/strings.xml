@@ -37,7 +37,6 @@
     <string name="file_path_example">File Path ex. /sdcard/sound.mp3</string>
     <string name="sinterface">Интерфейс</string>
     <string name="advanced">Илғор</string>
-    <string name="extra_alerts">Қўшимча огоҳлантиришлар</string>
     <string name="daylight_savings">, ёзги вақт</string>
     <string name="lookup_gps">ГЖТ орқали аниқлаш</string><!-- Глобал жойлашув тизими -->
     <string name="system_time_zone">Қурилма вақт зонаси</string>

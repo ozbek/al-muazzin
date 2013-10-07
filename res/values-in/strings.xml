@@ -34,7 +34,6 @@
     <string name="file_path_example">Lokasi mis. /sdcard/sound.mp3</string>
     <string name="sinterface">Tampilan</string>
     <string name="advanced">Lebih Lanjut</string>
-    <string name="extra_alerts">Pengingat Tambahan</string>
     <string name="daylight_savings">, Waktu Siang DST</string>
     <string name="lookup_gps">Periksa GPS</string>
     <string name="system_time_zone">Daerah Waktu Sistem</string>

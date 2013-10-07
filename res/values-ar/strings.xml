@@ -37,7 +37,6 @@
     <string name="file_path_example">مسار الملف مثال: /sd/sound.mp3</string>
     <string name="sinterface">الواجهة</string>
     <string name="advanced">خيارات متقدمة</string>
-    <string name="extra_alerts">تنبيهات اضافية</string>
     <string name="daylight_savings">\u0020التوقيت الصيفي</string>
     <string name="lookup_gps">البحث بـ GPS</string>
     <string name="system_time_zone">نظام المنطقة الزمني</string>

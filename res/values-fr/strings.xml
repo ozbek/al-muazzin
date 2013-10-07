@@ -16,7 +16,6 @@
     <string name="none">Aucun</string>
     <string name="recite">Appel sonore à la prière</string>
     <string name="advanced">Avancé</string>
-    <string name="extra_alerts">Plus d’alertes</string>
     <string name="daylight_savings">, Heure d\'été</string>
     <string name="lookup_gps">Consultation GPS</string>
     <string name="system_time_zone">Fuseau horaire</string>
