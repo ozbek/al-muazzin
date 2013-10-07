@@ -20,7 +20,7 @@
     <string name="bearing_north">1) Deviazione dal Nord = (1)°</string>
     <string name="bearing_qibla">2) Deviazione dalla Qibla = (1) (+/-) (2)° = (3)°</string>
     <string name="settings">Impostazioni</string>
-    <string name="bismillah_on_boot_up">Bismillah All\'Accensione</string>
+    <string name="bismillah_on_boot_up">Bismillah all\'accensione</string>
     <string name="notification">Avviso</string>
     <string name="none">Nessuno</string>
     <string name="beep">Bip</string>

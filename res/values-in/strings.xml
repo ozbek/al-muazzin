@@ -24,7 +24,7 @@
     <string name="bearing_north">1) Arah Utara = (1)°</string>
     <string name="bearing_qibla">2) Arah Kiblat = (1) (+/-) (2)° = (3)°</string>
     <string name="settings">Pengaturan</string>
-    <string name="bismillah_on_boot_up">Bismillah Saat Mulai</string>
+    <string name="bismillah_on_boot_up">Bismillah saat mulai</string>
     <string name="notification">Pengingat</string>
     <string name="none">Kosong</string>
     <string name="beep">Bunyian</string>
