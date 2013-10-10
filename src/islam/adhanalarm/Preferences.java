@@ -208,15 +208,18 @@ public class Preferences {
 
         LocationManager locationManager = (LocationManager) context
                 .getSystemService(Context.LOCATION_SERVICE);
-        Location currentLocation = locationManager.getLastKnownLocation(locationManager
-                .getBestProvider(criteria, true));
-        if (currentLocation == null) {
-            criteria.setAccuracy(Criteria.ACCURACY_COARSE);
-            currentLocation = locationManager.getLastKnownLocation(locationManager.getBestProvider(
-                    criteria, true));
+        try {
+            Location currentLocation = locationManager.getLastKnownLocation(locationManager
+                    .getBestProvider(criteria, true));
+            if (currentLocation == null) {
+                criteria.setAccuracy(Criteria.ACCURACY_COARSE);
+                currentLocation = locationManager.getLastKnownLocation(locationManager
+                        .getBestProvider(criteria, true));
+            }
+            return currentLocation;
+        } catch (IllegalArgumentException iae) {
+            return null;
         }
-
-        return currentLocation;
     }
 
     public net.sourceforge.jitl.astro.Location getJitlLocation() {
