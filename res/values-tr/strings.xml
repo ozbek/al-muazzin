@@ -31,7 +31,7 @@
     <string name="notification">Duyuru</string>
     <string name="none">Yok</string>
     <string name="beep">Bip</string>
-    <string name="recite">Azan oku</string>
+    <string name="adhan">Azan oku</string>
     <string name="custom">Özel</string>
     <string name="file_path">Doya yolu</string>
     <string name="file_path_example">Meselâ, /sdcard/sound.mp3</string>

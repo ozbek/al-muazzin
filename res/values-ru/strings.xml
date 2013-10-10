@@ -31,7 +31,7 @@
     <string name="notification">Оповещение</string>
     <string name="none">Никакой</string>
     <string name="beep">Гудок</string>
-    <string name="recite">Азан</string>
+    <string name="adhan">Азан</string>
     <string name="custom">Пользовательский</string>
     <string name="file_path">Путь к файлу</string>
     <string name="file_path_example">Например, /sdcard/sound.mp3</string>

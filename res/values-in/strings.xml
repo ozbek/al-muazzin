@@ -28,7 +28,7 @@
     <string name="notification">Pengingat</string>
     <string name="none">Kosong</string>
     <string name="beep">Bunyian</string>
-    <string name="recite">Adzan</string>
+    <string name="adhan">Adzan</string>
     <string name="custom">Lainnya</string>
     <string name="file_path">Lokasi File</string>
     <string name="file_path_example">Lokasi mis. /sdcard/sound.mp3</string>

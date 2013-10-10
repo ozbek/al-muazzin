@@ -31,7 +31,7 @@
     <string name="notification">Хабарлар</string>
     <string name="none">Йўқ</string>
     <string name="beep">Сигнал</string>
-    <string name="recite">Азон</string>
+    <string name="adhan">Азон</string>
     <string name="custom">Шахсий</string>
     <string name="file_path">File Path</string>
     <string name="file_path_example">File Path ex. /sdcard/sound.mp3</string>

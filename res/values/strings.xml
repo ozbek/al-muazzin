@@ -31,7 +31,7 @@
     <string name="notification">Notification</string>
     <string name="none">None</string>
     <string name="beep">Beep</string>
-    <string name="recite">Recite</string>
+    <string name="adhan">Adhan</string>
     <string name="custom">Custom</string>
     <string name="file_path">File Path</string>
     <string name="file_path_example">File Path ex. /sdcard/sound.mp3</string>

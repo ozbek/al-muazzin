@@ -14,7 +14,7 @@
     <string name="bearing_qibla">2) Relevé de la Qibla = (1) (+/-) (2)° = (3)°</string>
     <string name="settings">Paramètres</string>
     <string name="none">Aucun</string>
-    <string name="recite">Appel sonore à la prière</string>
+    <string name="adhan">Adhan</string>
     <string name="advanced">Avancé</string>
     <string name="daylight_savings">, Heure d\'été</string>
     <string name="lookup_gps">Consultation GPS</string>

@@ -21,7 +21,7 @@
         <item>@string/none</item>
         <item>@string/sdefault</item>
         <item>@string/beep</item>
-        <item>@string/recite</item>
+        <item>@string/adhan</item>
         <!--item>@string/custom</item-->
     </array>
 

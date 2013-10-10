@@ -31,7 +31,7 @@
     <string name="notification">التنبيهات</string>
     <string name="none">بدون</string>
     <string name="beep">صوت بيب</string>
-    <string name="recite">تلاوة</string>
+    <string name="adhan">تلاوة</string>
     <string name="custom">مخصص</string>
     <string name="file_path">مسار الملف</string>
     <string name="file_path_example">مسار الملف مثال: /sd/sound.mp3</string>

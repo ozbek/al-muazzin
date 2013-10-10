@@ -24,7 +24,7 @@
     <string name="notification">Avviso</string>
     <string name="none">Nessuno</string>
     <string name="beep">Bip</string>
-    <string name="recite">Adhan</string>
+    <string name="adhan">Adhan</string>
     <string name="custom">Personalizzato</string>
     <string name="file_path">Percorso File</string>
     <string name="file_path_example">Percorso del file es. /sdcard/sound.mp3</string>
