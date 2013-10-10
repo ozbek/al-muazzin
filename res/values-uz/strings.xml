@@ -28,7 +28,7 @@
     <string name="settings">Мосламалар</string>
     <string name="bismillah_on_boot_up_title">Басмала</string>
     <string name="bismillah_on_boot_up_summary">Қурилма ишга тушганда басмала ўқи</string>
-    <string name="notification">Хабарлар</string>
+    <string name="notification">Билдирувлар</string>
     <string name="none">Йўқ</string>
     <string name="beep">Сигнал</string>
     <string name="adhan">Азон</string>
