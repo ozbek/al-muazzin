@@ -29,6 +29,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,13 +39,16 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabListener {
+    private static final String TAG = "Muazzin";
     private static LocaleManager sLocaleManager;
     private static Preferences sPreferences;
     private MyFragmentStatePagerAdapter myFragmentStatePagerAdapter;
@@ -233,8 +237,8 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     }
 
     /**
-     * Prayer times fragment that displays time table for the day's prayer times. In the future, we
-     * may add some extra days...
+     * Prayer times fragment that displays time table for the day's prayer
+     * times. In the future, we may add some extra days...
      */
     public static class PrayerTimesFragment extends Fragment {
         private final ArrayList<HashMap<String, String>> mTimeTable = new ArrayList<HashMap<String, String>>(
@@ -347,7 +351,8 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     @SuppressWarnings("deprecation")
     // for SensorListener and SensorManager APIs
     public static class QiblaCompassFragment extends Fragment {
-        private static final DecimalFormat DF = new DecimalFormat("#.###");
+        private static final String PATTERN = "#.###";
+        private static DecimalFormat sDecimalFormat;
         private static SensorManager sSensorManager;
         private static float sQiblaDirection = 0f;
         private static android.hardware.SensorListener sOrientationListener;
@@ -357,6 +362,17 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             sSensorManager = (SensorManager) getActivity().getSystemService(SENSOR_SERVICE);
+            try {
+                sDecimalFormat = new DecimalFormat(PATTERN);
+            } catch (AssertionError ae) {
+                Log.wtf(TAG, "Could not construct DecimalFormat", ae);
+                Log.d(TAG, "Will try with Locale.US");
+                NumberFormat format = NumberFormat.getInstance(Locale.US);
+                if (format instanceof DecimalFormat) {
+                    sDecimalFormat = (DecimalFormat) format;
+                    sDecimalFormat.applyPattern(PATTERN);
+                }
+            }
         }
 
         @Override
@@ -417,15 +433,15 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
             View rootView = getView();
             TextView tv = (TextView) rootView.findViewById(R.id.current_latitude);
             tv.setText(getString(R.string.degree_minute_second, latitude.getDegree(),
-                    latitude.getMinute(), DF.format(latitude.getSecond())));
+                    latitude.getMinute(), sDecimalFormat.format(latitude.getSecond())));
 
             tv = (TextView) rootView.findViewById(R.id.current_longitude);
             tv.setText(getString(R.string.degree_minute_second, longitude.getDegree(),
-                    longitude.getMinute(), DF.format(longitude.getSecond())));
+                    longitude.getMinute(), sDecimalFormat.format(longitude.getSecond())));
 
             tv = (TextView) rootView.findViewById(R.id.current_qibla);
             tv.setText(getString(R.string.degree_minute_second, qibla.getDegree(),
-                    qibla.getMinute(), DF.format(qibla.getSecond())));
+                    qibla.getMinute(), sDecimalFormat.format(qibla.getSecond())));
         }
     }
 }
