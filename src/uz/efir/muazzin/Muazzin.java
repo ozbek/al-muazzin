@@ -1,16 +1,5 @@
 package uz.efir.muazzin;
 
-import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.Notifier;
-import islam.adhanalarm.Preferences;
-import islam.adhanalarm.Schedule;
-import islam.adhanalarm.dialog.CalculationSettingsDialog;
-import islam.adhanalarm.receiver.StartNotificationReceiver;
-import islam.adhanalarm.util.LocaleManager;
-import islam.adhanalarm.view.QiblaCompassView;
-import net.sourceforge.jitl.Jitl;
-import net.sourceforge.jitl.astro.Dms;
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
@@ -46,6 +35,17 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
+
+import islam.adhanalarm.CONSTANT;
+import islam.adhanalarm.Notifier;
+import islam.adhanalarm.Preferences;
+import islam.adhanalarm.Schedule;
+import islam.adhanalarm.dialog.CalculationSettingsDialog;
+import islam.adhanalarm.receiver.StartNotificationReceiver;
+import islam.adhanalarm.util.LocaleManager;
+import islam.adhanalarm.view.QiblaCompassView;
+import net.sourceforge.jitl.Jitl;
+import net.sourceforge.jitl.astro.Dms;
 
 public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabListener {
     private static final String TAG = "Muazzin";
@@ -139,11 +139,15 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = new MenuInflater(this);
         inflater.inflate(R.menu.activity_muazzin, menu);
-        if (!BuildConfig.DEBUG) {
-            menu.removeItem(R.id.menu_previous);
-            menu.removeItem(R.id.menu_next);
-        }
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (!BuildConfig.DEBUG) {
+            menu.removeGroup(R.id.menu_group_controller);
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override

@@ -1,25 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/menu_location_calculation"
-        android:title="@string/calculation"
+    <item
+        android:id="@+id/menu_location_calculation"
         android:icon="@drawable/ic_action_location_calculation"
-        android:showAsAction="ifRoom" />
-
-    <item android:id="@+id/menu_previous"
-        android:title="@string/previous"
-        android:icon="@android:drawable/ic_media_previous" />
-
-    <item android:id="@+id/menu_next"
-        android:title="@string/next"
-        android:icon="@android:drawable/ic_media_next" />
-
-    <item android:id="@+id/menu_stop"
-        android:title="@string/stop"
-        android:icon="@android:drawable/ic_media_pause" />
-
-    <item android:id="@+id/menu_settings"
-        android:title="@string/settings"
+        android:showAsAction="ifRoom"
+        android:title="@string/calculation"/>
+    <item
+        android:id="@+id/menu_settings"
         android:icon="@drawable/ic_action_action_settings"
-        android:showAsAction="ifRoom" />
+        android:showAsAction="ifRoom"
+        android:title="@string/settings"/>
+
+    <group android:id="@+id/menu_group_controller" >
+        <item
+            android:id="@+id/menu_previous"
+            android:icon="@android:drawable/ic_media_previous"
+            android:title="@string/previous"/>
+        <item
+            android:id="@+id/menu_next"
+            android:icon="@android:drawable/ic_media_next"
+            android:title="@string/next"/>
+        <item
+            android:id="@+id/menu_stop"
+            android:icon="@android:drawable/ic_media_pause"
+            android:title="@string/stop"/>
+    </group>
+
 </menu>
