@@ -1,11 +1,5 @@
 package uz.efir.muazzin;
 
-import islam.adhanalarm.Preferences;
-import islam.adhanalarm.Schedule;
-import islam.adhanalarm.dialog.AdvancedSettingsDialog;
-import islam.adhanalarm.dialog.NotificationSettingsDialog;
-import islam.adhanalarm.util.LocaleManager;
-
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.MenuItem;
@@ -24,6 +18,12 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
+import islam.adhanalarm.Preferences;
+import islam.adhanalarm.Schedule;
+import islam.adhanalarm.dialog.AdvancedSettingsDialog;
+import islam.adhanalarm.dialog.NotificationSettingsDialog;
+import islam.adhanalarm.util.LocaleManager;
+
 public class SettingsActivity extends SherlockPreferenceActivity implements
         OnPreferenceChangeListener {
     private static LocaleManager sLocaleManager;
@@ -32,13 +32,13 @@ public class SettingsActivity extends SherlockPreferenceActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sLocaleManager = LocaleManager.getInstance(this, true);
         // show action bar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.settings);
 
         addPreferencesFromResource(R.xml.settings);
-        sLocaleManager = LocaleManager.getInstance(this, false);
 
         PreferenceScreen root = getPreferenceScreen();
         // System time zone

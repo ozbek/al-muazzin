@@ -1,12 +1,12 @@
 package islam.adhanalarm.util;
 
-import islam.adhanalarm.Preferences;
-
 import android.content.Context;
 import android.content.res.Configuration;
 
 import java.util.Locale;
 import java.util.MissingResourceException;
+
+import islam.adhanalarm.Preferences;
 
 public class LocaleManager {
     public static final String[] LOCALES = new String[] { "default", // represents
@@ -59,7 +59,8 @@ public class LocaleManager {
         Configuration config = new Configuration();
         config.locale = locale;
 
-        context.getResources().updateConfiguration(config, null);
+        context.getResources().updateConfiguration(config,
+                context.getResources().getDisplayMetrics());
 
         // Set the language index into the local LANGUAGE_KEYS array
         for (int i = 0; i < LOCALES.length; i++) {
