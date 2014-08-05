@@ -31,6 +31,7 @@ public class Utils {
         "com.sec.android.app.clockpackage" // Samsung's
     };
     private static final String DEFAULT_ALARM_ACTIVITY = "com.android.deskclock.AlarmClock";
+    private static boolean mIsForeground = false;
 
     public static Intent getDefaultAlarmsIntent(Context context) {
         PackageManager pm = context.getPackageManager();
@@ -57,5 +58,13 @@ public class Utils {
 
         // TODO: Add an option for user to set a custom app?
         return null;
+    }
+
+    public static boolean getIsForeground() {
+        return mIsForeground;
+    }
+
+    public static void setIsForeground(boolean isForeground) {
+        mIsForeground = isForeground;
     }
 }

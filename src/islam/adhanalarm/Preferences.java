@@ -4,10 +4,6 @@ import static net.sourceforge.jitl.astro.Location.DEFAULT_PRESSURE;
 import static net.sourceforge.jitl.astro.Location.DEFAULT_SEA_LEVEL;
 import static net.sourceforge.jitl.astro.Location.DEFAULT_TEMPERATURE;
 
-import islam.adhanalarm.util.LocaleManager;
-import islam.adhanalarm.widget.NextNotificationWidgetProvider;
-import islam.adhanalarm.widget.TimetableWidgetProvider;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Criteria;
@@ -17,12 +13,15 @@ import android.location.LocationManager;
 import java.util.Arrays;
 import java.util.Locale;
 
+import islam.adhanalarm.util.LocaleManager;
+import islam.adhanalarm.widget.NextNotificationWidgetProvider;
+import islam.adhanalarm.widget.TimetableWidgetProvider;
+
 /**
  * Helper class to store and retrieve user settings to/from shared preferences
  * file TODO: add API documentation
  */
 public class Preferences {
-    private boolean mIsForeground = false;
 
     private static final String PREFERENCE_FILENAME_SUFFIX = "_preferences";
     private static final String KEY_BASMALA = "key_bismillah_on_boot_up";
@@ -38,7 +37,7 @@ public class Preferences {
     private static final String KEY_ROUNDING_METHOD_INDEX = "rounding_method_index";
     private static final String KEY_LOCALE = "key_locale";
 
-    private SharedPreferences mSharedPreferences;
+    private final SharedPreferences mSharedPreferences;
     private static Preferences sPreferences;
 
     public static Preferences getInstance(Context context) {
@@ -48,14 +47,6 @@ public class Preferences {
     private Preferences(Context context) {
         mSharedPreferences = context.getSharedPreferences(
                 context.getPackageName().concat(PREFERENCE_FILENAME_SUFFIX), Context.MODE_PRIVATE);
-    }
-
-    public boolean getIsForeground() {
-        return mIsForeground;
-    }
-
-    public void setIsForeground(boolean isForeground) {
-        mIsForeground = isForeground;
     }
 
     public boolean dontNotifySunrise() {

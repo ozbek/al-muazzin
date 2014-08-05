@@ -168,12 +168,12 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
             restartSelf();
             return;
         }
-        mPreferences.setIsForeground(true);
+        Utils.setIsForeground(true);
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mPreferences.setIsForeground(false);
+        Utils.setIsForeground(false);
     }
 }
