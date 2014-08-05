@@ -14,8 +14,7 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import islam.adhanalarm.util.LocaleManager;
-import islam.adhanalarm.widget.NextNotificationWidgetProvider;
-import islam.adhanalarm.widget.TimetableWidgetProvider;
+import uz.efir.muazzin.Utils;
 
 /**
  * Helper class to store and retrieve user settings to/from shared preferences
@@ -173,7 +172,7 @@ public class Preferences {
             for (int i = 0; i < CONSTANT.CALCULATION_METHOD_COUNTRY_CODES.length; i++) {
                 if (Arrays.asList(CONSTANT.CALCULATION_METHOD_COUNTRY_CODES[i]).contains(country)) {
                     setCalculationMethodIndex(i);
-                    updateWidgets(context);
+                    Utils.updateWidgets(context);
                     break;
                 }
             }
@@ -188,7 +187,7 @@ public class Preferences {
 
             setLocation((float) currentLocation.getLatitude(),
                     (float) currentLocation.getLongitude());
-            updateWidgets(context);
+            Utils.updateWidgets(context);
         }
     }
 
@@ -223,10 +222,5 @@ public class Preferences {
         location.setTemperature(apt[2]);
 
         return location;
-    }
-
-    public static void updateWidgets(Context context) {
-        TimetableWidgetProvider.setLatestTimetable(context);
-        NextNotificationWidgetProvider.setNextTime(context);
     }
 }

@@ -49,7 +49,7 @@ public class StartNotificationService extends Service {
                     StartNotificationReceiver.setNext(context);
                 }
 
-                Preferences.updateWidgets(context);
+                Utils.updateWidgets(context);
 
                 short timeIndex = intent.getShortExtra("timeIndex", (short)-1);
                 long actualTime = intent.getLongExtra("actualTime", 0);

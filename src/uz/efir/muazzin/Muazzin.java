@@ -102,7 +102,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
 
     private void restartSelf() {
         // Restart the app to apply new settings changes
-        Preferences.updateWidgets(this);
+        Utils.updateWidgets(this);
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP,
                 Calendar.getInstance().getTimeInMillis() + 1000, // one second

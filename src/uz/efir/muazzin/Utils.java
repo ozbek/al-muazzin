@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
+import islam.adhanalarm.widget.NextNotificationWidgetProvider;
+import islam.adhanalarm.widget.TimetableWidgetProvider;
+
 /*
  * Following alarm clock intent implementation is adapted from
  *     <a href="https://code.google.com/p/dashclock/">DashClock</a>
@@ -66,5 +69,10 @@ public class Utils {
 
     public static void setIsForeground(boolean isForeground) {
         mIsForeground = isForeground;
+    }
+
+    public static void updateWidgets(Context context) {
+        TimetableWidgetProvider.setLatestTimetable(context);
+        NextNotificationWidgetProvider.setNextTime(context);
     }
 }
