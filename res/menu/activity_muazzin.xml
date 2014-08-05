@@ -8,25 +8,18 @@
 
     <item android:id="@+id/menu_previous"
         android:title="@string/previous"
-        android:icon="@android:drawable/ic_media_previous"
-        android:numericShortcut="4"
-        android:alphabeticShortcut="P" />
+        android:icon="@android:drawable/ic_media_previous" />
 
     <item android:id="@+id/menu_next"
         android:title="@string/next"
-        android:icon="@android:drawable/ic_media_next"
-        android:numericShortcut="5"
-        android:alphabeticShortcut="N" />
+        android:icon="@android:drawable/ic_media_next" />
 
     <item android:id="@+id/menu_stop"
         android:title="@string/stop"
-        android:icon="@android:drawable/ic_media_pause"
-        android:numericShortcut="6"
-        android:alphabeticShortcut="S" />
+        android:icon="@android:drawable/ic_media_pause" />
 
     <item android:id="@+id/menu_settings"
         android:title="@string/settings"
-        android:icon="@android:drawable/ic_menu_preferences"
-        android:numericShortcut="1"
-        android:alphabeticShortcut="S" />
+        android:icon="@drawable/ic_action_action_settings"
+        android:showAsAction="ifRoom" />
 </menu>
