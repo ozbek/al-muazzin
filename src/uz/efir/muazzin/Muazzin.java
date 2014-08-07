@@ -157,7 +157,6 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                 Notifier.stop();
                 break;
             case R.id.menu_settings:
-                // new SettingsDialog(this, sLocaleManager).show();
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
         }
