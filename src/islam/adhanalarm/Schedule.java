@@ -1,5 +1,7 @@
 package islam.adhanalarm;
 
+import android.content.Context;
+
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -7,13 +9,13 @@ import net.sourceforge.jitl.Jitl;
 import net.sourceforge.jitl.Method;
 import net.sourceforge.jitl.Prayer;
 import uz.efir.muazzin.R;
-import android.content.Context;
+import uz.efir.muazzin.Utils;
 
 public class Schedule {
 
-    private GregorianCalendar[] schedule = new GregorianCalendar[7];
-    private boolean[] extremes = new boolean[7];
-    private fi.joensuu.joyds1.calendar.Calendar hijriDate;
+    private final GregorianCalendar[] schedule = new GregorianCalendar[7];
+    private final boolean[] extremes = new boolean[7];
+    private final fi.joensuu.joyds1.calendar.Calendar hijriDate;
 
     private static Schedule today;
 
@@ -33,7 +35,7 @@ public class Schedule {
             schedule[i].add(Calendar.MINUTE, preferences.getOffsetMinutes());
             extremes[i] = allTimes[i].isExtreme();
         }
-        schedule[CONSTANT.NEXT_FAJR].add(Calendar.DAY_OF_MONTH, 1); // Next fajr is tomorrow
+        schedule[CONSTANT.NEXT_FAJR].add(Calendar.DAY_OF_MONTH, 1/* next fajr is tomorrow */);
 
         hijriDate = new fi.joensuu.joyds1.calendar.IslamicCalendar();
     }
@@ -83,7 +85,9 @@ public class Schedule {
             today = new Schedule(context, now);
         } else {
             GregorianCalendar fajr = today.getTimes()[CONSTANT.FAJR];
-            if(fajr.get(Calendar.YEAR) != now.get(Calendar.YEAR) || fajr.get(Calendar.MONTH) != now.get(Calendar.MONTH) || fajr.get(Calendar.DAY_OF_MONTH) != now.get(Calendar.DAY_OF_MONTH)) {
+            if (fajr.get(Calendar.YEAR) != now.get(Calendar.YEAR)
+                    || fajr.get(Calendar.MONTH) != now.get(Calendar.MONTH)
+                    || fajr.get(Calendar.DAY_OF_MONTH) != now.get(Calendar.DAY_OF_MONTH)) {
                 today = new Schedule(context, now);
             }
         }
@@ -91,11 +95,9 @@ public class Schedule {
     }
 
     public static void setSettingsDirty() {
-        today = null; // Nullifying causes a new today to be created with new settings when today() is called
-    }
-
-    public static boolean settingsAreDirty() {
-        return today == null;
+        // Force re-instantiation of new today
+        today = null;
+        Utils.isRestartNeeded = true;
     }
 
     public static double getGMTOffset() {

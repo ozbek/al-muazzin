@@ -32,7 +32,7 @@ public class SettingsActivity extends SherlockPreferenceActivity implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sLocaleManager = LocaleManager.getInstance(this, true);
+        sLocaleManager = LocaleManager.getInstance(this, false);
         // show action bar
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -85,7 +85,7 @@ public class SettingsActivity extends SherlockPreferenceActivity implements
         if ("key_locale".equals(preference.getKey())) {
             Preferences preferences = Preferences.getInstance(this);
             preferences.setLocale(newValue.toString());
-            sLocaleManager.setDirty(true);
+            Utils.isRestartNeeded = true;
             finish();
         }
 

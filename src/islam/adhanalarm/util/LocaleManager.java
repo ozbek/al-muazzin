@@ -20,7 +20,6 @@ public class LocaleManager {
                                                                      // English
             "uz", "ar", "de", "en", "es", "fr", "in", "it", "tr", "ru" };
 
-    private boolean languageDirty = false;
     private int languageIndex = 0;
     private Locale mLocale;
     private static LocaleManager sLocaleManager;
@@ -75,14 +74,6 @@ public class LocaleManager {
 
     public int getLanguageIndex() {
         return languageIndex;
-    }
-
-    public void setDirty(boolean isDirty) {
-        languageDirty = isDirty;
-    }
-
-    public boolean isDirty() {
-        return languageDirty;
     }
 
     private void setLocale(Locale locale) {

@@ -26,7 +26,6 @@ import islam.adhanalarm.util.LocaleManager;
 
 public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabListener {
     // private static final String TAG = Muazzin.class.getSimpleName();
-    private LocaleManager mLocaleManager;
     private Preferences mPreferences;
     private MuazzinAdapter mFragmentStatePagerAdapter;
     private ViewPager mViewPager;
@@ -35,7 +34,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPreferences = Preferences.getInstance(this);
-        mLocaleManager = LocaleManager.getInstance(this, true);
+        LocaleManager.getInstance(this, true);
 
         setContentView(R.layout.activity_muazzin);
 
@@ -89,7 +88,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            if (Schedule.settingsAreDirty()) {
+            if (Utils.isRestartNeeded) {
                 restartSelf();
                 return;
             }
@@ -100,14 +99,19 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
         }
     }
 
+    /**
+     * Restarts the app to apply new settings changes
+     */
     private void restartSelf() {
-        // Restart the app to apply new settings changes
         Utils.updateWidgets(this);
+        Utils.isRestartNeeded = false;
+
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP,
-                Calendar.getInstance().getTimeInMillis() + 1000, // one second
+                Calendar.getInstance().getTimeInMillis() + 300,
                 PendingIntent.getActivity(this, 0, getIntent(), PendingIntent.FLAG_ONE_SHOT
                         | PendingIntent.FLAG_CANCEL_CURRENT));
+
         finish();
     }
 
@@ -163,8 +167,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
     @Override
     public void onResume() {
         super.onResume();
-        if (mLocaleManager.isDirty()) {
-            mLocaleManager.setDirty(false);
+        if (Utils.isRestartNeeded) {
             restartSelf();
             return;
         }

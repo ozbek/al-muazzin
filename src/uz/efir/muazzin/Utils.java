@@ -35,6 +35,7 @@ public class Utils {
     };
     private static final String DEFAULT_ALARM_ACTIVITY = "com.android.deskclock.AlarmClock";
     private static boolean mIsForeground = false;
+    public static boolean isRestartNeeded = false;
 
     public static Intent getDefaultAlarmsIntent(Context context) {
         PackageManager pm = context.getPackageManager();
