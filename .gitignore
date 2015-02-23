@@ -11,6 +11,8 @@
 # generated files
 bin/
 gen/
+out/
+build/
 
 # Local configuration file (sdk path, etc)
 local.properties
@@ -19,3 +21,15 @@ local.properties
 .classpath
 .project
 .settings
+
+# Android Studio
+.idea
+
+# Gradle cache
+.gradle
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
