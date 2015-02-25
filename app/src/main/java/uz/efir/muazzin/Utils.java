@@ -3,6 +3,7 @@ package uz.efir.muazzin;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import islam.adhanalarm.widget.NextNotificationWidgetProvider;
@@ -28,19 +29,28 @@ import islam.adhanalarm.widget.TimetableWidgetProvider;
  */
 
 public class Utils {
-    private static final String[] CLOCK_PACKAGES = new String[] {
-        "com.google.android.deskclock", // Google's
-        "com.android.deskclock", // AOSP's
-        "com.sec.android.app.clockpackage" // Samsung's
+    private static final String[] DESK_CLOCK_PACKAGES = new String[] {
+            "com.google.android.deskclock", // Google's
+            "com.android.deskclock", // AOSP's
     };
+    private static final String[] OTHER_CLOCK_PACKAGES = new String[] {
+            "com.sec.android.app.clockpackage" // Samsung's
+    };
+    private static final String SELECT_TAB_INTENT_EXTRA = "deskclock.select.tab";
     private static final String DEFAULT_ALARM_ACTIVITY = "com.android.deskclock.AlarmClock";
     private static boolean mIsForeground = false;
     public static boolean isRestartNeeded = false;
 
     public static Intent getDefaultAlarmsIntent(Context context) {
         PackageManager pm = context.getPackageManager();
-        for (String packageName : CLOCK_PACKAGES) {
+        for (String packageName : DESK_CLOCK_PACKAGES) {
             try {
+                PackageInfo pi = pm.getPackageInfo(packageName, 0);
+                if (302 >= pi.versionCode) {
+                    Intent intent = pm.getLaunchIntentForPackage(packageName);
+                    intent.putExtra(SELECT_TAB_INTENT_EXTRA, 0);
+                    return intent;
+                }
                 ComponentName cn = new ComponentName(packageName, DEFAULT_ALARM_ACTIVITY);
                 pm.getActivityInfo(cn, 0);
                 Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -51,8 +61,8 @@ public class Utils {
             }
         }
 
-        // DEFAULT_ALARM_ACTIVITY is not found, launch the main app
-        for (String packageName : CLOCK_PACKAGES) {
+        // None worked, try others
+        for (String packageName : OTHER_CLOCK_PACKAGES) {
             try {
                 pm.getPackageInfo(packageName, 0);
                 return pm.getLaunchIntentForPackage(packageName);
