@@ -27,7 +27,6 @@ import islam.adhanalarm.util.LocaleManager;
 public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabListener {
     // private static final String TAG = Muazzin.class.getSimpleName();
     private Preferences mPreferences;
-    private MuazzinAdapter mFragmentStatePagerAdapter;
     private ViewPager mViewPager;
 
     @Override
@@ -38,7 +37,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
 
         setContentView(R.layout.activity_muazzin);
 
-        mFragmentStatePagerAdapter = new MuazzinAdapter(this, getSupportFragmentManager());
+        MuazzinAdapter muazzinAdapter = new MuazzinAdapter(this, getSupportFragmentManager());
 
         // Set up action bar
         final ActionBar actionBar = getSupportActionBar();
@@ -47,7 +46,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
 
         // Set up the ViewPager, attaching the adapter
         mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mFragmentStatePagerAdapter);
+        mViewPager.setAdapter(muazzinAdapter);
         mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
@@ -58,13 +57,13 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
         });
 
         // For each of the sections in the app, add a tab to the action bar
-        for (int i = 0; i < mFragmentStatePagerAdapter.getCount(); i++) {
+        for (int i = 0; i < muazzinAdapter.getCount(); i++) {
             // Create a tab with text corresponding to the page title defined by
             // the adapter.
             // Also specify this Activity object, which implements the
             // TabListener interface, as the
             // listener for when this tab is selected.
-            actionBar.addTab(actionBar.newTab().setText(mFragmentStatePagerAdapter.getPageTitle(i))
+            actionBar.addTab(actionBar.newTab().setText(muazzinAdapter.getPageTitle(i))
                     .setTabListener(this));
         }
     }
