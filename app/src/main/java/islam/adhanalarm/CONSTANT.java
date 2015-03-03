@@ -53,6 +53,9 @@ public class CONSTANT {
     public static final Rounding[] ROUNDING_METHODS = new Rounding[]{Rounding.NONE, Rounding.NORMAL, Rounding.SPECIAL, Rounding.AGRESSIVE};
     public static final short DEFAULT_ROUNDING_INDEX = 2; // Special
 
+    public static final String EXTRA_ACTUAL_TIME = "extra_actual_time";
+    public static final String EXTRA_TIME_INDEX = "extra_time_index";
+
     private CONSTANT() {
         // Private constructor to enforce un-instantiability.
     }

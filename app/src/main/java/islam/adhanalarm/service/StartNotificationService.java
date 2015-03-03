@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.util.Log;
 
+import islam.adhanalarm.CONSTANT;
 import islam.adhanalarm.Notifier;
 import islam.adhanalarm.Preferences;
 import islam.adhanalarm.WakeLock;
@@ -51,8 +52,7 @@ public class StartNotificationService extends Service {
 
                 Utils.updateWidgets(context);
 
-                short timeIndex = intent.getShortExtra("timeIndex", (short)-1);
-                long actualTime = intent.getLongExtra("actualTime", 0);
+                short timeIndex = intent.getShortExtra(CONSTANT.EXTRA_TIME_INDEX, (short) -1);
                 if (timeIndex == -1) { // Got here from boot
                     Preferences preferences = Preferences.getInstance(context);
                     if (preferences.getBasmalaEnabled()) {
@@ -70,6 +70,7 @@ public class StartNotificationService extends Service {
                     }
                 } else {
                     // Notify the user for the current time, need to do this last since it releases the WakeLock
+                    long actualTime = intent.getLongExtra(CONSTANT.EXTRA_ACTUAL_TIME, 0);
                     Notifier.start(context, timeIndex, actualTime);
                 }
             }
