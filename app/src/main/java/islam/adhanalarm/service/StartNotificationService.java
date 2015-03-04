@@ -24,7 +24,7 @@ public class StartNotificationService extends Service {
     }
 
     @Override
-    public void onStart(Intent intent, int startId) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
 
         /**
          * We do the actual work in a separate thread since a Service has a limited life and we want to guarantee completion
@@ -81,5 +81,7 @@ public class StartNotificationService extends Service {
         } else {
             Log.wtf("StartNotificationService", "The intent was null");
         }
+
+        return START_REDELIVER_INTENT;
     }
 }
