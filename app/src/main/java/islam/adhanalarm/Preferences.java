@@ -172,7 +172,7 @@ public class Preferences {
             for (int i = 0; i < CONSTANT.CALCULATION_METHOD_COUNTRY_CODES.length; i++) {
                 if (Arrays.asList(CONSTANT.CALCULATION_METHOD_COUNTRY_CODES[i]).contains(country)) {
                     setCalculationMethodIndex(i);
-                    Utils.updateWidgets(context);
+//                    Utils.updateWidgets(context);
                     break;
                 }
             }
@@ -187,7 +187,7 @@ public class Preferences {
 
             setLocation((float) currentLocation.getLatitude(),
                     (float) currentLocation.getLongitude());
-            Utils.updateWidgets(context);
+//            Utils.updateWidgets(context);
         }
     }
 

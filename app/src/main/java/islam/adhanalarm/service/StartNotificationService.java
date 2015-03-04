@@ -50,7 +50,7 @@ public class StartNotificationService extends Service {
                     StartNotificationReceiver.setNext(context);
                 }
 
-                Utils.updateWidgets(context);
+//                Utils.updateWidgets(context);
 
                 short timeIndex = intent.getShortExtra(CONSTANT.EXTRA_TIME_INDEX, (short) -1);
                 if (timeIndex == -1) { // Got here from boot

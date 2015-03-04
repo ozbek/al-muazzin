@@ -82,8 +82,8 @@ public class Utils {
         mIsForeground = isForeground;
     }
 
-    public static void updateWidgets(Context context) {
-        TimetableWidgetProvider.setLatestTimetable(context);
-        NextNotificationWidgetProvider.setNextTime(context);
-    }
+//    public static void updateWidgets(Context context) {
+//        TimetableWidgetProvider.setLatestTimetable(context);
+//        NextNotificationWidgetProvider.setNextTime(context);
+//    }
 }
