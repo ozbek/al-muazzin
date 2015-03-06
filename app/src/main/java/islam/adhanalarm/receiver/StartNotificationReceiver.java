@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 
 import java.util.Calendar;
 
@@ -31,7 +32,13 @@ public class StartNotificationReceiver extends BroadcastReceiver {
         intent.putExtra(CONSTANT.EXTRA_TIME_INDEX, timeIndex);
 
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP, actualTime.getTimeInMillis(), PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT));
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            am.setExact(AlarmManager.RTC_WAKEUP, actualTime.getTimeInMillis(),
+                    PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT));
+        } else {
+            am.set(AlarmManager.RTC_WAKEUP, actualTime.getTimeInMillis(),
+                    PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT));
+        }
     }
 
     @Override
