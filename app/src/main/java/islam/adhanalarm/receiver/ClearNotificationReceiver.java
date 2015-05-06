@@ -8,6 +8,6 @@ import android.content.Intent;
 public class ClearNotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Notifier.stop();
+        Notifier.stop(context);
     }
 }

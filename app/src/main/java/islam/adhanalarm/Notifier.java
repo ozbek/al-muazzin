@@ -20,11 +20,9 @@ import uz.efir.muazzin.R;
 public class Notifier {
 
     private static MediaPlayer mediaPlayer;
-    private static Context context;
     private static Notification notification;
 
-    public static void start(Context context, short timeIndex, long actualTime) {
-        Notifier.context = context;
+    public static void start(final Context context, short timeIndex, long actualTime) {
 
         if (timeIndex == CONSTANT.NEXT_FAJR) {
             timeIndex = CONSTANT.FAJR;
@@ -36,10 +34,10 @@ public class Notifier {
             return;
         }
 
-        buildNotification(timeIndex, actualTime);
+        buildNotification(context, timeIndex, actualTime);
         // We call this here since we don't want to
         // clear previous notifications unless we have to
-        stopNotification();
+        stopNotification(context);
 
         final AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         final TelephonyManager tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -72,11 +70,11 @@ public class Notifier {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
                     notification.tickerText = notification.tickerText.toString().replace(
-                            " (" + Notifier.context.getString(R.string.stop) + ")", "");
+                            " (" + context.getString(R.string.stop) + ")", "");
                     notification.defaults = 0;
                     // Since we are playing
                     // the new notification won't have the "(Stop)" at the end of it
-                    startNotification(finalTimeIndex);
+                    startNotification(context, finalTimeIndex);
                 }
             });
             try {
@@ -89,17 +87,17 @@ public class Notifier {
         } else {
             notification.defaults = Notification.DEFAULT_ALL;
         }
-        startNotification(timeIndex);
+        startNotification(context, timeIndex);
     }
 
-    public static void stop() {
-        stopNotification();
+    public static void stop(Context context) {
+        stopNotification(context);
         WakeLock.release();
     }
 
     @SuppressWarnings("deprecation")
     @SuppressLint("NewApi")
-    private static void buildNotification(short timeIndex, long actualTime) {
+    private static void buildNotification(Context context, short timeIndex, long actualTime) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
             notification = new Notification(R.drawable.ic_launcher, "", actualTime);
         } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
@@ -114,7 +112,7 @@ public class Notifier {
     }
 
     @SuppressWarnings("deprecation")
-    private static void startNotification(short timeIndex) {
+    private static void startNotification(Context context, short timeIndex) {
         Intent intent = new Intent(context, Muazzin.class);
         notification.setLatestEventInfo(
                 context,
@@ -138,7 +136,7 @@ public class Notifier {
         }
     }
 
-    private static void stopNotification() {
+    private static void stopNotification(Context context) {
         if (mediaPlayer != null && mediaPlayer.isPlaying()) {
             mediaPlayer.stop();
         }

@@ -153,7 +153,7 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                 Notifier.start(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
                 break;
             case R.id.menu_stop:
-                Notifier.stop();
+                Notifier.stop(this);
                 break;
             case R.id.menu_settings:
                 startActivity(new Intent(this, SettingsActivity.class));

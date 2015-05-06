@@ -9,7 +9,7 @@ import android.content.Intent;
 public class ClickNotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Notifier.stop();
+        Notifier.stop(context);
 
         Intent i = new Intent(context, Muazzin.class);
         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
