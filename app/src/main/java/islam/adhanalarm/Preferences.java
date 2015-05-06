@@ -14,7 +14,6 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import islam.adhanalarm.util.LocaleManager;
-import uz.efir.muazzin.Utils;
 
 /**
  * Helper class to store and retrieve user settings to/from shared preferences
@@ -54,12 +53,6 @@ public class Preferences {
 
     public boolean getBasmalaEnabled() {
         return mSharedPreferences.getBoolean(KEY_BASMALA, false);
-    }
-
-    public void setBasmalaEnabled(boolean enabled) {
-        final SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putBoolean(KEY_BASMALA, enabled);
-        editor.apply();
     }
 
     public String getLocale() {
@@ -171,6 +164,7 @@ public class Preferences {
             String country = Locale.getDefault().getISO3Country().toUpperCase(Locale.US);
             for (int i = 0; i < CONSTANT.CALCULATION_METHOD_COUNTRY_CODES.length; i++) {
                 if (Arrays.asList(CONSTANT.CALCULATION_METHOD_COUNTRY_CODES[i]).contains(country)) {
+                    // TODO: Add country's default latitude/longitude coordinates
                     setCalculationMethodIndex(i);
 //                    Utils.updateWidgets(context);
                     break;
