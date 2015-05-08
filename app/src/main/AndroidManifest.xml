@@ -35,6 +35,7 @@
         <receiver android:name="islam.adhanalarm.receiver.ClickNotificationReceiver" />
         <receiver android:name="islam.adhanalarm.receiver.ClearNotificationReceiver" />
         <service android:name="islam.adhanalarm.service.StartNotificationService" />
+        <service android:name="uz.efir.muazzin.NotificationService" android:enabled="true" />
 
         <receiver android:name="islam.adhanalarm.widget.TimetableWidgetProvider"
             android:enabled="false">

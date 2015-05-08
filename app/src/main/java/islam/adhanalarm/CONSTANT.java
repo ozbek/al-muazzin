@@ -45,7 +45,7 @@ public class CONSTANT {
     public static final Method[] CALCULATION_METHODS = new Method[]{Method.EGYPT_SURVEY, Method.KARACHI_SHAF, Method.KARACHI_HANAF, Method.NORTH_AMERICA, Method.MUSLIM_LEAGUE, Method.UMM_ALQURRA, Method.FIXED_ISHAA};
     public static final short DEFAULT_CALCULATION_METHOD = 5; // UMM_ALQURRA
 
-    public static final short FAJR = 0, SUNRISE = 1, DHUHR = 2, ASR = 3, MAGHRIB = 4, ISHAA = 5, NEXT_FAJR = 6; // Notification Times
+    public static final int FAJR = 0, SUNRISE = 1, DHUHR = 2, ASR = 3, MAGHRIB = 4, ISHAA = 5, NEXT_FAJR = 6; // Notification Times
     public static int[] TIME_NAMES = new int[]{R.string.fajr, R.string.sunrise, R.string.dhuhr, R.string.asr, R.string.maghrib, R.string.ishaa, R.string.next_fajr};
 
     public static final short NOTIFICATION_NONE = 0, NOTIFICATION_DEFAULT = 1, NOTIFICATION_PLAY = 2, NOTIFICATION_CUSTOM = 3; // Notification Methods
@@ -53,8 +53,13 @@ public class CONSTANT {
     public static final Rounding[] ROUNDING_METHODS = new Rounding[]{Rounding.NONE, Rounding.NORMAL, Rounding.SPECIAL, Rounding.AGRESSIVE};
     public static final short DEFAULT_ROUNDING_INDEX = 2; // Special
 
-    public static final String EXTRA_ACTUAL_TIME = "extra_actual_time";
-    public static final String EXTRA_TIME_INDEX = "extra_time_index";
+    public static final String ACTION_NOTIFY = "uz.efir.muazzin.ACTION_NOTIFY";
+    public static final String ACTION_DONE = "uz.efir.muazzin.ACTION_DONE";
+    public static final String ACTION_SNOOZE = "uz.efir.muazzin.ACTION_SNOOZE";
+    public static final String ACTION_STOP = "uz.efir.muazzin.ACTION_STOP";
+    public static final String EXTRA_ACTUAL_TIME = "uz.efir.muazzin.EXTRA_ACTUAL_TIME";
+    public static final String EXTRA_TIME_INDEX = "uz.efir.muazzin.EXTRA_TIME_INDEX";
+    public static final String EXTRA_NOTIFICATION_ID = "uz.efir.muazzin.EXTRA_NOTIFICATION_ID";
 
     private CONSTANT() {
         // Private constructor to enforce un-instantiability.

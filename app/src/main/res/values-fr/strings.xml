@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Affichage et alertes des prières quotidiennes du musulman</string>
     <string name="today">Aujourd\'hui</string>
     <string name="sunrise">Levé du soleil</string>
@@ -36,4 +35,5 @@
     <string name="pressure">Pression</string>
     <string name="temperature">Température</string>
     <string name="language">Langage</string>
+    <string name="yes">Oui</string>
 </resources>

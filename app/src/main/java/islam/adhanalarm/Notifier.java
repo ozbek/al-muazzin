@@ -6,7 +6,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -39,11 +38,8 @@ public class Notifier {
         // clear previous notifications unless we have to
         stopNotification(context);
 
-        final AudioManager am = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
         final TelephonyManager tm = (TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-
         if (notificationMethod >= CONSTANT.NOTIFICATION_PLAY
-                && am.getRingerMode() > AudioManager.RINGER_MODE_VIBRATE
                 && tm.getCallState() == TelephonyManager.CALL_STATE_IDLE) {
             notification.tickerText = notification.tickerText + " ("
                     + context.getString(R.string.stop) + ")";

@@ -18,7 +18,6 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.Notifier;
 import islam.adhanalarm.Preferences;
 import islam.adhanalarm.Schedule;
 import islam.adhanalarm.dialog.CalculationSettingsDialog;
@@ -144,16 +143,16 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
                 if (CONSTANT.SUNRISE == time && mPreferences.dontNotifySunrise()) {
                     time = CONSTANT.FAJR;
                 }
-                Notifier.start(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
+                NotificationService.notify(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
                 break;
             case R.id.menu_next:
                 if (CONSTANT.SUNRISE == time && mPreferences.dontNotifySunrise()) {
                     time = CONSTANT.DHUHR;
                 }
-                Notifier.start(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
+                NotificationService.notify(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
                 break;
             case R.id.menu_stop:
-                Notifier.stop(this);
+                NotificationService.cancelAll(this);
                 break;
             case R.id.menu_settings:
                 startActivity(new Intent(this, SettingsActivity.class));

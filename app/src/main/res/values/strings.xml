@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="description">Displays and can alert with the daily Muslim prayer times.</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="description">Displays and alerts with the daily Muslim prayer times.</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
     <string name="stop">Stop</string>
@@ -28,7 +27,7 @@
     <string name="settings">Settings</string>
     <string name="bismillah_on_boot_up_title">Basmala</string>
     <string name="bismillah_on_boot_up_summary">Recite basmala on boot up</string>
-    <string name="notification">Notification</string>
+    <string name="notification">Notifications</string>
     <string name="none">None</string>
     <string name="beep">Beep</string>
     <string name="adhan">Adhan</string>
@@ -62,6 +61,9 @@
     <string name="minutes">minutes</string>
     <string name="language">Language</string>
     <string name="anno_hegirae">AH</string>
+    <string name="did_you_pray">Did you already do <xliff:g id="time_name">%1$s</xliff:g> prayer?</string>
+    <string name="yes">Yes</string>
+    <string name="snooze">Snooze</string>
 
     <string name="app_name" translatable="false">Al-Muazzin</string>
     <string name="degrees_celsius" translatable="false">\u00B0C</string>

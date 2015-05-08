@@ -65,8 +65,8 @@ public class Preferences {
         editor.apply();
     }
 
-    public int getNotificationMethod(short time) {
-        return mSharedPreferences.getInt(KEY_NOTIFICATION_METHOD.concat(Short.toString(time)),
+    public int getNotificationMethod(int time) {
+        return mSharedPreferences.getInt(KEY_NOTIFICATION_METHOD.concat(Integer.toString(time)),
                 CONSTANT.SUNRISE == time ? CONSTANT.NOTIFICATION_NONE
                         : CONSTANT.NOTIFICATION_DEFAULT);
     }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Кундалик намоз вақтлари</string>
     <string name="previous">Аввалги</string>
     <string name="next">Кейинги</string>
@@ -61,5 +60,7 @@
     <string name="offset">Вақт мувозанати</string>
     <string name="minutes">минут</string>
     <string name="language">Тил</string>
-    <string name="anno_hegirae"></string>
+    <string name="anno_hegirae">""</string>
+    <string name="did_you_pray"><xliff:g id="time_name">%1$s</xliff:g> намозини ўқидингизми?</string>
+    <string name="yes">Ҳа</string>
 </resources>
