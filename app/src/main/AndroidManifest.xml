@@ -10,20 +10,23 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <application android:label="@string/app_name"
+    <application
         android:allowBackup="false"
         android:description="@string/description"
         android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
         android:theme="@style/DefaultTheme">
 
-        <activity android:name="uz.efir.muazzin.Muazzin"
+        <activity
+            android:name="uz.efir.muazzin.Muazzin"
             android:configChanges="locale|keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="uz.efir.muazzin.SettingsActivity"
+        <activity
+            android:name="uz.efir.muazzin.SettingsActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize" />
 
         <receiver android:name="islam.adhanalarm.receiver.StartNotificationReceiver">
@@ -32,25 +35,33 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name="islam.adhanalarm.receiver.ClickNotificationReceiver" />
         <receiver android:name="islam.adhanalarm.receiver.ClearNotificationReceiver" />
-        <service android:name="islam.adhanalarm.service.StartNotificationService" />
-        <service android:name="uz.efir.muazzin.NotificationService" android:enabled="true" />
 
-        <receiver android:name="islam.adhanalarm.widget.TimetableWidgetProvider"
+        <service android:name="islam.adhanalarm.service.StartNotificationService" />
+        <service
+            android:name="uz.efir.muazzin.NotificationService"
+            android:enabled="true" />
+
+        <receiver
+            android:name="islam.adhanalarm.widget.TimetableWidgetProvider"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_timetable" />
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_timetable" />
         </receiver>
 
-        <receiver android:name="islam.adhanalarm.widget.NextNotificationWidgetProvider"
+        <receiver
+            android:name="islam.adhanalarm.widget.NextNotificationWidgetProvider"
             android:enabled="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_next_notification" />
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_next_notification" />
         </receiver>
 
     </application>

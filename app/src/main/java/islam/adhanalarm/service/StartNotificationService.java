@@ -10,12 +10,12 @@ import android.util.Log;
 import java.util.Calendar;
 
 import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.Notifier;
 import islam.adhanalarm.Preferences;
 import islam.adhanalarm.Schedule;
 import islam.adhanalarm.WakeLock;
 import islam.adhanalarm.receiver.StartNotificationReceiver;
 import uz.efir.muazzin.Muazzin;
+import uz.efir.muazzin.NotificationService;
 import uz.efir.muazzin.R;
 import uz.efir.muazzin.Utils;
 
@@ -88,7 +88,7 @@ public class StartNotificationService extends Service {
             } else {
                 // Notify the user for the current time, need to do this last since it releases the WakeLock
                 long actualTime = intent.getLongExtra(CONSTANT.EXTRA_ACTUAL_TIME, 0);
-                Notifier.start(context, timeIndex, actualTime);
+                NotificationService.notify(context, timeIndex, actualTime);
             }
         }
     }

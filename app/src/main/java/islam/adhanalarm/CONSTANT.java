@@ -53,13 +53,8 @@ public class CONSTANT {
     public static final Rounding[] ROUNDING_METHODS = new Rounding[]{Rounding.NONE, Rounding.NORMAL, Rounding.SPECIAL, Rounding.AGRESSIVE};
     public static final short DEFAULT_ROUNDING_INDEX = 2; // Special
 
-    public static final String ACTION_NOTIFY = "uz.efir.muazzin.ACTION_NOTIFY";
-    public static final String ACTION_DONE = "uz.efir.muazzin.ACTION_DONE";
-    public static final String ACTION_SNOOZE = "uz.efir.muazzin.ACTION_SNOOZE";
-    public static final String ACTION_STOP = "uz.efir.muazzin.ACTION_STOP";
     public static final String EXTRA_ACTUAL_TIME = "uz.efir.muazzin.EXTRA_ACTUAL_TIME";
     public static final String EXTRA_TIME_INDEX = "uz.efir.muazzin.EXTRA_TIME_INDEX";
-    public static final String EXTRA_NOTIFICATION_ID = "uz.efir.muazzin.EXTRA_NOTIFICATION_ID";
 
     private CONSTANT() {
         // Private constructor to enforce un-instantiability.

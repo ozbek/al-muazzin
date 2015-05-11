@@ -19,6 +19,15 @@ import islam.adhanalarm.util.LocaleManager;
 
 public class NotificationService extends IntentService {
     private static final String TAG = NotificationService.class.getSimpleName();
+
+    private static final String ACTION_DONE = "uz.efir.muazzin.ACTION_DONE";
+    private static final String ACTION_STOP = "uz.efir.muazzin.ACTION_STOP";
+    private static final String ACTION_DELETE = "uz.efir.muazzin.ACTION_DELETE";
+    private static final String ACTION_NOTIFY = "uz.efir.muazzin.ACTION_NOTIFY";
+    private static final String ACTION_SNOOZE = "uz.efir.muazzin.ACTION_SNOOZE";
+
+    private static final String EXTRA_NOTIFICATION_ID = "uz.efir.muazzin.EXTRA_NOTIFICATION_ID";
+
     private static MediaPlayer sMediaPlayer;
 
     public NotificationService() {
@@ -49,6 +58,12 @@ public class NotificationService extends IntentService {
                 }
                 sMediaPlayer = MediaPlayer.create(context, alarm);
                 sMediaPlayer.setScreenOnWhilePlaying(true);
+                sMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+                        WakeLock.release();
+                    }
+                });
                 try {
                     sMediaPlayer.start();
                 } catch (IllegalStateException ise) {
@@ -58,7 +73,7 @@ public class NotificationService extends IntentService {
         }
 
         Intent intent = new Intent(context, NotificationService.class);
-        intent.setAction(CONSTANT.ACTION_NOTIFY);
+        intent.setAction(ACTION_NOTIFY);
         intent.putExtra(CONSTANT.EXTRA_TIME_INDEX, timeIndex);
         intent.putExtra(CONSTANT.EXTRA_ACTUAL_TIME, actualTime);
         context.startService(intent);
@@ -78,20 +93,24 @@ public class NotificationService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
             final String action = intent.getAction();
-            if (CONSTANT.ACTION_NOTIFY.equals(action)) {
+            if (ACTION_NOTIFY.equals(action)) {
                 issueNotification(intent.getIntExtra(CONSTANT.EXTRA_TIME_INDEX, -1),
                         intent.getLongExtra(CONSTANT.EXTRA_ACTUAL_TIME, -1));
-            } else if (CONSTANT.ACTION_SNOOZE.equals(action)) {
+            } else if (ACTION_SNOOZE.equals(action)) {
                 // TODO: add snooze logic
                 cancelNotification(intent);
-            } else if (CONSTANT.ACTION_DONE.equals(action)) {
+            } else if (ACTION_DONE.equals(action)) {
                 cancelNotification(intent);
-            } else if (CONSTANT.ACTION_STOP.equals(action)) {
+            } else if (ACTION_STOP.equals(action)) {
                 if (sMediaPlayer != null && sMediaPlayer.isPlaying()) {
                     sMediaPlayer.stop();
                 }
                 issueNotification(intent.getIntExtra(CONSTANT.EXTRA_TIME_INDEX, -1),
                         intent.getLongExtra(CONSTANT.EXTRA_ACTUAL_TIME, -1));
+            } else if (ACTION_DELETE.equals(action)) {
+                if (sMediaPlayer != null && sMediaPlayer.isPlaying()) {
+                    sMediaPlayer.stop();
+                }
             }
         }
     }
@@ -99,12 +118,13 @@ public class NotificationService extends IntentService {
     private void cancelNotification(Intent intent) {
         NotificationManager notificationManager
                 = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        final int notificationId = intent.getIntExtra(CONSTANT.EXTRA_NOTIFICATION_ID, -1);
+        final int notificationId = intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1);
         if (notificationId < 0) {
             notificationManager.cancelAll();
         } else {
             notificationManager.cancel(notificationId);
         }
+        WakeLock.release();
     }
 
     private void issueNotification(int timeIndex, long actualTime) {
@@ -124,8 +144,8 @@ public class NotificationService extends IntentService {
 
         if (sMediaPlayer != null && sMediaPlayer.isPlaying()) {
             Intent stopIntent = new Intent(this, NotificationService.class)
-                    .setAction(CONSTANT.ACTION_STOP)
-                    .putExtra(CONSTANT.EXTRA_NOTIFICATION_ID, timeIndex)
+                    .setAction(ACTION_STOP)
+                    .putExtra(EXTRA_NOTIFICATION_ID, timeIndex)
                     .putExtra(CONSTANT.EXTRA_TIME_INDEX, timeIndex)
                     .putExtra(CONSTANT.EXTRA_ACTUAL_TIME, actualTime);
             PendingIntent piStop = PendingIntent.getService(this, 0, stopIntent, 0);
@@ -135,13 +155,13 @@ public class NotificationService extends IntentService {
                     .setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
         } else {
             Intent doneIntent = new Intent(this, NotificationService.class)
-                    .setAction(CONSTANT.ACTION_DONE)
-                    .putExtra(CONSTANT.EXTRA_NOTIFICATION_ID, timeIndex);
+                    .setAction(ACTION_DONE)
+                    .putExtra(EXTRA_NOTIFICATION_ID, timeIndex);
             PendingIntent piDone = PendingIntent.getService(this, timeIndex, doneIntent, 0);
 
             Intent snoozeIntent = new Intent(this, NotificationService.class)
-                    .setAction(CONSTANT.ACTION_SNOOZE)
-                    .putExtra(CONSTANT.EXTRA_NOTIFICATION_ID, timeIndex);
+                    .setAction(ACTION_SNOOZE)
+                    .putExtra(EXTRA_NOTIFICATION_ID, timeIndex);
             PendingIntent piSnooze = PendingIntent.getService(this, timeIndex, snoozeIntent, 0);
 
             notificationBuilder
@@ -154,8 +174,14 @@ public class NotificationService extends IntentService {
             WakeLock.release();
         }
 
+        Intent deleteIntent = new Intent(this, NotificationService.class)
+                .setAction(ACTION_DELETE)
+                .putExtra(EXTRA_NOTIFICATION_ID, timeIndex);
+        PendingIntent piDelete = PendingIntent.getService(this, timeIndex, deleteIntent, 0);
+        notificationBuilder.setDeleteIntent(piDelete);
+
         Intent resultIntent = new Intent(this, Muazzin.class);
-        resultIntent.putExtra(CONSTANT.EXTRA_NOTIFICATION_ID, timeIndex);
+        resultIntent.putExtra(EXTRA_NOTIFICATION_ID, timeIndex);
         int flags = Intent.FLAG_ACTIVITY_NEW_TASK;
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
             flags |= Intent.FLAG_ACTIVITY_CLEAR_TASK;
