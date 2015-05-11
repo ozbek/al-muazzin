@@ -90,7 +90,6 @@ public class NotificationService extends IntentService {
                 if (sMediaPlayer != null && sMediaPlayer.isPlaying()) {
                     sMediaPlayer.stop();
                 }
-                cancelNotification(intent);
                 issueNotification(intent.getIntExtra(CONSTANT.EXTRA_TIME_INDEX, -1),
                         intent.getLongExtra(CONSTANT.EXTRA_ACTUAL_TIME, -1));
             }
@@ -115,6 +114,7 @@ public class NotificationService extends IntentService {
         }
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle(
                         getString(R.string.time_for, getString(CONSTANT.TIME_NAMES[timeIndex]))
