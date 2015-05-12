@@ -40,7 +40,7 @@ public class StartNotificationService extends Service {
         }
         new Thread(new StartNotificationTask(this, intent)).start();
 
-        return START_REDELIVER_INTENT;
+        return START_NOT_STICKY;
     }
 
     /**
