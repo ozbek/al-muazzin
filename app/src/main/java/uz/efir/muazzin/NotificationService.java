@@ -133,13 +133,17 @@ public class NotificationService extends IntentService {
             return;
         }
 
+        String question = getString(R.string.did_you_pray, getString(CONSTANT.TIME_NAMES[timeIndex]));
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+                .setLocalOnly(true)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle(
                         getString(R.string.time_for, getString(CONSTANT.TIME_NAMES[timeIndex]))
                 )
-                .setContentText(getString(R.string.app_name))
+                .setContentText(question)
                 .setWhen(actualTime);
 
         if (sMediaPlayer != null && sMediaPlayer.isPlaying()) {
@@ -165,9 +169,7 @@ public class NotificationService extends IntentService {
             PendingIntent piSnooze = PendingIntent.getService(this, timeIndex, snoozeIntent, 0);
 
             notificationBuilder
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText(
-                            getString(R.string.did_you_pray, getString(CONSTANT.TIME_NAMES[timeIndex]))
-                    ))
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(question))
                     .addAction(R.drawable.ic_stat_action_done, getString(R.string.yes), piDone)
                     .addAction(R.drawable.ic_stat_action_snooze, getString(R.string.snooze), piSnooze)
                     .setDefaults(Notification.DEFAULT_ALL);
