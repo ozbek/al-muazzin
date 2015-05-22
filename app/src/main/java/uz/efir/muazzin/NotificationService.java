@@ -140,11 +140,10 @@ public class NotificationService extends IntentService {
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setSmallIcon(R.drawable.ic_launcher)
+                .setWhen(actualTime)
                 .setContentTitle(
                         getString(R.string.time_for, getString(CONSTANT.TIME_NAMES[timeIndex]))
-                )
-                .setContentText(question)
-                .setWhen(actualTime);
+                );
 
         if (sMediaPlayer != null && sMediaPlayer.isPlaying()) {
             Intent stopIntent = new Intent(this, NotificationService.class)
@@ -169,10 +168,14 @@ public class NotificationService extends IntentService {
             PendingIntent piSnooze = PendingIntent.getService(this, timeIndex, snoozeIntent, 0);
 
             notificationBuilder
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText(question))
                     .addAction(R.drawable.ic_stat_action_done, getString(R.string.yes), piDone)
                     .addAction(R.drawable.ic_stat_action_snooze, getString(R.string.snooze), piSnooze)
                     .setDefaults(Notification.DEFAULT_ALL);
+            if (timeIndex != CONSTANT.SUNRISE) {
+                // There is no sunrise prayer
+                notificationBuilder.setContentText(question);
+                notificationBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(question));
+            }
             WakeLock.release();
         }
 
