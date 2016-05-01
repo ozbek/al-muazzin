@@ -3,11 +3,7 @@ package uz.efir.muazzin;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-
-import islam.adhanalarm.widget.NextNotificationWidgetProvider;
-import islam.adhanalarm.widget.TimetableWidgetProvider;
 
 /*
  * Following alarm clock intent implementation is adapted from
@@ -29,38 +25,25 @@ import islam.adhanalarm.widget.TimetableWidgetProvider;
  */
 
 public class Utils {
-    private static final String[] DESK_CLOCK_PACKAGES = new String[] {
+    private static final String[] DESK_CLOCK_PACKAGES = new String[]{
             "com.google.android.deskclock", // Google's
             "com.android.deskclock", // AOSP's
     };
-    private static final String[] OTHER_CLOCK_PACKAGES = new String[] {
+    private static final String[] OTHER_CLOCK_PACKAGES = new String[]{
             "com.sec.android.app.clockpackage" // Samsung's
     };
-    private static final String SELECT_TAB_INTENT_EXTRA = "deskclock.select.tab";
-    private static final String DEFAULT_ALARM_ACTIVITY = "com.android.deskclock.AlarmClock";
-    private static boolean mIsForeground = false;
     public static boolean isRestartNeeded = false;
+    private static boolean mIsForeground = false;
 
-    public static Intent getDefaultAlarmsIntent(Context context) {
+    private static Intent getDefaultClockIntent(Context context) {
         PackageManager pm = context.getPackageManager();
         for (String packageName : DESK_CLOCK_PACKAGES) {
             try {
-                PackageInfo pi = pm.getPackageInfo(packageName, 0);
-                if (302 >= pi.versionCode) {
-                    Intent intent = pm.getLaunchIntentForPackage(packageName);
-                    intent.putExtra(SELECT_TAB_INTENT_EXTRA, 0);
-                    return intent;
-                }
-                ComponentName cn = new ComponentName(packageName, DEFAULT_ALARM_ACTIVITY);
-                pm.getActivityInfo(cn, 0);
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_LAUNCHER);
-                intent.setComponent(cn);
-                return intent;
+                pm.getPackageInfo(packageName, 0);
+                return pm.getLaunchIntentForPackage(packageName);
             } catch (PackageManager.NameNotFoundException ignored) {
             }
         }
-
         // None worked, try others
         for (String packageName : OTHER_CLOCK_PACKAGES) {
             try {
@@ -72,6 +55,19 @@ public class Utils {
 
         // TODO: Add an option for user to set a custom app?
         return null;
+    }
+
+    public static Intent getDefaultAlarmsIntent(Context context) {
+        PackageManager pm = context.getPackageManager();
+        for (String packageName : DESK_CLOCK_PACKAGES) {
+            try {
+                ComponentName cn = new ComponentName(packageName, "com.android.deskclock.AlarmClock");
+                pm.getActivityInfo(cn, 0);
+                return Intent.makeMainActivity(cn);
+            } catch (PackageManager.NameNotFoundException ignored) {
+            }
+        }
+        return getDefaultClockIntent(context);
     }
 
     public static boolean getIsForeground() {
