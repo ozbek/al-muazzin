@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="DefaultTheme" parent="Theme.Sherlock">
-        <item name="android:listViewStyle">@style/listViewStyle</item>
-        <item name="android:textViewStyle">@style/textViewStyle</item>
-    </style>
-
-    <style name="listViewStyle" parent="@android:style/Widget.ListView">
-        <item name="android:cacheColorHint">@android:color/transparent</item>
-    </style>
-
-    <style name="textViewStyle" parent="@android:style/Widget.TextView">
-        <item name="android:textAppearance">@style/textAppearance</item>
-    </style>
-
-    <style name="textAppearance" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@android:color/white</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
     <style name="finePrint">
         <item name="android:textSize">12sp</item>
         <item name="android:paddingTop">10dp</item>

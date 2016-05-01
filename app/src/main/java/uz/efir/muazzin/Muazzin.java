@@ -1,18 +1,16 @@
 package uz.efir.muazzin;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuInflater;
-import com.actionbarsherlock.view.MenuItem;
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.util.Calendar;
@@ -23,10 +21,9 @@ import islam.adhanalarm.Schedule;
 import islam.adhanalarm.dialog.CalculationSettingsDialog;
 import islam.adhanalarm.util.LocaleManager;
 
-public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabListener {
+public class Muazzin extends AppCompatActivity {
     // private static final String TAG = Muazzin.class.getSimpleName();
     private Preferences mPreferences;
-    private ViewPager mViewPager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,50 +33,20 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
 
         setContentView(R.layout.activity_muazzin);
 
-        MuazzinAdapter muazzinAdapter = new MuazzinAdapter(this, getSupportFragmentManager());
-
-        // Set up action bar
-        final ActionBar actionBar = getSupportActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-        actionBar.setHomeButtonEnabled(false);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        assert toolbar != null;
+        toolbar.setTitle(R.string.app_name);
+        setSupportActionBar(toolbar);
 
         // Set up the ViewPager, attaching the adapter
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(muazzinAdapter);
-        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                // When swiping between different app sections, select the
-                // corresponding tab
-                actionBar.setSelectedNavigationItem(position);
-            }
-        });
-
-        // For each of the sections in the app, add a tab to the action bar
-        for (int i = 0; i < muazzinAdapter.getCount(); i++) {
-            // Create a tab with text corresponding to the page title defined by
-            // the adapter.
-            // Also specify this Activity object, which implements the
-            // TabListener interface, as the
-            // listener for when this tab is selected.
-            actionBar.addTab(actionBar.newTab().setText(muazzinAdapter.getPageTitle(i))
-                    .setTabListener(this));
-        }
-    }
-
-    @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-    }
-
-    @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, switch to the corresponding page in
-        // the ViewPager.
-        mViewPager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        MuazzinAdapter muazzinAdapter = new MuazzinAdapter(getApplicationContext(),
+                getSupportFragmentManager());
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        assert pager != null;
+        pager.setAdapter(muazzinAdapter);
+        final SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
+        assert indicator != null;
+        indicator.setViewPager(pager);
     }
 
     @Override
@@ -92,7 +59,9 @@ public class Muazzin extends SherlockFragmentActivity implements ActionBar.TabLi
             }
 
             if (mPreferences.isLocationSet()) {
-                ((TextView) findViewById(R.id.notes)).setText(null);
+                TextView notes = (TextView) findViewById(R.id.notes);
+                assert notes != null;
+                notes.setText(null);
             }
         }
     }
