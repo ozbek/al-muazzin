@@ -1,13 +1,9 @@
 package islam.adhanalarm.dialog;
 
-import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.Preferences;
-import islam.adhanalarm.Schedule;
-import uz.efir.muazzin.R;
-import android.app.Dialog;
 import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatDialog;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,7 +11,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
-public class CalculationSettingsDialog extends Dialog {
+import islam.adhanalarm.CONSTANT;
+import islam.adhanalarm.Preferences;
+import islam.adhanalarm.Schedule;
+import uz.efir.muazzin.R;
+
+public class CalculationSettingsDialog extends AppCompatDialog {
     private Context mContext;
     private EditText mLatitudeText;
     private EditText mLongitudeText;
@@ -36,20 +37,22 @@ public class CalculationSettingsDialog extends Dialog {
         final float[] latLong = preferences.getLocation();
         final int calculationMethod = preferences.getCalculationMethodIndex();
 
-        mLatitudeText = (EditText)findViewById(R.id.latitude);
+        mLatitudeText = (EditText) findViewById(R.id.latitude);
         mLatitudeText.setText(Float.toString(latLong[0]));
 
-        mLongitudeText = (EditText)findViewById(R.id.longitude);
+        mLongitudeText = (EditText) findViewById(R.id.longitude);
         mLongitudeText.setText(Float.toString(latLong[1]));
 
-        mCalculationMethods = (Spinner)findViewById(R.id.calculation_methods);
+        mCalculationMethods = (Spinner) findViewById(R.id.calculation_methods);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext, R.array.calculation_methods,
                 android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mCalculationMethods.setAdapter(adapter);
         mCalculationMethods.setSelection(calculationMethod);
 
-        ((ImageButton)findViewById(R.id.lookup_gps)).setOnClickListener(new ImageButton.OnClickListener() {
+        ImageButton lookupGps = (ImageButton) findViewById(R.id.lookup_gps);
+        assert lookupGps != null;
+        lookupGps.setOnClickListener(new ImageButton.OnClickListener() {
             public void onClick(View v) {
                 Location currentLocation = preferences.getCurrentLocation(mContext);
                 if (currentLocation != null) {
@@ -62,7 +65,9 @@ public class CalculationSettingsDialog extends Dialog {
             }
         });
 
-        ((Button)findViewById(R.id.save_settings)).setOnClickListener(new Button.OnClickListener() {
+        Button saveSettings = (Button) findViewById(R.id.save_settings);
+        assert saveSettings != null;
+        saveSettings.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 float newLatitude = parseFloat(mLatitudeText, latLong[0]);
                 float newLongitude = parseFloat(mLongitudeText, latLong[1]);
@@ -78,7 +83,9 @@ public class CalculationSettingsDialog extends Dialog {
             }
         });
 
-        ((Button)findViewById(R.id.reset_settings)).setOnClickListener(new Button.OnClickListener() {
+        Button resetSettings = (Button) findViewById(R.id.reset_settings);
+        assert resetSettings != null;
+        resetSettings.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 mCalculationMethods.setSelection(CONSTANT.DEFAULT_CALCULATION_METHOD);
             }
