@@ -19,7 +19,7 @@
     <string name="time_for">Время для <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Широта</string>
     <string name="longitude">Долгота</string>
-    <string name="extreme">Экстремальный</string>
+    <string name="extreme">* Экстремальный</string>
     <string name="qibla">Кибла</string>
     <string name="compass_disclaimer">Компас работает в портретном режиме основано на настройках месте.</string>
     <string name="bearing_north">1) Опора севера = (1)°</string>

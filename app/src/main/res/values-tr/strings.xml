@@ -19,7 +19,7 @@
     <string name="time_for"><xliff:g id="time_name">%1$s</xliff:g> namazı vakti</string>
     <string name="latitude">Enlem</string>
     <string name="longitude">Boylam</string>
-    <string name="extreme">Aşırı</string>
+    <string name="extreme">* Aşırı</string>
     <string name="qibla">Kible</string>
     <string name="compass_disclaimer">Pusula portre modunda belirtilen yere göre çalışır.</string>
     <string name="bearing_north">1) Kuzey Yatak = (1)°</string>

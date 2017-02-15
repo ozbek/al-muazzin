@@ -29,8 +29,7 @@ import islam.adhanalarm.util.LocaleManager;
  * times. In the future, we may add some extra days...
  */
 public class PrayerTimesFragment extends Fragment {
-    private final ArrayList<HashMap<String, String>> mTimeTable = new ArrayList<HashMap<String, String>>(
-            7);
+    private final ArrayList<HashMap<String, String>> mTimeTable = new ArrayList<>(7);
     private SimpleAdapter mTimetableView;
     private TextView mNotes;
     private TextView mTodaysDate;
@@ -40,7 +39,7 @@ public class PrayerTimesFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
-            HashMap<String, String> map = new HashMap<String, String>();
+            HashMap<String, String> map = new HashMap<>();
             map.put("time_name", getString(CONSTANT.TIME_NAMES[i]));
             mTimeTable.add(i, map);
         }
@@ -69,8 +68,16 @@ public class PrayerTimesFragment extends Fragment {
 
             @Override
             public void onChildViewAdded(View parent, View child) {
-                child.setBackgroundResource(++numChildren % 2 == 0 ? R.color.semi_transparent_white
-                        : android.R.color.transparent);
+                TextView tv;
+                if (++numChildren % 2 == 0) {
+                    child.setBackgroundResource(R.color.darker_gray);
+                    tv = (TextView) child.findViewById(R.id.time_name);
+                    tv.setTextColor(0xff000000);
+                    tv = (TextView) child.findViewById(R.id.time);
+                    tv.setTextColor(0xff000000);
+                } else {
+                    child.setBackgroundResource(android.R.color.transparent);
+                }
                 if (numChildren > CONSTANT.NEXT_FAJR) {
                     // Reached the last row, reset for next time
                     numChildren = 0;
@@ -121,7 +128,7 @@ public class PrayerTimesFragment extends Fragment {
             if (today.isExtreme(i)) {
                 // FIXME: this is getting cleared if
                 // Preferences.isLocationSet() is true
-                mNotes.setText("* " + getString(R.string.extreme));
+                mNotes.setText(R.string.extreme);
             }
         }
 
