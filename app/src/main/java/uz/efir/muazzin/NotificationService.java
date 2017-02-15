@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -182,11 +181,7 @@ public class NotificationService extends IntentService {
 
         Intent resultIntent = new Intent(this, Muazzin.class);
         resultIntent.putExtra(EXTRA_NOTIFICATION_ID, timeIndex);
-        int flags = Intent.FLAG_ACTIVITY_NEW_TASK;
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.GINGERBREAD_MR1) {
-            flags |= Intent.FLAG_ACTIVITY_CLEAR_TASK;
-        }
-        resultIntent.setFlags(flags);
+        resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, resultIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
