@@ -63,4 +63,5 @@
     <string name="anno_hegirae">""</string>
     <string name="did_you_pray"><xliff:g id="time_name">%1$s</xliff:g> намозини ўқидингизми?</string>
     <string name="yes">Ҳа</string>
+    <string name="snooze">Кечиктириш</string>
 </resources>
