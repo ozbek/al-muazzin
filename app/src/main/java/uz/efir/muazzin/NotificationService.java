@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import islam.adhanalarm.CONSTANT;
@@ -47,28 +46,24 @@ public class NotificationService extends IntentService {
         LocaleManager.getInstance(context, true);
 
         if (notificationMethod >= CONSTANT.NOTIFICATION_PLAY) {
-            final TelephonyManager telephonyManager
-                    = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-            if (telephonyManager.getCallState() == TelephonyManager.CALL_STATE_IDLE) {
-                int alarm = R.raw.beep;
-                if (timeIndex <= CONSTANT.ISHAA && timeIndex >= CONSTANT.DHUHR) {
-                    alarm = R.raw.adhan;
-                } else if (timeIndex == CONSTANT.FAJR) {
-                    alarm = R.raw.adhan_fajr;
+            int alarm = R.raw.beep;
+            if (timeIndex <= CONSTANT.ISHAA && timeIndex >= CONSTANT.DHUHR) {
+                alarm = R.raw.adhan;
+            } else if (timeIndex == CONSTANT.FAJR) {
+                alarm = R.raw.adhan_fajr;
+            }
+            sMediaPlayer = MediaPlayer.create(context, alarm);
+            sMediaPlayer.setScreenOnWhilePlaying(true);
+            sMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    WakeLock.release();
                 }
-                sMediaPlayer = MediaPlayer.create(context, alarm);
-                sMediaPlayer.setScreenOnWhilePlaying(true);
-                sMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        WakeLock.release();
-                    }
-                });
-                try {
-                    sMediaPlayer.start();
-                } catch (IllegalStateException ise) {
-                    // Nothing to do here
-                }
+            });
+            try {
+                sMediaPlayer.start();
+            } catch (IllegalStateException ise) {
+                // Nothing to do here
             }
         }
 
