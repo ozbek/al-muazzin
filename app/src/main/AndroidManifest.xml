@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="uz.efir.muazzin"
-    android:versionCode="3"
-    android:versionName="1.0.2">
+    package="uz.efir.muazzin">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -20,7 +18,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name="uz.efir.muazzin.Muazzin"
+            android:name="Muazzin"
             android:configChanges="locale|keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="uz.efir.muazzin.SettingsActivity"
+            android:name="SettingsActivity"
             android:configChanges="locale|keyboardHidden|orientation|screenSize" />
 
         <receiver android:name="islam.adhanalarm.receiver.StartNotificationReceiver">
@@ -38,8 +36,9 @@
         </receiver>
 
         <service android:name="islam.adhanalarm.service.StartNotificationService" />
+
         <service
-            android:name="uz.efir.muazzin.NotificationService"
+            android:name="NotificationService"
             android:enabled="true" />
 
         <receiver
