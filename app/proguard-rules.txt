@@ -1,0 +1,4 @@
+-repackageclasses 'android.support.v7'
+-keep class uz.efir.muazzin.SlidingTabLayout { *; }
+
+-dontwarn fi.**

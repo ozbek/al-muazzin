@@ -4,18 +4,34 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
 
+    lintOptions {
+        checkReleaseBuilds true
+        abortOnError false
+    }
+
     defaultConfig {
         applicationId "uz.efir.muazzin"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 4
         versionName "1.0.3"
+        resConfigs "ar", "de", "es", "fr", "in", "it", "ru", "tr", "uz"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(System.getenv("STORE_FILE"))
+            storePassword System.getenv("STORE_PASSWORD")
+            keyAlias System.getenv("KEY_ALIAS")
+            keyPassword System.getenv("KEY_PASSWORD")
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
         }
     }
 }
