@@ -1,10 +1,14 @@
 package uz.efir.muazzin;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -23,6 +27,7 @@ import islam.adhanalarm.util.LocaleManager;
 
 public class Muazzin extends AppCompatActivity {
     // private static final String TAG = Muazzin.class.getSimpleName();
+    private static final int REQUEST_ACCESS_FINE_LOCATION = 1001;
     private Preferences mPreferences;
 
     @Override
@@ -30,6 +35,13 @@ public class Muazzin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mPreferences = Preferences.getInstance(this);
         LocaleManager.getInstance(this, true);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_ACCESS_FINE_LOCATION);
+        }
 
         setContentView(R.layout.activity_muazzin);
 
@@ -42,10 +54,8 @@ public class Muazzin extends AppCompatActivity {
         MuazzinAdapter muazzinAdapter = new MuazzinAdapter(getApplicationContext(),
                 getSupportFragmentManager());
         ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        assert pager != null;
         pager.setAdapter(muazzinAdapter);
         final SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
-        assert indicator != null;
         indicator.setViewPager(pager);
     }
 
