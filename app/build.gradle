@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
 
+def keyProperties = new Properties()
+keyProperties.load(new FileInputStream(file(System.getProperty("user.home") + "/.signing/al-muazzin.properties")))
+
 android {
     compileSdkVersion 27
 
@@ -19,10 +22,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(System.getenv("STORE_FILE"))
-            storePassword System.getenv("STORE_PASSWORD")
-            keyAlias System.getenv("KEY_ALIAS")
-            keyPassword System.getenv("KEY_PASSWORD")
+            storeFile file(keyProperties["keystore.release.file"])
+            storePassword keyProperties["keystore.release.password"]
+            keyAlias keyProperties["keystore.release.alias"]
+            keyPassword keyProperties["keystore.release.alias.password"]
         }
     }
 
