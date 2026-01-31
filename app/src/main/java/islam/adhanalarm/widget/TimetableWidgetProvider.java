@@ -59,7 +59,7 @@ public class TimetableWidgetProvider extends AppWidgetProvider {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_timetable);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context,
-                    Muazzin.class), 0);
+                    Muazzin.class), PendingIntent.FLAG_IMMUTABLE);
             views.setOnClickPendingIntent(R.id.widget_timetable, pendingIntent);
 
             for (int j = 0; j < times.length; j++) {

@@ -7,14 +7,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import java.util.Calendar;
 
@@ -35,26 +36,22 @@ public class Muazzin extends AppCompatActivity {
         mPreferences = Preferences.getInstance(this);
         LocaleManager.getInstance(this, true);
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                    REQUEST_ACCESS_FINE_LOCATION);
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_FINE_LOCATION);
         }
 
         setContentView(R.layout.activity_muazzin);
 
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         assert toolbar != null;
         toolbar.setTitle(R.string.app_name);
         setSupportActionBar(toolbar);
 
         // Set up the ViewPager, attaching the adapter
-        MuazzinAdapter muazzinAdapter = new MuazzinAdapter(getApplicationContext(),
-                getSupportFragmentManager());
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        MuazzinAdapter muazzinAdapter = new MuazzinAdapter(getApplicationContext(), getSupportFragmentManager());
+        ViewPager pager = findViewById(R.id.pager);
         pager.setAdapter(muazzinAdapter);
-        final SlidingTabLayout indicator = (SlidingTabLayout) findViewById(R.id.indicator);
+        final SlidingTabLayout indicator = findViewById(R.id.indicator);
         indicator.setViewPager(pager);
     }
 
@@ -68,7 +65,7 @@ public class Muazzin extends AppCompatActivity {
             }
 
             if (mPreferences.isLocationSet()) {
-                TextView notes = (TextView) findViewById(R.id.notes);
+                TextView notes = findViewById(R.id.notes);
                 assert notes != null;
                 notes.setText(null);
             }
@@ -83,11 +80,11 @@ public class Muazzin extends AppCompatActivity {
         Utils.isRestartNeeded = false;
 
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP,
-                Calendar.getInstance().getTimeInMillis() + 300,
-                PendingIntent.getActivity(this, 0, getIntent(), PendingIntent.FLAG_ONE_SHOT
-                        | PendingIntent.FLAG_CANCEL_CURRENT));
-
+        am.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 300,
+                PendingIntent.getActivity(this, 0, getIntent(),
+                        PendingIntent.FLAG_ONE_SHOT
+                                | PendingIntent.FLAG_CANCEL_CURRENT
+                                | PendingIntent.FLAG_IMMUTABLE));
         finish();
     }
 
@@ -108,32 +105,27 @@ public class Muazzin extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         short time = Schedule.today(this).nextTimeIndex();
-        switch (item.getItemId()) {
-            case R.id.menu_location_calculation:
-                new CalculationSettingsDialog(this).show();
-                break;
-            case R.id.menu_previous:
-                time--;
-                if (time < CONSTANT.FAJR) {
-                    time = CONSTANT.ISHAA;
-                }
-                if (CONSTANT.SUNRISE == time && mPreferences.dontNotifySunrise()) {
-                    time = CONSTANT.FAJR;
-                }
-                NotificationService.notify(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
-                break;
-            case R.id.menu_next:
-                if (CONSTANT.SUNRISE == time && mPreferences.dontNotifySunrise()) {
-                    time = CONSTANT.DHUHR;
-                }
-                NotificationService.notify(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
-                break;
-            case R.id.menu_stop:
-                NotificationService.cancelAll(this);
-                break;
-            case R.id.menu_settings:
-                startActivity(new Intent(this, SettingsActivity.class));
-                break;
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_location_calculation) {
+            new CalculationSettingsDialog(this).show();
+        } else if (itemId == R.id.menu_previous) {
+            time--;
+            if (time < CONSTANT.FAJR) {
+                time = CONSTANT.ISHAA;
+            }
+            if (CONSTANT.SUNRISE == time && mPreferences.dontNotifySunrise()) {
+                time = CONSTANT.FAJR;
+            }
+            NotificationService.notify(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
+        } else if (itemId == R.id.menu_next) {
+            if (CONSTANT.SUNRISE == time && mPreferences.dontNotifySunrise()) {
+                time = CONSTANT.DHUHR;
+            }
+            NotificationService.notify(this, time, Schedule.today(this).getTimes()[time].getTimeInMillis());
+        } else if (itemId == R.id.menu_stop) {
+            NotificationService.cancelAll(this);
+        } else if (itemId == R.id.menu_settings) {
+            startActivity(new Intent(this, SettingsActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

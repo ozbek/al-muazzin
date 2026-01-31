@@ -49,7 +49,7 @@ public class NextNotificationWidgetProvider extends AppWidgetProvider {
                     R.layout.widget_next_notification);
 
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context,
-                    Muazzin.class), 0);
+                    Muazzin.class), PendingIntent.FLAG_IMMUTABLE);
             views.setOnClickPendingIntent(R.id.widget_next_notification, pendingIntent);
 
             views.setTextViewText(R.id.time_name, context.getString(times[nextTimeIndex]));
