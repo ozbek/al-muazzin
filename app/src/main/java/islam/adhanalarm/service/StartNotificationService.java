@@ -67,20 +67,13 @@ public class StartNotificationService extends Service {
                 StartNotificationReceiver.setNext(context);
             }
 
-//                Utils.updateWidgets(context);
-
             short timeIndex = intent.getShortExtra(CONSTANT.EXTRA_TIME_INDEX, (short) -1);
             if (timeIndex == -1) { // Got here from boot
                 Preferences preferences = Preferences.getInstance(context);
                 if (preferences.getBasmalaEnabled()) {
                     MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.bismillah);
                     mediaPlayer.setScreenOnWhilePlaying(true);
-                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            WakeLock.release();
-                        }
-                    });
+                    mediaPlayer.setOnCompletionListener(mp -> WakeLock.release());
                     mediaPlayer.start();
                 } else {
                     WakeLock.release();

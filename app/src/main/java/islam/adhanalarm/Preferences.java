@@ -166,7 +166,6 @@ public class Preferences {
                 if (Arrays.asList(CONSTANT.CALCULATION_METHOD_COUNTRY_CODES[i]).contains(country)) {
                     // TODO: Add country's default latitude/longitude coordinates
                     setCalculationMethodIndex(i);
-//                    Utils.updateWidgets(context);
                     break;
                 }
             }
@@ -181,7 +180,6 @@ public class Preferences {
 
             setLocation((float) currentLocation.getLatitude(),
                     (float) currentLocation.getLongitude());
-//            Utils.updateWidgets(context);
         }
     }
 

@@ -76,7 +76,6 @@ public class Muazzin extends AppCompatActivity {
      * Restarts the app to apply new settings changes
      */
     private void restartSelf() {
-//        Utils.updateWidgets(this);
         Utils.isRestartNeeded = false;
 
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
