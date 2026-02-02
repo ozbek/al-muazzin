@@ -1,7 +1,6 @@
 package uz.efir.muazzin;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.text.format.DateFormat;
@@ -87,11 +86,6 @@ public class PrayerTimesFragment extends Fragment {
             public void onChildViewRemoved(View parent, View child) {
             }
         });
-
-        final Intent alarmIntent = Utils.getDefaultAlarmsIntent(rootView.getContext());
-        if (alarmIntent != null) {
-            lv.setOnItemClickListener((parent, view, position, id) -> startActivity(alarmIntent));
-        }
 
         return rootView;
     }
