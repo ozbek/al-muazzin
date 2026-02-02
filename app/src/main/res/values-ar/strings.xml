@@ -60,6 +60,6 @@
     <string name="offset">أوفسيت</string>
     <string name="minutes">دقائق</string>
     <string name="language">اللغة</string>
-    <string name="anno_hegirae">هـ</string>
+    <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g></string>
     <string name="yes">نعم</string>
 </resources>

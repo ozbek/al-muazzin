@@ -3,15 +3,15 @@
     <string-array name="hijri_months">
         <item>Мухаррам</item>
         <item>Сафар</item>
-        <item>Рабии`у ль-авваль</item>
-        <item>Рабии`у с-саании</item>
-        <item>Джумаада ль-ууля</item>
-        <item>Джумаада ль-аахыр</item>
-        <item>Ра́джаб</item>
-        <item>Шаабан</item>
+        <item>Раби аль-авваль</item>
+        <item>Раби ас-сани</item>
+        <item>Джумада аль-уля</item>
+        <item>Джумада ас-сани</item>
+        <item>Раджаб</item>
+        <item>Шабан</item>
         <item>Рамадан</item>
         <item>Шавваль</item>
-        <item>Зуль-ка`да</item>
-        <item>Зульхиджа</item>
+        <item>Зу-ль-када</item>
+        <item>Зу-ль-хиджа</item>
     </string-array>
 </resources>

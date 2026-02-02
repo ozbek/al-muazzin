@@ -76,7 +76,7 @@ public class Schedule {
         if (addedDay) {
             hijriDate.addDays(-1); // Revert to the day independent of sunset
         }
-        return day + " " + month + ", " + year + " " + context.getResources().getString(R.string.anno_hegirae);
+        return context.getResources().getString(R.string.anno_hegirae, day, month, year);
     }
 
     public static Schedule today(Context context) {
@@ -103,7 +103,7 @@ public class Schedule {
     public static double getGMTOffset() {
         Calendar now = new GregorianCalendar();
         int gmtOffset = now.getTimeZone().getOffset(now.getTimeInMillis());
-        return gmtOffset / 3600000;
+        return gmtOffset / 3600000.0;
     }
 
     public static boolean isDaylightSavings() {

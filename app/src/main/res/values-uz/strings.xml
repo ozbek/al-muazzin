@@ -60,7 +60,7 @@
     <string name="offset">Вақт мувозанати</string>
     <string name="minutes">минут</string>
     <string name="language">Тил</string>
-    <string name="anno_hegirae">""</string>
+    <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g>, <xliff:g id="year">%3$s</xliff:g></string>
     <string name="did_you_pray"><xliff:g id="time_name">%1$s</xliff:g> намозини ўқидингизми?</string>
     <string name="yes">Ҳа</string>
     <string name="snooze">Кечиктириш</string>

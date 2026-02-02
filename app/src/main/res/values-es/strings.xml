@@ -52,4 +52,5 @@
     <string name="minutes">minutos</string>
     <string name="language">Idioma</string>
     <string name="yes">Sí</string>
+    <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g> AH</string>
 </resources>

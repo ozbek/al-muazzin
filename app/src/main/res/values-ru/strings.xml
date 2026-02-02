@@ -39,7 +39,7 @@
     <string name="daylight_savings">, Летнее время</string>
     <string name="lookup_gps">Авто (GPS)</string>
     <string name="system_time_zone">Часовой пояс</string>
-    <!--string name="gmt">GMT</string-->
+    <string name="gmt">ГСВ</string>
     <string name="save">Сохранить</string>
     <string name="reset">Сбросить</string>
     <string name="calculation">Расчет</string>
@@ -60,6 +60,6 @@
     <string name="offset">Офсет</string>
     <string name="minutes">минут</string>
     <string name="language">Язык</string>
-    <string name="anno_hegirae">Хиджры</string>
-    <string name="yes"> Да</string>
+    <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g> г.</string>
+    <string name="yes">Да</string>
 </resources>
