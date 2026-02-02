@@ -2,29 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/today"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:layout_margin="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ListView
         android:id="@+id/timetable"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:choiceMode="none" />
 
     <TextView
         android:id="@+id/notes"
         style="@android:style/TextAppearance.Small"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:layout_margin="5dp"
-        android:textIsSelectable="false" />
+        android:paddingTop="24dp" />
 
 </LinearLayout>

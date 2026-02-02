@@ -8,7 +8,6 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -52,15 +51,15 @@ public class PrayerTimesFragment extends Fragment {
             Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.tab_today, container, false);
-        mNotes = (TextView) rootView.findViewById(R.id.notes);
+        mNotes = rootView.findViewById(R.id.notes);
         try {
             Preferences.getInstance(getActivity()).initCalculationDefaults(getActivity());
         } catch (NullPointerException npe) {
             mNotes.setText(getString(R.string.location_not_set));
         }
-        mTodaysDate = (TextView) rootView.findViewById(R.id.today);
+        mTodaysDate = rootView.findViewById(R.id.today);
 
-        ListView lv = (ListView) rootView.findViewById(R.id.timetable);
+        ListView lv = rootView.findViewById(R.id.timetable);
         lv.setAdapter(mTimetableView);
         lv.setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
             // Set zebra stripes
@@ -71,9 +70,9 @@ public class PrayerTimesFragment extends Fragment {
                 TextView tv;
                 if (++numChildren % 2 == 0) {
                     child.setBackgroundResource(R.color.darker_gray);
-                    tv = (TextView) child.findViewById(R.id.time_name);
+                    tv = child.findViewById(R.id.time_name);
                     tv.setTextColor(0xff000000);
-                    tv = (TextView) child.findViewById(R.id.time);
+                    tv = child.findViewById(R.id.time);
                     tv.setTextColor(0xff000000);
                 } else {
                     child.setBackgroundResource(android.R.color.transparent);
@@ -91,12 +90,7 @@ public class PrayerTimesFragment extends Fragment {
 
         final Intent alarmIntent = Utils.getDefaultAlarmsIntent(rootView.getContext());
         if (alarmIntent != null) {
-            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    startActivity(alarmIntent);
-                }
-            });
+            lv.setOnItemClickListener((parent, view, position, id) -> startActivity(alarmIntent));
         }
 
         return rootView;
