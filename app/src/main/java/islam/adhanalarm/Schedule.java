@@ -2,12 +2,16 @@ package islam.adhanalarm;
 
 import android.content.Context;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import com.batoulapps.adhan.CalculationMethod;
+import com.batoulapps.adhan.Coordinates;
+import com.batoulapps.adhan.PrayerTimes;
+import com.batoulapps.adhan.data.DateComponents;
 
-import net.sourceforge.jitl.Jitl;
-import net.sourceforge.jitl.Method;
-import net.sourceforge.jitl.Prayer;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 import uz.efir.muazzin.R;
 import uz.efir.muazzin.Utils;
 
@@ -15,29 +19,41 @@ public class Schedule {
 
     private final GregorianCalendar[] schedule = new GregorianCalendar[7];
     private final boolean[] extremes = new boolean[7];
-    private final fi.joensuu.joyds1.calendar.Calendar hijriDate;
 
     private static Schedule today;
 
     public Schedule(Context context, GregorianCalendar day) {
         Preferences preferences = Preferences.getInstance(context);
-        Method method = CONSTANT.CALCULATION_METHODS[preferences.getCalculationMethodIndex()].copy();
-        method.setRound(CONSTANT.ROUNDING_METHODS[preferences.getRoundingMethodIndex()]);
+        CalculationMethod method = CONSTANT.CALCULATION_METHODS[preferences.getCalculationMethodIndex()];
 
-        net.sourceforge.jitl.astro.Location location = preferences.getJitlLocation();
-        Jitl jitl = new Jitl(location, method);
-        Prayer[] dayPrayers = jitl.getPrayerTimes(day).getPrayers();
-        Prayer[] allTimes = new Prayer[]{dayPrayers[0], dayPrayers[1], dayPrayers[2], dayPrayers[3], dayPrayers[4], dayPrayers[5], jitl.getNextDayFajr(day)};
+        float[] location = preferences.getLocation();
+        Coordinates coordinates = new Coordinates(location[0], location[1]);
 
-        for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
+        DateComponents dateComponents = new DateComponents(day.get(Calendar.YEAR),
+                day.get(Calendar.MONTH) + 1, day.get(Calendar.DAY_OF_MONTH));
+
+        PrayerTimes prayerTimes = new PrayerTimes(coordinates, dateComponents, method.getParameters());
+
+        Date[] allTimes = new Date[]{prayerTimes.fajr, prayerTimes.sunrise, prayerTimes.dhuhr, prayerTimes.asr, prayerTimes.maghrib, prayerTimes.isha};
+
+        for (short i = CONSTANT.FAJR; i < CONSTANT.NEXT_FAJR; i++) {
             // Set the times on the schedule
-            schedule[i] = new GregorianCalendar(day.get(Calendar.YEAR), day.get(Calendar.MONTH), day.get(Calendar.DAY_OF_MONTH), allTimes[i].getHour(), allTimes[i].getMinute(), allTimes[i].getSecond());
+            schedule[i] = new GregorianCalendar();
+            schedule[i].setTime(allTimes[i]);
             schedule[i].add(Calendar.MINUTE, preferences.getOffsetMinutes());
-            extremes[i] = allTimes[i].isExtreme();
+            extremes[i] = false; // Adhan library doesn't support extreme calculations
         }
-        schedule[CONSTANT.NEXT_FAJR].add(Calendar.DAY_OF_MONTH, 1/* next fajr is tomorrow */);
 
-        hijriDate = new fi.joensuu.joyds1.calendar.IslamicCalendar();
+        // Calculate next Fajr
+        GregorianCalendar nextDay = (GregorianCalendar) day.clone();
+        nextDay.add(Calendar.DAY_OF_MONTH, 1);
+        DateComponents nextDateComponents = new DateComponents(nextDay.get(Calendar.YEAR),
+                nextDay.get(Calendar.MONTH) + 1, nextDay.get(Calendar.DAY_OF_MONTH));
+        prayerTimes = new PrayerTimes(coordinates, nextDateComponents, method.getParameters());
+        schedule[CONSTANT.NEXT_FAJR] = new GregorianCalendar();
+        schedule[CONSTANT.NEXT_FAJR].setTime(prayerTimes.fajr);
+        schedule[CONSTANT.NEXT_FAJR].add(Calendar.MINUTE, preferences.getOffsetMinutes());
+        extremes[CONSTANT.NEXT_FAJR] = false;
     }
 
     public GregorianCalendar[] getTimes() {
@@ -64,20 +80,20 @@ public class Schedule {
         return now.after(schedule[CONSTANT.MAGHRIB]);
     }
 
-    public String hijriDateToString(Context context) {
-        boolean addedDay = false;
-        if (currentlyAfterSunset()) {
-            addedDay = true;
-            hijriDate.addDays(1);
-        }
-        String day = String.valueOf(hijriDate.getDay());
-        String month = context.getResources().getStringArray(R.array.hijri_months)[hijriDate.getMonth() - 1];
-        String year = String.valueOf(hijriDate.getYear());
-        if (addedDay) {
-            hijriDate.addDays(-1); // Revert to the day independent of sunset
-        }
-        return context.getResources().getString(R.string.anno_hegirae, day, month, year);
-    }
+//    public String hijriDateToString(Context context) {
+//        boolean addedDay = false;
+//        if (currentlyAfterSunset()) {
+//            addedDay = true;
+//            hijriDate.addDays(1);
+//        }
+//        String day = String.valueOf(hijriDate.getDay());
+//        String month = context.getResources().getStringArray(R.array.hijri_months)[hijriDate.getMonth() - 1];
+//        String year = String.valueOf(hijriDate.getYear());
+//        if (addedDay) {
+//            hijriDate.addDays(-1); // Revert to the day independent of sunset
+//        }
+//        return context.getResources().getString(R.string.anno_hegirae, day, month, year);
+//    }
 
     public static Schedule today(Context context) {
         GregorianCalendar now = new GregorianCalendar();
@@ -103,7 +119,7 @@ public class Schedule {
     public static double getGMTOffset() {
         Calendar now = new GregorianCalendar();
         int gmtOffset = now.getTimeZone().getOffset(now.getTimeInMillis());
-        return gmtOffset / 3600000.0;
+        return (double) gmtOffset / 3600000.0;
     }
 
     public static boolean isDaylightSavings() {

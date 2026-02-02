@@ -58,5 +58,5 @@ android {
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.appcompat:appcompat:1.6+'
-    implementation files('libs/hvjavacal.jar')
+    implementation 'com.batoulapps.adhan:adhan:1.2.1'
 }

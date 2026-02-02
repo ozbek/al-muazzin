@@ -101,7 +101,7 @@ public class PrayerTimesFragment extends Fragment {
         LocaleManager localeManager = LocaleManager.getInstance(context, false);
         StartNotificationReceiver.setNext(context);
         Schedule today = Schedule.today(context);
-        mTodaysDate.setText(today.hijriDateToString(context));
+//        mTodaysDate.setText(today.hijriDateToString(context));
         GregorianCalendar[] schedule = today.getTimes();
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a",
                 localeManager.getLocale(context));

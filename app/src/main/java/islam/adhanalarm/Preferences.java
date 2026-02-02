@@ -1,9 +1,5 @@
 package islam.adhanalarm;
 
-import static net.sourceforge.jitl.astro.Location.DEFAULT_PRESSURE;
-import static net.sourceforge.jitl.astro.Location.DEFAULT_SEA_LEVEL;
-import static net.sourceforge.jitl.astro.Location.DEFAULT_TEMPERATURE;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.location.Criteria;
@@ -28,11 +24,7 @@ public class Preferences {
     private static final String KEY_NOTIFICATION_CUSTOM_FILE = "notification_custom_file_";
     private static final String KEY_LATITUDE = "location_latitude";
     private static final String KEY_LONGITUDE = "location_longitude";
-    private static final String KEY_ALTITUDE = "location_altitude";
-    private static final String KEY_PRESSURE = "location_pressure";
-    private static final String KEY_TEMPERATURE = "location_temperature";
     private static final String KEY_OFFSET_MINUTES = "offset_minutes";
-    private static final String KEY_ROUNDING_METHOD_INDEX = "rounding_method_index";
     private static final String KEY_LOCALE = "key_locale";
 
     private final SharedPreferences mSharedPreferences;
@@ -119,36 +111,6 @@ public class Preferences {
         editor.apply();
     }
 
-    /**
-     * @return float[0] = altitude; float[1] = pressure; float[2] = temperature;
-     */
-    public float[] getApt() {
-        float[] apt = new float[3];
-        apt[0] = mSharedPreferences.getFloat(KEY_ALTITUDE, (float) DEFAULT_SEA_LEVEL);
-        apt[1] = mSharedPreferences.getFloat(KEY_PRESSURE, (float) DEFAULT_PRESSURE);
-        apt[2] = mSharedPreferences.getFloat(KEY_TEMPERATURE, (float) DEFAULT_TEMPERATURE);
-        return apt;
-    }
-
-    public void setApt(float altitude, float pressure, float temperature) {
-        final SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putFloat(KEY_ALTITUDE, altitude);
-        editor.putFloat(KEY_PRESSURE, pressure);
-        editor.putFloat(KEY_TEMPERATURE, temperature);
-        editor.apply();
-    }
-
-    public int getRoundingMethodIndex() {
-        return mSharedPreferences
-                .getInt(KEY_ROUNDING_METHOD_INDEX, CONSTANT.DEFAULT_ROUNDING_INDEX);
-    }
-
-    public void setRoundingMethodIndex(int index) {
-        final SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putInt(KEY_ROUNDING_METHOD_INDEX, index);
-        editor.apply();
-    }
-
     public int getOffsetMinutes() {
         return mSharedPreferences.getInt(KEY_OFFSET_MINUTES, 0);
     }
@@ -202,17 +164,5 @@ public class Preferences {
         } catch (IllegalArgumentException iae) {
             return null;
         }
-    }
-
-    public net.sourceforge.jitl.astro.Location getJitlLocation() {
-        final float[] latLong = getLocation();
-        net.sourceforge.jitl.astro.Location location = new net.sourceforge.jitl.astro.Location(
-                latLong[0], latLong[1], Schedule.getGMTOffset(), 0);
-        final float[] apt = getApt();
-        location.setSeaLevel(apt[0]);
-        location.setPressure(apt[1]);
-        location.setTemperature(apt[2]);
-
-        return location;
     }
 }
