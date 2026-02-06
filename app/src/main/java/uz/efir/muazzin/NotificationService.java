@@ -1,14 +1,17 @@
 package uz.efir.muazzin;
 
-import android.app.IntentService;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import islam.adhanalarm.CONSTANT;
@@ -16,7 +19,7 @@ import islam.adhanalarm.Preferences;
 import islam.adhanalarm.WakeLock;
 import islam.adhanalarm.util.LocaleManager;
 
-public class NotificationService extends IntentService {
+public class NotificationService extends Service {
     private static final String TAG = NotificationService.class.getSimpleName();
 
     private static final String ACTION_DONE = "uz.efir.muazzin.ACTION_DONE";
@@ -26,12 +29,10 @@ public class NotificationService extends IntentService {
     private static final String ACTION_SNOOZE = "uz.efir.muazzin.ACTION_SNOOZE";
 
     private static final String EXTRA_NOTIFICATION_ID = "uz.efir.muazzin.EXTRA_NOTIFICATION_ID";
+    private static final String CHANNEL_ID = "uz.efir.muazzin.NOTIFICATION_CHANNEL";
 
     private static MediaPlayer sMediaPlayer;
-
-    public NotificationService() {
-        super("NotificationService");
-    }
+    private static boolean sIsPlaying = false;
 
     public static void notify(Context context, int timeIndex, long actualTime) {
         if (timeIndex == CONSTANT.NEXT_FAJR) {
@@ -45,60 +46,106 @@ public class NotificationService extends IntentService {
         }
         LocaleManager.getInstance(context, true);
 
-        if (notificationMethod >= CONSTANT.NOTIFICATION_PLAY) {
-            int alarm = R.raw.beep;
-            if (timeIndex <= CONSTANT.ISHAA && timeIndex >= CONSTANT.DHUHR) {
-                alarm = R.raw.adhan;
-            } else if (timeIndex == CONSTANT.FAJR) {
-                alarm = R.raw.adhan_fajr;
-            }
-            sMediaPlayer = MediaPlayer.create(context, alarm);
-            sMediaPlayer.setScreenOnWhilePlaying(true);
-            sMediaPlayer.setOnCompletionListener(mp -> WakeLock.release());
-            try {
-                sMediaPlayer.start();
-            } catch (IllegalStateException ise) {
-                // Nothing to do here
-            }
-        }
-
         Intent intent = new Intent(context, NotificationService.class);
         intent.setAction(ACTION_NOTIFY);
         intent.putExtra(CONSTANT.EXTRA_TIME_INDEX, timeIndex);
         intent.putExtra(CONSTANT.EXTRA_ACTUAL_TIME, actualTime);
-        context.startService(intent);
+        context.startForegroundService(intent);
     }
 
     public static void cancelAll(Context context) {
-        if (sMediaPlayer != null && sMediaPlayer.isPlaying()) {
-            sMediaPlayer.stop();
+        if (sMediaPlayer != null) {
+            if (sMediaPlayer.isPlaying()) {
+                sMediaPlayer.stop();
+            }
+            sMediaPlayer.release();
+            sMediaPlayer = null;
         }
+        sIsPlaying = false;
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         notificationManager.cancelAll();
         WakeLock.release();
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
             final String action = intent.getAction();
+            int timeIndex = intent.getIntExtra(CONSTANT.EXTRA_TIME_INDEX, -1);
+            long actualTime = intent.getLongExtra(CONSTANT.EXTRA_ACTUAL_TIME, -1);
+            createNotificationChannel();
+
             if (ACTION_NOTIFY.equals(action)) {
-                issueNotification(intent.getIntExtra(CONSTANT.EXTRA_TIME_INDEX, -1), intent.getLongExtra(CONSTANT.EXTRA_ACTUAL_TIME, -1));
+                playAdhan(timeIndex, actualTime);
             } else if (ACTION_SNOOZE.equals(action)) {
                 // TODO: add snooze logic
                 cancelNotification(intent);
             } else if (ACTION_DONE.equals(action)) {
                 cancelNotification(intent);
             } else if (ACTION_STOP.equals(action)) {
-                if (sMediaPlayer != null && sMediaPlayer.isPlaying()) {
-                    sMediaPlayer.stop();
-                }
-                issueNotification(intent.getIntExtra(CONSTANT.EXTRA_TIME_INDEX, -1), intent.getLongExtra(CONSTANT.EXTRA_ACTUAL_TIME, -1));
+                stopAdhan();
+                issueNotification(timeIndex, actualTime);
             } else if (ACTION_DELETE.equals(action)) {
-                if (sMediaPlayer != null && sMediaPlayer.isPlaying()) {
-                    sMediaPlayer.stop();
-                }
+                stopAdhan();
             }
+        }
+        return START_NOT_STICKY;
+    }
+
+    private void stopAdhan() {
+        if (sMediaPlayer != null) {
+            if (sMediaPlayer.isPlaying()) {
+                sMediaPlayer.stop();
+            }
+            sMediaPlayer.release();
+            sMediaPlayer = null;
+        }
+        sIsPlaying = false;
+    }
+
+    private void createNotificationChannel() {
+        CharSequence name = getString(R.string.app_name);
+        String description = getString(R.string.notification);
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+        channel.setDescription(description);
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
+    }
+
+    private void playAdhan(int timeIndex, long actualTime) {
+        Preferences preferences = Preferences.getInstance(this);
+        final int notificationMethod = preferences.getNotificationMethod(timeIndex);
+        if (notificationMethod < CONSTANT.NOTIFICATION_PLAY) {
+            sIsPlaying = false;
+            issueNotification(timeIndex, actualTime);
+            return;
+        }
+
+        sIsPlaying = true;
+        issueNotification(timeIndex, actualTime);
+
+        int alarm = R.raw.beep;
+        if (timeIndex <= CONSTANT.ISHAA && timeIndex >= CONSTANT.DHUHR) {
+            alarm = R.raw.adhan;
+        } else if (timeIndex == CONSTANT.FAJR) {
+            alarm = R.raw.adhan_fajr;
+        }
+        sMediaPlayer = MediaPlayer.create(this, alarm);
+        sMediaPlayer.setScreenOnWhilePlaying(true);
+        sMediaPlayer.setOnCompletionListener(mp -> {
+            sIsPlaying = false;
+            sMediaPlayer.release();
+            sMediaPlayer = null;
+            issueNotification(timeIndex, actualTime);
+            stopForeground(false);
+            WakeLock.release();
+        });
+        try {
+            sMediaPlayer.start();
+        } catch (IllegalStateException ise) {
+            sIsPlaying = false;
+            issueNotification(timeIndex, actualTime);
         }
     }
 
@@ -110,6 +157,7 @@ public class NotificationService extends IntentService {
         } else {
             notificationManager.cancel(notificationId);
         }
+        stopForeground(true);
         WakeLock.release();
     }
 
@@ -120,9 +168,9 @@ public class NotificationService extends IntentService {
         }
 
         String question = getString(R.string.did_you_pray, getString(CONSTANT.TIME_NAMES[timeIndex]));
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this).setLocalOnly(true).setPriority(NotificationCompat.PRIORITY_MAX).setCategory(NotificationCompat.CATEGORY_ALARM).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setSmallIcon(R.drawable.ic_launcher).setWhen(actualTime).setContentTitle(getString(R.string.time_for, getString(CONSTANT.TIME_NAMES[timeIndex])));
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID).setLocalOnly(true).setPriority(NotificationCompat.PRIORITY_MAX).setCategory(NotificationCompat.CATEGORY_ALARM).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setSmallIcon(R.drawable.ic_launcher).setWhen(actualTime).setContentTitle(getString(R.string.time_for, getString(CONSTANT.TIME_NAMES[timeIndex])));
 
-        if (sMediaPlayer != null && sMediaPlayer.isPlaying()) {
+        if (sIsPlaying) {
             Intent stopIntent = new Intent(this, NotificationService.class).setAction(ACTION_STOP).putExtra(EXTRA_NOTIFICATION_ID, timeIndex).putExtra(CONSTANT.EXTRA_TIME_INDEX, timeIndex).putExtra(CONSTANT.EXTRA_ACTUAL_TIME, actualTime);
             PendingIntent piStop = PendingIntent.getService(this, 0, stopIntent, PendingIntent.FLAG_IMMUTABLE);
 
@@ -154,7 +202,13 @@ public class NotificationService extends IntentService {
 
         notificationBuilder.setContentIntent(resultPendingIntent);
 
-        NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        nm.notify(timeIndex, notificationBuilder.build());
+        Notification notification = notificationBuilder.build();
+        startForeground(timeIndex, notification);
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 }

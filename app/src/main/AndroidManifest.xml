@@ -14,6 +14,8 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
 
     <application
         android:allowBackup="false"
@@ -37,7 +39,7 @@
 
         <receiver
             android:name="islam.adhanalarm.receiver.StartNotificationReceiver"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
@@ -47,6 +49,7 @@
 
         <service
             android:name="NotificationService"
-            android:enabled="true" />
+            android:enabled="true"
+            android:foregroundServiceType="mediaPlayback" />
     </application>
 </manifest>
