@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "uz.efir.muazzin"
-        minSdkVersion 15
+        minSdkVersion 26
         targetSdkVersion 36
         versionCode 4
         versionName "1.0.3"
