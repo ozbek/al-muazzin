@@ -13,14 +13,11 @@ import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 import uz.efir.muazzin.R;
-import uz.efir.muazzin.Utils;
 
 public class Schedule {
 
     private final GregorianCalendar[] schedule = new GregorianCalendar[7];
     private final boolean[] extremes = new boolean[7];
-
-    private static Schedule today;
 
     public Schedule(Context context, GregorianCalendar day) {
         Preferences preferences = Preferences.getInstance(context);
@@ -96,24 +93,7 @@ public class Schedule {
 //    }
 
     public static Schedule today(Context context) {
-        GregorianCalendar now = new GregorianCalendar();
-        if (today == null) {
-            today = new Schedule(context, now);
-        } else {
-            GregorianCalendar fajr = today.getTimes()[CONSTANT.FAJR];
-            if (fajr.get(Calendar.YEAR) != now.get(Calendar.YEAR)
-                    || fajr.get(Calendar.MONTH) != now.get(Calendar.MONTH)
-                    || fajr.get(Calendar.DAY_OF_MONTH) != now.get(Calendar.DAY_OF_MONTH)) {
-                today = new Schedule(context, now);
-            }
-        }
-        return today;
-    }
-
-    public static void setSettingsDirty() {
-        // Force re-instantiation of new today
-        today = null;
-        Utils.isRestartNeeded = true;
+        return new Schedule(context, new GregorianCalendar());
     }
 
     public static double getGMTOffset() {

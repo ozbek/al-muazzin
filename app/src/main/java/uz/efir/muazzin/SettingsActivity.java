@@ -1,49 +1,88 @@
 package uz.efir.muazzin;
 
-
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceChangeListener;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
-import androidx.appcompat.app.ActionBar;
+import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.Spinner;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.view.MenuItem;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.TimeZone;
+import java.util.ArrayList;
+import java.util.Arrays;
 
+import islam.adhanalarm.CONSTANT;
 import islam.adhanalarm.Preferences;
-import islam.adhanalarm.Schedule;
-import islam.adhanalarm.dialog.AdvancedSettingsDialog;
-import islam.adhanalarm.dialog.NotificationSettingsDialog;
-import islam.adhanalarm.util.LocaleManager;
 
 public class SettingsActivity extends AppCompatActivity {
+    private CheckBox mBismillahOnBootUp;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        final Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.settings);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.notification);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+        final Preferences preferences = Preferences.getInstance(this);
+        final int[] notificationIds = new int[]{
+                R.id.notification_fajr,
+                R.id.notification_sunrise,
+                R.id.notification_dhuhr,
+                R.id.notification_asr,
+                R.id.notification_maghrib,
+                R.id.notification_ishaa
+        };
+        for (short i = CONSTANT.FAJR; i < CONSTANT.NEXT_FAJR; i++) {
+            ArrayList<String> notificationMethods = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.notification_methods)));
+
+            if (i == CONSTANT.SUNRISE) {
+                notificationMethods.remove(getString(R.string.adhan));
+            } else {
+                notificationMethods.remove(getString(R.string.beep));
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, notificationMethods);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            Spinner notification = findViewById(notificationIds[i]);
+            notification.setAdapter(adapter);
+
+            int savedPosition = preferences.getNotificationMethod(i);
+            if (savedPosition >= adapter.getCount()) {
+                savedPosition = (i == CONSTANT.SUNRISE ? 0 : 1);
+                preferences.setNotificationMethod(i, savedPosition);
+            }
+            notification.setSelection(savedPosition);
         }
 
-        getFragmentManager().beginTransaction()
-                .replace(R.id.content, new SettingsFragment())
-                .commit();
+        mBismillahOnBootUp = findViewById(R.id.bismillah_on_boot_up);
+        mBismillahOnBootUp.setChecked(preferences.getBasmalaEnabled());
+
+        Button saveSettings = findViewById(R.id.save_settings);
+        saveSettings.setOnClickListener(v -> {
+            Spinner spinner;
+            for (short i = CONSTANT.FAJR; i < CONSTANT.NEXT_FAJR; i++) {
+                spinner = findViewById(notificationIds[i]);
+                preferences.setNotificationMethod(i, spinner.getSelectedItemPosition());
+            }
+            preferences.setBasmalaEnabled(mBismillahOnBootUp.isChecked());
+            finish();
+        });
+
+        Button resetSettings = findViewById(R.id.reset_settings);
+        resetSettings.setOnClickListener(v -> {
+            Spinner spinner;
+            for (short i = CONSTANT.FAJR; i < CONSTANT.NEXT_FAJR; i++) {
+                spinner = findViewById(notificationIds[i]);
+                spinner.setSelection(i == CONSTANT.SUNRISE ? 0 : 1);
+            }
+            mBismillahOnBootUp.setChecked(false);
+        });
     }
 
     @Override
@@ -53,72 +92,5 @@ public class SettingsActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public static class SettingsFragment extends PreferenceFragment
-            implements OnPreferenceChangeListener {
-        private static LocaleManager sLocaleManager;
-
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            Activity activity = getActivity();
-            sLocaleManager = LocaleManager.getInstance(activity, false);
-
-            addPreferencesFromResource(R.xml.settings);
-            PreferenceScreen root = getPreferenceScreen();
-            // System time zone
-            Preference timezonePref = root.findPreference("key_time_zone");
-            timezonePref.setSummary(getGmtOffSet(activity));
-
-            // Language settings
-            ListPreference languagePref = (ListPreference) root.findPreference("key_locale");
-            languagePref.setEntryValues(LocaleManager.LOCALES);
-            languagePref.setValueIndex(sLocaleManager.getLanguageIndex());
-            languagePref.setSummary(languagePref.getEntry());
-            languagePref.setOnPreferenceChangeListener(this);
-        }
-
-        @Override
-        public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-            final String key = preference.getKey();
-            if ("key_notification".equals(key)) {
-                new NotificationSettingsDialog(getActivity()).show();
-                return false;
-            } else if ("key_advanced".equals(key)) {
-                new AdvancedSettingsDialog(getActivity()).show();
-                return false;
-            }
-            return super.onPreferenceTreeClick(preferenceScreen, preference);
-        }
-
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object newValue) {
-            if ("key_locale".equals(preference.getKey())) {
-                Activity activity = getActivity();
-                Preferences preferences = Preferences.getInstance(activity);
-                preferences.setLocale(newValue.toString());
-                Utils.isRestartNeeded = true;
-                activity.finish();
-            }
-
-            return false;
-        }
-
-        private String getGmtOffSet(Context context) {
-            DateFormat dateFormat = new SimpleDateFormat("Z", sLocaleManager.getLocale(context));
-            Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"),
-                    sLocaleManager.getLocale(context));
-
-            StringBuilder timeZone = new StringBuilder(getString(R.string.gmt));
-            timeZone.append(dateFormat.format(calendar.getTime()));
-            timeZone.append(" (");
-            timeZone.append(new GregorianCalendar().getTimeZone().getDisplayName());
-            if (Schedule.isDaylightSavings()) {
-                timeZone.append(getString(R.string.daylight_savings));
-            }
-            timeZone.append(")");
-            return timeZone.toString();
-        }
     }
 }

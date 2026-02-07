@@ -1,9 +1,6 @@
 package uz.efir.muazzin;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -17,16 +14,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
-import java.util.Calendar;
-
 import islam.adhanalarm.CONSTANT;
 import islam.adhanalarm.Preferences;
 import islam.adhanalarm.Schedule;
-import islam.adhanalarm.dialog.CalculationSettingsDialog;
-import islam.adhanalarm.util.LocaleManager;
 
 public class Muazzin extends AppCompatActivity {
-    // private static final String TAG = Muazzin.class.getSimpleName();
     private static final int REQUEST_ACCESS_FINE_LOCATION = 1001;
     private Preferences mPreferences;
 
@@ -34,7 +26,6 @@ public class Muazzin extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPreferences = Preferences.getInstance(this);
-        LocaleManager.getInstance(this, true);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_ACCESS_FINE_LOCATION);
@@ -49,42 +40,22 @@ public class Muazzin extends AppCompatActivity {
 
         // Set up the ViewPager, attaching the adapter
         MuazzinAdapter muazzinAdapter = new MuazzinAdapter(getApplicationContext(), getSupportFragmentManager());
-        ViewPager pager = findViewById(R.id.pager);
-        pager.setAdapter(muazzinAdapter);
+        ViewPager viewPager = findViewById(R.id.pager);
+        viewPager.setAdapter(muazzinAdapter);
         final SlidingTabLayout indicator = findViewById(R.id.indicator);
-        indicator.setViewPager(pager);
+        indicator.setViewPager(viewPager);
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            if (Utils.isRestartNeeded) {
-                restartSelf();
-                return;
-            }
-
             if (mPreferences.isLocationSet()) {
                 TextView notes = findViewById(R.id.notes);
                 assert notes != null;
                 notes.setText(null);
             }
         }
-    }
-
-    /**
-     * Restarts the app to apply new settings changes
-     */
-    private void restartSelf() {
-        Utils.isRestartNeeded = false;
-
-        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        am.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 300,
-                PendingIntent.getActivity(this, 0, getIntent(),
-                        PendingIntent.FLAG_ONE_SHOT
-                                | PendingIntent.FLAG_CANCEL_CURRENT
-                                | PendingIntent.FLAG_IMMUTABLE));
-        finish();
     }
 
     @Override
@@ -127,21 +98,5 @@ public class Muazzin extends AppCompatActivity {
             startActivity(new Intent(this, SettingsActivity.class));
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (Utils.isRestartNeeded) {
-            restartSelf();
-            return;
-        }
-        Utils.setIsForeground(true);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        Utils.setIsForeground(false);
     }
 }

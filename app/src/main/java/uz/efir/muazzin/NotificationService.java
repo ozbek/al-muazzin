@@ -17,7 +17,6 @@ import androidx.core.app.NotificationCompat;
 import islam.adhanalarm.CONSTANT;
 import islam.adhanalarm.Preferences;
 import islam.adhanalarm.WakeLock;
-import islam.adhanalarm.util.LocaleManager;
 
 public class NotificationService extends Service {
     private static final String TAG = NotificationService.class.getSimpleName();
@@ -44,7 +43,6 @@ public class NotificationService extends Service {
             WakeLock.release();
             return;
         }
-        LocaleManager.getInstance(context, true);
 
         Intent intent = new Intent(context, NotificationService.class);
         intent.setAction(ACTION_NOTIFY);

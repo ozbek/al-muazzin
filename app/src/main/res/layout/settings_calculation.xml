@@ -19,23 +19,33 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <TextView android:text="@string/latitude"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="fill_vertical" />
+                    android:gravity="fill_vertical"
+                    android:text="@string/latitude" />
 
-                <TextView android:text="@string/longitude"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="fill_vertical" />
+                    android:gravity="fill_vertical"
+                    android:text="@string/longitude" />
 
-                <TextView android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/calculation"
                     android:layout_weight="1"
-                    android:gravity="fill_vertical" />
+                    android:gravity="fill_vertical"
+                    android:text="@string/calculation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="fill_vertical"
+                    android:text="@string/offset" />
             </LinearLayout>
 
             <LinearLayout
@@ -48,17 +58,19 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <LinearLayout android:orientation="vertical"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1">
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <EditText android:id="@+id/latitude"
+                            <EditText
+                                android:id="@+id/latitude"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberSigned|numberDecimal"
@@ -70,7 +82,8 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <EditText android:id="@+id/longitude"
+                            <EditText
+                                android:id="@+id/longitude"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="numberSigned|numberDecimal"
@@ -95,8 +108,37 @@
                     android:layout_height="wrap_content"
                     android:drawSelectorOnTop="true" />
 
+                <EditText
+                    android:id="@+id/offset_minutes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="numberSigned" />
+
             </LinearLayout>
         </LinearLayout>
-        <include layout="@layout/buttons_save_reset" />
+
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/reset_settings"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/reset" />
+
+            <Button
+                android:id="@+id/save_settings"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/save" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

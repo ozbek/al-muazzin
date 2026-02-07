@@ -9,11 +9,8 @@ import android.location.LocationManager;
 import java.util.Arrays;
 import java.util.Locale;
 
-import islam.adhanalarm.util.LocaleManager;
-
 /**
  * Helper class to store and retrieve user settings to/from shared preferences
- * file TODO: add API documentation
  */
 public class Preferences {
 
@@ -21,11 +18,9 @@ public class Preferences {
     private static final String KEY_BASMALA = "key_bismillah_on_boot_up";
     private static final String KEY_CALCULATION_METHOD_INDEX = "calculation_method_index";
     private static final String KEY_NOTIFICATION_METHOD = "notification_method_";
-    private static final String KEY_NOTIFICATION_CUSTOM_FILE = "notification_custom_file_";
     private static final String KEY_LATITUDE = "location_latitude";
     private static final String KEY_LONGITUDE = "location_longitude";
     private static final String KEY_OFFSET_MINUTES = "offset_minutes";
-    private static final String KEY_LOCALE = "key_locale";
 
     private final SharedPreferences mSharedPreferences;
     private static Preferences sPreferences;
@@ -47,13 +42,9 @@ public class Preferences {
         return mSharedPreferences.getBoolean(KEY_BASMALA, false);
     }
 
-    public String getLocale() {
-        return mSharedPreferences.getString(KEY_LOCALE, LocaleManager.LOCALES[0]);
-    }
-
-    public void setLocale(String newLocale) {
+    public void setBasmalaEnabled(boolean enabled) {
         final SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(KEY_LOCALE, newLocale);
+        editor.putBoolean(KEY_BASMALA, enabled);
         editor.apply();
     }
 
@@ -66,17 +57,6 @@ public class Preferences {
     public void setNotificationMethod(short time, int method) {
         final SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putInt(KEY_NOTIFICATION_METHOD.concat(Short.toString(time)), method);
-        editor.apply();
-    }
-
-    public String getCustomFilePath(short time) {
-        return mSharedPreferences.getString(
-                KEY_NOTIFICATION_CUSTOM_FILE.concat(Short.toString(time)), "");
-    }
-
-    public void setCustomFilePath(String newPath) {
-        final SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString(KEY_NOTIFICATION_CUSTOM_FILE, newPath);
         editor.apply();
     }
 

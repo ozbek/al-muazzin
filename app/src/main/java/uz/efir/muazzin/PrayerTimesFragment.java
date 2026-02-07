@@ -1,53 +1,53 @@
 package uz.efir.muazzin;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Locale;
 
 import islam.adhanalarm.CONSTANT;
 import islam.adhanalarm.Preferences;
 import islam.adhanalarm.Schedule;
 import islam.adhanalarm.receiver.StartNotificationReceiver;
-import islam.adhanalarm.util.LocaleManager;
 
-/**
- * Prayer times fragment that displays time table for the day's prayer
- * times. In the future, we may add some extra days...
- */
 public class PrayerTimesFragment extends Fragment {
     private final ArrayList<HashMap<String, String>> mTimeTable = new ArrayList<>(7);
-    private SimpleAdapter mTimetableView;
+    private PrayerTimesAdapter mTimetableView;
     private TextView mNotes;
-    private TextView mTodaysDate;
+
+    private final BroadcastReceiver mUpdateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            loadPrayerTimetable();
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
-            HashMap<String, String> map = new HashMap<>();
-            map.put("time_name", getString(CONSTANT.TIME_NAMES[i]));
-            mTimeTable.add(i, map);
-        }
-        mTimetableView = new SimpleAdapter(getActivity(), mTimeTable, R.layout.timetable_row,
-                new String[] { "time_name", "time" }, new int[] { R.id.time_name, R.id.time });
+        mTimetableView = new PrayerTimesAdapter(getActivity(), mTimeTable);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
 
         View rootView = inflater.inflate(R.layout.tab_today, container, false);
         mNotes = rootView.findViewById(R.id.notes);
@@ -56,36 +56,9 @@ public class PrayerTimesFragment extends Fragment {
         } catch (NullPointerException npe) {
             mNotes.setText(getString(R.string.location_not_set));
         }
-        mTodaysDate = rootView.findViewById(R.id.today);
 
         ListView lv = rootView.findViewById(R.id.timetable);
         lv.setAdapter(mTimetableView);
-        lv.setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
-            // Set zebra stripes
-            private int numChildren = 0;
-
-            @Override
-            public void onChildViewAdded(View parent, View child) {
-                TextView tv;
-                if (++numChildren % 2 == 0) {
-                    child.setBackgroundResource(R.color.darker_gray);
-                    tv = child.findViewById(R.id.time_name);
-                    tv.setTextColor(0xff000000);
-                    tv = child.findViewById(R.id.time);
-                    tv.setTextColor(0xff000000);
-                } else {
-                    child.setBackgroundResource(android.R.color.transparent);
-                }
-                if (numChildren > CONSTANT.NEXT_FAJR) {
-                    // Reached the last row, reset for next time
-                    numChildren = 0;
-                }
-            }
-
-            @Override
-            public void onChildViewRemoved(View parent, View child) {
-            }
-        });
 
         return rootView;
     }
@@ -93,38 +66,107 @@ public class PrayerTimesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        updateTodaysTimetable();
+        loadPrayerTimetable();
+        ContextCompat.registerReceiver(requireActivity(), mUpdateReceiver,
+                new IntentFilter(Utils.ACTION_UPDATE_UI), ContextCompat.RECEIVER_NOT_EXPORTED);
     }
 
-    private void updateTodaysTimetable() {
+    @Override
+    public void onPause() {
+        super.onPause();
+        requireActivity().unregisterReceiver(mUpdateReceiver);
+    }
+
+    private void loadPrayerTimetable() {
         Context context = getActivity();
-        LocaleManager localeManager = LocaleManager.getInstance(context, false);
+        if (context == null) {
+            return;
+        }
         StartNotificationReceiver.setNext(context);
         Schedule today = Schedule.today(context);
 //        mTodaysDate.setText(today.hijriDateToString(context));
         GregorianCalendar[] schedule = today.getTimes();
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a",
-                localeManager.getLocale(context));
+        SimpleDateFormat timeFormat;
         if (DateFormat.is24HourFormat(context)) {
-            timeFormat = new SimpleDateFormat("HH:mm ", localeManager.getLocale(context));
+            timeFormat = new SimpleDateFormat("HH:mm ", Locale.getDefault());
+        } else {
+            timeFormat = new SimpleDateFormat("hh:mm a", Locale.getDefault());
         }
 
+        mTimeTable.clear();
         for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
+            HashMap<String, String> map = new HashMap<>();
+            map.put("time_name", getString(CONSTANT.TIME_NAMES[i]));
             String fullTime = timeFormat.format(schedule[i].getTime());
-            mTimeTable.get(i)
-                    .put("time", today.isExtreme(i) ? fullTime.concat(" *") : fullTime);
+            map.put("time", today.isExtreme(i) ? fullTime.concat(" *") : fullTime);
+            mTimeTable.add(map);
+
             if (today.isExtreme(i)) {
-                // FIXME: this is getting cleared if
-                // Preferences.isLocationSet() is true
                 mNotes.setText(R.string.extreme);
             }
         }
 
-        final short next = today.nextTimeIndex();
-        mTimeTable.get(next).put(
-                "time_name",
-                getString(R.string.next_time_marker).concat(
-                        getString(CONSTANT.TIME_NAMES[next])));
+        mTimetableView.setNextPrayerIndex(today.nextTimeIndex());
         mTimetableView.notifyDataSetChanged();
+    }
+
+    private class PrayerTimesAdapter extends BaseAdapter {
+        private final Context mContext;
+        private final ArrayList<HashMap<String, String>> mPrayerTimes;
+        private int mNextPrayerIndex = -1;
+
+        public PrayerTimesAdapter(Context context, ArrayList<HashMap<String, String>> data) {
+            mContext = context;
+            mPrayerTimes = data;
+        }
+
+        public void setNextPrayerIndex(int index) {
+            mNextPrayerIndex = index;
+        }
+
+        @Override
+        public int getCount() {
+            return mPrayerTimes.size();
+        }
+
+        @Override
+        public HashMap<String, String> getItem(int position) {
+            return mPrayerTimes.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = LayoutInflater.from(mContext).inflate(R.layout.timetable_row, parent, false);
+            }
+
+            HashMap<String, String> prayerTime = getItem(position);
+            String timeName = prayerTime.get("time_name");
+            if (position == mNextPrayerIndex) {
+                timeName = getString(R.string.next_time_marker) + timeName;
+            }
+            TextView timeNameView = convertView.findViewById(R.id.time_name);
+            timeNameView.setText(timeName);
+
+            TextView timeView = convertView.findViewById(R.id.time);
+            timeView.setText(prayerTime.get("time"));
+
+            // Zebra stripes
+            if (position % 2 == 0) {
+                convertView.setBackgroundResource(R.color.darker_gray);
+                timeNameView.setTextColor(0xff000000);
+                timeView.setTextColor(0xff000000);
+            } else {
+                convertView.setBackgroundResource(android.R.color.transparent);
+                // Assuming default text colors are correct for transparent background
+            }
+
+            return convertView;
+        }
     }
 }

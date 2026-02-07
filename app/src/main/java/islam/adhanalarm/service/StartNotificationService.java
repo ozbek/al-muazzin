@@ -14,7 +14,7 @@ import islam.adhanalarm.Preferences;
 import islam.adhanalarm.Schedule;
 import islam.adhanalarm.WakeLock;
 import islam.adhanalarm.receiver.StartNotificationReceiver;
-import uz.efir.muazzin.Muazzin;
+import uz.efir.muazzin.BuildConfig;
 import uz.efir.muazzin.NotificationService;
 import uz.efir.muazzin.R;
 import uz.efir.muazzin.Utils;
@@ -58,14 +58,12 @@ public class StartNotificationService extends Service {
 
         @Override
         public void run() {
-            if (Utils.getIsForeground()) {
-                // Update the UI marker and set the notification for the next prayer
-                Intent i = new Intent(context, Muazzin.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(i);
-            } else {
-                StartNotificationReceiver.setNext(context);
-            }
+            // Update the UI marker if it is in the foreground
+            Intent i = new Intent(Utils.ACTION_UPDATE_UI);
+            i.setPackage(BuildConfig.APPLICATION_ID);
+            sendBroadcast(i);
+
+            StartNotificationReceiver.setNext(context);
 
             short timeIndex = intent.getShortExtra(CONSTANT.EXTRA_TIME_INDEX, (short) -1);
             if (timeIndex == -1) { // Got here from boot
