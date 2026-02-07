@@ -78,7 +78,6 @@ public class NotificationService extends Service {
             if (ACTION_NOTIFY.equals(action)) {
                 playAdhan(timeIndex, actualTime);
             } else if (ACTION_SNOOZE.equals(action)) {
-                // TODO: add snooze logic
                 cancelNotification(intent);
             } else if (ACTION_DONE.equals(action)) {
                 cancelNotification(intent);
@@ -182,7 +181,7 @@ public class NotificationService extends Service {
             Intent snoozeIntent = new Intent(this, NotificationService.class).setAction(ACTION_SNOOZE).putExtra(EXTRA_NOTIFICATION_ID, timeIndex);
             PendingIntent piSnooze = PendingIntent.getService(this, timeIndex, snoozeIntent, PendingIntent.FLAG_IMMUTABLE);
 
-            notificationBuilder.addAction(R.drawable.ic_stat_action_done, getString(R.string.yes), piDone).addAction(R.drawable.ic_stat_action_snooze, getString(R.string.snooze), piSnooze).setDefaults(Notification.DEFAULT_ALL);
+            notificationBuilder.addAction(R.drawable.ic_stat_action_done, getString(R.string.yes), piDone).addAction(R.drawable.ic_stat_action_snooze, getString(R.string.later), piSnooze).setDefaults(Notification.DEFAULT_ALL);
             if (timeIndex != CONSTANT.SUNRISE) {
                 // There is no sunrise prayer
                 notificationBuilder.setContentText(question);
