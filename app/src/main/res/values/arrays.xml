@@ -22,7 +22,6 @@
         <item>@string/sdefault</item>
         <item>@string/beep</item>
         <item>@string/adhan</item>
-        <!--item>@string/custom</item-->
     </array>
 
     <string-array name="hijri_months">

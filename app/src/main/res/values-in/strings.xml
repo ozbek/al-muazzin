@@ -11,8 +11,6 @@
     <string name="asr">Ashar</string>
     <string name="ishaa">Isya</string>
     <string name="next_fajr">Subuh Esok</string>
-    <string name="error_playing_alert">Gagal Menggunakan Alert</string>
-    <string name="error_playing_custom_file">Gagal Membuka File</string>
     <string name="location_not_set"><u>Lokasi Belum Dipilih</u>\n\nHarap menyalakan GPS di perangkat, atau masukkan lokasi anda melalui pengaturan.</string>
     <string name="time_for">Waktu untuk <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Lintang</string>
@@ -28,9 +26,6 @@
     <string name="none">Kosong</string>
     <string name="beep">Bunyian</string>
     <string name="adhan">Adzan</string>
-    <string name="custom">Lainnya</string>
-    <string name="file_path">Lokasi File</string>
-    <string name="file_path_example">Lokasi mis. /sdcard/sound.mp3</string>
     <string name="sinterface">Tampilan</string>
     <string name="advanced">Lebih Lanjut</string>
     <string name="daylight_savings">, Waktu Siang DST</string>
