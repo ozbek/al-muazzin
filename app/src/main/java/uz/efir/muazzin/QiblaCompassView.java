@@ -1,6 +1,4 @@
-package islam.adhanalarm.view;
-
-import uz.efir.muazzin.R;
+package uz.efir.muazzin;
 
 import android.content.Context;
 import android.graphics.Bitmap;

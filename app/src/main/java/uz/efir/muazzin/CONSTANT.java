@@ -1,8 +1,6 @@
-package islam.adhanalarm;
+package uz.efir.muazzin;
 
 import com.batoulapps.adhan.CalculationMethod;
-
-import uz.efir.muazzin.R;
 
 /**
  * TODO: delete this class

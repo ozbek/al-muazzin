@@ -3,6 +3,7 @@ package uz.efir.muazzin;
 import android.content.Context;
 import android.hardware.SensorListener;
 import android.hardware.SensorManager;
+import android.location.Location;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
@@ -17,9 +18,6 @@ import com.batoulapps.adhan.Qibla;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
-
-import islam.adhanalarm.Preferences;
-import islam.adhanalarm.view.QiblaCompassView;
 
 public class QiblaCompassFragment extends Fragment {
     private static final String TAG = QiblaCompassFragment.class.getSimpleName();
@@ -123,11 +121,11 @@ public class QiblaCompassFragment extends Fragment {
      * Add Latitude, Longitude and Qibla DMS location
      */
     private void updateDms() {
-        float[] latLon = Preferences.getInstance(getActivity()).getLocation();
-        Dms latitude = new Dms(latLon[0]);
-        Dms longitude = new Dms(latLon[1]);
+        Location location = Preferences.getInstance(getActivity()).getLocation();
+        Dms latitude = new Dms(location.getLatitude());
+        Dms longitude = new Dms(location.getLongitude());
 
-        Coordinates coordinates = new Coordinates(latLon[0], latLon[1]);
+        Coordinates coordinates = new Coordinates(location.getLatitude(), location.getLongitude());
         Qibla qibla = new Qibla(coordinates);
         sQiblaDirection = (float) qibla.direction;
         Dms qiblaDms = new Dms(qibla.direction);

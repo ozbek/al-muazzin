@@ -45,10 +45,6 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     lint {
         abortOnError false
         checkReleaseBuilds true
@@ -56,8 +52,9 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.6+'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'com.batoulapps.adhan:adhan:1.2.1'
+    implementation platform('org.jetbrains.kotlin:kotlin-bom:2.2.21')
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
 }

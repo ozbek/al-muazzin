@@ -1,3 +1,2 @@
--keep class uz.efir.muazzin.SlidingTabLayout { *; }
-
--dontwarn fi.**
+#-keep class uz.efir.muazzin.SlidingTabLayout { *; }
+#-keep class com.batoulapps.adhan.** { *; }

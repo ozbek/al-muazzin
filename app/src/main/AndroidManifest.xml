@@ -38,14 +38,14 @@
             android:configChanges="locale|keyboardHidden|orientation|screenSize" />
 
         <receiver
-            android:name="islam.adhanalarm.receiver.StartNotificationReceiver"
+            android:name=".StartNotificationReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <service android:name="islam.adhanalarm.service.StartNotificationService" />
+        <service android:name=".StartNotificationService" />
 
         <service
             android:name="NotificationService"

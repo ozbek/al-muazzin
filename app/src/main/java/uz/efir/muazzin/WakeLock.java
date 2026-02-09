@@ -1,4 +1,4 @@
-package islam.adhanalarm;
+package uz.efir.muazzin;
 
 import android.content.Context;
 import android.os.PowerManager;

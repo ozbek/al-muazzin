@@ -13,9 +13,6 @@ import androidx.appcompat.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.Preferences;
-
 public class SettingsActivity extends AppCompatActivity {
     private CheckBox mBismillahOnBootUp;
 

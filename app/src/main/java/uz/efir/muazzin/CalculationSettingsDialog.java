@@ -10,31 +10,49 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialog;
 
 import java.util.Locale;
 
-import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.Preferences;
-
 public class CalculationSettingsDialog extends AppCompatDialog {
+
+    public interface LocationProvider {
+        Location getLatestLocation();
+    }
+
     private final Context mContext;
+    private final LocationProvider mLocationProvider;
     private EditText mLatitudeText;
     private EditText mLongitudeText;
     private Spinner mCalculationMethods;
     private EditText mOffsetMinutesText;
 
-    public CalculationSettingsDialog(Context context) {
+    public CalculationSettingsDialog(Context context, LocationProvider locationProvider) {
         super(context);
         mContext = context;
+        mLocationProvider = locationProvider;
     }
 
-    private static float parseFloat(EditText et, float defaultValue) {
+    private double parseDouble(@NonNull EditText et, double defaultValue) {
         try {
-            return Float.parseFloat(et.getText().toString());
+            return Double.parseDouble(et.getText().toString());
         } catch (NumberFormatException nfe) {
             return defaultValue;
         }
+    }
+
+    private int parseInt(@NonNull EditText et, int defaultValue) {
+        try {
+            return Integer.parseInt(et.getText().toString());
+        } catch (NumberFormatException nfe) {
+            return defaultValue;
+        }
+    }
+
+    @NonNull
+    private String formatDouble(double value) {
+        return String.format(Locale.getDefault(), "%.4f", value);
     }
 
     @Override
@@ -44,15 +62,15 @@ public class CalculationSettingsDialog extends AppCompatDialog {
         setTitle(R.string.calculation);
 
         final Preferences preferences = Preferences.getInstance(mContext);
-        final float[] latLong = preferences.getLocation();
+        final Location location = preferences.getLocation();
         final int calculationMethod = preferences.getCalculationMethodIndex();
         final int offsetMinutes = preferences.getOffsetMinutes();
 
         mLatitudeText = findViewById(R.id.latitude);
-        mLatitudeText.setText(Float.toString(latLong[0]));
+        mLatitudeText.setText(formatDouble(location.getLatitude()));
 
         mLongitudeText = findViewById(R.id.longitude);
-        mLongitudeText.setText(Float.toString(latLong[1]));
+        mLongitudeText.setText(formatDouble(location.getLongitude()));
 
         mCalculationMethods = findViewById(R.id.calculation_methods);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext, R.array.calculation_methods, android.R.layout.simple_spinner_item);
@@ -65,31 +83,26 @@ public class CalculationSettingsDialog extends AppCompatDialog {
 
         ImageButton lookupGps = findViewById(R.id.lookup_gps);
         lookupGps.setOnClickListener(v -> {
-            Location currentLocation = preferences.getCurrentLocation(mContext);
-            if (currentLocation != null) {
-                mLatitudeText.setText(String.format(Locale.getDefault(), "%.4f", currentLocation.getLatitude()));
-                mLongitudeText.setText(String.format(Locale.getDefault(), "%.4f", currentLocation.getLongitude()));
-            } else {
-                mLatitudeText.setText(null);
-                mLongitudeText.setText(null);
+            Location newLocation = mLocationProvider.getLatestLocation();
+            if (newLocation != null) {
+                mLatitudeText.setText(formatDouble(newLocation.getLatitude()));
+                mLongitudeText.setText(formatDouble(newLocation.getLongitude()));
             }
         });
 
         Button saveSettings = findViewById(R.id.save_settings);
         saveSettings.setOnClickListener(v -> {
-            float newLatitude = parseFloat(mLatitudeText, latLong[0]);
-            float newLongitude = parseFloat(mLongitudeText, latLong[1]);
+            double newLatitude = parseDouble(mLatitudeText, location.getLatitude());
+            double newLongitude = parseDouble(mLongitudeText, location.getLongitude());
             int newCalculationMethod = mCalculationMethods.getSelectedItemPosition();
-            int newOffsetMinutes;
-            try {
-                newOffsetMinutes = Integer.parseInt(mOffsetMinutesText.getText().toString());
-            } catch (NumberFormatException nfe) {
-                newOffsetMinutes = offsetMinutes;
-            }
+            int newOffsetMinutes = parseInt(mOffsetMinutesText, offsetMinutes);
 
             // Check if any of the values has changed
-            if (newLatitude != latLong[0] || newLongitude != latLong[1] || newCalculationMethod != calculationMethod || newOffsetMinutes != offsetMinutes) {
-                preferences.setLocation(newLatitude, newLongitude);
+            if (newLatitude != location.getLatitude() || newLongitude != location.getLongitude() || newCalculationMethod != calculationMethod || newOffsetMinutes != offsetMinutes) {
+                Location newLocation = new Location("");
+                newLocation.setLatitude(newLatitude);
+                newLocation.setLongitude(newLongitude);
+                preferences.setLocation(newLocation);
                 preferences.setCalculationMethodIndex(newCalculationMethod);
                 preferences.setOffsetMinutes(newOffsetMinutes);
 

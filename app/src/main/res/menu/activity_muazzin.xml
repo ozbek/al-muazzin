@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <item
         android:id="@+id/menu_location_calculation"
@@ -13,7 +14,10 @@
         android:title="@string/settings"
         app:showAsAction="ifRoom" />
 
-    <group android:id="@+id/menu_group_controller">
+    <group
+        android:id="@+id/menu_group_controller"
+        android:visible="false"
+        tools:visible="true">
         <item
             android:id="@+id/menu_previous"
             android:icon="@android:drawable/ic_media_previous"

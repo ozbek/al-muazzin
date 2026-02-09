@@ -1,6 +1,7 @@
-package islam.adhanalarm;
+package uz.efir.muazzin;
 
 import android.content.Context;
+import android.location.Location;
 
 import com.batoulapps.adhan.CalculationMethod;
 import com.batoulapps.adhan.Coordinates;
@@ -10,9 +11,6 @@ import com.batoulapps.adhan.data.DateComponents;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.TimeZone;
-
-import uz.efir.muazzin.R;
 
 public class Schedule {
 
@@ -23,8 +21,8 @@ public class Schedule {
         Preferences preferences = Preferences.getInstance(context);
         CalculationMethod method = CONSTANT.CALCULATION_METHODS[preferences.getCalculationMethodIndex()];
 
-        float[] location = preferences.getLocation();
-        Coordinates coordinates = new Coordinates(location[0], location[1]);
+        Location location = preferences.getLocation();
+        Coordinates coordinates = new Coordinates(location.getLatitude(), location.getLongitude());
 
         DateComponents dateComponents = new DateComponents(day.get(Calendar.YEAR),
                 day.get(Calendar.MONTH) + 1, day.get(Calendar.DAY_OF_MONTH));

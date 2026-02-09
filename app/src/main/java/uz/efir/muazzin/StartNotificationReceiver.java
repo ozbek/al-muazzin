@@ -1,4 +1,4 @@
-package islam.adhanalarm.receiver;
+package uz.efir.muazzin;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -7,11 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import java.util.Calendar;
-
-import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.Schedule;
-import islam.adhanalarm.WakeLock;
-import islam.adhanalarm.service.StartNotificationService;
 
 public class StartNotificationReceiver extends BroadcastReceiver {
     public static void setNext(Context context) {

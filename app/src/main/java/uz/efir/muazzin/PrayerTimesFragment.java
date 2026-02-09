@@ -22,15 +22,11 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
 
-import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.Preferences;
-import islam.adhanalarm.Schedule;
-import islam.adhanalarm.receiver.StartNotificationReceiver;
-
 public class PrayerTimesFragment extends Fragment {
     private final ArrayList<HashMap<String, String>> mTimeTable = new ArrayList<>(7);
     private PrayerTimesAdapter mTimetableView;
     private TextView mNotes;
+    private Preferences mPreferences;
 
     private final BroadcastReceiver mUpdateReceiver = new BroadcastReceiver() {
         @Override
@@ -42,21 +38,15 @@ public class PrayerTimesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPreferences = Preferences.getInstance(getActivity());
         mTimetableView = new PrayerTimesAdapter(getActivity(), mTimeTable);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View rootView = inflater.inflate(R.layout.tab_today, container, false);
         mNotes = rootView.findViewById(R.id.notes);
-        try {
-            Preferences.getInstance(getActivity()).initCalculationDefaults(getActivity());
-        } catch (NullPointerException npe) {
-            mNotes.setText(getString(R.string.location_not_set));
-        }
-
         ListView lv = rootView.findViewById(R.id.timetable);
         lv.setAdapter(mTimetableView);
 
@@ -66,6 +56,11 @@ public class PrayerTimesFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        if (mPreferences.isLocationSet()) {
+            mNotes.setText(null);
+        } else {
+            mNotes.setText(getString(R.string.location_not_set));
+        }
         loadPrayerTimetable();
         ContextCompat.registerReceiver(requireActivity(), mUpdateReceiver,
                 new IntentFilter(Utils.ACTION_UPDATE_UI), ContextCompat.RECEIVER_NOT_EXPORTED);

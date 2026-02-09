@@ -1,4 +1,4 @@
-package islam.adhanalarm.service;
+package uz.efir.muazzin;
 
 import android.app.Service;
 import android.content.Context;
@@ -8,16 +8,6 @@ import android.os.IBinder;
 import android.util.Log;
 
 import java.util.Calendar;
-
-import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.Preferences;
-import islam.adhanalarm.Schedule;
-import islam.adhanalarm.WakeLock;
-import islam.adhanalarm.receiver.StartNotificationReceiver;
-import uz.efir.muazzin.BuildConfig;
-import uz.efir.muazzin.NotificationService;
-import uz.efir.muazzin.R;
-import uz.efir.muazzin.Utils;
 
 public class StartNotificationService extends Service {
 

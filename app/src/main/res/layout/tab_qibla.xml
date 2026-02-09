@@ -64,7 +64,7 @@
         android:paddingBottom="5dp"
         android:paddingTop="5dp" >
 
-        <islam.adhanalarm.view.QiblaCompassView
+        <uz.efir.muazzin.QiblaCompassView
             android:id="@+id/qibla_compass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

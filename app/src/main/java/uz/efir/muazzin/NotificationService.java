@@ -14,10 +14,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import islam.adhanalarm.CONSTANT;
-import islam.adhanalarm.Preferences;
-import islam.adhanalarm.WakeLock;
-
 public class NotificationService extends Service {
     private static final String TAG = NotificationService.class.getSimpleName();
 
