@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <array name="calculation_methods">
+    <array name="calculation_methods" translatable="false">
         <item>@string/egypt_survey</item>
         <item>@string/karachi_shaf</item>
         <item>@string/karachi_hanaf</item>
         <item>@string/north_america</item>
         <item>@string/muslim_league</item>
         <item>@string/umm_alqurra</item>
-        <item>@string/fixed_ishaa</item>
     </array>
 
     <array name="rounding_types">

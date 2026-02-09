@@ -34,7 +34,6 @@
     <string name="daylight_savings">, Aydınlık saklamaları</string>
     <string name="lookup_gps">GPS araması</string>
     <string name="system_time_zone">Sistem saati</string>
-    <!--string name="gmt">GMT</string-->
     <string name="save">Kaydet</string>
     <string name="reset">Sıfırla</string>
     <string name="calculation">Hesaplama</string>
@@ -44,7 +43,6 @@
     <string name="north_america">Kuzey Amerika İslâm Topluluğu</string>
     <string name="muslim_league">Müslüman Dünya Ligi</string>
     <string name="umm_alqurra">Umm Al-Qurra, Suudi Arabistani</string>
-    <string name="fixed_ishaa">Sabit yatsı aralık (her zaman 90 dak)</string>
     <string name="altitude">Rakım</string>
     <string name="pressure">Basınç</string>
     <string name="temperature">Sıcaklık</string>

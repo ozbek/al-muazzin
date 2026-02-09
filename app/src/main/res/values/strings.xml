@@ -44,7 +44,6 @@
     <string name="north_america">Islamic Society of North America</string>
     <string name="muslim_league">Muslim World League</string>
     <string name="umm_alqurra">Umm Al-Qurra, Saudi Arabia</string>
-    <string name="fixed_ishaa">Fixed `Ishaa\' Interval (always 90)</string>
     <string name="altitude">Altitude</string>
     <string name="pressure">Pressure</string>
     <string name="temperature">Temperature</string>
