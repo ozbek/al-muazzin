@@ -37,18 +37,4 @@
         <item>Dhu al-Qa`dah</item>
         <item>Dhu al-Hijjah</item>
     </string-array>
-
-    <array name="languages" translatable="false">
-        <item>@string/sdefault</item>
-        <item>Ўзбекча</item>
-        <item>العربية</item>
-        <item>Deutsch</item>
-        <item>English</item>
-        <item>Español</item>
-        <item>Français</item>
-        <item>Indonesian</item>
-        <item>Italiano</item>
-        <item>Türkçe</item>
-        <item>Русский</item>
-    </array>
 </resources>
