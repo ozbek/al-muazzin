@@ -41,4 +41,21 @@
     <string name="language">Sprache</string>
     <string name="yes">Ja</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g> AH</string>
+    <string name="would_you_pray">Es ist Zeit für das <xliff:g id="time_name">%1$s</xliff:g>-Gebet. Möchtest du es jetzt verrichten?</string>
+    <string name="fajr">Fadschr</string>
+    <string name="sunrise">Sonnenaufgang</string>
+    <string name="dhuhr">Duhr</string>
+    <string name="asr">Asr</string>
+    <string name="maghrib">Maghrib</string>
+    <string name="ishaa">Ischa</string>
+    <string name="extreme">* Extrem</string>
+    <string name="qibla">Qibla</string>
+    <string name="bismillah_on_boot_up_title">Basmala</string>
+    <string name="bismillah_on_boot_up_summary">Basmala beim Hochfahren rezitieren</string>
+    <string name="daylight_savings">, Sommerzeit</string>
+    <string name="lookup_gps">GPS-Suche</string>
+    <string name="gmt">GMT</string>
+    <string name="offset">Offset</string>
+    <string name="minutes">Minuten</string>
+    <string name="later">Später…</string>
 </resources>

@@ -35,4 +35,27 @@
     <string name="language">Langage</string>
     <string name="yes">Oui</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g> AH</string>
+    <string name="would_you_pray">C\'est l\'heure de la prière de <xliff:g id="time_name">%1$s</xliff:g>. Voulez-vous la faire maintenant ?</string>
+    <string name="previous">Précédent</string>
+    <string name="next">Suivant</string>
+    <string name="stop">Arrêter</string>
+    <string name="fajr">Fajr</string>
+    <string name="dhuhr">Dhuhr</string>
+    <string name="asr">Asr</string>
+    <string name="maghrib">Maghrib</string>
+    <string name="ishaa">Ishaa</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="extreme">* Extrême</string>
+    <string name="qibla">Qibla</string>
+    <string name="bismillah_on_boot_up_title">Basmala</string>
+    <string name="bismillah_on_boot_up_summary">Réciter la basmala au démarrage</string>
+    <string name="notification">Notifications</string>
+    <string name="beep">Bip</string>
+    <string name="sinterface">Interface</string>
+    <string name="gmt">GMT</string>
+    <string name="altitude">Altitude</string>
+    <string name="offset">Décalage</string>
+    <string name="minutes">minutes</string>
+    <string name="later">Plus tard…</string>
 </resources>

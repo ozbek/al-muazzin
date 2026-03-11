@@ -47,4 +47,15 @@
     <string name="language">Idioma</string>
     <string name="yes">Sí</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g> AH</string>
+    <string name="would_you_pray">Es hora de la oración de <xliff:g id="time_name">%1$s</xliff:g>. ¿Te gustaría hacerla ahora?</string>
+    <string name="fajr">Fajr</string>
+    <string name="sunrise">Salida del sol</string>
+    <string name="dhuhr">Dhuhr</string>
+    <string name="asr">Asr</string>
+    <string name="maghrib">Maghrib</string>
+    <string name="ishaa">Ishaa</string>
+    <string name="qibla">Qibla</string>
+    <string name="bismillah_on_boot_up_title">Basmala</string>
+    <string name="gmt">GMT</string>
+    <string name="later">Más tarde…</string>
 </resources>

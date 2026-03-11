@@ -160,7 +160,7 @@ public class NotificationService extends Service {
             return;
         }
 
-        String question = getString(R.string.did_you_pray, getString(CONSTANT.TIME_NAMES[timeIndex]));
+        String question = getString(R.string.would_you_pray, getString(CONSTANT.TIME_NAMES[timeIndex]));
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID).setLocalOnly(true).setPriority(NotificationCompat.PRIORITY_MAX).setCategory(NotificationCompat.CATEGORY_ALARM).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setSmallIcon(R.drawable.ic_launcher).setWhen(actualTime).setContentTitle(getString(R.string.time_for, getString(CONSTANT.TIME_NAMES[timeIndex])));
 
         if (sIsPlaying) {
