@@ -1,61 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="description">Кундалик намоз вақтлари</string>
-    <string name="previous">Аввалги</string>
-    <string name="next">Кейинги</string>
-    <string name="stop">Стоп</string>
-    <string name="today">Бугун</string>
-    <string name="fajr">Бомдод</string>
-    <string name="sunrise">Қуёш</string>
-    <string name="dhuhr">Пешин</string>
-    <string name="asr">Аср</string>
-    <string name="maghrib">Шом</string>
-    <string name="ishaa">Хуфтон</string>
-    <string name="next_fajr">Эртанги бомдод</string>
-    <string name="sdefault">Бирламчи</string>
-    <string name="location_not_set"><u>Location Not Set</u>\n\nИлтимос, қурилманинг GPS модулини ёқинг ёки жойлашган манзилингиз координаталарини қўлда киритинг.</string>
-    <string name="time_for"><xliff:g id="time_name">%1$s</xliff:g> вақти бўлди</string>
-    <string name="latitude">Кенглик</string>
-    <string name="longitude">Узунлик</string>
-    <string name="extreme">* Кескин</string>
-    <string name="qibla">Қибла</string>
-    <string name="compass_disclaimer">Компасдан портрет режимда фойдаланинг.</string>
-    <string name="bearing_north">1) Шимолга нисбатан = (1)\u00B0</string>
-    <string name="bearing_qibla">2) Қиблага нисбатан = (1) (+/-) (2)\u00B0 = (3)\u00B0</string>
-    <string name="settings">Мосламалар</string>
-    <string name="bismillah_on_boot_up_title">Басмала</string>
-    <string name="bismillah_on_boot_up_summary">Қурилма ишга тушганда басмала ўқи</string>
-    <string name="notification">Билдирувлар</string>
-    <string name="none">Йўқ</string>
-    <string name="beep">Сигнал</string>
-    <string name="adhan">Азон</string>
-    <string name="sinterface">Интерфейс</string>
-    <string name="advanced">Илғор</string>
-    <string name="daylight_savings">, ёзги вақт</string>
-    <string name="lookup_gps">ГЖТ орқали аниқлаш</string><!-- Глобал жойлашув тизими -->
-    <string name="system_time_zone">Қурилма вақт зонаси</string>
-    <string name="gmt">ГМВ/GMT</string> <!-- Гринвич меридиан вақти -->
-    <string name="save">Сақла</string>
-    <string name="reset">Тикла</string>
-    <string name="calculation">Ҳисоб-китоб</string>
-    <string name="egypt_survey">Миср умум-сўров бошқармаси</string>
-    <string name="karachi_shaf">Шофий - Карачи Исломий билимлар университети</string>
-    <string name="karachi_hanaf">Ҳанафий - Карачи Исломий билимлар университети</string>
-    <string name="north_america">Шимолий Америка Ислом жамияти</string>
-    <string name="muslim_league">Дунё мусулмонлари лигаси</string>
-    <string name="umm_alqurra">Ум ал-Қурра, Саудия Арабистони</string>
-    <string name="altitude">Баландлик</string>
-    <string name="pressure">Босим</string>
-    <string name="temperature">Температура</string>
-    <string name="rounding">Яхлитлаш</string>
-    <string name="normal">Оддий</string>
-    <string name="special">Махсус</string>
-    <string name="aggressive">Агрессив</string>
-    <string name="offset">Вақт мувозанати</string>
-    <string name="minutes">минут</string>
-    <string name="language">Тил</string>
+    <string name="description">Kundalik namoz vaqtlari</string>
+    <string name="previous">Avvalgi</string>
+    <string name="next">Keyingi</string>
+    <string name="stop">Stop</string>
+    <string name="today">Bugun</string>
+    <string name="fajr">Bomdod</string>
+    <string name="sunrise">Quyosh</string>
+    <string name="dhuhr">Peshin</string>
+    <string name="asr">Asr</string>
+    <string name="maghrib">Shom</string>
+    <string name="ishaa">Xufton</string>
+    <string name="next_fajr">Ertangi bomdod</string>
+    <string name="sdefault">Birlamchi</string>
+    <string name="location_not_set"><u>Joylashuv xizmati oʻchiq</u>\n\nIltimos, qurilmaning GPS (global joylashuv tizimi) modulini yoqing yoki joylashgan manzilingiz koordinatalarini qoʻlda kiriting.</string>
+    <string name="time_for"><xliff:g id="time_name">%1$s</xliff:g> vaqti boʻldi</string>
+    <string name="latitude">Kenglik</string>
+    <string name="longitude">Uzunlik</string>
+    <string name="extreme">* Keskin</string>
+    <string name="qibla">Qibla</string>
+    <string name="compass_disclaimer">Kompasdan portret rejimda foydalaning.</string>
+    <string name="bearing_north">1) Shimolga nisbatan = (1)\u00B0</string>
+    <string name="bearing_qibla">2) Qiblaga nisbatan = (1) (+/-) (2)\u00B0 = (3)\u00B0</string>
+    <string name="settings">Moslamalar</string>
+    <string name="bismillah_on_boot_up_title">Basmala</string>
+    <string name="bismillah_on_boot_up_summary">Qurilma ishga tushganda basmala oʻqi</string>
+    <string name="notification">Bildiruvlar</string>
+    <string name="none">Yoʻq</string>
+    <string name="beep">Signal</string>
+    <string name="adhan">Azon</string>
+    <string name="sinterface">Interfeys</string>
+    <string name="advanced">Ilgʻor</string>
+    <string name="daylight_savings">, yozgi vaqt</string>
+    <string name="lookup_gps">GPS orqali aniqlash</string><!-- Global Joylashuv Tizimi -->
+    <string name="system_time_zone">Qurilma vaqt zonasi</string>
+    <string name="gmt">GMV/GMT</string> <!-- Grinvich Meridian Vaqti -->
+    <string name="save">Saqla</string>
+    <string name="reset">Tikla</string>
+    <string name="calculation">Hisob-kitob</string>
+    <string name="egypt_survey">Misr umum-soʻrov boshqarmasi</string>
+    <string name="karachi_shaf">Shofiy - Karachi Islomiy bilimlar universiteti</string>
+    <string name="karachi_hanaf">Hanafiy - Karachi Islomiy bilimlar universiteti</string>
+    <string name="north_america">Shimoliy Amerika Islom jamiyati</string>
+    <string name="muslim_league">Dunyo musulmonlari ligasi</string>
+    <string name="umm_alqurra">Um al-Qurra, Saudiya Arabistoni</string>
+    <string name="altitude">Balandlik</string>
+    <string name="pressure">Bosim</string>
+    <string name="temperature">Temperatura</string>
+    <string name="rounding">Yaxlitlash</string>
+    <string name="normal">Oddiy</string>
+    <string name="special">Maxsus</string>
+    <string name="aggressive">Agressiv</string>
+    <string name="offset">Vaqt muvozanati</string>
+    <string name="minutes">minut</string>
+    <string name="language">Til</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g>, <xliff:g id="year">%3$s</xliff:g></string>
-    <string name="would_you_pray"><xliff:g id="time_name">%1$s</xliff:g> намози вақти бўлди. Ҳозир ўқишни хоҳлайсизми?</string>
-    <string name="yes">Ҳа</string>
-    <string name="later">Кечроқ…</string>
+    <string name="would_you_pray"><xliff:g id="time_name">%1$s</xliff:g> namozi vaqti boʻldi. Hozir oʻqib olasizmi?</string>
+    <string name="yes">Ha</string>
+    <string name="later">Keyinroq…</string>
 </resources>
