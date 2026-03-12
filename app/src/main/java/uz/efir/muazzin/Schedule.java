@@ -15,7 +15,6 @@ import java.util.GregorianCalendar;
 public class Schedule {
 
     private final GregorianCalendar[] schedule = new GregorianCalendar[7];
-    private final boolean[] extremes = new boolean[7];
 
     public Schedule(Context context, GregorianCalendar day) {
         Preferences preferences = Preferences.getInstance(context);
@@ -36,7 +35,6 @@ public class Schedule {
             schedule[i] = new GregorianCalendar();
             schedule[i].setTime(allTimes[i]);
             schedule[i].add(Calendar.MINUTE, preferences.getOffsetMinutes());
-            extremes[i] = false; // Adhan library doesn't support extreme calculations
         }
 
         // Calculate next Fajr
@@ -48,15 +46,10 @@ public class Schedule {
         schedule[CONSTANT.NEXT_FAJR] = new GregorianCalendar();
         schedule[CONSTANT.NEXT_FAJR].setTime(prayerTimes.fajr);
         schedule[CONSTANT.NEXT_FAJR].add(Calendar.MINUTE, preferences.getOffsetMinutes());
-        extremes[CONSTANT.NEXT_FAJR] = false;
     }
 
     public GregorianCalendar[] getTimes() {
         return schedule;
-    }
-
-    public boolean isExtreme(int i) {
-        return extremes[i];
     }
 
     public short nextTimeIndex() {

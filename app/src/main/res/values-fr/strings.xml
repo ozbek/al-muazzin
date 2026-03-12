@@ -45,7 +45,6 @@
     <string name="ishaa">Ishaa</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
-    <string name="extreme">* Extrême</string>
     <string name="qibla">Qibla</string>
     <string name="bismillah_on_boot_up_title">Basmala</string>
     <string name="bismillah_on_boot_up_summary">Réciter la basmala au démarrage</string>

@@ -92,13 +92,8 @@ public class PrayerTimesFragment extends Fragment {
         for (short i = CONSTANT.FAJR; i <= CONSTANT.NEXT_FAJR; i++) {
             HashMap<String, String> map = new HashMap<>();
             map.put("time_name", getString(CONSTANT.TIME_NAMES[i]));
-            String fullTime = timeFormat.format(schedule[i].getTime());
-            map.put("time", today.isExtreme(i) ? fullTime.concat(" *") : fullTime);
+            map.put("time", timeFormat.format(schedule[i].getTime()));
             mTimeTable.add(map);
-
-            if (today.isExtreme(i)) {
-                mNotes.setText(R.string.extreme);
-            }
         }
 
         mTimetableView.setNextPrayerIndex(today.nextTimeIndex());

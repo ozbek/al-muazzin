@@ -47,7 +47,6 @@
     <string name="asr">Asr</string>
     <string name="maghrib">Maghrib</string>
     <string name="ishaa">Ischa</string>
-    <string name="extreme">* Extrem</string>
     <string name="qibla">Qibla</string>
     <string name="bismillah_on_boot_up_title">Basmala</string>
     <string name="bismillah_on_boot_up_summary">Basmala beim Hochfahren rezitieren</string>
