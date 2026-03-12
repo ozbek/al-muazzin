@@ -52,7 +52,6 @@
     <string name="aggressive">Agresif</string>
     <string name="offset">Offset</string>
     <string name="minutes">dakika</string>
-    <string name="language">Dil</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g></string>
     <string name="would_you_pray"><xliff:g id="time_name">%1$s</xliff:g> namazı vakti geldi. Şimdi kılmak ister misiniz?</string>
     <string name="yes">Evet</string>

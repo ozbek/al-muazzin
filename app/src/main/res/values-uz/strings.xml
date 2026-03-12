@@ -53,7 +53,6 @@
     <string name="aggressive">Agressiv</string>
     <string name="offset">Vaqt muvozanati</string>
     <string name="minutes">minut</string>
-    <string name="language">Til</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g>, <xliff:g id="year">%3$s</xliff:g></string>
     <string name="would_you_pray"><xliff:g id="time_name">%1$s</xliff:g> namozi vaqti boʻldi. Hozir oʻqib olasizmi?</string>
     <string name="yes">Ha</string>
