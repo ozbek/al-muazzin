@@ -16,19 +16,26 @@ public class Schedule {
 
     private final GregorianCalendar[] schedule = new GregorianCalendar[7];
 
-    public Schedule(Context context, GregorianCalendar day) {
+    private Schedule(Context context) {
         Preferences preferences = Preferences.getInstance(context);
         CalculationMethod method = CONSTANT.CALCULATION_METHODS[preferences.getCalculationMethodIndex()];
 
         Location location = preferences.getLocation();
         Coordinates coordinates = new Coordinates(location.getLatitude(), location.getLongitude());
 
-        DateComponents dateComponents = new DateComponents(day.get(Calendar.YEAR),
-                day.get(Calendar.MONTH) + 1, day.get(Calendar.DAY_OF_MONTH));
+        GregorianCalendar today = new GregorianCalendar();
+        DateComponents dateComponents = new DateComponents(today.get(Calendar.YEAR),
+                today.get(Calendar.MONTH) + 1, today.get(Calendar.DAY_OF_MONTH));
 
         PrayerTimes prayerTimes = new PrayerTimes(coordinates, dateComponents, method.getParameters());
-
-        Date[] allTimes = new Date[]{prayerTimes.fajr, prayerTimes.sunrise, prayerTimes.dhuhr, prayerTimes.asr, prayerTimes.maghrib, prayerTimes.isha};
+        Date[] allTimes = new Date[]{
+                prayerTimes.fajr,
+                prayerTimes.sunrise,
+                prayerTimes.dhuhr,
+                prayerTimes.asr,
+                prayerTimes.maghrib,
+                prayerTimes.isha
+        };
 
         for (short i = CONSTANT.FAJR; i < CONSTANT.NEXT_FAJR; i++) {
             // Set the times on the schedule
@@ -38,12 +45,12 @@ public class Schedule {
         }
 
         // Calculate next Fajr
-        GregorianCalendar nextDay = (GregorianCalendar) day.clone();
+        GregorianCalendar nextDay = (GregorianCalendar) today.clone();
         nextDay.add(Calendar.DAY_OF_MONTH, 1);
         DateComponents nextDateComponents = new DateComponents(nextDay.get(Calendar.YEAR),
                 nextDay.get(Calendar.MONTH) + 1, nextDay.get(Calendar.DAY_OF_MONTH));
         prayerTimes = new PrayerTimes(coordinates, nextDateComponents, method.getParameters());
-        schedule[CONSTANT.NEXT_FAJR] = new GregorianCalendar();
+        schedule[CONSTANT.NEXT_FAJR] = nextDay;
         schedule[CONSTANT.NEXT_FAJR].setTime(prayerTimes.fajr);
         schedule[CONSTANT.NEXT_FAJR].add(Calendar.MINUTE, preferences.getOffsetMinutes());
     }
@@ -84,7 +91,7 @@ public class Schedule {
 //    }
 
     public static Schedule today(Context context) {
-        return new Schedule(context, new GregorianCalendar());
+        return new Schedule(context);
     }
 
     public static double getGMTOffset() {

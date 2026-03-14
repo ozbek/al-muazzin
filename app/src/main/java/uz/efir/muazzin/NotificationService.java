@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
@@ -27,7 +28,6 @@ public class NotificationService extends Service {
     private static final String CHANNEL_ID = "uz.efir.muazzin.NOTIFICATION_CHANNEL";
 
     private static MediaPlayer sMediaPlayer;
-    private static boolean sIsPlaying = false;
 
     public static void notify(Context context, int timeIndex, long actualTime) {
         if (timeIndex == CONSTANT.NEXT_FAJR) {
@@ -55,7 +55,6 @@ public class NotificationService extends Service {
             sMediaPlayer.release();
             sMediaPlayer = null;
         }
-        sIsPlaying = false;
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
         notificationManager.cancelAll();
         WakeLock.release();
@@ -64,70 +63,53 @@ public class NotificationService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
-            final String action = intent.getAction();
+            //
             int timeIndex = intent.getIntExtra(CONSTANT.EXTRA_TIME_INDEX, -1);
             long actualTime = intent.getLongExtra(CONSTANT.EXTRA_ACTUAL_TIME, -1);
-            createNotificationChannel();
-
+            final String action = intent.getAction();
             if (ACTION_NOTIFY.equals(action)) {
-                playAdhan(timeIndex, actualTime);
-            } else if (ACTION_SNOOZE.equals(action)) {
+                playAdhanOrIssueNotification(timeIndex, actualTime);
+            } else if (ACTION_SNOOZE.equals(action) || ACTION_DONE.equals(action)) {
                 cancelNotification(intent);
-            } else if (ACTION_DONE.equals(action)) {
-                cancelNotification(intent);
-            } else if (ACTION_STOP.equals(action)) {
-                stopAdhan();
-                issueNotification(timeIndex, actualTime);
-            } else if (ACTION_DELETE.equals(action)) {
-                stopAdhan();
+            } else if (ACTION_STOP.equals(action) || ACTION_DELETE.equals(action)) {
+                if (stopAdhan()) {
+                    issueNotification(timeIndex, actualTime);
+                }
             }
         }
+
         return START_NOT_STICKY;
     }
 
-    private void stopAdhan() {
+    private boolean stopAdhan() {
         if (sMediaPlayer != null) {
-            if (sMediaPlayer.isPlaying()) {
-                sMediaPlayer.stop();
-            }
+            sMediaPlayer.stop();
             sMediaPlayer.release();
             sMediaPlayer = null;
+
+            return true;
         }
-        sIsPlaying = false;
+
+        return false;
     }
 
-    private void createNotificationChannel() {
-        CharSequence name = getString(R.string.app_name);
-        String description = getString(R.string.notification);
-        int importance = NotificationManager.IMPORTANCE_HIGH;
-        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-        channel.setDescription(description);
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        notificationManager.createNotificationChannel(channel);
-    }
-
-    private void playAdhan(int timeIndex, long actualTime) {
+    private void playAdhanOrIssueNotification(int timeIndex, long actualTime) {
         Preferences preferences = Preferences.getInstance(this);
         final int notificationMethod = preferences.getNotificationMethod(timeIndex);
         if (notificationMethod < CONSTANT.NOTIFICATION_PLAY) {
-            sIsPlaying = false;
             issueNotification(timeIndex, actualTime);
             return;
         }
 
-        sIsPlaying = true;
-        issueNotification(timeIndex, actualTime);
-
-        int alarm = R.raw.beep;
+        int mediaId = R.raw.beep;
         if (timeIndex <= CONSTANT.ISHAA && timeIndex >= CONSTANT.DHUHR) {
-            alarm = R.raw.adhan;
+            mediaId = R.raw.adhan;
         } else if (timeIndex == CONSTANT.FAJR) {
-            alarm = R.raw.adhan_fajr;
+            mediaId = R.raw.adhan_fajr;
         }
-        sMediaPlayer = MediaPlayer.create(this, alarm);
+        sMediaPlayer = MediaPlayer.create(this, mediaId);
         sMediaPlayer.setScreenOnWhilePlaying(true);
         sMediaPlayer.setOnCompletionListener(mp -> {
-            sIsPlaying = false;
             sMediaPlayer.release();
             sMediaPlayer = null;
             issueNotification(timeIndex, actualTime);
@@ -136,13 +118,15 @@ public class NotificationService extends Service {
         });
         try {
             sMediaPlayer.start();
-        } catch (IllegalStateException ise) {
-            sIsPlaying = false;
+        } catch (IllegalStateException e) {
+            Log.e(TAG, "Could not start media playback", e);
             issueNotification(timeIndex, actualTime);
         }
+
+        issueNotification(timeIndex, actualTime);
     }
 
-    private void cancelNotification(Intent intent) {
+    private void cancelNotification(@NonNull Intent intent) {
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         final int notificationId = intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1);
         if (notificationId < 0) {
@@ -160,43 +144,73 @@ public class NotificationService extends Service {
             return;
         }
 
-        String question = getString(R.string.would_you_pray, getString(CONSTANT.TIME_NAMES[timeIndex]));
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID).setLocalOnly(true).setPriority(NotificationCompat.PRIORITY_MAX).setCategory(NotificationCompat.CATEGORY_ALARM).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setSmallIcon(R.drawable.ic_launcher).setWhen(actualTime).setContentTitle(getString(R.string.time_for, getString(CONSTANT.TIME_NAMES[timeIndex])));
+        CharSequence name = getString(R.string.app_name);
+        String description = getString(R.string.notification);
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+        channel.setDescription(description);
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
 
-        if (sIsPlaying) {
-            Intent stopIntent = new Intent(this, NotificationService.class).setAction(ACTION_STOP).putExtra(EXTRA_NOTIFICATION_ID, timeIndex).putExtra(CONSTANT.EXTRA_TIME_INDEX, timeIndex).putExtra(CONSTANT.EXTRA_ACTUAL_TIME, actualTime);
-            PendingIntent piStop = PendingIntent.getService(this, 0, stopIntent, PendingIntent.FLAG_IMMUTABLE);
+        // Make sure a non-zero ID for notification
+        final int notificationId = timeIndex + 1;
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setLocalOnly(true)
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+                .setCategory(NotificationCompat.CATEGORY_ALARM)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setWhen(actualTime)
+                .setContentTitle(getString(R.string.time_for, getString(CONSTANT.TIME_NAMES[timeIndex])));
 
-            notificationBuilder.addAction(R.drawable.ic_stat_action_stop, getString(R.string.stop), piStop).setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
+        if (sMediaPlayer != null) {
+            Intent stopIntent = new Intent(this, NotificationService.class)
+                    .setAction(ACTION_STOP)
+                    .putExtra(EXTRA_NOTIFICATION_ID, notificationId)
+                    .putExtra(CONSTANT.EXTRA_TIME_INDEX, timeIndex)
+                    .putExtra(CONSTANT.EXTRA_ACTUAL_TIME, actualTime);
+            PendingIntent piStop = PendingIntent.getService(this, timeIndex, stopIntent, PendingIntent.FLAG_IMMUTABLE);
+            notificationBuilder
+                    .addAction(R.drawable.ic_stat_action_stop, getString(R.string.stop), piStop)
+                    .setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
         } else {
-            Intent doneIntent = new Intent(this, NotificationService.class).setAction(ACTION_DONE).putExtra(EXTRA_NOTIFICATION_ID, timeIndex);
+            Intent doneIntent = new Intent(this, NotificationService.class).setAction(ACTION_DONE)
+                    .putExtra(EXTRA_NOTIFICATION_ID, notificationId);
             PendingIntent piDone = PendingIntent.getService(this, timeIndex, doneIntent, PendingIntent.FLAG_IMMUTABLE);
 
-            Intent snoozeIntent = new Intent(this, NotificationService.class).setAction(ACTION_SNOOZE).putExtra(EXTRA_NOTIFICATION_ID, timeIndex);
+            Intent snoozeIntent = new Intent(this, NotificationService.class)
+                    .setAction(ACTION_SNOOZE)
+                    .putExtra(EXTRA_NOTIFICATION_ID, notificationId);
             PendingIntent piSnooze = PendingIntent.getService(this, timeIndex, snoozeIntent, PendingIntent.FLAG_IMMUTABLE);
 
-            notificationBuilder.addAction(R.drawable.ic_stat_action_done, getString(R.string.yes), piDone).addAction(R.drawable.ic_stat_action_snooze, getString(R.string.later), piSnooze).setDefaults(Notification.DEFAULT_ALL);
-            if (timeIndex != CONSTANT.SUNRISE) {
-                // There is no sunrise prayer
+            notificationBuilder
+                    .addAction(R.drawable.ic_stat_action_done, getString(R.string.yes), piDone)
+                    .addAction(R.drawable.ic_stat_action_snooze, getString(R.string.later), piSnooze)
+                    .setDefaults(Notification.DEFAULT_ALL);
+            if (timeIndex != CONSTANT.SUNRISE) { // There is no sunrise prayer
+                String question = getString(R.string.would_you_pray, getString(CONSTANT.TIME_NAMES[timeIndex]));
                 notificationBuilder.setContentText(question);
                 notificationBuilder.setStyle(new NotificationCompat.BigTextStyle().bigText(question));
             }
             WakeLock.release();
         }
 
-        Intent deleteIntent = new Intent(this, NotificationService.class).setAction(ACTION_DELETE).putExtra(EXTRA_NOTIFICATION_ID, timeIndex);
+        Intent deleteIntent = new Intent(this, NotificationService.class)
+                .setAction(ACTION_DELETE)
+                .putExtra(EXTRA_NOTIFICATION_ID, notificationId)
+                .putExtra(CONSTANT.EXTRA_TIME_INDEX, timeIndex)
+                .putExtra(CONSTANT.EXTRA_ACTUAL_TIME, actualTime);
         PendingIntent piDelete = PendingIntent.getService(this, timeIndex, deleteIntent, PendingIntent.FLAG_IMMUTABLE);
         notificationBuilder.setDeleteIntent(piDelete);
 
         Intent resultIntent = new Intent(this, Muazzin.class);
-        resultIntent.putExtra(EXTRA_NOTIFICATION_ID, timeIndex);
+        resultIntent.putExtra(EXTRA_NOTIFICATION_ID, notificationId);
         resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
-
         notificationBuilder.setContentIntent(resultPendingIntent);
 
         Notification notification = notificationBuilder.build();
-        startForeground(timeIndex, notification);
+        startForeground(notificationId, notification);
     }
 
     @Nullable
