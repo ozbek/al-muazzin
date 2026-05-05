@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="darker_gray">#aaaaaa</color>
+    <!-- Light Theme Colors -->
+    <color name="primary_light">#000000</color>
+    <color name="on_primary_light">#FFFFFF</color>
+    <color name="background_light">#FFFFFF</color>
+    <color name="accent_light">#FFAB00</color>
+
+    <!-- Dark Theme Colors -->
+    <color name="primary_dark">#000000</color>
+    <color name="on_primary_dark">#FFFFFF</color>
+    <color name="background_dark">#121212</color>
+    <color name="accent_dark">#FFAB00</color>
+
+    <!-- Gray colors for icons/text -->
+    <color name="dark_gray">#aaaaaa</color>
+    <color name="light_gray">#bdbdbd</color>
 </resources>

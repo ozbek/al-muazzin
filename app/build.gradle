@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    alias libs.plugins.android.application
 }
 
 def keyProperties = new Properties()
@@ -10,7 +10,6 @@ if (file(System.getProperty("user.home") + "/.signing/al-muazzin.properties").ex
 android {
     namespace 'uz.efir.muazzin'
     compileSdkVersion 36
-
 
     defaultConfig {
         applicationId "uz.efir.muazzin"
@@ -52,9 +51,10 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
-    implementation 'com.batoulapps.adhan:adhan:1.2.1'
-    implementation platform('org.jetbrains.kotlin:kotlin-bom:2.2.21')
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+    implementation libs.androidx.activity
+    implementation libs.androidx.appcompat
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.viewpager2
+    implementation libs.material
+    implementation libs.adhan2
 }

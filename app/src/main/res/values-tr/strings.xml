@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Günlük namaz vakitlerini görüntüler ve uyarabilir.</string>
-    <string name="previous">Önceki</string>
-    <string name="next">Sonraki</string>
     <string name="stop">Durdur</string>
     <string name="today">Bugün</string>
     <string name="fajr">İmsak</string>
@@ -18,42 +16,28 @@
     <string name="latitude">Enlem</string>
     <string name="longitude">Boylam</string>
     <string name="qibla">Kible</string>
-    <string name="compass_disclaimer">Pusula portre modunda belirtilen yere göre çalışır.</string>
-    <string name="bearing_north">1) Kuzey Yatak = (1)°</string>
-    <string name="bearing_qibla">2) Kible Yatak = (1) (+/-) (2)° = (3)°</string>
+    <string name="bearing_heading">Yön: %1$s°</string>
+    <string name="bearing_qibla">Kıble: %1$s° (%2$s)</string>
+    <string name="qibla_aligned">hizalandı</string>
+    <string name="qibla_turn_right">sağa %1$s° dönün</string>
+    <string name="qibla_turn_left">sola %1$s° dönün</string>
     <string name="settings">Ayarlar</string>
-    <string name="bismillah_on_boot_up_title">Besmele</string>
-    <string name="bismillah_on_boot_up_summary">Başlarken besmele oku</string>
     <string name="notification">Duyuru</string>
     <string name="none">Yok</string>
     <string name="beep">Bip</string>
     <string name="adhan">Azan oku</string>
-    <string name="sinterface">Arayüzey</string>
-    <string name="advanced">İleri ayarlar</string>
-    <string name="daylight_savings">, Aydınlık saklamaları</string>
     <string name="lookup_gps">GPS araması</string>
-    <string name="system_time_zone">Sistem saati</string>
     <string name="save">Kaydet</string>
     <string name="reset">Sıfırla</string>
     <string name="calculation">Hesaplama</string>
     <string name="egypt_survey">Mısır Genel Anket Yetkilisi</string>
-    <string name="karachi_shaf">Şafiî - Karaçi İslâm Bilimleri Üniv.</string>
-    <string name="karachi_hanaf">Hanefi - Karaçi İslâm Bilimleri Üniv.</string>
+    <string name="karachi">Karaçi İslâm Bilimleri Üniv.</string>
     <string name="north_america">Kuzey Amerika İslâm Topluluğu</string>
     <string name="muslim_league">Müslüman Dünya Ligi</string>
     <string name="umm_alqurra">Umm Al-Qurra, Suudi Arabistani</string>
-    <string name="altitude">Rakım</string>
-    <string name="pressure">Basınç</string>
-    <string name="temperature">Sıcaklık</string>
-    <string name="rounding">Yuvarlama</string>
-    <string name="normal">Normal</string>
-    <string name="special">Özel</string>
-    <string name="aggressive">Agresif</string>
     <string name="offset">Offset</string>
-    <string name="minutes">dakika</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g></string>
     <string name="would_you_pray"><xliff:g id="time_name">%1$s</xliff:g> namazı vakti geldi. Şimdi kılmak ister misiniz?</string>
     <string name="yes">Evet</string>
     <string name="later">Sonra…</string>
-    <string name="gmt">GMT</string>
 </resources>

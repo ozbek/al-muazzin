@@ -1,99 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:padding="5dp">
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:stretchColumns="*" >
+        <TextView
+            android:id="@+id/label_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/latitude"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintBottom_toBottomOf="@id/current_latitude"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/current_latitude" />
 
-        <TableRow>
+        <TextView
+            android:id="@+id/current_latitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintStart_toEndOf="@id/labels_barrier"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/latitude"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/label_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/longitude"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintBottom_toBottomOf="@id/current_longitude"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/current_longitude" />
 
-            <TextView
-                android:id="@+id/current_latitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </TableRow>
+        <TextView
+            android:id="@+id/current_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            app:layout_constraintStart_toEndOf="@id/labels_barrier"
+            app:layout_constraintTop_toBottomOf="@id/current_latitude" />
 
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/longitude"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/current_longitude"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/qibla"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <TextView
-                android:id="@+id/current_qibla"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-        </TableRow>
-    </TableLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp" >
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/labels_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="label_latitude,label_longitude" />
 
         <uz.efir.muazzin.QiblaCompassView
             android:id="@+id/qibla_compass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="fill|center" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/current_longitude" />
 
         <TextView
-            android:id="@+id/bearing_north"
+            android:id="@+id/bearing_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="2dp" />
+            android:layout_marginTop="5dp"
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/qibla_compass" />
 
         <TextView
             android:id="@+id/bearing_qibla"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="2dp" />
+            android:paddingStart="2dp"
+            android:paddingEnd="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bearing_heading" />
 
-        <TextView
-            style="@style/finePrint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="3dp"
-            android:text="@string/compass_disclaimer" />
-    </LinearLayout>
-
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

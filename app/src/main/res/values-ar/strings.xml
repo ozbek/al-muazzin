@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">برنامج لعرض أوقات الصلاة مع امكانية التنبية اليومي لكل صلاة.</string>
-    <string name="previous">السابق</string>
-    <string name="next">التالي</string>
     <string name="stop">ايقاف</string>
     <string name="today">اليوم</string>
     <string name="fajr">الفجر</string>
@@ -18,42 +16,28 @@
     <string name="latitude">خط العرض</string>
     <string name="longitude">خط الطول</string>
     <string name="qibla">القبلة</string>
-    <string name="compass_disclaimer">البوصلة تعمل في الوضع الطولي للجهاز.</string>
-    <string name="bearing_north">1) اتجاة الشمال = (1)°</string>
-    <string name="bearing_qibla">2) اتجاة القبلة = (1) (+/-) (2)° = (3)°</string>
+    <string name="bearing_heading">الاتجاه: %1$s°</string>
+    <string name="bearing_qibla">القبلة: %1$s° (%2$s)</string>
+    <string name="qibla_aligned">متّجه نحو القبلة</string>
+    <string name="qibla_turn_right">لُف يميناً %1$s°</string>
+    <string name="qibla_turn_left">لُف يساراً %1$s°</string>
     <string name="settings">اعدادات</string>
-    <string name="bismillah_on_boot_up_title">بسملة‎‎</string>
-    <string name="bismillah_on_boot_up_summary">تشغيل البسملة عند الاقلاع</string>
     <string name="notification">التنبيهات</string>
     <string name="none">بدون</string>
     <string name="beep">صوت بيب</string>
     <string name="adhan">تلاوة</string>
-    <string name="sinterface">الواجهة</string>
-    <string name="advanced">خيارات متقدمة</string>
-    <string name="daylight_savings">\u0020التوقيت الصيفي</string>
     <string name="lookup_gps">البحث بـ GPS</string>
-    <string name="system_time_zone">نظام المنطقة الزمني</string>
     <string name="save">حفظ</string>
     <string name="reset">استعادة</string>
     <string name="calculation">طريقة الحساب</string>
     <string name="egypt_survey">الهيئة العامة المصرية للمساحة</string>
-    <string name="karachi_shaf">شافعي - جامعة العلوم الإسلامية بكراتشي </string>
-    <string name="karachi_hanaf">حنفي - جامعة العلوم الإسلامية بكراتشي </string>
+    <string name="karachi">جامعة العلوم الإسلامية بكراتشي</string>
     <string name="north_america">أمريكا الشمالية - اسنا</string>
     <string name="muslim_league">رابطة العالم الاسلامي</string>
     <string name="umm_alqurra">تقويم ام القرى</string>
-    <string name="pressure">الضغط</string>
-    <string name="temperature">درجة الحرارة</string>
     <string name="offset">أوفسيت</string>
-    <string name="minutes">دقائق</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g></string>
     <string name="yes">نعم</string>
     <string name="would_you_pray">حان وقت صلاة <xliff:g id="time_name">%1$s</xliff:g>. هل تود أداءها الآن؟</string>
-    <string name="gmt">توقيت جرينتش (GMT)</string>
-    <string name="altitude">الارتفاع</string>
-    <string name="rounding">التقريب</string>
-    <string name="normal">عادي</string>
-    <string name="special">خاص</string>
-    <string name="aggressive">حازم</string>
     <string name="later">لاحقًا…</string>
 </resources>

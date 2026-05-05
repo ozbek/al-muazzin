@@ -1,0 +1,19 @@
+[versions]
+androidGradlePlugin = "9.2.1"
+activity = "1.13.0"
+appcompat = "1.7.1"
+constraintlayout = "2.2.1"
+material = "1.13.0"
+viewpager2 = "1.1.0"
+adhan2 = "0.0.6"
+
+[libraries]
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+adhan2 = { group = "com.batoulapps.adhan", name = "adhan2", version.ref = "adhan2" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

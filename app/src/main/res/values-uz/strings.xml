@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Kundalik namoz vaqtlari</string>
-    <string name="previous">Avvalgi</string>
-    <string name="next">Keyingi</string>
     <string name="stop">Stop</string>
     <string name="today">Bugun</string>
     <string name="fajr">Bomdod</string>
@@ -18,40 +16,26 @@
     <string name="latitude">Kenglik</string>
     <string name="longitude">Uzunlik</string>
     <string name="qibla">Qibla</string>
-    <string name="compass_disclaimer">Kompasdan portret rejimda foydalaning.</string>
-    <string name="bearing_north">1) Shimolga nisbatan = (1)\u00B0</string>
-    <string name="bearing_qibla">2) Qiblaga nisbatan = (1) (+/-) (2)\u00B0 = (3)\u00B0</string>
+    <string name="bearing_heading">Yoʻnalish: %1$s\u00B0</string>
+    <string name="bearing_qibla">Qibla: %1$s\u00B0 (%2$s)</string>
+    <string name="qibla_aligned">qiblaga yoʻnalgan</string>
+    <string name="qibla_turn_right">%1$s\u00B0 oʻngga buring</string>
+    <string name="qibla_turn_left">%1$s\u00B0 chapga buring</string>
     <string name="settings">Moslamalar</string>
-    <string name="bismillah_on_boot_up_title">Basmala</string>
-    <string name="bismillah_on_boot_up_summary">Qurilma ishga tushganda basmala oʻqi</string>
     <string name="notification">Bildiruvlar</string>
     <string name="none">Yoʻq</string>
     <string name="beep">Signal</string>
     <string name="adhan">Azon</string>
-    <string name="sinterface">Interfeys</string>
-    <string name="advanced">Ilgʻor</string>
-    <string name="daylight_savings">, yozgi vaqt</string>
-    <string name="lookup_gps">GPS orqali aniqlash</string><!-- Global Joylashuv Tizimi -->
-    <string name="system_time_zone">Qurilma vaqt zonasi</string>
-    <string name="gmt">GMV/GMT</string> <!-- Grinvich Meridian Vaqti -->
+    <string name="lookup_gps">GPS</string><!-- Global Joylashuv Tizimi -->
     <string name="save">Saqla</string>
     <string name="reset">Tikla</string>
     <string name="calculation">Hisob-kitob</string>
     <string name="egypt_survey">Misr umum-soʻrov boshqarmasi</string>
-    <string name="karachi_shaf">Shofiy - Karachi Islomiy bilimlar universiteti</string>
-    <string name="karachi_hanaf">Hanafiy - Karachi Islomiy bilimlar universiteti</string>
+    <string name="karachi">Karachi Islomiy bilimlar universiteti</string>
     <string name="north_america">Shimoliy Amerika Islom jamiyati</string>
     <string name="muslim_league">Dunyo musulmonlari ligasi</string>
     <string name="umm_alqurra">Um al-Qurra, Saudiya Arabistoni</string>
-    <string name="altitude">Balandlik</string>
-    <string name="pressure">Bosim</string>
-    <string name="temperature">Temperatura</string>
-    <string name="rounding">Yaxlitlash</string>
-    <string name="normal">Oddiy</string>
-    <string name="special">Maxsus</string>
-    <string name="aggressive">Agressiv</string>
     <string name="offset">Vaqt muvozanati</string>
-    <string name="minutes">minut</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g>, <xliff:g id="year">%3$s</xliff:g></string>
     <string name="would_you_pray"><xliff:g id="time_name">%1$s</xliff:g> namozi vaqti boʻldi. Hozir oʻqib olasizmi?</string>
     <string name="yes">Ha</string>

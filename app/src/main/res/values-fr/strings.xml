@@ -7,36 +7,26 @@
     <string name="sdefault">Défaut</string>
     <string name="location_not_set">préciser s\'il vous plaît <u>Endroit</u></string>
     <string name="time_for">L\'heure de <xliff:g id="time_name">%1$s</xliff:g></string>
-    <string name="compass_disclaimer">La boussole fonctionne en mode portrait aussi.</string>
-    <string name="bearing_north">1) Relevé du Nord = (1)°</string>
-    <string name="bearing_qibla">2) Relevé de la Qibla = (1) (+/-) (2)° = (3)°</string>
+    <string name="bearing_heading">Cap : %1$s°</string>
+    <string name="bearing_qibla">Qibla : %1$s° (%2$s)</string>
+    <string name="qibla_aligned">aligné</string>
+    <string name="qibla_turn_right">tourner à droite de %1$s°</string>
+    <string name="qibla_turn_left">tourner à gauche de %1$s°</string>
     <string name="settings">Paramètres</string>
     <string name="none">Aucun</string>
     <string name="adhan">Adhan</string>
-    <string name="advanced">Avancé</string>
-    <string name="daylight_savings">, Heure d\'été</string>
     <string name="lookup_gps">Consultation GPS</string>
-    <string name="system_time_zone">Fuseau horaire</string>
     <string name="save">Enregistrer</string>
     <string name="reset">Réinitialiser</string>
     <string name="calculation">Calcul</string>
     <string name="egypt_survey">Le Cadastre général d\'Egypte</string>
-    <string name="karachi_shaf">Shaf`i - L\'Université des Sciences Islamiques de Karachi</string>
-    <string name="karachi_hanaf">Hanafi - L\'Université des Sciences Islamiques de Karachi</string>
+    <string name="karachi">L\'Université des Sciences Islamiques de Karachi</string>
     <string name="north_america">La Fédération Islamique de l\'Amérique du nord</string>
     <string name="muslim_league">La Ligue du Monde Islamique</string>
     <string name="umm_alqurra">Umm Ul Qurâ,  Arabie Saoudite</string>
-    <string name="rounding">Arrondi</string>
-    <string name="normal">Normal</string>
-    <string name="special">Spécial</string>
-    <string name="aggressive">Agressif</string>
-    <string name="pressure">Pression</string>
-    <string name="temperature">Température</string>
     <string name="yes">Oui</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g> AH</string>
     <string name="would_you_pray">C\'est l\'heure de la prière de <xliff:g id="time_name">%1$s</xliff:g>. Voulez-vous la faire maintenant ?</string>
-    <string name="previous">Précédent</string>
-    <string name="next">Suivant</string>
     <string name="stop">Arrêter</string>
     <string name="fajr">Fajr</string>
     <string name="dhuhr">Dhuhr</string>
@@ -46,14 +36,8 @@
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
     <string name="qibla">Qibla</string>
-    <string name="bismillah_on_boot_up_title">Basmala</string>
-    <string name="bismillah_on_boot_up_summary">Réciter la basmala au démarrage</string>
     <string name="notification">Notifications</string>
     <string name="beep">Bip</string>
-    <string name="sinterface">Interface</string>
-    <string name="gmt">GMT</string>
-    <string name="altitude">Altitude</string>
     <string name="offset">Décalage</string>
-    <string name="minutes">minutes</string>
     <string name="later">Plus tard…</string>
 </resources>

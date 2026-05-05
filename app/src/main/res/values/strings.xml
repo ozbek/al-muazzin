@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Displays and alerts with the daily Muslim prayer times.</string>
-    <string name="previous">Previous</string>
-    <string name="next">Next</string>
     <string name="stop">Stop</string>
     <string name="today">Today</string>
     <string name="fajr">Fajr</string>
@@ -18,48 +16,32 @@
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
     <string name="qibla">Qibla</string>
-    <string name="compass_disclaimer">Compass works in portrait mode.</string>
-    <string name="bearing_north">1) Bearing North = (1)°</string>
-    <string name="bearing_qibla">2) Bearing Qibla = (1) (+/-) (2)° = (3)°</string>
+    <string name="bearing_heading">Heading: %1$s°</string>
+    <string name="bearing_qibla">Qibla: %1$s° (%2$s)</string>
+    <string name="qibla_aligned">aligned</string>
+    <string name="qibla_turn_right">turn right %1$s°</string>
+    <string name="qibla_turn_left">turn left %1$s°</string>
     <string name="settings">Settings</string>
-    <string name="bismillah_on_boot_up_title">Basmala</string>
-    <string name="bismillah_on_boot_up_summary">Recite basmala on boot up</string>
     <string name="notification">Notifications</string>
     <string name="none">None</string>
     <string name="beep">Beep</string>
     <string name="adhan">Adhan</string>
-    <string name="sinterface">Interface</string>
-    <string name="advanced">Advanced</string>
-    <string name="daylight_savings">, Daylight Savings</string>
     <string name="lookup_gps">Lookup GPS</string>
-    <string name="system_time_zone">System Time Zone</string>
-    <string name="gmt">GMT</string>
     <string name="save">Save</string>
     <string name="reset">Reset</string>
     <string name="calculation">Calculation</string>
     <string name="egypt_survey">Egyptian General Authority of Survey</string>
-    <string name="karachi_shaf">Shaf`i - Karachi University of Islamic Sciences</string>
-    <string name="karachi_hanaf">Hanafi - Karachi University of Islamic Sciences</string>
+    <string name="karachi">Karachi University of Islamic Sciences</string>
     <string name="north_america">Islamic Society of North America</string>
     <string name="muslim_league">Muslim World League</string>
     <string name="umm_alqurra">Umm Al-Qurra, Saudi Arabia</string>
-    <string name="altitude">Altitude</string>
-    <string name="pressure">Pressure</string>
-    <string name="temperature">Temperature</string>
-    <string name="rounding">Rounding</string>
-    <string name="normal">Normal</string>
-    <string name="special">Special</string>
-    <string name="aggressive">Aggressive</string>
     <string name="offset">Offset</string>
-    <string name="minutes">minutes</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g> AH</string>
     <string name="would_you_pray">It is time for <xliff:g id="time_name">%1$s</xliff:g> prayer. Would you like to do it now?</string>
     <string name="yes">Yes</string>
     <string name="later">Later…</string>
 
     <string name="app_name" translatable="false">Al-Muazzin</string>
-    <string name="degrees_celsius" translatable="false">\u00B0C</string>
     <string name="degree_minute_second" translatable="false"><xliff:g id="degree">%1$d</xliff:g>\u00B0 <xliff:g id="minute">%2$d</xliff:g>\u2019 <xliff:g id="second">%3$s</xliff:g>\u201D</string>
     <string name="next_time_marker" translatable="false">&gt;\u0020</string>
-    <string name="next_time_marker_reverse" translatable="false">&lt;</string>
 </resources>

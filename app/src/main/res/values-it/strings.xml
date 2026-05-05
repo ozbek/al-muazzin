@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Mostra e può avvisare per le preghiere Islamiche giornaliere.</string>
-    <string name="previous">Precedente</string>
-    <string name="next">Successivo</string>
     <string name="stop">Ferma</string>
     <string name="today">Oggi</string>
     <string name="sunrise">Alba</string>
@@ -12,38 +10,26 @@
     <string name="time_for">è l\'ora di <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Latitudine</string>
     <string name="longitude">Longitudine</string>
-    <string name="compass_disclaimer">La bussola funziona anche in modalità panoramica.</string>
-    <string name="bearing_north">1) Deviazione dal Nord = (1)°</string>
-    <string name="bearing_qibla">2) Deviazione dalla Qibla = (1) (+/-) (2)° = (3)°</string>
+    <string name="bearing_heading">Direzione: %1$s°</string>
+    <string name="bearing_qibla">Qibla: %1$s° (%2$s)</string>
+    <string name="qibla_aligned">allineato</string>
+    <string name="qibla_turn_right">ruota a destra di %1$s°</string>
+    <string name="qibla_turn_left">ruota a sinistra di %1$s°</string>
     <string name="settings">Impostazioni</string>
-    <string name="bismillah_on_boot_up_summary">Basmala all\'accensione</string>
     <string name="notification">Avviso</string>
     <string name="none">Nessuno</string>
     <string name="beep">Bip</string>
     <string name="adhan">Adhan</string>
-    <string name="sinterface">Interfaccia</string>
-    <string name="advanced">Avanzate</string>
-    <string name="daylight_savings">, Ora Legale</string>
     <string name="lookup_gps">Utilizza GPS</string>
-    <string name="system_time_zone">Fuso Orario</string>
     <string name="save">Salva</string>
     <string name="reset">Azzera</string>
     <string name="calculation">Metodo di Calcolo</string>
     <string name="egypt_survey">Egyptian General Authority of Survey</string>
-    <string name="karachi_shaf">Shaf`i - Karachi University of Islamic Sciences</string>
-    <string name="karachi_hanaf">Hanafi - Karachi University of Islamic Sciences</string>
+    <string name="karachi">Karachi University of Islamic Sciences</string>
     <string name="north_america">Islamic Society of North America</string>
     <string name="muslim_league">Muslim World League</string>
     <string name="umm_alqurra">Umm Al-Qurra, Saudi Arabia</string>
-    <string name="altitude">Altitudine</string>
-    <string name="pressure">Pressione</string>
-    <string name="temperature">Temperatura</string>
-    <string name="rounding">Arrotondamento</string>
-    <string name="normal">Normale</string>
-    <string name="special">Speciale</string>
-    <string name="aggressive">Aggressivo</string>
     <string name="offset">Deviazione</string>
-    <string name="minutes">minuti</string>
     <string name="yes">Sí</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g> AH</string>
     <string name="would_you_pray">È ora della preghiera di <xliff:g id="time_name">%1$s</xliff:g>. Vuoi farla ora?</string>
@@ -53,7 +39,5 @@
     <string name="maghrib">Maghrib</string>
     <string name="ishaa">Ishaa</string>
     <string name="qibla">Qibla</string>
-    <string name="bismillah_on_boot_up_title">Basmala</string>
-    <string name="gmt">GMT</string>
     <string name="later">Più tardi…</string>
 </resources>

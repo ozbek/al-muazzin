@@ -2,21 +2,13 @@
 <resources>
     <array name="calculation_methods" translatable="false">
         <item>@string/egypt_survey</item>
-        <item>@string/karachi_shaf</item>
-        <item>@string/karachi_hanaf</item>
+        <item>@string/karachi</item>
         <item>@string/north_america</item>
         <item>@string/muslim_league</item>
         <item>@string/umm_alqurra</item>
     </array>
 
-    <array name="rounding_types">
-        <item>@string/none</item>
-        <item>@string/normal</item>
-        <item>@string/special</item>
-        <item>@string/aggressive</item>
-    </array>
-
-    <array name="notification_methods">
+    <array name="notification_methods" translatable="false">
         <item>@string/none</item>
         <item>@string/sdefault</item>
         <item>@string/beep</item>

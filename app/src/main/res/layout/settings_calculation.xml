@@ -1,144 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:padding="16dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/label_latitude"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:labelFor="@+id/latitude"
+            android:text="@string/latitude"
+            app:layout_constraintBottom_toBottomOf="@id/latitude"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                style="@style/labelColumn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="fill_vertical"
-                    android:text="@string/latitude" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="fill_vertical"
-                    android:text="@string/longitude" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="fill_vertical"
-                    android:text="@string/calculation" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="fill_vertical"
-                    android:text="@string/offset" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <EditText
-                                android:id="@+id/latitude"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="numberSigned|numberDecimal"
-                                android:singleLine="true" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <EditText
-                                android:id="@+id/longitude"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="numberSigned|numberDecimal"
-                                android:singleLine="true" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <ImageButton
-                        android:id="@+id/lookup_gps"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="2dp"
-                        android:background="@drawable/ic_lookup_gps"
-                        android:contentDescription="@string/lookup_gps" />
-
-                </LinearLayout>
-
-                <Spinner
-                    android:id="@+id/calculation_methods"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawSelectorOnTop="true" />
-
-                <EditText
-                    android:id="@+id/offset_minutes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:inputType="numberSigned" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            style="?android:attr/buttonBarStyle"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/latitude"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginStart="16dp"
+            android:autofillHints="none"
+            android:inputType="numberSigned|numberDecimal"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labels_barrier"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/reset_settings"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/reset" />
+        <TextView
+            android:id="@+id/label_longitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/longitude"
+            android:text="@string/longitude"
+            app:layout_constraintBottom_toBottomOf="@id/longitude"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/longitude" />
 
-            <Button
-                android:id="@+id/save_settings"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/save" />
-        </LinearLayout>
-    </LinearLayout>
+        <EditText
+            android:id="@+id/longitude"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:autofillHints="none"
+            android:inputType="numberSigned|numberDecimal"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labels_barrier"
+            app:layout_constraintTop_toBottomOf="@id/latitude" />
+
+        <Button
+            android:id="@+id/lookup_gps"
+            style="?attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawableStart="@drawable/ic_my_location"
+            android:drawablePadding="8dp"
+            app:iconTint="?attr/colorAccent"
+            android:text="@string/lookup_gps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/longitude" />
+
+        <TextView
+            android:id="@+id/label_calculation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calculation"
+            app:layout_constraintBottom_toBottomOf="@id/calculation_methods"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/calculation_methods" />
+
+        <Spinner
+            android:id="@+id/calculation_methods"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:drawSelectorOnTop="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labels_barrier"
+            app:layout_constraintTop_toBottomOf="@id/lookup_gps" />
+
+        <TextView
+            android:id="@+id/label_offset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/offset_minutes"
+            android:text="@string/offset"
+            app:layout_constraintBottom_toBottomOf="@id/offset_minutes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/offset_minutes" />
+
+        <EditText
+            android:id="@+id/offset_minutes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:autofillHints="none"
+            android:gravity="center"
+            android:inputType="numberSigned"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/labels_barrier"
+            app:layout_constraintTop_toBottomOf="@id/calculation_methods" />
+
+        <Button
+            android:id="@+id/reset_settings"
+            style="?attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/reset"
+            app:layout_constraintEnd_toStartOf="@id/save_settings"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/offset_minutes" />
+
+        <Button
+            android:id="@+id/save_settings"
+            style="?attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/reset_settings"
+            app:layout_constraintTop_toBottomOf="@id/offset_minutes" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/labels_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="label_latitude,label_longitude,label_calculation,label_offset" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

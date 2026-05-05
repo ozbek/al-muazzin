@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Benachrichtigt Sie zu den Muslimischen Gebetszeiten</string>
-    <string name="previous">Vorherige</string>
-    <string name="next">Nächste</string>
     <string name="stop">Stopp</string>
     <string name="today">Heute</string>
     <string name="next_fajr">Nächste Fajr</string>
@@ -11,33 +9,24 @@
     <string name="time_for">Zeit für <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Breitengrad</string>
     <string name="longitude">Längengrad</string>
-    <string name="compass_disclaimer">Kompass funktioniert in portrait Modus.</string>
-    <string name="bearing_north">1) Peilung Nord = (1)°</string>
-    <string name="bearing_qibla">2) Peilung Qibla = (1) (+/-) (2)° = (3)°</string>
+    <string name="bearing_heading">Kurs: %1$s°</string>
+    <string name="bearing_qibla">Qibla: %1$s° (%2$s)</string>
+    <string name="qibla_aligned">ausgerichtet</string>
+    <string name="qibla_turn_right">%1$s° nach rechts drehen</string>
+    <string name="qibla_turn_left">%1$s° nach links drehen</string>
     <string name="settings">Einstellungen</string>
     <string name="notification">Benachrichtugung</string>
     <string name="none">Keine</string>
     <string name="beep">Beep</string>
     <string name="adhan">Adhān</string>
-    <string name="sinterface">Oberfläche</string>
-    <string name="advanced">Erweitert</string>
-    <string name="system_time_zone">System Zeit Zone</string>
     <string name="save">Speichern</string>
     <string name="reset">Eingaben löschen</string>
     <string name="calculation">Berechnungen</string>
     <string name="egypt_survey">Ägyptische Generalbehörde für Begutachtung</string>
-    <string name="karachi_shaf">Shaf`i - Karachi Universität für Islamwissenschaften</string>
-    <string name="karachi_hanaf">Hanafi - Karachi Universität für Islamwissenschaften</string>
+    <string name="karachi">Karachi Universität für Islamwissenschaften</string>
     <string name="north_america">Islamische Gesellschaft von Nord Amerika</string>
     <string name="muslim_league">Muslim Welt Verband</string>
     <string name="umm_alqurra">Umm Al-Qurra, Saudi Arabia</string>
-    <string name="rounding">Runden</string>
-    <string name="normal">Normal</string>
-    <string name="special">Spezial</string>
-    <string name="aggressive">Aggressiv</string>
-    <string name="altitude">Höhe</string>
-    <string name="pressure">Druck</string>
-    <string name="temperature">Temperatur</string>
     <string name="yes">Ja</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g> AH</string>
     <string name="would_you_pray">Es ist Zeit für das <xliff:g id="time_name">%1$s</xliff:g>-Gebet. Möchtest du es jetzt verrichten?</string>
@@ -48,12 +37,7 @@
     <string name="maghrib">Maghrib</string>
     <string name="ishaa">Ischa</string>
     <string name="qibla">Qibla</string>
-    <string name="bismillah_on_boot_up_title">Basmala</string>
-    <string name="bismillah_on_boot_up_summary">Basmala beim Hochfahren rezitieren</string>
-    <string name="daylight_savings">, Sommerzeit</string>
     <string name="lookup_gps">GPS-Suche</string>
-    <string name="gmt">GMT</string>
     <string name="offset">Offset</string>
-    <string name="minutes">Minuten</string>
     <string name="later">Später…</string>
 </resources>

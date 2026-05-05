@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="description">Покажет и может предупредить о времях ежедневных мусульманских молитв.</string>
-    <string name="previous">Предыдущий</string>
-    <string name="next">Следующий</string>
     <string name="stop">Стоп</string>
     <string name="today">Сегодня</string>
     <string name="fajr">Фаджр</string>
@@ -18,40 +16,26 @@
     <string name="latitude">Широта</string>
     <string name="longitude">Долгота</string>
     <string name="qibla">Кибла</string>
-    <string name="compass_disclaimer">Компас работает в портретном режиме основано на настройках месте.</string>
-    <string name="bearing_north">1) Опора севера = (1)°</string>
-    <string name="bearing_qibla">2) Опора Киблы = (1) (+/-) (2)° = (3)°</string>
+    <string name="bearing_heading">Курс: %1$s°</string>
+    <string name="bearing_qibla">Кибла: %1$s° (%2$s)</string>
+    <string name="qibla_aligned">направлен на Киблу</string>
+    <string name="qibla_turn_right">поверните вправо на %1$s°</string>
+    <string name="qibla_turn_left">поверните влево на %1$s°</string>
     <string name="settings">Настройки</string>
-    <string name="bismillah_on_boot_up_title">Басмала</string>
-    <string name="bismillah_on_boot_up_summary">Читай басмала при загрузке</string>
     <string name="notification">Оповещение</string>
     <string name="none">Никакой</string>
     <string name="beep">Гудок</string>
     <string name="adhan">Азан</string>
-    <string name="sinterface">Интерфейс</string>
-    <string name="advanced">Расширенный</string>
-    <string name="daylight_savings">, Летнее время</string>
     <string name="lookup_gps">Авто (GPS)</string>
-    <string name="system_time_zone">Часовой пояс</string>
-    <string name="gmt">ГСВ</string>
     <string name="save">Сохранить</string>
     <string name="reset">Сбросить</string>
     <string name="calculation">Расчет</string>
     <string name="egypt_survey">Египетская ген. админист. по обслед.</string>
-    <string name="karachi_shaf">Шафиитский - Унив. Карачи</string>
-    <string name="karachi_hanaf">Ханифитский - Унив. Карачи</string>
+    <string name="karachi">Унив. Карачи</string>
     <string name="north_america">Исламское общество Сев. Амер.</string>
     <string name="muslim_league">Всемирная мусульманская лига</string>
     <string name="umm_alqurra">Умм-Аль-Курра, Сауд. Аравия</string>
-    <string name="altitude">Высота над уровнем моря</string>
-    <string name="pressure">Давление</string>
-    <string name="temperature">Температура</string>
-    <string name="rounding">Округление</string>
-    <string name="normal">Нормальный</string>
-    <string name="special">Специальный</string>
-    <string name="aggressive">Агрессивный</string>
     <string name="offset">Офсет</string>
-    <string name="minutes">минут</string>
     <string name="anno_hegirae"><xliff:g id="day">%1$s</xliff:g> <xliff:g id="month">%2$s</xliff:g> <xliff:g id="year">%3$s</xliff:g> г.</string>
     <string name="yes">Да</string>
     <string name="later">Позже…</string>

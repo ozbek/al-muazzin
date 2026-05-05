@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hijri_months">
+        <item>Muharram</item>
+        <item>Safar</item>
+        <item>Rabiʿ al-awwal</item>
+        <item>Rabiʿ ath-thani</item>
+        <item>Dschumada al-ula</item>
+        <item>Dschumada ath-thaniya</item>
+        <item>Radschab</item>
+        <item>Schabān</item>
+        <item>Ramadan</item>
+        <item>Schawwal</item>
+        <item>Dhu l-qaʿda</item>
+        <item>Dhu l-hiddscha</item>
+    </string-array>
+</resources>
