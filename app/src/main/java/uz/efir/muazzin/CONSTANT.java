@@ -19,7 +19,8 @@ public class CONSTANT {
                     // Africa
                     "AGO", "BDI", "BEN", "BFA", "BWA", "CAF", "CIV", "CMR", "COG", "COM", "CPV", "DJI", "DZA", "EGY", "ERI", "ESH", "ETH", "GAB", "GHA", "GIN", "GMB", "GNB", "GNQ", "KEN", "LBR", "LBY", "LSO", "MAR", "MDG", "MLI", "MOZ", "MRT", "MUS", "MWI", "MYT", "NAM", "NER", "NGA", "REU", "RWA", "SDN", "SEN", "SLE", "SOM", "STP", "SWZ", "SYC", "TCD", "TGO", "TUN", "TZA", "UGA", "ZAF", "ZAR", "ZWB", "ZWE",
                     // Syria, Iraq, Lebanon, Malaysia
-                    "IRQ", "LBN", "MYS", "SYR"},
+                    "IRQ", "LBN", "MYS", "SYR"
+            },
 
             /* METHOD_KARACHI_SHAF:
                     ____
@@ -27,20 +28,21 @@ public class CONSTANT {
             new String[]{},
 
             /* METHOD_KARACHI_HANAF:
-                    Pakistan,
-                    Bangladesh,
-                    India,
-                    Afghanistan,
+
                     Parts of Europe
             */
-            new String[]{"AFG", "BGD", "IND", "PAK"},
+            new String[]{
+                    // Afghanistan, Bangladesh, India, Pakistan, Uzbekistan
+                    "AFG", "BGD", "IND", "PAK", "UZB"
+            },
 
             /* METHOD_NORTH_AMERICA:
-                    Parts of the USA,
-                    Canada,
                     Parts of the UK
             */
-            new String[]{"USA", "CAN"},
+            new String[]{
+                    // Parts of the USA and Canada
+                    "USA", "CAN"
+            },
 
             /* METHOD_MUSLIM_LEAGUE:
                     Europe,
@@ -51,18 +53,17 @@ public class CONSTANT {
                     // Europe
                     "AND", "AUT", "BEL", "DNK", "FIN", "FRA", "DEU", "GIB", "IRL", "ITA", "LIE", "LUX", "MCO", "NLD", "NOR", "PRT", "SMR", "ESP", "SWE", "CHE", "GBR", "VAT",
                     // Far East
-                    "CHN", "JPN", "KOR", "PRK", "TWN"},
+                    "CHN", "JPN", "PRK", "TWN"
+            },
 
             /* METHOD_UMM_ALQURRA:
-                    The Arabian Peninsula
             */
-            new String[]{"BHR", "KWT", "OMN", "QAT", "SAU", "YEM"},
-
-            /* METHOD_FIXED_ISHAA:
-                    ___
-            */
-            new String[]{}
-
+            new String[]{
+                    // The Arabian Peninsula
+                    "BHR", "KWT", "OMN", "QAT", "SAU", "YEM",
+                    // Far East
+                    "KOR"
+            },
     };
     public static final CalculationMethod[] CALCULATION_METHODS = new CalculationMethod[]{
             CalculationMethod.EGYPTIAN,
@@ -76,7 +77,7 @@ public class CONSTANT {
     public static final short DEFAULT_CALCULATION_METHOD = 5; // UMM_ALQURRA
 
     public static final int FAJR = 0, SUNRISE = 1, DHUHR = 2, ASR = 3, MAGHRIB = 4, ISHAA = 5, NEXT_FAJR = 6; // Notification Times
-    public static final short NOTIFICATION_NONE = 0, NOTIFICATION_DEFAULT = 1, NOTIFICATION_PLAY = 2, NOTIFICATION_CUSTOM = 3; // Notification Methods
+    public static final short NOTIFICATION_NONE = 0, NOTIFICATION_DEFAULT = 1, NOTIFICATION_PLAY = 2; // Notification Methods
     public static final String EXTRA_ACTUAL_TIME = "uz.efir.muazzin.EXTRA_ACTUAL_TIME";
     public static final String EXTRA_TIME_INDEX = "uz.efir.muazzin.EXTRA_TIME_INDEX";
     public static int[] TIME_NAMES = new int[]{R.string.fajr, R.string.sunrise, R.string.dhuhr, R.string.asr, R.string.maghrib, R.string.ishaa, R.string.next_fajr};
