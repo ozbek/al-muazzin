@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Light / Paper theme -->
     <style name="Theme.Muazzin" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/primary_light</item>
-        <item name="colorOnPrimary">@color/on_primary_light</item>
-        <item name="colorSecondary">@color/accent_light</item>
-        <item name="colorOnSecondary">#FFFFFF</item>
-        <item name="colorAccent">@color/accent_light</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_strong</item>
+        <item name="colorOnPrimary">@color/foreground_primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorOnSecondary">@color/foreground_primary</item>
+        <item name="colorAccent">@color/secondary</item>
 
-        <!-- UI colors -->
-        <item name="android:windowBackground">@color/background_light</item>
-        <item name="colorSurface">@color/background_light</item>
-        <item name="colorOnSurface">@color/primary_light</item>
-        <item name="android:statusBarColor">?attr/colorSurface</item>
+        <item name="android:windowBackground">@color/background_paper</item>
+        <item name="colorSurface">@color/background_paper</item>
+        <item name="colorOnSurface">@color/ink_primary</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
 
         <item name="buttonBarButtonStyle">@style/Widget.Muazzin.Button.TextButton</item>
     </style>
 
-    <!-- Dark theme overrides -->
-    <style name="Theme.Muazzin.Dark" parent="Theme.MaterialComponents.NoActionBar">
-        <item name="colorPrimary">@color/primary_dark</item>
-        <item name="colorOnPrimary">@color/on_primary_dark</item>
-        <item name="colorSecondary">@color/accent_dark</item>
-        <item name="colorAccent">@color/accent_dark</item>
-        <item name="android:windowBackground">@color/background_dark</item>
+    <!-- Toolbar inherits theme-aware action-bar colors from the parent overlay; no overrides. -->
+    <style name="ThemeOverlay.Muazzin.Toolbar" parent="ThemeOverlay.MaterialComponents.ActionBar" />
+
+    <style name="Theme.Muazzin.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorAccent">@color/secondary</item>
+        <item name="colorSurface">@color/background_paper</item>
+        <item name="colorOnSurface">@color/ink_primary</item>
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+        <item name="buttonBarButtonStyle">@style/Widget.Muazzin.Button.TextButton</item>
     </style>
 
-    <!-- Overlay for the Toolbar to ensure correct text and icon color -->
-    <style name="ThemeOverlay.Muazzin.Toolbar" parent="ThemeOverlay.MaterialComponents.ActionBar">
-        <item name="colorOnSurface">?attr/colorOnSurface</item>
-        <item name="colorControlNormal">?attr/colorOnSurface</item>
-        <item name="android:textColorPrimary">?attr/colorOnSurface</item>
-    </style>
-    <!-- Button styles -->
     <style name="Widget.Muazzin.Button.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
-        <item name="android:textColor">?attr/colorSecondary</item>
-        <item name="iconTint">?attr/colorSecondary</item>
+        <item name="android:textColor">@color/secondary</item>
+        <item name="iconTint">@color/secondary</item>
     </style>
 </resources>

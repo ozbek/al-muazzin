@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="500"
+  aria-label="Al-Muazzin feature graphic" viewBox="0 0 1024 500">
+  <defs>
+    <radialGradient id="fgSky" cx="68%" cy="35%" r="80%">
+      <stop offset="0%" stop-color="#3fa9ff" />
+      <stop offset="35%" stop-color="#0f6cc9" />
+      <stop offset="80%" stop-color="#062e66" />
+      <stop offset="100%" stop-color="#02091c" />
+    </radialGradient>
+    <radialGradient id="fgDisc" cx="50%" cy="38%" r="65%">
+      <stop offset="0%" stop-color="#3fa9ff" />
+      <stop offset="55%" stop-color="#0f6cc9" />
+      <stop offset="100%" stop-color="#062e66" />
+    </radialGradient>
+    <radialGradient id="fgStar" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".95" />
+      <stop offset="100%" stop-color="#e6f3ff" stop-opacity=".55" />
+    </radialGradient>
+    <radialGradient id="fgHorizon" cx="50%" cy="100%" r="80%">
+      <stop offset="0%" stop-color="#1e7fd8" stop-opacity=".55" />
+      <stop offset="100%" stop-color="#1e7fd8" stop-opacity="0" />
+    </radialGradient>
+    <symbol id="fgSpark" overflow="visible">
+      <path fill="#fff" d="M0-14 2-2l12 2L2 2 0 14-2 2l-12-2 12-2Z" />
+    </symbol>
+  </defs>
+  <path fill="#04183a" d="M0 0h1024v500H0z" />
+  <path fill="url(#fgSky)" d="M0 0h1024v500H0z" />
+  <path fill="url(#fgHorizon)" d="M0 0h1024v500H0z" />
+  <use x="120" y="80" href="#fgSpark" transform="matrix(.7 0 0 .7 35.7 23.8)" />
+  <use x="260" y="120" href="#fgSpark" transform="matrix(.45 0 0 .45 142.65 66.15)" />
+  <use x="900" y="60" href="#fgSpark" transform="matrix(.5 0 0 .5 450 30)" />
+  <use x="980" y="180" href="#fgSpark" transform="matrix(.35 0 0 .35 637 116.9)" />
+  <use x="80" y="280" href="#fgSpark" transform="matrix(.4 0 0 .4 48 168)" />
+  <use x="180" y="380" href="#fgSpark" transform="matrix(.55 0 0 .55 80.85 171.05)" />
+  <use x="540" y="420" href="#fgSpark" transform="matrix(.45 0 0 .45 297 230.85)" />
+  <use x="940" y="380" href="#fgSpark" transform="matrix(.5 0 0 .5 470 190)" />
+  <path fill="#fff"
+    d="m740-50 33 255L952 38 785 217l255 33-255 33 167 179-179-167-33 255-33-255-179 167 167-179-255-33 255-33L528 38l179 167Z"
+    opacity=".1" />
+  <g transform="translate(740 250)">
+    <circle r="190" fill="#1e7fd8" opacity=".18" />
+    <circle r="160" fill="#1e7fd8" opacity=".18" />
+    <circle r="140" fill="url(#fgDisc)" stroke="#0a3f84" stroke-width="2" />
+    <circle r="128" fill="none" stroke="#fff" stroke-opacity=".1" />
+    <path fill="url(#fgStar)" stroke="#fff" stroke-opacity=".85"
+      d="m0-110 12 92 66-60-60 66 92 12-92 12 60 66-66-60-12 92-12-92-66 60 60-66-92-12 92-12-60-66 66 60Z" />
+    <circle r="28" fill="#1e7fd8" stroke="#fff" stroke-opacity=".8" stroke-width="1.5" />
+    <circle r="14" fill="#fff" fill-opacity=".2" />
+  </g>
+  <g transform="translate(76)">
+    <text y="190" fill="#9fceff" font-family="'Manrope','Helvetica Neue',Arial,sans-serif"
+      font-size="16" font-weight="600" letter-spacing="3.6">
+      THE CALL TO PRAYER
+    </text>
+    <text y="270" fill="#fff" font-family="'Reem Kufi','Manrope',system-ui,sans-serif"
+      font-size="92" font-weight="700" letter-spacing="-2">
+      Al-Muazzin
+    </text>
+    <text y="324" fill="#c6dcf5" font-family="'Manrope','Helvetica Neue',Arial,sans-serif"
+      font-size="22" font-weight="400">
+      Prayer times, Qibla, and the Adhan —
+    </text>
+    <text y="354" fill="#c6dcf5" font-family="'Manrope','Helvetica Neue',Arial,sans-serif"
+      font-size="22" font-weight="400">
+      five times a day, wherever you are.
+    </text>
+    <rect width="64" height="3" y="386" fill="#ff5a1f" rx="1.5" />
+  </g>
+</svg>

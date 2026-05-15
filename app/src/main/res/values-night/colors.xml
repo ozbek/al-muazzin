@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_primary">@color/foreground_primary</color>
+    <color name="text_secondary">@color/foreground_secondary</color>
+    <color name="row_band_bg">@color/background_elevated</color>
+</resources>

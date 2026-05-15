@@ -1,18 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Light Theme Colors -->
-    <color name="primary_light">#000000</color>
-    <color name="on_primary_light">#FFFFFF</color>
-    <color name="background_light">#FFFFFF</color>
-    <color name="accent_light">#FFAB00</color>
+    <!-- Sky scale - radial blue of the compass face -->
+    <color name="sky_500">#1E7FD8</color>
+    <color name="sky_700">#0A52A5</color>
+    <color name="sky_900">#062E66</color>
+    <color name="sky_950">#04183A</color>
 
-    <!-- Dark Theme Colors -->
-    <color name="primary_dark">#000000</color>
-    <color name="on_primary_dark">#FFFFFF</color>
-    <color name="background_dark">#121212</color>
-    <color name="accent_dark">#FFAB00</color>
+    <!-- Qibla needle, reserved for the Qibla pointer and CTA moments -->
+    <color name="ember_500">#FF5A1F</color>
 
-    <!-- Gray colors for icons/text -->
-    <color name="dark_gray">#aaaaaa</color>
-    <color name="light_gray">#bdbdbd</color>
+    <!-- Sand - paper surfaces -->
+    <color name="sand_50">#FBF7F0</color>
+    <color name="sand_100">#F4ECDC</color>
+
+    <!-- Light / paper mode -->
+    <color name="background_paper">@color/sand_50</color>
+    <color name="ink_primary">#0E1F3A</color>
+    <color name="ink_secondary">#2F4263</color>
+
+    <!-- Dark / night-sky mode -->
+    <color name="background_app">@color/sky_950</color>
+    <color name="background_elevated">#0B254E</color>
+    <color name="foreground_primary">#FFFFFF</color>
+    <color name="foreground_secondary">#C6DCF5</color>
+
+    <color name="primary">@color/sky_500</color>
+    <color name="primary_strong">@color/sky_700</color>
+    <color name="secondary">@color/ember_500</color>
+
+    <!-- Overridden in values-night/colors.xml -->
+    <color name="text_primary">@color/ink_primary</color>
+    <color name="text_secondary">@color/ink_secondary</color>
+    <color name="row_band_bg">@color/sand_100</color>
 </resources>

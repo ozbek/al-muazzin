@@ -39,7 +39,6 @@
             android:paddingEnd="16dp">
 
             <TextView
-                android:id="@+id/fajr_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/fajr"
@@ -59,7 +58,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/sunrise_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/sunrise"
@@ -79,7 +77,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/notification_fajr" />
 
             <TextView
-                android:id="@+id/dhuhr_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/dhuhr"
@@ -99,7 +96,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/notification_sunrise" />
 
             <TextView
-                android:id="@+id/asr_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/asr"
@@ -119,7 +115,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/notification_dhuhr" />
 
             <TextView
-                android:id="@+id/maghrib_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/maghrib"
@@ -139,7 +134,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/notification_asr" />
 
             <TextView
-                android:id="@+id/ishaa_label"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/ishaa"

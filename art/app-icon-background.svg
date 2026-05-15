@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="432" height="432" aria-label="Muazzin background"
+  viewBox="0 0 432 432">
+  <defs>
+    <radialGradient id="abgSky" cx="50%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#3fa9ff" />
+      <stop offset="55%" stop-color="#0f6cc9" />
+      <stop offset="100%" stop-color="#062e66" />
+    </radialGradient>
+  </defs>
+  <path fill="url(#abgSky)" d="M0 0h432v432H0z" />
+  <ellipse cx="216" cy="360" fill="#1e7fd8" opacity=".35" rx="240" ry="100" />
+  <path fill="#fff"
+    d="m216 16 22 170L357 75 246 194l170 22-170 22 111 119-119-111-22 170-22-170L75 357l111-119-170-22 170-22L75 75l119 111Z"
+    opacity=".06" />
+  <g fill="#fff" opacity=".85">
+    <circle cx="78" cy="94" r="2" />
+    <circle cx="340" cy="70" r="2.6" />
+    <circle cx="118" cy="178" r="1.6" />
+    <circle cx="318" cy="166" r="2" />
+    <circle cx="60" cy="240" r="1.6" />
+  </g>
+</svg>

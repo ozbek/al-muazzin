@@ -12,7 +12,7 @@
         android:layout_gravity="start"
         android:layout_marginBottom="10dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/light_gray" />
+        android:textColor="?android:attr/textColorSecondary" />
 
     <ListView
         android:id="@+id/timetable"

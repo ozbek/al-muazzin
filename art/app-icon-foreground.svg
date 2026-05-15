@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="432" height="432" aria-label="Muazzin foreground"
+  viewBox="0 0 432 432">
+  <defs>
+    <linearGradient id="afgGold" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#ffe08a" />
+      <stop offset="55%" stop-color="#ffc857" />
+      <stop offset="100%" stop-color="#c99a2a" />
+    </linearGradient>
+    <linearGradient id="afgIvory" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#fbf7f0" />
+      <stop offset="100%" stop-color="#d6c49c" />
+    </linearGradient>
+  </defs>
+  <g transform="translate(216 290)">
+    <path fill="#fff" d="M-126 22h252v38h-252z" opacity=".92" />
+    <path fill="url(#afgGold)" d="M-126 22h252v4h-252z" />
+    <path fill="url(#afgIvory)" d="M-8-100H8V22H-8z" transform="translate(-84)" />
+    <path fill="url(#afgGold)" d="M-12-100h24v6h-24z" transform="translate(-84)" />
+    <path fill="url(#afgGold)" d="M-8-100c0-18 4-26 8-34 4 8 8 16 8 34Z" transform="translate(-84)" />
+    <path fill="url(#afgGold)" d="M-1.4-134 0-148l1.4 14Z" transform="translate(-84)" />
+    <path fill="url(#afgIvory)" d="M-8-100H8V22H-8z" transform="translate(84)" />
+    <path fill="url(#afgGold)" d="M-12-100h24v6h-24z" transform="translate(84)" />
+    <path fill="url(#afgGold)" d="M-8-100c0-18 4-26 8-34 4 8 8 16 8 34Z" transform="translate(84)" />
+    <path fill="url(#afgGold)" d="M-1.4-134 0-148l1.4 14Z" transform="translate(84)" />
+    <path fill="url(#afgIvory)" d="M-6-80H6v94H-6z" transform="translate(-44 10)" />
+    <path fill="url(#afgGold)" d="M-9-80H9v4H-9z" transform="translate(-44 10)" />
+    <path fill="url(#afgGold)" d="M-6-80c0-14 3-20 6-28 3 8 6 14 6 28Z"
+      transform="translate(-44 10)" />
+    <path fill="url(#afgIvory)" d="M-6-80H6v94H-6z" transform="translate(44 10)" />
+    <path fill="url(#afgGold)" d="M-9-80H9v4H-9z" transform="translate(44 10)" />
+    <path fill="url(#afgGold)" d="M-6-80c0-14 3-20 6-28 3 8 6 14 6 28Z" transform="translate(44 10)" />
+    <path fill="#fff" d="M-60-14H60v36H-60z" opacity=".95" />
+    <path fill="#0f6cc9"
+      d="M-46 22V4a8 8 0 0 1 16 0v18Zm38 0V2A8 8 0 0 1 8 2v20Zm38 0V4a8 8 0 0 1 16 0v18Z"
+      opacity=".85" />
+    <path fill="url(#afgIvory)" d="M-40-32h80v18h-80z" />
+    <path fill="url(#afgGold)" d="M-40-32c0-46 16-60 40-60s40 14 40 60Z" />
+    <path fill="url(#afgGold)" d="m-2-92 2-14 2 14Z" />
+    <circle cy="-110" r="3" fill="url(#afgGold)" />
+    <path fill="url(#afgGold)" d="M0-124a6 6 0 1 0 4 10 4.5 4.5 0 1 1-4-10" />
+  </g>
+</svg>

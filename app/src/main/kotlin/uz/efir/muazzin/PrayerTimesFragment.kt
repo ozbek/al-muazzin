@@ -140,11 +140,11 @@ class PrayerTimesFragment : Fragment() {
 
             val context = convertView.context
             val textColor = if (position % 2 == 0) {
-                convertView.setBackgroundResource(R.color.dark_gray)
-                ContextCompat.getColor(context, android.R.color.black)
+                convertView.setBackgroundResource(R.color.row_band_bg)
+                ContextCompat.getColor(context, R.color.text_primary)
             } else {
                 convertView.setBackgroundResource(android.R.color.transparent)
-                ContextCompat.getColor(context, R.color.light_gray)
+                ContextCompat.getColor(context, R.color.text_secondary)
             }
             timeNameView.setTextColor(textColor)
             timeView.setTextColor(textColor)

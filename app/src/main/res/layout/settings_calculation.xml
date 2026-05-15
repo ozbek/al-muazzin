@@ -62,7 +62,7 @@
             android:layout_marginTop="8dp"
             android:drawableStart="@drawable/ic_my_location"
             android:drawablePadding="8dp"
-            app:iconTint="?attr/colorAccent"
+            android:drawableTint="?attr/colorAccent"
             android:text="@string/lookup_gps"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/longitude" />

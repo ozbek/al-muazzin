@@ -29,7 +29,7 @@ class StartNotificationService : Service() {
 
         val notification: Notification =
             NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher)
+                .setSmallIcon(R.drawable.ic_stat_muazzin)
                 .setPriority(NotificationCompat.PRIORITY_MIN)
                 .setLocalOnly(true)
                 .setOngoing(true)

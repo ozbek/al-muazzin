@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="432"
+    android:viewportHeight="432">
+
+    <group
+        android:translateX="216"
+        android:translateY="290">
+
+        <!-- Floor band: white slab + gold top trim -->
+        <path
+            android:fillAlpha="0.92"
+            android:fillColor="#FFFFFF"
+            android:pathData="M-126,22 H126 V60 H-126 Z" />
+        <path android:pathData="M-126,22 H126 V26 H-126 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:endX="0"
+                    android:endY="26"
+                    android:startX="0"
+                    android:startY="22"
+                    android:type="linear">
+                    <item
+                        android:color="#FFE08A"
+                        android:offset="0" />
+                    <item
+                        android:color="#FFC857"
+                        android:offset="0.55" />
+                    <item
+                        android:color="#C99A2A"
+                        android:offset="1" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <!-- Left tall minaret -->
+        <group android:translateX="-84">
+            <path android:pathData="M-8,-100 H8 V22 H-8 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient
+                        android:endX="0"
+                        android:endY="22"
+                        android:startX="0"
+                        android:startY="-100"
+                        android:type="linear">
+                        <item
+                            android:color="#FBF7F0"
+                            android:offset="0" />
+                        <item
+                            android:color="#D6C49C"
+                            android:offset="1" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+            <path
+                android:fillColor="#FFC857"
+                android:pathData="M-12,-100 H12 V-94 H-12 Z" />
+            <path
+                android:fillColor="#FFC857"
+                android:pathData="M-8,-100 C-8,-118 -4,-126 0,-134 C4,-126 8,-118 8,-100 Z" />
+            <path
+                android:fillColor="#FFC857"
+                android:pathData="M-1.4,-134 L0,-148 L1.4,-134 Z" />
+        </group>
+
+        <!-- Right tall minaret -->
+        <group android:translateX="84">
+            <path android:pathData="M-8,-100 H8 V22 H-8 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient
+                        android:endX="0"
+                        android:endY="22"
+                        android:startX="0"
+                        android:startY="-100"
+                        android:type="linear">
+                        <item
+                            android:color="#FBF7F0"
+                            android:offset="0" />
+                        <item
+                            android:color="#D6C49C"
+                            android:offset="1" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+            <path
+                android:fillColor="#FFC857"
+                android:pathData="M-12,-100 H12 V-94 H-12 Z" />
+            <path
+                android:fillColor="#FFC857"
+                android:pathData="M-8,-100 C-8,-118 -4,-126 0,-134 C4,-126 8,-118 8,-100 Z" />
+            <path
+                android:fillColor="#FFC857"
+                android:pathData="M-1.4,-134 L0,-148 L1.4,-134 Z" />
+        </group>
+
+        <!-- Mid-left minaret -->
+        <group
+            android:translateX="-44"
+            android:translateY="10">
+            <path android:pathData="M-6,-80 H6 V14 H-6 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient
+                        android:endX="0"
+                        android:endY="14"
+                        android:startX="0"
+                        android:startY="-80"
+                        android:type="linear">
+                        <item
+                            android:color="#FBF7F0"
+                            android:offset="0" />
+                        <item
+                            android:color="#D6C49C"
+                            android:offset="1" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+            <path
+                android:fillColor="#FFC857"
+                android:pathData="M-9,-80 H9 V-76 H-9 Z" />
+            <path
+                android:fillColor="#FFC857"
+                android:pathData="M-6,-80 C-6,-94 -3,-100 0,-108 C3,-100 6,-94 6,-80 Z" />
+        </group>
+
+        <!-- Mid-right minaret -->
+        <group
+            android:translateX="44"
+            android:translateY="10">
+            <path android:pathData="M-6,-80 H6 V14 H-6 Z">
+                <aapt:attr name="android:fillColor">
+                    <gradient
+                        android:endX="0"
+                        android:endY="14"
+                        android:startX="0"
+                        android:startY="-80"
+                        android:type="linear">
+                        <item
+                            android:color="#FBF7F0"
+                            android:offset="0" />
+                        <item
+                            android:color="#D6C49C"
+                            android:offset="1" />
+                    </gradient>
+                </aapt:attr>
+            </path>
+            <path
+                android:fillColor="#FFC857"
+                android:pathData="M-9,-80 H9 V-76 H-9 Z" />
+            <path
+                android:fillColor="#FFC857"
+                android:pathData="M-6,-80 C-6,-94 -3,-100 0,-108 C3,-100 6,-94 6,-80 Z" />
+        </group>
+
+        <!-- Building body white slab -->
+        <path
+            android:fillAlpha="0.95"
+            android:fillColor="#FFFFFF"
+            android:pathData="M-60,-14 H60 V22 H-60 Z" />
+
+        <!-- Three arches -->
+        <path
+            android:fillAlpha="0.85"
+            android:fillColor="#0F6CC9"
+            android:pathData="M-46,22 L-46,4 A8,8 0 0,1 -30,4 L-30,22 Z" />
+        <path
+            android:fillAlpha="0.85"
+            android:fillColor="#0F6CC9"
+            android:pathData="M-8,22 L-8,2 A8,8 0 0,1 8,2 L8,22 Z" />
+        <path
+            android:fillAlpha="0.85"
+            android:fillColor="#0F6CC9"
+            android:pathData="M30,22 L30,4 A8,8 0 0,1 46,4 L46,22 Z" />
+
+        <!-- Dome base -->
+        <path android:pathData="M-40,-32 H40 V-14 H-40 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:endX="0"
+                    android:endY="-14"
+                    android:startX="0"
+                    android:startY="-32"
+                    android:type="linear">
+                    <item
+                        android:color="#FBF7F0"
+                        android:offset="0" />
+                    <item
+                        android:color="#D6C49C"
+                        android:offset="1" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <!-- Main dome -->
+        <path android:pathData="M-40,-32 C-40,-78 -24,-92 0,-92 C24,-92 40,-78 40,-32 Z">
+            <aapt:attr name="android:fillColor">
+                <gradient
+                    android:endX="0"
+                    android:endY="-32"
+                    android:startX="0"
+                    android:startY="-92"
+                    android:type="linear">
+                    <item
+                        android:color="#FFE08A"
+                        android:offset="0" />
+                    <item
+                        android:color="#FFC857"
+                        android:offset="0.55" />
+                    <item
+                        android:color="#C99A2A"
+                        android:offset="1" />
+                </gradient>
+            </aapt:attr>
+        </path>
+
+        <!-- Spire on dome -->
+        <path
+            android:fillColor="#FFC857"
+            android:pathData="M-2,-92 L0,-106 L2,-92 Z" />
+
+        <!-- Orb above spire -->
+        <path
+            android:fillColor="#FFC857"
+            android:pathData="M0,-110 m-3,0 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0" />
+
+        <!-- Crescent finial -->
+        <path
+            android:fillColor="#FFC857"
+            android:pathData="M0,-124 A6,6 0 1,0 4,-114 A4.5,4.5 0 1,1 0,-124 Z" />
+    </group>
+</vector>

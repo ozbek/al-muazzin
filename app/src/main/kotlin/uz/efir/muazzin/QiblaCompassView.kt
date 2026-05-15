@@ -1,109 +1,103 @@
 package uz.efir.muazzin
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Canvas
-import android.graphics.Matrix
+import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
+import androidx.appcompat.content.res.AppCompatResources
 
 class QiblaCompassView : View {
     private var directionNorth = 0f
     private var directionQibla = 0f
-    private var compassBackground: Bitmap? = null
-    private var compassNeedle: Bitmap? = null
-    private var rotateNeedle = Matrix()
-    private var width = BACKGROUND_SOURCE_SIZE
-    private var height = BACKGROUND_SOURCE_SIZE
-    private var centerX = width * 0.5f
-    private var centerY = height * 0.5f
-    private val paint = Paint()
+    private val background: Drawable
+    private val needle: Drawable
+    private val labelPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.WHITE
+        textAlign = Paint.Align.CENTER
+        typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+    }
 
-    constructor(context: Context?) : this(context, null)
+    constructor(context: Context) : this(context, null)
 
-    constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
-    constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(
+    constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(
         context, attrs, defStyle
     ) {
-        compassNeedle = BitmapFactory.decodeResource(resources, R.drawable.compass_needle)
-        compassBackground = BitmapFactory.decodeResource(
-            resources, R.drawable.compass_background
+        background = requireNotNull(
+            AppCompatResources.getDrawable(context, R.drawable.compass_background)
         )
-        width = getWidth(compassBackground, BACKGROUND_SOURCE_SIZE)
-        height = getHeight(compassBackground, BACKGROUND_SOURCE_SIZE)
-        centerX = width * 0.5f
-        centerY = height * 0.5f
-
-        val needleWidth = getWidth(compassNeedle, NEEDLE_SOURCE_WIDTH)
-        val needleHeight = getHeight(compassNeedle, NEEDLE_SOURCE_HEIGHT)
-
-        rotateNeedle.postTranslate(
-            centerX - needleWidth + 10, centerY - needleHeight + 10
+        needle = requireNotNull(
+            AppCompatResources.getDrawable(context, R.drawable.compass_needle)
         )
-        invalidate()
     }
 
     public override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        setMeasuredDimension(
-            resolveSize(width, widthMeasureSpec),
-            resolveSize(height, heightMeasureSpec)
-        )
+        val defaultSizePx = TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, DEFAULT_SIZE_DP, resources.displayMetrics
+        ).toInt()
+        val w = resolveSize(defaultSizePx, widthMeasureSpec)
+        val h = resolveSize(defaultSizePx, heightMeasureSpec)
+        val side = minOf(w, h)
+        setMeasuredDimension(side, side)
     }
 
     fun setDirections(directionNorth: Float, directionQibla: Float) {
         this.directionNorth = directionNorth
         this.directionQibla = directionQibla
-        rotateNeedle = Matrix()
-
-        val needleWidth = getWidth(compassNeedle, NEEDLE_SOURCE_WIDTH)
-        val needleHeight = getHeight(compassNeedle, NEEDLE_SOURCE_HEIGHT)
-
-        // The silver pivot ball is not at the bitmap's geometric center: it sits
-        // at ~(14.6, 131.4) in the 23x142 source. Using ratios keeps the pivot
-        // aligned if the bitmap is swapped for a different density.
-        val pivotX = needleWidth * NEEDLE_PIVOT_X_RATIO
-        val pivotY = needleHeight * NEEDLE_PIVOT_Y_RATIO
-
-        rotateNeedle.postRotate(directionQibla, pivotX, pivotY)
-        rotateNeedle.postTranslate(centerX - pivotX, centerY - pivotY)
         invalidate()
     }
 
     override fun onDraw(canvas: Canvas) {
+        val side = width
+        val centerX = side / 2f
+        val centerY = side / 2f
+
+        canvas.save()
         canvas.rotate(-directionNorth, centerX, centerY)
-        compassBackground?.let { canvas.drawBitmap(it, 0f, 0f, paint) }
-        compassNeedle?.let { canvas.drawBitmap(it, rotateNeedle, paint) }
-    }
 
-    private fun getHeight(bitmap: Bitmap?, def: Int): Int {
-        if (isInEditMode || bitmap == null) {
-            return def
-        }
+        background.setBounds(0, 0, side, side)
+        background.draw(canvas)
 
-        return bitmap.height
-    }
+        labelPaint.textSize = side * LABEL_TEXT_RATIO
+        val labelRadius = side * LABEL_RADIUS_RATIO
+        val baselineOffset = labelPaint.textSize * 0.36f
+        canvas.drawText("N", centerX, centerY - labelRadius + baselineOffset, labelPaint)
+        canvas.drawText("E", centerX + labelRadius, centerY + baselineOffset, labelPaint)
+        canvas.drawText("S", centerX, centerY + labelRadius + baselineOffset, labelPaint)
+        canvas.drawText("W", centerX - labelRadius, centerY + baselineOffset, labelPaint)
 
-    private fun getWidth(bitmap: Bitmap?, def: Int): Int {
-        if (isInEditMode || bitmap == null) {
-            return def
-        }
+        canvas.save()
+        canvas.rotate(directionQibla, centerX, centerY)
+        val needleHalfW = side * NEEDLE_HALF_W_RATIO
+        val needleHalfH = side * NEEDLE_HALF_H_RATIO
+        needle.setBounds(
+            (centerX - needleHalfW).toInt(),
+            (centerY - needleHalfH).toInt(),
+            (centerX + needleHalfW).toInt(),
+            (centerY + needleHalfH).toInt()
+        )
+        needle.draw(canvas)
+        canvas.restore()
 
-        return bitmap.width
+        canvas.restore()
     }
 
     companion object {
-        // Source dimensions of compass_background.png (drawable-mdpi).
-        private const val BACKGROUND_SOURCE_SIZE = 240
+        // The compass renders at 240dp by default
+        private const val DEFAULT_SIZE_DP = 240f
 
-        // Source dimensions of compass_needle.png (drawable-mdpi).
-        private const val NEEDLE_SOURCE_WIDTH = 23
-        private const val NEEDLE_SOURCE_HEIGHT = 142
+        // Cardinal pip centers sit at radius 102 from the disc's center in the 240 viewport.
+        private const val LABEL_RADIUS_RATIO = 102f / 240f
+        private const val LABEL_TEXT_RATIO = 14f / 240f
 
-        // Centroid of the silver pivot ball within compass_needle.png, in source pixels.
-        private const val NEEDLE_PIVOT_X_RATIO = 14.6f / NEEDLE_SOURCE_WIDTH
-        private const val NEEDLE_PIVOT_Y_RATIO = 131.4f / NEEDLE_SOURCE_HEIGHT
+        // Needle is 24x144 in source coordinates on the 240x240 disc; pivot is at the geometric center.
+        private const val NEEDLE_HALF_W_RATIO = 12f / 240f
+        private const val NEEDLE_HALF_H_RATIO = 72f / 240f
     }
 }

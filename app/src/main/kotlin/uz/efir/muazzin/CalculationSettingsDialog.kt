@@ -15,7 +15,7 @@ import java.util.Locale
 
 class CalculationSettingsDialog(
     private val mContext: Context, private val mLocationProvider: LocationProvider
-) : AppCompatDialog(mContext) {
+) : AppCompatDialog(mContext, R.style.Theme_Muazzin_Dialog) {
     interface LocationProvider {
         val latestLocation: Location?
     }

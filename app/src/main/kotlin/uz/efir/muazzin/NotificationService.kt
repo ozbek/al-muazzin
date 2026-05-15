@@ -115,17 +115,16 @@ class NotificationService : Service() {
         val notificationManager = getSystemService(NotificationManager::class.java)
         notificationManager.createNotificationChannel(channel)
 
-        // Make sure a non-zero ID for notification
-        val notificationId = timeIndex + 1
+        val notificationId = timeIndex + 1 // Make sure a non-zero ID for notification
         val notificationBuilder: NotificationCompat.Builder =
             NotificationCompat.Builder(this, CHANNEL_ID).setLocalOnly(true)
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setSmallIcon(R.drawable.ic_launcher).setWhen(actualTime).setContentTitle(
-                    getString(
-                        R.string.time_for, getString(PrayerTime.entries[timeIndex].labelRes)
-                    )
+                .setSmallIcon(R.drawable.ic_stat_muazzin)
+                .setWhen(actualTime)
+                .setContentTitle(
+                    getString(R.string.time_for, getString(PrayerTime.entries[timeIndex].labelRes))
                 )
 
         if (mediaPlayer != null) {

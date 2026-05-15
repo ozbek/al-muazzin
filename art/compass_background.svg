@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" aria-label="Qibla compass face"
+  viewBox="0 0 240 240">
+  <defs>
+    <radialGradient id="muazzinFace" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#3fa9ff" />
+      <stop offset="55%" stop-color="#0f6cc9" />
+      <stop offset="100%" stop-color="#062e66" />
+    </radialGradient>
+    <radialGradient id="muazzinCore" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#7fcbff" />
+      <stop offset="60%" stop-color="#1e7fd8" />
+      <stop offset="100%" stop-color="#0a52a5" />
+    </radialGradient>
+    <radialGradient id="muazzinPip" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#9fdbff" />
+      <stop offset="60%" stop-color="#1e7fd8" />
+      <stop offset="100%" stop-color="#06316b" />
+    </radialGradient>
+    <radialGradient id="muazzinStar" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".95" />
+      <stop offset="100%" stop-color="#e6f3ff" stop-opacity=".55" />
+    </radialGradient>
+    <symbol id="starBurst" overflow="visible">
+      <path fill="url(#muazzinStar)" stroke="#fff" stroke-opacity=".85"
+        d="m0-70 8 58 41.5-37.5L12-8l58 8-58 8 37.5 41.5L8 12 0 70l-8-58-41.5 37.5L-12 8l-58-8 58-8-37.5-41.5L-8-12Z" />
+    </symbol>
+  </defs>
+  <circle cx="120" cy="120" r="118" fill="url(#muazzinFace)" stroke="#0a3f84" stroke-width="2" />
+  <circle cx="120" cy="120" r="108" fill="none" stroke="#fff" stroke-opacity=".08" />
+  <g transform="translate(120 120)">
+    <use href="#starBurst" />
+    <circle r="18" fill="url(#muazzinCore)" stroke="#fff" stroke-opacity=".75" stroke-width="1.25" />
+    <circle r="9" fill="#fff" fill-opacity=".18" />
+  </g>
+  <g fill="#fff" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-weight="700"
+    text-anchor="middle">
+    <g transform="translate(120 18)">
+      <circle r="14" fill="url(#muazzinPip)" stroke="#fff" stroke-opacity=".85" stroke-width="1.25" />
+      <text y="5" font-size="14">N</text>
+    </g>
+    <g transform="translate(222 120)">
+      <circle r="14" fill="url(#muazzinPip)" stroke="#fff" stroke-opacity=".85" stroke-width="1.25" />
+      <text y="5" font-size="14">E</text>
+    </g>
+    <g transform="translate(120 222)">
+      <circle r="14" fill="url(#muazzinPip)" stroke="#fff" stroke-opacity=".85" stroke-width="1.25" />
+      <text y="5" font-size="14">S</text>
+    </g>
+    <g transform="translate(18 120)">
+      <circle r="14" fill="url(#muazzinPip)" stroke="#fff" stroke-opacity=".85" stroke-width="1.25" />
+      <text y="5" font-size="14">W</text>
+    </g>
+  </g>
+  <g fill="#fff" fill-opacity=".95" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif"
+    font-size="10" font-weight="700" letter-spacing=".5" text-anchor="middle">
+    <text transform="rotate(45 33.444 253.853)">NE</text>
+    <text transform="rotate(-45 323.15 -133.853)">SE</text>
+    <text transform="rotate(45 -203.15 155.853)">SW</text>
+    <text transform="rotate(-45 86.556 -35.853)">NW</text>
+  </g>
+</svg>
