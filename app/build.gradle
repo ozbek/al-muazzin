@@ -8,16 +8,16 @@ if (file(System.getProperty("user.home") + "/.signing/al-muazzin.properties").ex
 }
 
 android {
-    namespace 'uz.efir.muazzin'
+    namespace = "uz.efir.muazzin"
     compileSdkVersion 36
 
     defaultConfig {
-        applicationId "uz.efir.muazzin"
+        applicationId = "uz.efir.muazzin"
         minSdkVersion 26
         targetSdkVersion 36
-        versionCode 104
-        versionName "1.0.4"
-        resourceConfigurations = ['ar', 'de', 'es', 'fr', 'in', 'it', 'ru', 'tr', 'uz']
+        versionCode = 104
+        versionName = "1.0.4"
+        resourceConfigurations = ["ar", "de", "es", "fr", "in", "it", "ru", "tr", "uz"]
     }
 
     signingConfigs {
@@ -32,21 +32,21 @@ android {
     }
 
     buildFeatures {
-        resValues true
-        buildConfig true
+        resValues = true
+        buildConfig = true
     }
 
     buildTypes {
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.txt'
-            signingConfig signingConfigs.release
+            minifyEnabled = true
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.txt"
+            signingConfig = signingConfigs.release
         }
     }
 
     lint {
-        abortOnError false
-        checkReleaseBuilds true
+        abortOnError = false
+        checkReleaseBuilds = true
     }
 }
 
