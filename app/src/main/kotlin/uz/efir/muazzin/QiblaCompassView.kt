@@ -2,22 +2,21 @@ package uz.efir.muazzin
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
-import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.withRotation
 
 class QiblaCompassView : View {
     private var directionNorth = 0f
     private var directionQibla = 0f
-    private val background: Drawable
-    private val needle: Drawable
+    private val compassBackground: Drawable
+    private val compassNeedle: Drawable
     private val labelPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.WHITE
         textAlign = Paint.Align.CENTER
         typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
     }
@@ -29,11 +28,13 @@ class QiblaCompassView : View {
     constructor(context: Context, attrs: AttributeSet?, defStyle: Int) : super(
         context, attrs, defStyle
     ) {
-        background = requireNotNull(
-            AppCompatResources.getDrawable(context, R.drawable.compass_background)
+        labelPaint.color = ContextCompat.getColor(context, R.color.text_primary)
+
+        compassBackground = requireNotNull(
+            ContextCompat.getDrawable(context, R.drawable.compass_background)
         )
-        needle = requireNotNull(
-            AppCompatResources.getDrawable(context, R.drawable.compass_needle)
+        compassNeedle = requireNotNull(
+            ContextCompat.getDrawable(context, R.drawable.compass_needle)
         )
     }
 
@@ -58,46 +59,51 @@ class QiblaCompassView : View {
         val centerX = side / 2f
         val centerY = side / 2f
 
+        val compassSide = side * 0.8f
+        val compassOffset = (side - compassSide) / 2f
+
         canvas.save()
         canvas.rotate(-directionNorth, centerX, centerY)
 
-        background.setBounds(0, 0, side, side)
-        background.draw(canvas)
+        compassBackground.setBounds(
+            compassOffset.toInt(),
+            compassOffset.toInt(),
+            (compassOffset + compassSide).toInt(),
+            (compassOffset + compassSide).toInt()
+        )
+        compassBackground.draw(canvas)
 
         labelPaint.textSize = side * LABEL_TEXT_RATIO
         val labelRadius = side * LABEL_RADIUS_RATIO
-        val baselineOffset = labelPaint.textSize * 0.36f
-        canvas.drawText("N", centerX, centerY - labelRadius + baselineOffset, labelPaint)
-        canvas.drawText("E", centerX + labelRadius, centerY + baselineOffset, labelPaint)
-        canvas.drawText("S", centerX, centerY + labelRadius + baselineOffset, labelPaint)
-        canvas.drawText("W", centerX - labelRadius, centerY + baselineOffset, labelPaint)
+        val baselineOffset = labelPaint.textSize * 0.35f
+
+        val labels = arrayOf("N", "E", "S", "W")
+        for (i in labels.indices) {
+            canvas.withRotation(i * 90f, centerX, centerY) {
+                drawText(labels[i], centerX, centerY - labelRadius + baselineOffset, labelPaint)
+            }
+        }
 
         canvas.save()
         canvas.rotate(directionQibla, centerX, centerY)
-        val needleHalfW = side * NEEDLE_HALF_W_RATIO
-        val needleHalfH = side * NEEDLE_HALF_H_RATIO
-        needle.setBounds(
-            (centerX - needleHalfW).toInt(),
-            (centerY - needleHalfH).toInt(),
-            (centerX + needleHalfW).toInt(),
-            (centerY + needleHalfH).toInt()
+        compassNeedle.setBounds(
+            compassOffset.toInt(),
+            compassOffset.toInt(),
+            (compassOffset + compassSide).toInt(),
+            (compassOffset + compassSide).toInt()
         )
-        needle.draw(canvas)
+        compassNeedle.draw(canvas)
         canvas.restore()
 
         canvas.restore()
     }
 
     companion object {
-        // The compass renders at 240dp by default
-        private const val DEFAULT_SIZE_DP = 240f
+        // Render compass at 280dp by default
+        private const val DEFAULT_SIZE_DP = 280f
+        private const val LABEL_TEXT_RATIO = 18f / 240f
 
-        // Cardinal pip centers sit at radius 102 from the disc's center in the 240 viewport.
-        private const val LABEL_RADIUS_RATIO = 102f / 240f
-        private const val LABEL_TEXT_RATIO = 14f / 240f
-
-        // Needle is 24x144 in source coordinates on the 240x240 disc; pivot is at the geometric center.
-        private const val NEEDLE_HALF_W_RATIO = 12f / 240f
-        private const val NEEDLE_HALF_H_RATIO = 72f / 240f
+        // Push labels as far from center as possible while keeping the text inside the View bounds
+        private const val LABEL_RADIUS_RATIO = 0.5f - LABEL_TEXT_RATIO / 2f
     }
 }
