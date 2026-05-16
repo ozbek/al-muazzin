@@ -3,6 +3,7 @@ package uz.efir.muazzin
 import android.content.Context
 import android.content.SharedPreferences
 import android.location.Location
+import android.util.Log
 import androidx.core.content.edit
 
 class Preferences private constructor(context: Context) {
@@ -22,8 +23,10 @@ class Preferences private constructor(context: Context) {
         val current = mSharedPreferences.getInt(KEY_PREFS_VERSION, 0)
         if (current >= PREFS_VERSION) return
 
+        Log.i("Preferences", "Migrating preferences from v$current to v$PREFS_VERSION")
+
         @Suppress("KotlinConstantConditions")
-        if (current < 1 && mSharedPreferences.contains(KEY_CALCULATION_METHOD_INDEX)) {
+        if (current < 1 && isCalculationMethodSet) {
             // v1: collapse Karachi Shafi/Hanafi duplicate. Old order:
             //   0=EGYPTIAN, 1=KARACHI Shafi, 2=KARACHI Hanafi, 3=N. AMERICA, 4=MWL, 5=UMM_AL_QURA
             // New order:
@@ -31,7 +34,7 @@ class Preferences private constructor(context: Context) {
             // Old indices 0 and 1 stay; old indices >= 2 shift down by 1.
             val old = mSharedPreferences.getInt(KEY_CALCULATION_METHOD_INDEX, -1)
             if (old >= 2) {
-                mSharedPreferences.edit { putInt(KEY_CALCULATION_METHOD_INDEX, old - 1) }
+                calculationMethodIndex = old - 1
             }
         }
 

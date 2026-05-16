@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Build
@@ -120,18 +122,60 @@ class Muazzin : AppCompatActivity(), CalculationSettingsDialog.LocationProvider 
 
     private fun initCalculationDefaults() {
         val preferences: Preferences = Preferences.getInstance(this)
+
+        val location: Location? = when {
+            preferences.isLocationSet -> preferences.location
+            else -> getCurrentLocation(this)?.also { preferences.location = it }
+        }
+
         if (!preferences.isCalculationMethodSet) {
-            val country = Locale.getDefault().isO3Country.uppercase()
-            CalculationMethodCatalog.indexForCountry(country)?.let {
-                preferences.calculationMethodIndex = it
+            autoPickCalculationMethod(preferences, location)
+        }
+    }
+
+    /**
+     * Derive country from the device's current location, fall back to the locale's country
+     */
+    private fun autoPickCalculationMethod(preferences: Preferences, location: Location?) {
+        val applyCountry: (String?) -> Unit = { alpha2 ->
+            // Late re-check: the user may have picked a method during the in-flight geocode.
+            if (!preferences.isCalculationMethodSet) {
+                val alpha3 = alpha2?.takeIf { it.isNotBlank() }?.let { code ->
+                    @Suppress("DEPRECATION")
+                    runCatching { Locale("", code).isO3Country }.getOrNull()
+                }
+                val country = alpha3?.takeIf { it.isNotBlank() }
+                    ?: Locale.getDefault().isO3Country
+                val idx = CalculationMethodCatalog.indexForCountry(country.uppercase())
+                idx?.let { preferences.calculationMethodIndex = it }
             }
         }
 
-        if (!preferences.isLocationSet) {
-            val currentLocation = getCurrentLocation(this)
-            if (currentLocation != null) {
-                preferences.location = currentLocation
-            }
+        if (location == null || !Geocoder.isPresent()) {
+            applyCountry(null)
+            return
+        }
+        val geocoder = Geocoder(this, Locale.US)
+        val lat = location.latitude
+        val lng = location.longitude
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            geocoder.getFromLocation(lat, lng, 1, object : Geocoder.GeocodeListener {
+                override fun onGeocode(addresses: MutableList<Address>) {
+                    applyCountry(addresses.firstOrNull()?.countryCode)
+                }
+
+                override fun onError(errorMessage: String?) {
+                    applyCountry(null)
+                }
+            })
+        } else {
+            Thread {
+                val countryCode = runCatching {
+                    @Suppress("DEPRECATION")
+                    geocoder.getFromLocation(lat, lng, 1)
+                }.getOrNull()?.firstOrNull()?.countryCode
+                runOnUiThread { applyCountry(countryCode) }
+            }.start()
         }
     }
 
