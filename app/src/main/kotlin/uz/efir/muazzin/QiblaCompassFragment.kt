@@ -49,7 +49,7 @@ class QiblaCompassFragment : Fragment(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sensorManager = requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = requireContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
         rotationVectorSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
     }
 
@@ -136,7 +136,7 @@ class QiblaCompassFragment : Fragment(), SensorEventListener {
      * and write the latitude/longitude DMS values to the header rows.
      */
     private fun updateDms() {
-        val location: Location = Preferences.getInstance(requireActivity().baseContext).location
+        val location: Location = Preferences.getInstance(requireContext()).location
         val latitude = Dms(location.latitude)
         val longitude = Dms(location.longitude)
 

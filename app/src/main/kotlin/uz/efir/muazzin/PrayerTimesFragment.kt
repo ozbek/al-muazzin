@@ -32,8 +32,8 @@ class PrayerTimesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mPreferences = Preferences.getInstance(requireActivity().baseContext)
-        mTimetableView = PrayerTimesAdapter(requireActivity().baseContext, mTimeTable)
+        mPreferences = Preferences.getInstance(requireContext())
+        mTimetableView = PrayerTimesAdapter(requireContext(), mTimeTable)
     }
 
     override fun onCreateView(
@@ -58,7 +58,7 @@ class PrayerTimesFragment : Fragment() {
         }
         loadPrayerTimetable()
         ContextCompat.registerReceiver(
-            requireActivity(),
+            requireContext(),
             mUpdateReceiver,
             IntentFilter(ACTION_UPDATE_UI),
             ContextCompat.RECEIVER_NOT_EXPORTED
@@ -67,11 +67,11 @@ class PrayerTimesFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        requireActivity().unregisterReceiver(mUpdateReceiver)
+        requireContext().unregisterReceiver(mUpdateReceiver)
     }
 
     private fun loadPrayerTimetable() {
-        val context: Context = requireActivity().baseContext ?: return
+        val context: Context = requireContext()
         PrayerAlarmScheduler.setNext(context)
         val today = PrayerSchedule(mPreferences)
         mTodaysDate?.text = today.hijriDateToString(context)
