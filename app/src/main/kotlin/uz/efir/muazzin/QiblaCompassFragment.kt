@@ -49,7 +49,7 @@ class QiblaCompassFragment : Fragment(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sensorManager = requireContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = requireContext().getSystemService(SensorManager::class.java)
         rotationVectorSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
     }
 

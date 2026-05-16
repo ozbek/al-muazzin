@@ -100,7 +100,7 @@ class NotificationService : Service() {
     }
 
     private fun dismissNotification(id: Int = -1) {
-        val nm = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val nm = getSystemService(NotificationManager::class.java)
         if (id > 0) nm.cancel(id) else nm.cancelAll()
         stopForeground(STOP_FOREGROUND_REMOVE)
         WakeLock.release()

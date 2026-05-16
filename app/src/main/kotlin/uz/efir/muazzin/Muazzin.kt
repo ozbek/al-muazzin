@@ -136,7 +136,7 @@ class Muazzin : AppCompatActivity(), CalculationSettingsDialog.LocationProvider 
     }
 
     private fun getCurrentLocation(context: Context): Location? {
-        val locationManager = context.getSystemService(LOCATION_SERVICE) as LocationManager
+        val locationManager = context.getSystemService(LocationManager::class.java)
         var currentLocation: Location? = null
         try {
             if (ContextCompat.checkSelfPermission(

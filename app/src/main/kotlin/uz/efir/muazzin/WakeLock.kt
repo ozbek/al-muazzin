@@ -11,7 +11,7 @@ object WakeLock {
     fun acquire(context: Context) = synchronized(lock) {
         val wl = wakeLock ?: run {
             val app = context.applicationContext
-            val pm = app.getSystemService(Context.POWER_SERVICE) as PowerManager
+            val pm = app.getSystemService(PowerManager::class.java)
             pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "${app.packageName}:WakeLock")
                 .also { wakeLock = it }
         }
