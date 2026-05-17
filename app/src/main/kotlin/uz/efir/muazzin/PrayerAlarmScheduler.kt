@@ -24,9 +24,11 @@ object PrayerAlarmScheduler {
             return
         }
 
-        val intent = Intent(context, StartNotificationReceiver::class.java)
-        intent.putExtra(EXTRA_ACTUAL_TIME, actualTime.timeInMillis)
-        intent.putExtra(EXTRA_TIME_INDEX, timeIndex)
+        val intent = Intent(context, StartNotificationReceiver::class.java).apply {
+            setPackage(context.packageName)
+            putExtra(EXTRA_ACTUAL_TIME, actualTime.timeInMillis)
+            putExtra(EXTRA_TIME_INDEX, timeIndex)
+        }
 
         val am = context.getSystemService(AlarmManager::class.java)
         am.setExactAndAllowWhileIdle(
