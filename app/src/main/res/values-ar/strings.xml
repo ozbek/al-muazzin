@@ -11,7 +11,6 @@
     <string name="ishaa">العشاء</string>
     <string name="next_fajr">الفجر التالي</string>
     <string name="sdefault">الافتراضي</string>
-    <string name="location_not_set"><u>لم يتم ضبط الموقع</u>\n\nفضلا قم بتفعيل نظام الملاحة(gps) أو قم بوضع احداثية موقعك مباشرة عن طريق الاعدادات.</string>
     <string name="time_for">الوقت لـ<xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">خط العرض</string>
     <string name="longitude">خط الطول</string>
@@ -40,4 +39,8 @@
     <string name="yes">نعم</string>
     <string name="would_you_pray">حان وقت صلاة <xliff:g id="time_name">%1$s</xliff:g>. هل تود أداءها الآن؟</string>
     <string name="later">لاحقًا…</string>
+    <string name="location_permission_missing_title">إذن الموقع مطلوب</string>
+    <string name="location_permission_missing_message">لم يتم منح إذن الموقع، لذا قد تكون حسابات أوقات الصلاة واتجاه القبلة غير دقيقة. يمكنك أيضًا تحديد موقعك يدويًا من <xliff:g id="section">%1$s</xliff:g>.</string>
+    <string name="grant_access">منح الإذن</string>
+    <string name="dismiss">تجاهل</string>
 </resources>

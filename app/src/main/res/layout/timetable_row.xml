@@ -9,15 +9,17 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:padding="5dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/time"
             android:layout_width="0dp"
+            android:paddingBottom="8dp"
+            android:paddingTop="8dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="5dp"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>

@@ -11,7 +11,6 @@
     <string name="ishaa">Yatsı</string>
     <string name="next_fajr">Sonraki imsak</string>
     <string name="sdefault">Varsayılan</string>
-    <string name="location_not_set">Lütfen <u>yer</u> ayarlayın</string>
     <string name="time_for"><xliff:g id="time_name">%1$s</xliff:g> namazı vakti</string>
     <string name="latitude">Enlem</string>
     <string name="longitude">Boylam</string>
@@ -40,4 +39,8 @@
     <string name="would_you_pray"><xliff:g id="time_name">%1$s</xliff:g> namazı vakti geldi. Şimdi kılmak ister misiniz?</string>
     <string name="yes">Evet</string>
     <string name="later">Sonra…</string>
+    <string name="location_permission_missing_title">Konum izni gerekli</string>
+    <string name="location_permission_missing_message">Konum izni verilmediği için namaz vakitleri ve kıble yönü hesaplamaları doğru olmayabilir. Konumunuzu <xliff:g id="section">%1$s</xliff:g> bölümünden elle de belirleyebilirsiniz.</string>
+    <string name="grant_access">İzin ver</string>
+    <string name="dismiss">Kapat</string>
 </resources>

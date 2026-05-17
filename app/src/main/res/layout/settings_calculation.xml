@@ -111,26 +111,26 @@
             app:layout_constraintTop_toBottomOf="@id/calculation_methods" />
 
         <Button
-            android:id="@+id/reset_settings"
+            android:id="@+id/dismiss"
             style="?attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/reset"
-            app:layout_constraintEnd_toStartOf="@id/save_settings"
+            android:text="@string/dismiss"
+            app:layout_constraintEnd_toStartOf="@id/save"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/offset_minutes" />
 
         <Button
-            android:id="@+id/save_settings"
+            android:id="@+id/save"
             style="?attr/buttonBarButtonStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/save"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/reset_settings"
+            app:layout_constraintStart_toEndOf="@id/dismiss"
             app:layout_constraintTop_toBottomOf="@id/offset_minutes" />
 
         <androidx.constraintlayout.widget.Barrier

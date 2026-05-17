@@ -5,7 +5,6 @@
     <string name="sunrise">Levé du soleil</string>
     <string name="next_fajr">Prochain Fajr</string>
     <string name="sdefault">Défaut</string>
-    <string name="location_not_set">préciser s\'il vous plaît <u>Endroit</u></string>
     <string name="time_for">L\'heure de <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="bearing_heading">Cap : %1$s°</string>
     <string name="bearing_qibla">Qibla : %1$s° (%2$s)</string>
@@ -40,4 +39,8 @@
     <string name="beep">Bip</string>
     <string name="offset">Décalage</string>
     <string name="later">Plus tard…</string>
+    <string name="location_permission_missing_title">Autorisation de localisation requise</string>
+    <string name="location_permission_missing_message">L\'autorisation de localisation n\'est pas accordée, les calculs des horaires de prière et de la direction de la Qibla peuvent donc être inexacts. Vous pouvez aussi définir votre position manuellement dans <xliff:g id="section">%1$s</xliff:g>.</string>
+    <string name="grant_access">Accorder l\'accès</string>
+    <string name="dismiss">Ignorer</string>
 </resources>

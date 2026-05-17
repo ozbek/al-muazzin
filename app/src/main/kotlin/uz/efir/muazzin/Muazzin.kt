@@ -1,17 +1,18 @@
 package uz.efir.muazzin
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.Settings
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -22,6 +23,7 @@ import androidx.core.view.updatePadding
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import java.util.Locale
@@ -54,21 +56,25 @@ class Muazzin : AppCompatActivity(), CalculationSettingsDialog.LocationProvider 
             insets
         }
 
-        if (ContextCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
+        when {
+            isLocationPermissionGranted() -> {
+                initCalculationDefaults()
+                setupViewPager()
+                requestNotificationPermission()
+            }
+
+            canShowLocationRationale() -> {
+                initCalculationDefaults()
+                setupViewPager()
+                showLocationPermissionDialog()
+            }
+
+            else -> ActivityCompat.requestPermissions(
                 this, arrayOf(
                     Manifest.permission.ACCESS_FINE_LOCATION,
                     Manifest.permission.ACCESS_COARSE_LOCATION
-                ), REQUEST_ACCESS_LOCATION
+                ), REQUEST_LOCATION_PERMISSION
             )
-        } else {
-            // Location permission is already granted
-            initCalculationDefaults()
-            setupViewPager()
-            requestNotificationPermission()
         }
     }
 
@@ -94,29 +100,102 @@ class Muazzin : AppCompatActivity(), CalculationSettingsDialog.LocationProvider 
         deviceId: Int
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults, deviceId)
-        if (requestCode == REQUEST_ACCESS_LOCATION) {
-            initCalculationDefaults()
-            setupViewPager()
-            // After the location permission request has been answered,
-            // request the notification permission with a delay to prevent screen flickering.
-            Handler(Looper.getMainLooper()).postDelayed(
-                { this.requestNotificationPermission() }, 1000
-            )
+        when (requestCode) {
+            REQUEST_LOCATION_PERMISSION -> {
+                initCalculationDefaults()
+                setupViewPager()
+                requestNotificationPermission()
+            }
+
+            REQUEST_LOCATION_PERMISSION_REGRANT -> {
+                if (isLocationPermissionGranted()) {
+                    initCalculationDefaults()
+                }
+            }
         }
     }
 
+    override fun requestLocationPermission() {
+        if (canShowLocationRationale()) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ), REQUEST_LOCATION_PERMISSION_REGRANT
+            )
+        } else {
+            showLocationPermissionDialog()
+        }
+    }
+
+    override val latestLocation: Location?
+        get() = getCurrentLocation()
+
+    private fun showLocationPermissionDialog() {
+        var requestNotificationPermission = true
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.location_permission_missing_title)
+            .setMessage(
+                getString(
+                    R.string.location_permission_missing_message,
+                    getString(R.string.calculation)
+                )
+            )
+            .setPositiveButton(R.string.grant_access) { _, _ ->
+                requestNotificationPermission = false
+                grantOrOpenSettings()
+            }
+            .setNegativeButton(R.string.dismiss, null)
+            .setOnDismissListener {
+                if (requestNotificationPermission) requestNotificationPermission()
+            }
+            .show()
+    }
+
+    private fun grantOrOpenSettings() {
+        if (canShowLocationRationale()) {
+            ActivityCompat.requestPermissions(
+                this, arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ), REQUEST_LOCATION_PERMISSION_REGRANT
+            )
+        } else {
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                data = Uri.fromParts("package", packageName, null)
+            }
+            startActivity(intent)
+        }
+    }
+
+    private fun isLocationPermissionGranted(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this, Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(
+            this, Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun canShowLocationRationale(): Boolean {
+        return ActivityCompat.shouldShowRequestPermissionRationale(
+            this, Manifest.permission.ACCESS_FINE_LOCATION
+        ) || ActivityCompat.shouldShowRequestPermissionRationale(
+            this, Manifest.permission.ACCESS_COARSE_LOCATION
+        )
+    }
+
     private fun requestNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(
-                    this, Manifest.permission.POST_NOTIFICATIONS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && ContextCompat.checkSelfPermission(
+                this, Manifest.permission.POST_NOTIFICATIONS
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            Handler(Looper.getMainLooper()).postDelayed({
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(Manifest.permission.POST_NOTIFICATIONS),
-                    REQUEST_POST_NOTIFICATIONS
+                    REQUEST_NOTIFICATIONS_PERMISSION
                 )
-            }
+            }, 2000)
         }
     }
 
@@ -125,7 +204,7 @@ class Muazzin : AppCompatActivity(), CalculationSettingsDialog.LocationProvider 
 
         val location: Location? = when {
             preferences.isLocationSet -> preferences.location
-            else -> getCurrentLocation(this)?.also { preferences.location = it }
+            else -> getCurrentLocation()?.also { preferences.location = it }
         }
 
         if (!preferences.isCalculationMethodSet) {
@@ -179,18 +258,18 @@ class Muazzin : AppCompatActivity(), CalculationSettingsDialog.LocationProvider 
         }
     }
 
-    private fun getCurrentLocation(context: Context): Location? {
-        val locationManager = context.getSystemService(LocationManager::class.java)
+    private fun getCurrentLocation(): Location? {
+        val locationManager = getSystemService(LocationManager::class.java)
         var currentLocation: Location? = null
         try {
             if (ContextCompat.checkSelfPermission(
-                    context, Manifest.permission.ACCESS_FINE_LOCATION
+                    this, Manifest.permission.ACCESS_FINE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
                 currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
             }
             if (currentLocation == null && ContextCompat.checkSelfPermission(
-                    context, Manifest.permission.ACCESS_COARSE_LOCATION
+                    this, Manifest.permission.ACCESS_COARSE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
                 currentLocation =
@@ -202,11 +281,9 @@ class Muazzin : AppCompatActivity(), CalculationSettingsDialog.LocationProvider 
         return currentLocation
     }
 
-    override val latestLocation: Location?
-        get() = getCurrentLocation(this)
-
     companion object {
-        private const val REQUEST_ACCESS_LOCATION = 1001
-        private const val REQUEST_POST_NOTIFICATIONS = 1002
+        private const val REQUEST_LOCATION_PERMISSION = 1001
+        private const val REQUEST_LOCATION_PERMISSION_REGRANT = 1002
+        private const val REQUEST_NOTIFICATIONS_PERMISSION = 1003
     }
 }

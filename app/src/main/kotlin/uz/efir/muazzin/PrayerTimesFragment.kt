@@ -21,7 +21,6 @@ class PrayerTimesFragment : Fragment() {
     private val mTimeTable = ArrayList<HashMap<String?, String?>>(7)
     private var mTimetableView: PrayerTimesAdapter? = null
     private var mTodaysDate: TextView? = null
-    private var mNotes: TextView? = null
     private lateinit var mPreferences: Preferences
 
     private val mUpdateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
@@ -41,7 +40,6 @@ class PrayerTimesFragment : Fragment() {
     ): View {
         val rootView = inflater.inflate(R.layout.tab_today, container, false)
         mTodaysDate = rootView.findViewById(R.id.today)
-        mNotes = rootView.findViewById(R.id.notes)
         val lv = rootView.findViewById<ListView>(R.id.timetable)
         lv.adapter = mTimetableView
         lv.isNestedScrollingEnabled = true
@@ -51,11 +49,6 @@ class PrayerTimesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (mPreferences.isLocationSet) {
-            mNotes?.text = null
-        } else {
-            mNotes?.text = getString(R.string.location_not_set)
-        }
         loadPrayerTimetable()
         ContextCompat.registerReceiver(
             requireContext(),

@@ -5,7 +5,6 @@
     <string name="today">Hoy en día</string>
     <string name="next_fajr">Siguiente Fajr</string>
     <string name="sdefault">Normal</string>
-    <string name="location_not_set"><u>Ubicación no establecido</u>\n\nPor favor, habilite el dispositivo GPS o fijar su ubicación de forma manual a través de ajustes.</string>
     <string name="time_for">La hora de la <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Latitud</string>
     <string name="longitude">Longitud</string>
@@ -40,4 +39,8 @@
     <string name="ishaa">Ishaa</string>
     <string name="qibla">Qibla</string>
     <string name="later">Más tarde…</string>
+    <string name="location_permission_missing_title">Permiso de ubicación requerido</string>
+    <string name="location_permission_missing_message">No se ha concedido el permiso de ubicación, por lo que los cálculos de los horarios de oración y de la dirección de la Qibla pueden no ser precisos. También puedes establecer tu ubicación manualmente desde <xliff:g id="section">%1$s</xliff:g>.</string>
+    <string name="grant_access">Conceder acceso</string>
+    <string name="dismiss">Descartar</string>
 </resources>

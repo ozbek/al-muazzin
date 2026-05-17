@@ -11,7 +11,6 @@
     <string name="ishaa">Xufton</string>
     <string name="next_fajr">Ertangi bomdod</string>
     <string name="sdefault">Birlamchi</string>
-    <string name="location_not_set"><u>Joylashuv xizmati oʻchiq</u>\n\nIltimos, qurilmaning GPS (global joylashuv tizimi) modulini yoqing yoki joylashgan manzilingiz koordinatalarini qoʻlda kiriting.</string>
     <string name="time_for"><xliff:g id="time_name">%1$s</xliff:g> vaqti boʻldi</string>
     <string name="latitude">Kenglik</string>
     <string name="longitude">Uzunlik</string>
@@ -40,4 +39,8 @@
     <string name="would_you_pray"><xliff:g id="time_name">%1$s</xliff:g> namozi vaqti boʻldi. Hozir oʻqib olasizmi?</string>
     <string name="yes">Ha</string>
     <string name="later">Keyinroq…</string>
+    <string name="location_permission_missing_title">Joylashuv uchun ruxsat talab qilinadi</string>
+    <string name="location_permission_missing_message">Joylashuv uchun ruxsat berilmagan, shu sababli namoz vaqtlari va qibla yoʻnalishi hisob-kitoblari aniq boʻlmasligi mumkin. Joylashuvingizni <xliff:g id="section">%1$s</xliff:g> boʻlimi orqali qoʻlda ham kiritishingiz mumkin.</string>
+    <string name="grant_access">Ruxsat berish</string>
+    <string name="dismiss">Yopish</string>
 </resources>

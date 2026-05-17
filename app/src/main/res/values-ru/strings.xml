@@ -11,7 +11,6 @@
     <string name="ishaa">Иша</string>
     <string name="next_fajr">Следующий Фаджр</string>
     <string name="sdefault">По умолчанию</string>
-    <string name="location_not_set">Укажите <u>место</u></string>
     <string name="time_for">Время для <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Широта</string>
     <string name="longitude">Долгота</string>
@@ -40,4 +39,8 @@
     <string name="yes">Да</string>
     <string name="later">Позже…</string>
     <string name="would_you_pray">Настало время молитвы <xliff:g id="time_name">%1$s</xliff:g>. Хотели бы вы совершить её сейчас?</string>
+    <string name="location_permission_missing_title">Требуется разрешение на доступ к местоположению</string>
+    <string name="location_permission_missing_message">Разрешение на доступ к местоположению не предоставлено, поэтому расчёты времени молитв и направления Киблы могут быть неточными. Вы также можете указать местоположение вручную в разделе «<xliff:g id="section">%1$s</xliff:g>».</string>
+    <string name="grant_access">Предоставить доступ</string>
+    <string name="dismiss">Закрыть</string>
 </resources>

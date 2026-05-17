@@ -6,7 +6,6 @@
     <string name="sunrise">Alba</string>
     <string name="next_fajr">Prossimo Fajr</string>
     <string name="sdefault">Default</string>
-    <string name="location_not_set"><u>Posizione non definita</u>\n\nAbilitare, per favore, il GPS o impostare la posizione manualmente utilizzando le impostazioni.</string>
     <string name="time_for">è l\'ora di <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Latitudine</string>
     <string name="longitude">Longitudine</string>
@@ -40,4 +39,8 @@
     <string name="ishaa">Ishaa</string>
     <string name="qibla">Qibla</string>
     <string name="later">Più tardi…</string>
+    <string name="location_permission_missing_title">Autorizzazione alla posizione richiesta</string>
+    <string name="location_permission_missing_message">L\'autorizzazione alla posizione non è stata concessa, quindi i calcoli degli orari di preghiera e della direzione della Qibla potrebbero non essere accurati. Puoi anche impostare la tua posizione manualmente da <xliff:g id="section">%1$s</xliff:g>.</string>
+    <string name="grant_access">Concedi accesso</string>
+    <string name="dismiss">Chiudi</string>
 </resources>

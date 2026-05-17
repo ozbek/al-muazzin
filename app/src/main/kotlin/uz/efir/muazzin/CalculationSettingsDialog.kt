@@ -1,7 +1,9 @@
 package uz.efir.muazzin
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.view.View
@@ -11,12 +13,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatDialog
+import androidx.core.content.ContextCompat
 import java.util.Locale
 
 class CalculationSettingsDialog(
     private val mContext: Context, private val mLocationProvider: LocationProvider
 ) : AppCompatDialog(mContext, R.style.Theme_Muazzin_Dialog) {
     interface LocationProvider {
+        fun requestLocationPermission()
         val latestLocation: Location?
     }
 
@@ -74,6 +78,15 @@ class CalculationSettingsDialog(
 
         val lookupGps = findViewById<Button?>(R.id.lookup_gps)
         lookupGps?.setOnClickListener { _: View? ->
+            val locationGranted = ContextCompat.checkSelfPermission(
+                mContext, Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(
+                mContext, Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+            if (!locationGranted) {
+                mLocationProvider.requestLocationPermission()
+                return@setOnClickListener
+            }
             val newLocation = mLocationProvider.latestLocation
             if (newLocation != null) {
                 mLatitudeText?.setText(formatDouble(newLocation.latitude))
@@ -81,8 +94,8 @@ class CalculationSettingsDialog(
             }
         }
 
-        val saveSettings = findViewById<Button?>(R.id.save_settings)
-        saveSettings?.setOnClickListener { _: View? ->
+        val saveButton = findViewById<Button?>(R.id.save)
+        saveButton?.setOnClickListener { _: View? ->
             val newLatitude = parseDouble(mLatitudeText, location.latitude)
             val newLongitude = parseDouble(mLongitudeText, location.longitude)
             val newCalculationMethod =
@@ -105,11 +118,8 @@ class CalculationSettingsDialog(
             dismiss()
         }
 
-        val resetSettings = findViewById<Button?>(R.id.reset_settings)
-        resetSettings?.setOnClickListener { _: View? ->
-            mCalculationMethods?.setSelection(CalculationMethodCatalog.DEFAULT_INDEX)
-            mOffsetMinutesText?.setText("0")
-        }
+        val dismissButton = findViewById<Button?>(R.id.dismiss)
+        dismissButton?.setOnClickListener { _: View? -> dismiss() }
     }
 
     override fun onStart() {

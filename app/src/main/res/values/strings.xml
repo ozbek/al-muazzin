@@ -11,7 +11,10 @@
     <string name="ishaa">`Ishaa\'</string>
     <string name="next_fajr">Next Fajr</string>
     <string name="sdefault">Default</string>
-    <string name="location_not_set"><u>Location Not Set</u>\n\nPlease enable the device\'s GPS or set your location manually through settings.</string>
+    <string name="location_permission_missing_title">Location permission required</string>
+    <string name="location_permission_missing_message">Location permission is not granted, so prayer time and Qibla direction calculations may not be accurate. You can also set your location manually from <xliff:g id="section">%1$s</xliff:g>.</string>
+    <string name="grant_access">Grant access</string>
+    <string name="dismiss">Dismiss</string>
     <string name="time_for">Time for <xliff:g id="time_name">%1$s</xliff:g></string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
